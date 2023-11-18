@@ -13,6 +13,8 @@ import javax.swing.border.*;
 public class Calculator extends JFrame {
     public Calculator() {
         initComponents();
+        ImageIcon icon=new ImageIcon("src/icon.png"); //图片和项目同一路径，故不用图片的路径
+        this.setIconImage(icon.getImage());
     }
 
     private void initComponents() {
@@ -26,6 +28,7 @@ public class Calculator extends JFrame {
         setTitle("Calculator");
         var contentPane = getContentPane();
         contentPane.setLayout(null);
+
 
         //======== menuBar1 ========
         {
@@ -46,20 +49,7 @@ public class Calculator extends JFrame {
         }
         setJMenuBar(menuBar1);
 
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for(int i = 0; i < contentPane.getComponentCount(); i++) {
-                Rectangle bounds = contentPane.getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = contentPane.getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            contentPane.setMinimumSize(preferredSize);
-            contentPane.setPreferredSize(preferredSize);
-        }
+        contentPane.setPreferredSize(new Dimension(480, 360));
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
