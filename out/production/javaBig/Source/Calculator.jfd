@@ -1,0 +1,362 @@
+JFDML JFormDesigner: "8.2.0.0.331" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+			"autoSize": false
+		} ) {
+			name: "this"
+			"title": "  Calculator"
+			"foreground": sfield java.awt.SystemColor controlDkShadow
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"horizontalAlignment": 11
+				"font": new java.awt.Font( "Consolas", 3, 28 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 40
+				"y": 30
+				"width": 460
+				"height": 65
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "1"
+				"font": &Font0 new java.awt.Font( "Consolas", 0, 16 )
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 40
+				"y": 281
+				"width": 85
+				"height": 40
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "2"
+				"font": new java.awt.Font( "Consolas", 0, 16 )
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 130
+				"y": 281
+				"width": 85
+				"height": 40
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "3"
+				"font": &Font1 new java.awt.Font( "Consolas", 0, 16 )
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 220
+				"y": 281
+				"width": 85
+				"height": 40
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "4"
+				"font": new java.awt.Font( "Consolas", 0, 16 )
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 40
+				"y": 235
+				"width": 85
+				"height": 40
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": "5"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 130
+				"y": 235
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button6"
+				"text": "6"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 220
+				"y": 235
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button7"
+				"text": "7"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 40
+				"y": 190
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button8"
+				"text": "8"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 130
+				"y": 190
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button9"
+				"text": "9"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 220
+				"y": 190
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button0"
+				"text": "0"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 130
+				"y": 327
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_dot"
+				"text": "."
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 220
+				"y": 327
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_polar"
+				"text": "+/-"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 40
+				"y": 327
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_upsidedown"
+				"text": "1/x"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 40
+				"y": 145
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_pow2"
+				"text": "x^2"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 130
+				"y": 145
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_sqrt"
+				"text": "√x"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 220
+				"y": 145
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_equal"
+				"text": "="
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 310
+				"y": 327
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_plus"
+				"text": "+"
+				"font": #Font1
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 310
+				"y": 281
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_minus"
+				"text": "-"
+				"font": #Font1
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 310
+				"y": 235
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_mul"
+				"text": "×"
+				"font": #Font1
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 310
+				"y": 190
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_div"
+				"text": "÷"
+				"font": #Font1
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 310
+				"y": 145
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_percent"
+				"text": "%"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 40
+				"y": 100
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_cleanEntry"
+				"text": "CE"
+				"font": #Font0
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 130
+				"y": 100
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_clear"
+				"text": "C"
+				"font": #Font0
+				"focusable": false
+				"alignmentY": 0.0f
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 220
+				"y": 100
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_smoke"
+				"font": new java.awt.Font( "Consolas", 0, 16 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/smoke.png" )
+				"focusable": false
+				auxiliary() {
+					"JavaCodeGenerator.variableName": "button_smoke"
+				}
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 100
+				"height": 130
+				"x": 400
+				"y": 235
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_David"
+				"font": #Font1
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/David.png" )
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 100
+				"height": 130
+				"x": 400
+				"y": 100
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_backspace"
+				"font": #Font1
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/delete(1).png" )
+				"focusable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 85
+				"height": 40
+				"x": 310
+				"y": 100
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				"alignmentY": 0.4736842f
+				"borderPainted": false
+				"autoscrolls": true
+				"margin": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 16 )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu2"
+					"text": "类型"
+					"font": new com.jformdesigner.model.SwingDerivedFont( "宋体", 1, 14, true )
+					"borderPainted": false
+					"autoscrolls": true
+					"componentPopupMenu": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					"margin": new java.awt.Insets( 5, 5, 5, 5 )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem3"
+						"text": "标准"
+						"font": new com.jformdesigner.model.SwingDerivedFont( "宋体", 1, 0, false )
+						"preferredSize": new java.awt.Dimension( 73, 22 )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem4"
+						"text": "科学"
+						"font": new java.awt.Font( "宋体", 1, 12 )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "文件"
+					"font": new java.awt.Font( "宋体", 1, 14 )
+					"margin": new java.awt.Insets( 5, 5, 5, 5 )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": "打开文件"
+						"font": new java.awt.Font( "宋体", 1, 12 )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": "保存文件"
+						"font": new java.awt.Font( "宋体", 1, 12 )
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 30, 15 )
+			"size": new java.awt.Dimension( 570, 465 )
+		} )
+	}
+}
