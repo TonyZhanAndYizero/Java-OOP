@@ -137,7 +137,14 @@ public class Main {
                             res = num1.divide(num2);
                         }catch (ArithmeticException a)
                         {
-                            res = num1.divide(num2, 10, RoundingMode.HALF_UP);
+                            try {
+                                res = num1.divide(num2, 10, RoundingMode.HALF_UP);
+                            }
+                            catch (ArithmeticException b)
+                            {
+                                System.out.println("运算错误！请重新输入：");
+                                return null;
+                            }
                         }
                     }
                     else
