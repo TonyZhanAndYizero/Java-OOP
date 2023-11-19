@@ -1,5 +1,8 @@
 package Source;
 
+import src.EasyVersion;
+import src.FourArithmetic;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -113,15 +116,23 @@ public class Calculator_std extends JFrame {
             textField1.setText(str);
         }
     }
+    private void cacul(String s1, String s2){
+        String s3 = s1 + s2;
+//        System.out.println(s1 + ' ' + s2);
+        String ans = FourArithmetic.caculate(s3).toString();
+//        System.out.println(ans);
+        label1.setText(ans);
+    }
     private boolean pending_cal_toClear=false;
     private void textField1KeyPressed(KeyEvent e) {
         String str;
         str = textField1.getText();
         // TODO add your code here
-
+//        FourArithmetic.caculate(str);
         String str_last;
         str_last=label1.getText();
-
+        if(e.getKeyChar() == '=')
+            cacul(str_last, str);
         // TODO add your code here
         if(Utilities.KeycodeCal_check_std(e.getKeyChar())){
             str_last=textField1.getText()+e.getKeyChar();

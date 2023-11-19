@@ -1,9 +1,10 @@
+package src;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 
-public class Main {
+public class FourArithmetic {
     private static List<String> parseToSuffixExpression(List<String> expressionList) {
         //创建一个栈用于保存操作符
         Stack<String> opStack = new Stack<>();
@@ -164,27 +165,44 @@ public class Main {
         }
         return stack.pop();
     }
-
-    public static void main(String []args){
-        System.out.println("请输入运算式：");
-        Scanner in = new Scanner(System.in);
-        while(true)
+    public static BigDecimal caculate(String expression)
+    {
+        if(expression.isBlank())
+            return null;
+        List<String> expressionList = expressionToList(expression.replace(" ", ""));
+        //System.out.println("中缀表达式转为list结构="+expressionList);
+        //将中缀表达式转换为后缀表达式
+        List<String> suffixList = parseToSuffixExpression(expressionList);
+        //System.out.println("对应的后缀表达式列表结构="+suffixList);
+        //根据后缀表达式计算结果
+        if(suffixList != null)
         {
-            String expression = in.nextLine();
-            if(expression.isBlank())
-                continue;
-            List<String> expressionList = expressionToList(expression.replace(" ", ""));
-            //System.out.println("中缀表达式转为list结构="+expressionList);
-            //将中缀表达式转换为后缀表达式
-            List<String> suffixList = parseToSuffixExpression(expressionList);
-            //System.out.println("对应的后缀表达式列表结构="+suffixList);
-            //根据后缀表达式计算结果
-            if(suffixList != null)
-            {
-                BigDecimal calculateResult = calculate(suffixList);
-                if(calculateResult != null)
-                    System.out.println("= " + calculateResult);
-            }
+            BigDecimal calculateResult = calculate(suffixList);
+            if(calculateResult != null)
+                return calculateResult;
         }
+        return null;
     }
+//    public static void main(String []args){
+//        System.out.println("请输入运算式：");
+//        Scanner in = new Scanner(System.in);
+//        while(true)
+//        {
+//            String expression = in.nextLine();
+//            if(expression.isBlank())
+//                continue;
+//            List<String> expressionList = expressionToList(expression.replace(" ", ""));
+//            //System.out.println("中缀表达式转为list结构="+expressionList);
+//            //将中缀表达式转换为后缀表达式
+//            List<String> suffixList = parseToSuffixExpression(expressionList);
+//            //System.out.println("对应的后缀表达式列表结构="+suffixList);
+//            //根据后缀表达式计算结果
+//            if(suffixList != null)
+//            {
+//                BigDecimal calculateResult = calculate(suffixList);
+//                if(calculateResult != null)
+//                    System.out.println("= " + calculateResult);
+//            }
+//        }
+//    }
 }
