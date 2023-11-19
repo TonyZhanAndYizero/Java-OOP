@@ -1,7 +1,10 @@
 package Source;
 
+import Source.Tools.FourArithmetic;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -115,21 +118,31 @@ public class Calculator_std extends JFrame {
     }
     private boolean pending_cal_toClear=false;
     private void textField1KeyPressed(KeyEvent e) {
+        // TODO add your code here
         String str;
         str = textField1.getText();
-        // TODO add your code here
 
         String str_last;
-        str_last=label1.getText();
+        str_last=Utilities.stdNum(label1.getText());
 
-        // TODO add your code here
-        if(Utilities.KeycodeCal_check_std(e.getKeyChar())){
-            str_last=textField1.getText()+e.getKeyChar();
+        if(Utilities.KeycodeEqual_check(e.getKeyCode())){
+            str=Utilities.stdNum(str);
+            String s=str_last+" "+str;
+            BigDecimal bd=FourArithmetic.calculate(s);
+            if (bd != null) {
+                label1.setText(s+" = "+bd);
+            }else{
+                label1.setText(str+" = "+str);
+            }
+            str="0";
+        }
+        else if(Utilities.KeycodeCal_check_std(e.getKeyChar())){
+            str_last=Utilities.stdNum(textField1.getText())+" "+e.getKeyChar();
             label1.setText(str_last);
             pending_cal_toClear=true;
         }
         else {
-            if (pending_cal_toClear){
+            if (pending_cal_toClear&&(Utilities.KeycodeNum_check_std(e.getKeyChar())||Utilities.KeycodeCal_check_std(e.getKeyChar()))){
                 str="";
                 pending_cal_toClear=false;
             }
@@ -163,10 +176,6 @@ public class Calculator_std extends JFrame {
             str = str + ".";
             textField1.setText(str);
         }
-    }
-
-    private void label1KeyPressed(KeyEvent e) {
-
     }
 
     private void initComponents() {
