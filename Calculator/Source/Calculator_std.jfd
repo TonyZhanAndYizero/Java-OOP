@@ -327,7 +327,6 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"text": "123"
 				"border": new javax.swing.border.TitledBorder( new javax.swing.border.SoftBevelBorder( 1, null, null, null, null ), "Last Step", 4, 0, new java.awt.Font( "Consolas", 3, 12 ), null )
 				"horizontalAlignment": 11
 				"font": new java.awt.Font( "Consolas", 0, 18 )

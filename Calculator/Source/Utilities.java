@@ -4,8 +4,11 @@ public class Utilities {
     public static boolean Keycode_check(char keycode){
         return Character.isDigit(keycode) || "+-*/.=".indexOf(keycode) != -1;
     }
-    public static boolean Keycode_check_std(char keycode){
+    public static boolean KeycodeNum_check_std(char keycode){
         return Character.isDigit(keycode) || keycode=='.';
+    }
+    public static boolean KeycodeCal_check_std(char keycode){
+        return "+-*/".indexOf(keycode) != -1;
     }
 
     public static boolean LegalNum_check(String num){

@@ -113,26 +113,42 @@ public class Calculator_std extends JFrame {
             textField1.setText(str);
         }
     }
-
+    private boolean pending_cal_toClear=false;
     private void textField1KeyPressed(KeyEvent e) {
         String str;
         str = textField1.getText();
         // TODO add your code here
-        if (!str.equals("0")) {
-            if (Utilities.Keycode_check_std(e.getKeyChar())&&Utilities.countDot(str)<1) {
-                str = str + e.getKeyChar();
-            } else if (Character.isDigit(e.getKeyChar())) {
-                str = str + e.getKeyChar();
-            } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                if (!str.isEmpty()) {
-                    str = str.substring(0, str.length() - 1);
-                }
+
+        String str_last;
+        str_last=label1.getText();
+
+        // TODO add your code here
+        if(Utilities.KeycodeCal_check_std(e.getKeyChar())){
+            str_last=textField1.getText()+e.getKeyChar();
+            label1.setText(str_last);
+            pending_cal_toClear=true;
+        }
+        else {
+            if (pending_cal_toClear){
+                str="";
+                pending_cal_toClear=false;
             }
-        } else {
-            if (Utilities.Keycode_check_std(e.getKeyChar()) && e.getKeyChar() != '0' && e.getKeyChar() != '.') {
-                str = "" + e.getKeyChar();
-            } else if (e.getKeyChar() == '.') {
-                str = str + ".";
+            if(!str.equals("0")) {
+                if (Utilities.KeycodeNum_check_std(e.getKeyChar())&&Utilities.countDot(str)<1) {
+                    str = str + e.getKeyChar();
+                } else if (Character.isDigit(e.getKeyChar())) {
+                    str = str + e.getKeyChar();
+                } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                    if (!str.isEmpty()) {
+                        str = str.substring(0, str.length() - 1);
+                    }
+                }
+            } else {
+                if (Utilities.KeycodeNum_check_std(e.getKeyChar()) && e.getKeyChar() != '0' && e.getKeyChar() != '.') {
+                    str = "" + e.getKeyChar();
+                } else if (e.getKeyChar() == '.') {
+                    str = str + ".";
+                }
             }
         }
         if (str.isEmpty())
@@ -147,6 +163,10 @@ public class Calculator_std extends JFrame {
             str = str + ".";
             textField1.setText(str);
         }
+    }
+
+    private void label1KeyPressed(KeyEvent e) {
+
     }
 
     private void initComponents() {
@@ -511,7 +531,6 @@ public class Calculator_std extends JFrame {
         button_backspace.setBounds(310, 130, 85, 40);
 
         //---- label1 ----
-        label1.setText("123");
         label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
             new Font("Consolas", Font.BOLD | Font.ITALIC, 12)));
         label1.setHorizontalAlignment(SwingConstants.TRAILING);
