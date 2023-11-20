@@ -4,7 +4,6 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Calculator" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -14,5 +13,18 @@
     <orderEntry type="library" name="IntelliJ IDEA GridLayout" level="project" />
     <orderEntry type="library" name="MigLayout" level="project" />
     <orderEntry type="library" name="JTattoo-1.6.13" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../Libs/symja_java11-v3.0.0/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../Libs/symja_java11-v3.0.0/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../../Libs/symja_java11-v3.0.0/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../Libs/symja_java11-v3.0.0/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>
