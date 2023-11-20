@@ -15,7 +15,9 @@ import javax.swing.border.*;
 
 
 /**
- * @author tonyzhan0514
+ * use JFormDesigner to build the frame.
+ *
+ * @author tonyzhan0514 and Yury.
  */
 public class Calculator_std extends JFrame {
     public Calculator_std() {
@@ -26,6 +28,11 @@ public class Calculator_std extends JFrame {
         // TODO: add custom component creation code here
     }
 
+    /**
+     * all the UI design.
+     *
+     * @author TonyZhan
+     */
     private void button1MousePressed(MouseEvent e) {
         //System.out.println(e.getButton());
         // TODO add your code here
@@ -116,58 +123,6 @@ public class Calculator_std extends JFrame {
             textField1.setText(str);
         }
     }
-    private boolean pending_cal_toClear=false;
-    private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
-        String str;
-        str = textField1.getText();
-
-        String str_last;
-        str_last=Utilities.stdNum(label1.getText());
-
-        if(Utilities.KeycodeEqual_check(e.getKeyCode())){
-            str=Utilities.stdNum(str);
-            String s=str_last+" "+str;
-            BigDecimal bd=FourArithmetic.calculate(s);
-            if (bd != null) {
-                label1.setText(s+" = "+bd);
-            }else{
-                label1.setText(str+" = "+str);
-            }
-            str="0";
-        }
-        else if(Utilities.KeycodeCal_check_std(e.getKeyChar())){
-            str_last=Utilities.stdNum(textField1.getText())+" "+e.getKeyChar();
-            label1.setText(str_last);
-            pending_cal_toClear=true;
-        }
-        else {
-            if (pending_cal_toClear&&(Utilities.KeycodeNum_check_std(e.getKeyChar())||Utilities.KeycodeCal_check_std(e.getKeyChar()))){
-                str="";
-                pending_cal_toClear=false;
-            }
-            if(!str.equals("0")) {
-                if (Utilities.KeycodeNum_check_std(e.getKeyChar())&&Utilities.countDot(str)<1) {
-                    str = str + e.getKeyChar();
-                } else if (Character.isDigit(e.getKeyChar())) {
-                    str = str + e.getKeyChar();
-                } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                    if (!str.isEmpty()) {
-                        str = str.substring(0, str.length() - 1);
-                    }
-                }
-            } else {
-                if (Utilities.KeycodeNum_check_std(e.getKeyChar()) && e.getKeyChar() != '0' && e.getKeyChar() != '.') {
-                    str = "" + e.getKeyChar();
-                } else if (e.getKeyChar() == '.') {
-                    str = str + ".";
-                }
-            }
-        }
-        if (str.isEmpty())
-            str = "0";
-        textField1.setText(str);
-    }
 
     private void button_dotMousePressed(MouseEvent e) {
         // TODO add your code here
@@ -176,6 +131,103 @@ public class Calculator_std extends JFrame {
             str = str + ".";
             textField1.setText(str);
         }
+    }
+
+    /**
+     * judge whether the textField1 should be cleared.
+     */
+    private boolean pending_cal_toClear = false;
+    /**
+     * judge the multiple consecutive calculate.
+     */
+    private boolean newNum = false;
+    private boolean OnceEqual = false;
+    private String OnceEqualConst;
+    /**
+     * update the textField1 and label1, depending on the input logic
+     *
+     * @param e the KeyEvent.
+     * @author TonyZhan
+     */
+    private void textField1KeyPressed(KeyEvent e) {
+        // TODO add your code here
+        String str_last = Utilities.PureNumberWithoutArithmetics(label1.getText());
+        String str_arithmetic = Utilities.PureArithmetic(label1.getText().replace(str_last,""));
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        if (Utilities.KeycodeNum_check_std(e.getKeyChar())||e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
+            if(OnceEqual){
+                label1.setText("");
+                textField1.setText("");
+                OnceEqual=false;
+            }
+            if(!pending_cal_toClear)
+                InputNumber(e);
+            else{
+                textField1.setText("");
+                InputNumber(e);
+                pending_cal_toClear=false;
+            }
+            newNum=true;
+        } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar())&&!newNum)||str_last.isEmpty()) {
+            label1.setText(str_now + " " + e.getKeyChar() + " ");
+            pending_cal_toClear=true;
+            newNum=false;
+            OnceEqual=false;
+        } else if (Utilities.KeycodeCal_check_std(e.getKeyChar())&&newNum) {
+            //TODO yunsuan
+            BigDecimal ans=FourArithmetic.calculatePlain(str_last,str_arithmetic,str_now);
+            if (ans != null) {
+                label1.setText(ans.toPlainString()+" "+e.getKeyChar()+" ");
+                textField1.setText(ans.toPlainString());
+            }
+            newNum=false;
+            pending_cal_toClear=true;
+            OnceEqual=false;
+        } else if (Utilities.KeycodeEqual_check(e.getKeyCode())&&!OnceEqual) {
+            BigDecimal ans=FourArithmetic.calculatePlain(str_last,str_arithmetic,str_now);
+            if (ans != null) {
+                label1.setText(str_last + " " + str_arithmetic + " " + str_now + " = "+ans.toPlainString());
+                textField1.setText(ans.toPlainString());
+            }
+            newNum=false;
+            pending_cal_toClear=true;
+            OnceEqual=true;
+            OnceEqualConst=str_now;
+        } else if (Utilities.KeycodeEqual_check(e.getKeyCode())&&OnceEqual){
+            BigDecimal ans=FourArithmetic.calculatePlain(str_now,str_arithmetic,OnceEqualConst);
+            if (ans != null) {
+                label1.setText(str_now + " " + str_arithmetic + " " + OnceEqualConst + " = "+ans.toPlainString());
+                textField1.setText(ans.toPlainString());
+            }
+            newNum=false;
+            pending_cal_toClear=true;
+            OnceEqual=true;
+        }
+    }
+
+    public void InputNumber(KeyEvent e) {
+        String nowInput = textField1.getText();
+        if (!nowInput.equals("0")) {
+            //无前导0，输入数字
+            if (Utilities.KeycodeNum_check_std(e.getKeyChar()) && Utilities.countDot(nowInput) < 1) {
+                nowInput = nowInput + e.getKeyChar();
+            } else if (Character.isDigit(e.getKeyChar())) {
+                nowInput = nowInput + e.getKeyChar();
+            } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                if (!nowInput.isEmpty()) {
+                    nowInput = nowInput.substring(0, nowInput.length() - 1);
+                }
+            }
+        } else {
+            if (Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '0') {
+                nowInput = "" + e.getKeyChar();
+            } else if (e.getKeyChar() == '.') {
+                nowInput = nowInput + ".";
+            }
+        }
+        if (nowInput.isEmpty())
+            nowInput = "0";
+        textField1.setText(nowInput);
     }
 
     private void initComponents() {
@@ -189,7 +241,6 @@ public class Calculator_std extends JFrame {
         menu1 = new JMenu();
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
-        textField1 = new JTextField();
         button1 = new JButton();
         button2 = new JButton();
         button3 = new JButton();
@@ -216,6 +267,9 @@ public class Calculator_std extends JFrame {
         button_smoke = new JButton();
         button_David = new JButton();
         button_backspace = new JButton();
+        scrollPane3 = new JScrollPane();
+        textField1 = new JTextField();
+        scrollPane4 = new JScrollPane();
         label1 = new JLabel();
 
         //======== this ========
@@ -274,22 +328,6 @@ public class Calculator_std extends JFrame {
         }
         setJMenuBar(menuBar1);
 
-        //---- textField1 ----
-        textField1.setBorder(null);
-        textField1.setHorizontalAlignment(SwingConstants.TRAILING);
-        textField1.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 28));
-        textField1.setEditable(false);
-        textField1.setBackground(Color.white);
-        textField1.setText("0");
-        textField1.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                textField1KeyPressed(e);
-            }
-        });
-        contentPane.add(textField1);
-        textField1.setBounds(40, 55, 460, 65);
-
         //---- button1 ----
         button1.setText("1");
         button1.setFont(new Font("Consolas", Font.PLAIN, 16));
@@ -301,7 +339,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button1);
-        button1.setBounds(40, 310, 85, 40);
+        button1.setBounds(50, 460, 100, 50);
 
         //---- button2 ----
         button2.setText("2");
@@ -314,7 +352,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button2);
-        button2.setBounds(130, 310, 85, 40);
+        button2.setBounds(160, 460, 100, 50);
 
         //---- button3 ----
         button3.setText("3");
@@ -327,7 +365,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button3);
-        button3.setBounds(220, 310, 85, 40);
+        button3.setBounds(270, 460, 100, 50);
 
         //---- button4 ----
         button4.setText("4");
@@ -340,7 +378,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button4);
-        button4.setBounds(40, 265, 85, 40);
+        button4.setBounds(50, 400, 100, 50);
 
         //---- button5 ----
         button5.setText("5");
@@ -353,7 +391,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button5);
-        button5.setBounds(130, 265, 85, 40);
+        button5.setBounds(160, 400, 100, 50);
 
         //---- button6 ----
         button6.setText("6");
@@ -366,7 +404,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button6);
-        button6.setBounds(220, 265, 85, 40);
+        button6.setBounds(270, 400, 100, 50);
 
         //---- button7 ----
         button7.setText("7");
@@ -379,7 +417,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button7);
-        button7.setBounds(40, 220, 85, 40);
+        button7.setBounds(50, 340, 100, 50);
 
         //---- button8 ----
         button8.setText("8");
@@ -392,7 +430,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button8);
-        button8.setBounds(130, 220, 85, 40);
+        button8.setBounds(160, 340, 100, 50);
 
         //---- button9 ----
         button9.setText("9");
@@ -405,7 +443,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button9);
-        button9.setBounds(220, 220, 85, 40);
+        button9.setBounds(270, 340, 100, 50);
 
         //---- button0 ----
         button0.setText("0");
@@ -418,7 +456,7 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button0);
-        button0.setBounds(130, 355, 85, 40);
+        button0.setBounds(160, 520, 100, 50);
 
         //---- button_dot ----
         button_dot.setText(".");
@@ -431,84 +469,84 @@ public class Calculator_std extends JFrame {
             }
         });
         contentPane.add(button_dot);
-        button_dot.setBounds(220, 355, 85, 40);
+        button_dot.setBounds(270, 520, 100, 50);
 
         //---- button_polar ----
         button_polar.setText("+/-");
         button_polar.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_polar.setFocusable(false);
         contentPane.add(button_polar);
-        button_polar.setBounds(40, 355, 85, 40);
+        button_polar.setBounds(50, 520, 100, 50);
 
         //---- button_upsidedown ----
         button_upsidedown.setText("1/x");
         button_upsidedown.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_upsidedown.setFocusable(false);
         contentPane.add(button_upsidedown);
-        button_upsidedown.setBounds(40, 175, 85, 40);
+        button_upsidedown.setBounds(50, 280, 100, 50);
 
         //---- button_pow2 ----
         button_pow2.setText("x^2");
         button_pow2.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_pow2.setFocusable(false);
         contentPane.add(button_pow2);
-        button_pow2.setBounds(130, 175, 85, 40);
+        button_pow2.setBounds(160, 280, 100, 50);
 
         //---- button_sqrt ----
         button_sqrt.setText("\u221ax");
         button_sqrt.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_sqrt.setFocusable(false);
         contentPane.add(button_sqrt);
-        button_sqrt.setBounds(220, 175, 85, 40);
+        button_sqrt.setBounds(270, 280, 100, 50);
 
         //---- button_equal ----
         button_equal.setText("=");
         button_equal.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_equal.setFocusable(false);
         contentPane.add(button_equal);
-        button_equal.setBounds(310, 355, 85, 40);
+        button_equal.setBounds(380, 520, 100, 50);
 
         //---- button_plus ----
         button_plus.setText("+");
         button_plus.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_plus.setFocusable(false);
         contentPane.add(button_plus);
-        button_plus.setBounds(310, 310, 85, 40);
+        button_plus.setBounds(380, 460, 100, 50);
 
         //---- button_minus ----
         button_minus.setText("-");
         button_minus.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_minus.setFocusable(false);
         contentPane.add(button_minus);
-        button_minus.setBounds(310, 265, 85, 40);
+        button_minus.setBounds(380, 400, 100, 50);
 
         //---- button_mul ----
         button_mul.setText("\u00d7");
         button_mul.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_mul.setFocusable(false);
         contentPane.add(button_mul);
-        button_mul.setBounds(310, 220, 85, 40);
+        button_mul.setBounds(380, 340, 100, 50);
 
         //---- button_div ----
         button_div.setText("\u00f7");
         button_div.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_div.setFocusable(false);
         contentPane.add(button_div);
-        button_div.setBounds(310, 175, 85, 40);
+        button_div.setBounds(380, 280, 100, 50);
 
         //---- button_percent ----
         button_percent.setText("%");
         button_percent.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_percent.setFocusable(false);
         contentPane.add(button_percent);
-        button_percent.setBounds(40, 130, 85, 40);
+        button_percent.setBounds(50, 220, 100, 50);
 
         //---- button_cleanEntry ----
         button_cleanEntry.setText("CE");
         button_cleanEntry.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_cleanEntry.setFocusable(false);
         contentPane.add(button_cleanEntry);
-        button_cleanEntry.setBounds(130, 130, 85, 40);
+        button_cleanEntry.setBounds(160, 220, 100, 50);
 
         //---- button_clear ----
         button_clear.setText("C");
@@ -516,40 +554,68 @@ public class Calculator_std extends JFrame {
         button_clear.setFocusable(false);
         button_clear.setAlignmentY(0.0F);
         contentPane.add(button_clear);
-        button_clear.setBounds(220, 130, 85, 40);
+        button_clear.setBounds(270, 220, 100, 50);
 
         //---- button_smoke ----
         button_smoke.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_smoke.setIcon(new ImageIcon(getClass().getResource("/Resources/img/smoke.png")));
         button_smoke.setFocusable(false);
         contentPane.add(button_smoke);
-        button_smoke.setBounds(400, 265, 100, 130);
+        button_smoke.setBounds(490, 400, 100, 170);
 
         //---- button_David ----
         button_David.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_David.setIcon(new ImageIcon(getClass().getResource("/Resources/img/David.png")));
         button_David.setFocusable(false);
         contentPane.add(button_David);
-        button_David.setBounds(400, 130, 100, 130);
+        button_David.setBounds(490, 220, 100, 170);
 
         //---- button_backspace ----
         button_backspace.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_backspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
         button_backspace.setFocusable(false);
         contentPane.add(button_backspace);
-        button_backspace.setBounds(310, 130, 85, 40);
+        button_backspace.setBounds(380, 220, 100, 50);
 
-        //---- label1 ----
-        label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
-            new Font("Consolas", Font.BOLD | Font.ITALIC, 12)));
-        label1.setHorizontalAlignment(SwingConstants.TRAILING);
-        label1.setFont(new Font("Consolas", Font.PLAIN, 18));
-        label1.setForeground(Color.darkGray);
-        label1.setRequestFocusEnabled(false);
-        contentPane.add(label1);
-        label1.setBounds(40, 10, 460, 40);
+        //======== scrollPane3 ========
+        {
 
-        contentPane.setPreferredSize(new Dimension(570, 465));
+            //---- textField1 ----
+            textField1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.RAISED), "Now Step", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
+                new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
+            textField1.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 28));
+            textField1.setBackground(new Color(0xf0f0f0));
+            textField1.setText("0");
+            textField1.setAutoscrolls(false);
+            textField1.setHorizontalAlignment(SwingConstants.TRAILING);
+            textField1.setEditable(false);
+            textField1.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    textField1KeyPressed(e);
+                }
+            });
+            scrollPane3.setViewportView(textField1);
+        }
+        contentPane.add(scrollPane3);
+        scrollPane3.setBounds(40, 125, 560, 80);
+
+        //======== scrollPane4 ========
+        {
+
+            //---- label1 ----
+            label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
+                new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
+            label1.setFont(new Font("Consolas", Font.PLAIN, 18));
+            label1.setForeground(Color.darkGray);
+            label1.setRequestFocusEnabled(false);
+            label1.setHorizontalAlignment(SwingConstants.TRAILING);
+            scrollPane4.setViewportView(label1);
+        }
+        contentPane.add(scrollPane4);
+        scrollPane4.setBounds(40, 35, 560, 70);
+
+        contentPane.setPreferredSize(new Dimension(640, 725));
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -563,7 +629,6 @@ public class Calculator_std extends JFrame {
     private JMenu menu1;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
-    private JTextField textField1;
     private JButton button1;
     private JButton button2;
     private JButton button3;
@@ -590,6 +655,9 @@ public class Calculator_std extends JFrame {
     private JButton button_smoke;
     private JButton button_David;
     private JButton button_backspace;
+    private JScrollPane scrollPane3;
+    private JTextField textField1;
+    private JScrollPane scrollPane4;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
