@@ -377,8 +377,8 @@ public class Calculator_std extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
         menu2 = new JMenu();
-        menuItem3 = new JMenuItem();
-        menuItem4 = new JMenuItem();
+        menuItem3 = new JRadioButtonMenuItem();
+        menuItem4 = new JRadioButtonMenuItem();
         menu1 = new JMenu();
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
@@ -410,7 +410,6 @@ public class Calculator_std extends JFrame {
         button_backspace = new JButton();
         scrollPane3 = new JScrollPane();
         textField1 = new JTextField();
-        scrollPane4 = new JScrollPane();
         label1 = new JLabel();
 
         //======== this ========
@@ -440,6 +439,7 @@ public class Calculator_std extends JFrame {
                 menuItem3.setText("\u6807\u51c6");
                 menuItem3.setFont(new Font("\u5b8b\u4f53", menuItem3.getFont().getStyle() | Font.BOLD, menuItem3.getFont().getSize()));
                 menuItem3.setPreferredSize(new Dimension(73, 22));
+                menuItem3.setSelected(true);
                 menu2.add(menuItem3);
 
                 //---- menuItem4 ----
@@ -790,6 +790,7 @@ public class Calculator_std extends JFrame {
             textField1.setAutoscrolls(false);
             textField1.setHorizontalAlignment(SwingConstants.TRAILING);
             textField1.setEditable(false);
+            textField1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
             textField1.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyPressed(KeyEvent e) {
@@ -801,32 +802,35 @@ public class Calculator_std extends JFrame {
         contentPane.add(scrollPane3);
         scrollPane3.setBounds(40, 125, 560, 80);
 
-        //======== scrollPane4 ========
-        {
-
-            //---- label1 ----
-            label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
-                new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
-            label1.setFont(new Font("Consolas", Font.PLAIN, 18));
-            label1.setForeground(Color.darkGray);
-            label1.setRequestFocusEnabled(false);
-            label1.setHorizontalAlignment(SwingConstants.TRAILING);
-            scrollPane4.setViewportView(label1);
-        }
-        contentPane.add(scrollPane4);
-        scrollPane4.setBounds(40, 35, 560, 70);
+        //---- label1 ----
+        label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
+            new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
+        label1.setFont(new Font("Consolas", Font.PLAIN, 18));
+        label1.setForeground(Color.darkGray);
+        label1.setHorizontalAlignment(SwingConstants.TRAILING);
+        label1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        label1.setAlignmentX(0.5F);
+        label1.setOpaque(true);
+        label1.setBackground(new Color(0xf0f0f0));
+        contentPane.add(label1);
+        label1.setBounds(40, 35, 560, 70);
 
         contentPane.setPreferredSize(new Dimension(640, 725));
         pack();
         setLocationRelativeTo(getOwner());
+
+        //---- buttonGroup1 ----
+        var buttonGroup1 = new ButtonGroup();
+        buttonGroup1.add(menuItem3);
+        buttonGroup1.add(menuItem4);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JMenuBar menuBar1;
     private JMenu menu2;
-    private JMenuItem menuItem3;
-    private JMenuItem menuItem4;
+    private JRadioButtonMenuItem menuItem3;
+    private JRadioButtonMenuItem menuItem4;
     private JMenu menu1;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
@@ -858,7 +862,6 @@ public class Calculator_std extends JFrame {
     private JButton button_backspace;
     private JScrollPane scrollPane3;
     private JTextField textField1;
-    private JScrollPane scrollPane4;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

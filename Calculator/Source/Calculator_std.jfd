@@ -331,6 +331,7 @@ new FormModel {
 					"autoscrolls": false
 					"horizontalAlignment": 11
 					"editable": false
+					"cursor": &Cursor0 new java.awt.Cursor( 2 )
 					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textField1KeyPressed", true ) )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -339,16 +340,16 @@ new FormModel {
 				"width": 560
 				"height": 80
 			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane4"
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label1"
-					"border": new javax.swing.border.TitledBorder( new javax.swing.border.SoftBevelBorder( 1, null, null, null, null ), "Last Step", 2, 0, new java.awt.Font( "Consolas", 3, 14 ), null )
-					"font": new java.awt.Font( "Consolas", 0, 18 )
-					"foreground": sfield java.awt.Color darkGray
-					"requestFocusEnabled": false
-					"horizontalAlignment": 11
-				} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"border": new javax.swing.border.TitledBorder( new javax.swing.border.SoftBevelBorder( 1, null, null, null, null ), "Last Step", 2, 0, new java.awt.Font( "Consolas", 3, 14 ), null )
+				"font": new java.awt.Font( "Consolas", 0, 18 )
+				"foreground": sfield java.awt.Color darkGray
+				"horizontalAlignment": 11
+				"cursor": #Cursor0
+				"alignmentX": 0.5f
+				"opaque": true
+				"background": new java.awt.Color( 240, 240, 240, 255 )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 40
 				"y": 35
@@ -370,16 +371,19 @@ new FormModel {
 					"autoscrolls": true
 					"componentPopupMenu": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					"margin": new java.awt.Insets( 5, 5, 5, 5 )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "menuItem3"
 						"text": "标准"
 						"font": new com.jformdesigner.model.SwingDerivedFont( "宋体", 1, 0, false )
 						"preferredSize": new java.awt.Dimension( 73, 22 )
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"selected": true
 					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "menuItem4"
 						"text": "科学"
 						"font": new java.awt.Font( "宋体", 1, 12 )
+						"$buttonGroup": new FormReference( "buttonGroup1" )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -400,8 +404,13 @@ new FormModel {
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 20, 25 )
+			"location": new java.awt.Point( 5, 15 )
 			"size": new java.awt.Dimension( 640, 725 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 766 )
 		} )
 	}
 }
