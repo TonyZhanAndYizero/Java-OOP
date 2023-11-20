@@ -6,19 +6,19 @@ import java.util.*;
 
 public class FourArithmetic {
     private static List<String> parseToSuffixExpression(List<String> expressionList) {
-        //´´½¨Ò»¸öÕ»ÓÃÓÚ±£´æ²Ù×÷·û
+        //åˆ›å»ºä¸€ä¸ªæ ˆç”¨äºä¿å­˜æ“ä½œç¬¦
         Stack<String> opStack = new Stack<>();
-        //´´½¨Ò»¸ölistÓÃÓÚ±£´æºó×º±í´ïÊ½
+        //åˆ›å»ºä¸€ä¸ªlistç”¨äºä¿å­˜åç¼€è¡¨è¾¾å¼
         List<String> suffixList = new ArrayList<>();
         for(String item : expressionList){
-            //µÃµ½Êı»ò²Ù×÷·û
+            //å¾—åˆ°æ•°æˆ–æ“ä½œç¬¦
             if(isOperator(item)){
-                //ÊÇ²Ù×÷·û ÅĞ¶Ï²Ù×÷·ûÕ»ÊÇ·ñÎª¿Õ
+                //æ˜¯æ“ä½œç¬¦ åˆ¤æ–­æ“ä½œç¬¦æ ˆæ˜¯å¦ä¸ºç©º
                 if(opStack.isEmpty() || "(".equals(opStack.peek()) || priority(item) > priority(opStack.peek())){
-                    //Îª¿Õ»òÕßÕ»¶¥ÔªËØÎª×óÀ¨ºÅ»òÕßµ±Ç°²Ù×÷·û´óÓÚÕ»¶¥²Ù×÷·ûÖ±½ÓÑ¹Õ»
+                    //ä¸ºç©ºæˆ–è€…æ ˆé¡¶å…ƒç´ ä¸ºå·¦æ‹¬å·æˆ–è€…å½“å‰æ“ä½œç¬¦å¤§äºæ ˆé¡¶æ“ä½œç¬¦ç›´æ¥å‹æ ˆ
                     opStack.push(item);
                 }else {
-                    //·ñÔò½«Õ»ÖĞÔªËØ³öÕ»Èç¶Ó£¬Ö±µ½Óöµ½´óÓÚµ±Ç°²Ù×÷·û»òÕßÓöµ½×óÀ¨ºÅÊ±
+                    //å¦åˆ™å°†æ ˆä¸­å…ƒç´ å‡ºæ ˆå¦‚é˜Ÿï¼Œç›´åˆ°é‡åˆ°å¤§äºå½“å‰æ“ä½œç¬¦æˆ–è€…é‡åˆ°å·¦æ‹¬å·æ—¶
                     while (!opStack.isEmpty() && !"(".equals(opStack.peek())){
                         if(priority(item) <= priority(opStack.peek())){
                             suffixList.add(opStack.pop());
@@ -26,17 +26,17 @@ public class FourArithmetic {
                         else
                             break;
                     }
-                    //µ±Ç°²Ù×÷·ûÑ¹Õ»
+                    //å½“å‰æ“ä½œç¬¦å‹æ ˆ
                     opStack.push(item);
                 }
             }else if(isNumber(item)){
-                //ÊÇÊı×ÖÔòÖ±½ÓÈë¶Ó
+                //æ˜¯æ•°å­—åˆ™ç›´æ¥å…¥é˜Ÿ
                 suffixList.add(item);
             }else if("(".equals(item)){
-                //ÊÇ×óÀ¨ºÅ£¬Ñ¹Õ»
+                //æ˜¯å·¦æ‹¬å·ï¼Œå‹æ ˆ
                 opStack.push(item);
             }else if(")".equals(item)){
-                //ÊÇÓÒÀ¨ºÅ £¬½«Õ»ÖĞÔªËØµ¯³öÈë¶Ó£¬Ö±µ½Óöµ½×óÀ¨ºÅ£¬×óÀ¨ºÅ³öÕ»£¬µ«²»Èë¶Ó
+                //æ˜¯å³æ‹¬å· ï¼Œå°†æ ˆä¸­å…ƒç´ å¼¹å‡ºå…¥é˜Ÿï¼Œç›´åˆ°é‡åˆ°å·¦æ‹¬å·ï¼Œå·¦æ‹¬å·å‡ºæ ˆï¼Œä½†ä¸å…¥é˜Ÿ
                 while (!opStack.isEmpty()){
                     if("(".equals(opStack.peek())){
                         opStack.pop();
@@ -49,35 +49,34 @@ public class FourArithmetic {
                 //System.out.print('a');
                 suffixList.add(item);
             }else {
-                System.out.println("ÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë:");
+                System.out.println("æœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥:");
                 return null;
             }
         }
-        //Ñ­»·Íê±Ï£¬Èç¹û²Ù×÷·ûÕ»ÖĞÔªËØ²»Îª¿Õ£¬½«Õ»ÖĞÔªËØ³öÕ»Èë¶Ó
+        //å¾ªç¯å®Œæ¯•ï¼Œå¦‚æœæ“ä½œç¬¦æ ˆä¸­å…ƒç´ ä¸ä¸ºç©ºï¼Œå°†æ ˆä¸­å…ƒç´ å‡ºæ ˆå…¥é˜Ÿ
         while (!opStack.isEmpty()){
             suffixList.add(opStack.pop());
         }
         return suffixList;
     }
 
-    //ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎª²Ù×÷·û
+    //åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºæ“ä½œç¬¦
     public static boolean isOperator(String op){
         return op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/");
     }
 
-    //ÅĞ¶ÏÊÇ·ñÎªÕûÊı»òÕß¸¡µãÊı
+    //åˆ¤æ–­æ˜¯å¦ä¸ºæ•´æ•°æˆ–è€…æµ®ç‚¹æ•°
     public static boolean isNumber(String num){
         return num.matches("^([0-9]{1,}[.][0-9]*)$") || num.matches("^([0-9]{1,})$");
     }
-    //ÅĞ¶ÏÊÇ²»ÊÇÕûÊı
+    //åˆ¤æ–­æ˜¯ä¸æ˜¯æ•´æ•°
     public static boolean isInteger(Double num){
         if (num % 1 == 0)
             return true;
         else
             return false;
     }
-
-    //»ñÈ¡²Ù×÷·ûµÄÓÅÏÈ¼¶
+    //è·å–æ“ä½œç¬¦çš„ä¼˜å…ˆçº§
     public static int priority(String op){
         if(op.equals("*") || op.equals("/")){
             return 1;
@@ -88,18 +87,27 @@ public class FourArithmetic {
     }
 
 
-    //Îª·½±ã²Ù×÷½«±í´ïÊ½×ªÎªlist
+    //ä¸ºæ–¹ä¾¿æ“ä½œå°†è¡¨è¾¾å¼è½¬ä¸ºlist
     private static List<String> expressionToList(String expression) {
         int index = 0;
         List<String> list = new ArrayList<>();
         do{
             char ch = expression.charAt(index);
             if(ch!=46 && (ch <= 47 || ch >= 58)){
-                //ÊÇ²Ù×÷·û£¬Ö±½ÓÌí¼ÓÖÁlistÖĞ
-                index ++ ;
-                list.add(ch+"");
+                //æ˜¯æ“ä½œç¬¦ï¼Œç›´æ¥æ·»åŠ è‡³listä¸­
+                if(ch == '-' && (index - 1 < 0 || !isNumber(expression.charAt(index - 1) + "")))
+                {
+                    index++;
+                    list.add("0");
+                    list.add(ch + "");
+                }
+                else
+                {
+                    index++;
+                    list.add(ch + "");
+                }
             }else{
-                //ÊÇÊı×Ö,ÅĞ¶Ï¶àÎ»ÊıµÄÇé¿ö
+                //æ˜¯æ•°å­—,åˆ¤æ–­å¤šä½æ•°çš„æƒ…å†µ
                 String str = "";
                 while (index < expression.length() && (expression.charAt(index) >47 && expression.charAt(index) < 58 || expression.charAt(index)==46)){
                     str += expression.charAt(index);
@@ -112,13 +120,13 @@ public class FourArithmetic {
         return list;
     }
 
-    //¸ù¾İºó×º±í´ïÊ½list¼ÆËã½á¹û
-    private static BigDecimal calculate(List<String> list) {
+    //æ ¹æ®åç¼€è¡¨è¾¾å¼listè®¡ç®—ç»“æœ
+    private static BigDecimal cal(List<String> list) {
         Stack<BigDecimal> stack = new Stack<>();
         for(int i=0; i<list.size(); i++){
             String item = list.get(i);
             if(item.matches("^([0-9]{1,}[.][0-9]*)$") || item.matches("^([0-9]{1,})$")){
-                //ÊÇÊı×Ö(ÕûĞÍ»òÕß¸¡µãĞÍ)
+                //æ˜¯æ•°å­—(æ•´å‹æˆ–è€…æµ®ç‚¹å‹)
                 stack.push(new BigDecimal(item));
             }else {
                 try{
@@ -143,43 +151,89 @@ public class FourArithmetic {
                             }
                             catch (ArithmeticException b)
                             {
-                                System.out.println("ÔËËã´íÎó£¡ÇëÖØĞÂÊäÈë£º");
+                                System.out.println("è¿ç®—é”™è¯¯ï¼è¯·é‡æ–°è¾“å…¥ï¼š");
                                 return null;
                             }
                         }
                     }
                     else
                     {
-                        System.out.println("ÔËËã·ûºÅ´íÎó£¡ÇëÖØĞÂÊäÈë:");
+                        System.out.println("è¿ç®—ç¬¦å·é”™è¯¯ï¼è¯·é‡æ–°è¾“å…¥:");
                         return null;
                     }
+                    res = res.stripTrailingZeros();
                     stack.push(res);
                 }catch (EmptyStackException e)
                 {
-                    System.out.println("¸ñÊ½´íÎó£¡ÇëÖØĞÂÊäÈë:");
+                    System.out.println("æ ¼å¼é”™è¯¯ï¼è¯·é‡æ–°è¾“å…¥:");
                     return null;
                 }
-                //ÊÇ²Ù×÷·û£¬È¡³öÕ»¶¥Á½¸öÔªËØ
+                //æ˜¯æ“ä½œç¬¦ï¼Œå–å‡ºæ ˆé¡¶ä¸¤ä¸ªå…ƒç´ 
             }
         }
-        return stack.pop().stripTrailingZeros();
+        return stack.pop();
     }
-    public static BigDecimal calculate(String expression)
+    public static BigDecimal calculatePlain(String s1, String item, String s2)
+    {
+        BigDecimal num1 = new BigDecimal(s1);
+        BigDecimal num2 = new BigDecimal(s2);
+        BigDecimal res;
+        if(item.equals("+"))
+            res = num1.add(num2);
+        else if(item.equals("-"))
+            res = num1.subtract(num2);
+        else if(item.equals("*"))
+            res = num1.multiply(num2);
+        else if(item.equals("/"))
+        {
+            try {
+                res = num1.divide(num2);
+            }catch (ArithmeticException a)
+            {
+                try {
+                    res = num1.divide(num2, 10, RoundingMode.HALF_UP);
+                }
+                catch (ArithmeticException b)
+                {
+                    System.out.println("è¿ç®—é”™è¯¯ï¼è¯·é‡æ–°è¾“å…¥ï¼š");
+                    return null;
+                }
+            }
+        }
+        else
+        {
+            System.out.println("è¿ç®—ç¬¦å·é”™è¯¯ï¼è¯·é‡æ–°è¾“å…¥:");
+            return null;
+        }
+        return res.stripTrailingZeros();
+    }
+    public static BigDecimal calculateEngineer(String expression)
     {
         if(expression.isBlank())
             return null;
         List<String> expressionList = expressionToList(expression.replace(" ", ""));
-        //System.out.println("ÖĞ×º±í´ïÊ½×ªÎªlist½á¹¹="+expressionList);
-        //½«ÖĞ×º±í´ïÊ½×ª»»Îªºó×º±í´ïÊ½
+//        System.out.println("ä¸­ç¼€è¡¨è¾¾å¼è½¬ä¸ºlistç»“æ„="+expressionList);
+        //å°†ä¸­ç¼€è¡¨è¾¾å¼è½¬æ¢ä¸ºåç¼€è¡¨è¾¾å¼
         List<String> suffixList = parseToSuffixExpression(expressionList);
-        //System.out.println("¶ÔÓ¦µÄºó×º±í´ïÊ½ÁĞ±í½á¹¹="+suffixList);
-        //¸ù¾İºó×º±í´ïÊ½¼ÆËã½á¹û
+        //System.out.println("å¯¹åº”çš„åç¼€è¡¨è¾¾å¼åˆ—è¡¨ç»“æ„="+suffixList);
+        //æ ¹æ®åç¼€è¡¨è¾¾å¼è®¡ç®—ç»“æœ
         if(suffixList != null)
         {
-            BigDecimal calculateResult = calculate(suffixList);
+            BigDecimal calculateResult = cal(suffixList);
             if(calculateResult != null)
                 return calculateResult;
         }
         return null;
+    }
+    public static void main(String []args){
+        System.out.println("è¯·è¾“å…¥è¿ç®—å¼ï¼š");
+        Scanner in = new Scanner(System.in);
+        while(true)
+        {
+            String s1 = in.nextLine();
+            String s2 = in.nextLine();
+            String s3 = in.nextLine();
+            System.out.println(calculatePlain(s1, s2, s3));
+        }
     }
 }
