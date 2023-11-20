@@ -9,6 +9,7 @@ new FormModel {
 			name: "this"
 			"title": "  Calculator"
 			"foreground": sfield java.awt.SystemColor controlDkShadow
+
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
 				name: "mainPanel"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
@@ -400,6 +401,7 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 583
 				"height": 508
+
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
@@ -416,6 +418,7 @@ new FormModel {
 					"autoscrolls": true
 					"componentPopupMenu": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					"margin": new java.awt.Insets( 5, 5, 5, 5 )
+
 					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "radioButtonMenuItem1"
 						"text": "标准"
@@ -434,6 +437,7 @@ new FormModel {
 						"text": "积分"
 						"$buttonGroup": new FormReference( "buttonGroup1" )
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radioButtonMenuItem3", true ) )
+
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -454,6 +458,7 @@ new FormModel {
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
+
 			"location": new java.awt.Point( 20, 40 )
 			"size": new java.awt.Dimension( 585, 565 )
 		} )
@@ -461,6 +466,7 @@ new FormModel {
 			name: "buttonGroup1"
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 621 )
+
 		} )
 	}
 }

@@ -355,6 +355,7 @@ public class Calculator_std extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
         menu2 = new JMenu();
+
         radioButtonMenuItem1 = new JRadioButtonMenuItem();
         radioButtonMenuItem2 = new JRadioButtonMenuItem();
         radioButtonMenuItem3 = new JRadioButtonMenuItem();
@@ -397,6 +398,7 @@ public class Calculator_std extends JFrame {
         card3 = new JPanel();
         label4 = new JLabel();
 
+
         //======== this ========
         setTitle("  Calculator");
         setForeground(SystemColor.controlDkShadow);
@@ -420,6 +422,7 @@ public class Calculator_std extends JFrame {
                 menu2.setComponentPopupMenu(null);
                 menu2.setMargin(new Insets(5, 5, 5, 5));
 
+
                 //---- radioButtonMenuItem1 ----
                 radioButtonMenuItem1.setText("\u6807\u51c6");
                 radioButtonMenuItem1.setSelected(true);
@@ -435,6 +438,7 @@ public class Calculator_std extends JFrame {
                 radioButtonMenuItem3.setText("\u79ef\u5206");
                 radioButtonMenuItem3.addActionListener(e -> radioButtonMenuItem3(e));
                 menu2.add(radioButtonMenuItem3);
+
             }
             menuBar1.add(menu2);
 
@@ -821,6 +825,7 @@ public class Calculator_std extends JFrame {
         buttonGroup1.add(radioButtonMenuItem1);
         buttonGroup1.add(radioButtonMenuItem2);
         buttonGroup1.add(radioButtonMenuItem3);
+
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -868,5 +873,6 @@ public class Calculator_std extends JFrame {
     private JLabel label3;
     private JPanel card3;
     private JLabel label4;
+
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
