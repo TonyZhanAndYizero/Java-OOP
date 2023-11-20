@@ -179,6 +179,55 @@ public class Calculator_std extends JFrame {
     }
 
     /**
+     * to reverse the polar of a number
+     *
+     * @param e a mouse listener
+     * @author TonyZhan
+     */
+    private void button_polarMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            String str = textField1.getText();
+            if (!str.equals("0")) {
+                if (str.charAt(0) == '-') {
+                    str = str.substring(1);
+                } else {
+                    str = "-" + str;
+                }
+            }
+            textField1.setText(str);
+        }
+    }
+
+    /**
+     * to do percentage algorithm
+     *
+     * @param e a mouse listener
+     * @author TonyZhan
+     */
+    private void button_percentMousePressed(MouseEvent e) {
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        String str_equal = Utilities.PureEqual(label1.getText());
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            BigDecimal ans = FourArithmetic.calculatePlain(str_now, "*", "0.01");
+            if (!str_equal.isEmpty()) {
+                if (ans != null) {
+                    label1.setText(str_now + " " + "*" + " " + "0.01" + " = " + ans.toPlainString());
+                    textField1.setText(ans.toPlainString());
+                }
+                newNum = false;
+                pending_cal_toClear = true;
+                OnceEqual = true;
+            } else {
+                if (ans != null) {
+                    textField1.setText(ans.toPlainString());
+                }
+            }
+        }
+    }
+
+    /**
      * judge whether the textField1 should be cleared.
      */
     private boolean pending_cal_toClear = false;
@@ -194,6 +243,7 @@ public class Calculator_std extends JFrame {
      * save the consecutive equal number
      */
     private String OnceEqualConst;
+    private boolean error = false;
 
     /**
      * update the textField1 and label1, depending on the input logic
@@ -206,64 +256,95 @@ public class Calculator_std extends JFrame {
         String str_last = Utilities.PureNumberWithoutArithmetics(label1.getText());
         String str_arithmetic = Utilities.PureArithmetic(label1.getText().replace(str_last, ""));
         String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
-        if (Utilities.KeycodeNum_check_std(e.getKeyChar()) || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-            if (OnceEqual) {
-                label1.setText("");
-                textField1.setText("");
+        if (!error) {
+            if (Utilities.KeycodeNum_check_std(e.getKeyChar()) || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                if (OnceEqual) {
+                    label1.setText("");
+                    textField1.setText("0");
+                    InputNumber(e);
+                    OnceEqual = false;
+                    pending_cal_toClear = false;
+                } else if (!pending_cal_toClear)
+                    InputNumber(e);
+                else {
+                    textField1.setText("");
+                    InputNumber(e);
+                    pending_cal_toClear = false;
+                }
+                newNum = true;
+            } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar()) && (!newNum || str_last.isEmpty()))) {
+                label1.setText(str_now + " " + e.getKeyChar() + " ");
+                pending_cal_toClear = true;
+                newNum = false;
                 OnceEqual = false;
+            } else if (Utilities.KeycodeCal_check_std(e.getKeyChar()) && newNum) {
+                //TODO yunsuan
+                BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
+                if (ans != null) {
+                    label1.setText(ans.toPlainString() + " " + e.getKeyChar() + " ");
+                    textField1.setText(ans.toPlainString());
+                } else {
+                    label1.setText("");
+                    textField1.setText("ERROR! Press any key to reset.");
+                    error = true;
+                }
+                newNum = false;
+                pending_cal_toClear = true;
+                OnceEqual = false;
+            } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && str_arithmetic.isEmpty()) {
+                label1.setText(str_now + " = " + str_now);
+                newNum = false;
+                pending_cal_toClear = true;
+                OnceEqual = true;
+            } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && !OnceEqual) {
+                BigDecimalCal(str_last, str_arithmetic, str_now);
+                OnceEqualConst = str_now;
+            } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && OnceEqual) {
+                BigDecimalCal(str_now, str_arithmetic, OnceEqualConst);
             }
-            if (!pending_cal_toClear)
-                InputNumber(e);
-            else {
-                textField1.setText("");
-                InputNumber(e);
-                pending_cal_toClear = false;
-            }
-            newNum = true;
-        } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar()) && !newNum) || str_last.isEmpty()) {
-            label1.setText(str_now + " " + e.getKeyChar() + " ");
-            pending_cal_toClear = true;
-            newNum = false;
-            OnceEqual = false;
-        } else if (Utilities.KeycodeCal_check_std(e.getKeyChar()) && newNum) {
-            //TODO yunsuan
-            BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
-            if (ans != null) {
-                label1.setText(ans.toPlainString() + " " + e.getKeyChar() + " ");
-                textField1.setText(ans.toPlainString());
-            }
-            newNum = false;
-            pending_cal_toClear = true;
-            OnceEqual = false;
-        } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && !OnceEqual) {
-            BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
-            if (ans != null) {
-                label1.setText(str_last + " " + str_arithmetic + " " + str_now + " = " + ans.toPlainString());
-                textField1.setText(ans.toPlainString());
-            }
-            newNum = false;
-            pending_cal_toClear = true;
-            OnceEqual = true;
-            OnceEqualConst = str_now;
-        } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && OnceEqual) {
-            BigDecimal ans = FourArithmetic.calculatePlain(str_now, str_arithmetic, OnceEqualConst);
-            if (ans != null) {
-                label1.setText(str_now + " " + str_arithmetic + " " + OnceEqualConst + " = " + ans.toPlainString());
-                textField1.setText(ans.toPlainString());
-            }
-            newNum = false;
-            pending_cal_toClear = true;
-            OnceEqual = true;
+        } else {
+            textField1.setText("0");
+            error = false;
         }
-
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             label1.setText("");
             textField1.setText("0");
-        } else if(e.getKeyCode() == KeyEvent.VK_DELETE){
+            error = false;
+        } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
             textField1.setText("0");
+            error = false;
         }
     }
 
+    /**
+     * calculate progress
+     *
+     * @param str_last       a
+     * @param str_arithmetic b
+     * @param str_now        c, such that a(b)c=...[2(*)3=6]
+     * @author TonyZhan
+     */
+    private void BigDecimalCal(String str_last, String str_arithmetic, String str_now) {
+        BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
+        if (ans != null) {
+            label1.setText(str_last + " " + str_arithmetic + " " + str_now + " = " + ans.toPlainString());
+            textField1.setText(ans.toPlainString());
+        } else {
+            label1.setText("");
+            textField1.setText("ERROR! Press any key to reset.");
+            error = true;
+        }
+        newNum = false;
+        pending_cal_toClear = true;
+        OnceEqual = true;
+    }
+
+    /**
+     * to input number, maintaining its legitimacy
+     *
+     * @param e a key listener
+     * @author TonyZhan
+     */
     public void InputNumber(KeyEvent e) {
         String nowInput = textField1.getText();
         if (!nowInput.equals("0")) {
@@ -287,35 +368,6 @@ public class Calculator_std extends JFrame {
         if (nowInput.isEmpty())
             nowInput = "0";
         textField1.setText(nowInput);
-    }
-
-    private void button_polarMousePressed(MouseEvent e) {
-        // TODO add your code here
-        if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (!str.equals("0")) {
-                if (str.charAt(0) == '-') {
-                    str = str.substring(1);
-                } else {
-                    str = "-" + str;
-                }
-            }
-            textField1.setText(str);
-        }
-    }
-
-    private void button_percentMousePressed(MouseEvent e) {
-        // TODO add your code here
-        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
-
-        BigDecimal ans = FourArithmetic.calculatePlain(str_now, "*", "0.01");
-        if (ans != null) {
-            label1.setText(str_now + " " + "*" + " " + "0.01" + " = " + ans.toPlainString());
-            textField1.setText(ans.toPlainString());
-        }
-        newNum = false;
-        pending_cal_toClear = true;
-        OnceEqual = true;
     }
 
 
