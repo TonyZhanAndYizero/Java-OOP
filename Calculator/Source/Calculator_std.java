@@ -24,12 +24,23 @@ public class Calculator_std extends JFrame {
         initComponents();
     }
 
+
+    public static Robot robot;
+
+    static {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void createUIComponents() {
         // TODO: add custom component creation code here
     }
 
     /**
-     * all the UI design.
+     * all the UI design and robot issues
      *
      * @author TonyZhan
      */
@@ -37,99 +48,133 @@ public class Calculator_std extends JFrame {
         //System.out.println(e.getButton());
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "1";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_1);
         }
     }
 
     private void button2MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "2";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_2);
         }
     }
 
     private void button3MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "3";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_3);
         }
     }
 
     private void button4MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "4";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_4);
         }
     }
 
     private void button5MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "5";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_5);
         }
     }
 
     private void button6MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "6";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_6);
         }
     }
 
     private void button7MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "7";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_7);
         }
     }
 
     private void button8MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "8";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_8);
         }
     }
 
     private void button9MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "9";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_9);
         }
     }
 
     private void button0MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + "0";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_0);
         }
     }
 
     private void button_dotMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            str = str + ".";
-            textField1.setText(str);
+            robot.keyPress(KeyEvent.VK_PERIOD);
+        }
+    }
+
+    private void button_backspaceMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+        }
+    }
+
+    private void button_divMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_DIVIDE);
+        }
+    }
+
+    private void button_mulMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_MULTIPLY);
+        }
+    }
+
+    private void button_minusMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_MINUS);
+        }
+    }
+
+    private void button_plusMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ADD);
+        }
+    }
+
+    private void button_equalMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ENTER);
+        }
+    }
+
+    private void button_clearMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+        }
+    }
+
+    private void button_cleanEntryMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_DELETE);
         }
     }
 
@@ -141,8 +186,15 @@ public class Calculator_std extends JFrame {
      * judge the multiple consecutive calculate.
      */
     private boolean newNum = false;
+    /**
+     * judge whether consecutive equal
+     */
     private boolean OnceEqual = false;
+    /**
+     * save the consecutive equal number
+     */
     private String OnceEqualConst;
+
     /**
      * update the textField1 and label1, depending on the input logic
      *
@@ -152,56 +204,63 @@ public class Calculator_std extends JFrame {
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
         String str_last = Utilities.PureNumberWithoutArithmetics(label1.getText());
-        String str_arithmetic = Utilities.PureArithmetic(label1.getText().replace(str_last,""));
+        String str_arithmetic = Utilities.PureArithmetic(label1.getText().replace(str_last, ""));
         String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
-        if (Utilities.KeycodeNum_check_std(e.getKeyChar())||e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
-            if(OnceEqual){
+        if (Utilities.KeycodeNum_check_std(e.getKeyChar()) || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if (OnceEqual) {
                 label1.setText("");
                 textField1.setText("");
-                OnceEqual=false;
+                OnceEqual = false;
             }
-            if(!pending_cal_toClear)
+            if (!pending_cal_toClear)
                 InputNumber(e);
-            else{
+            else {
                 textField1.setText("");
                 InputNumber(e);
-                pending_cal_toClear=false;
+                pending_cal_toClear = false;
             }
-            newNum=true;
-        } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar())&&!newNum)||str_last.isEmpty()) {
+            newNum = true;
+        } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar()) && !newNum) || str_last.isEmpty()) {
             label1.setText(str_now + " " + e.getKeyChar() + " ");
-            pending_cal_toClear=true;
-            newNum=false;
-            OnceEqual=false;
-        } else if (Utilities.KeycodeCal_check_std(e.getKeyChar())&&newNum) {
+            pending_cal_toClear = true;
+            newNum = false;
+            OnceEqual = false;
+        } else if (Utilities.KeycodeCal_check_std(e.getKeyChar()) && newNum) {
             //TODO yunsuan
-            BigDecimal ans=FourArithmetic.calculatePlain(str_last,str_arithmetic,str_now);
+            BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
             if (ans != null) {
-                label1.setText(ans.toPlainString()+" "+e.getKeyChar()+" ");
+                label1.setText(ans.toPlainString() + " " + e.getKeyChar() + " ");
                 textField1.setText(ans.toPlainString());
             }
-            newNum=false;
-            pending_cal_toClear=true;
-            OnceEqual=false;
-        } else if (Utilities.KeycodeEqual_check(e.getKeyCode())&&!OnceEqual) {
-            BigDecimal ans=FourArithmetic.calculatePlain(str_last,str_arithmetic,str_now);
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = false;
+        } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && !OnceEqual) {
+            BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
             if (ans != null) {
-                label1.setText(str_last + " " + str_arithmetic + " " + str_now + " = "+ans.toPlainString());
+                label1.setText(str_last + " " + str_arithmetic + " " + str_now + " = " + ans.toPlainString());
                 textField1.setText(ans.toPlainString());
             }
-            newNum=false;
-            pending_cal_toClear=true;
-            OnceEqual=true;
-            OnceEqualConst=str_now;
-        } else if (Utilities.KeycodeEqual_check(e.getKeyCode())&&OnceEqual){
-            BigDecimal ans=FourArithmetic.calculatePlain(str_now,str_arithmetic,OnceEqualConst);
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = true;
+            OnceEqualConst = str_now;
+        } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && OnceEqual) {
+            BigDecimal ans = FourArithmetic.calculatePlain(str_now, str_arithmetic, OnceEqualConst);
             if (ans != null) {
-                label1.setText(str_now + " " + str_arithmetic + " " + OnceEqualConst + " = "+ans.toPlainString());
+                label1.setText(str_now + " " + str_arithmetic + " " + OnceEqualConst + " = " + ans.toPlainString());
                 textField1.setText(ans.toPlainString());
             }
-            newNum=false;
-            pending_cal_toClear=true;
-            OnceEqual=true;
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = true;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            label1.setText("");
+            textField1.setText("0");
+        } else if(e.getKeyCode() == KeyEvent.VK_DELETE){
+            textField1.setText("0");
         }
     }
 
@@ -229,6 +288,36 @@ public class Calculator_std extends JFrame {
             nowInput = "0";
         textField1.setText(nowInput);
     }
+
+    private void button_polarMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            String str = textField1.getText();
+            if (!str.equals("0")) {
+                if (str.charAt(0) == '-') {
+                    str = str.substring(1);
+                } else {
+                    str = "-" + str;
+                }
+            }
+            textField1.setText(str);
+        }
+    }
+
+    private void button_percentMousePressed(MouseEvent e) {
+        // TODO add your code here
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+
+        BigDecimal ans = FourArithmetic.calculatePlain(str_now, "*", "0.01");
+        if (ans != null) {
+            label1.setText(str_now + " " + "*" + " " + "0.01" + " = " + ans.toPlainString());
+            textField1.setText(ans.toPlainString());
+        }
+        newNum = false;
+        pending_cal_toClear = true;
+        OnceEqual = true;
+    }
+
 
     private void initComponents() {
         ImageIcon icon = new ImageIcon("Calculator/Resources/img/icon.png"); //图片和项目同一路径，故不用图片的路径
@@ -475,6 +564,12 @@ public class Calculator_std extends JFrame {
         button_polar.setText("+/-");
         button_polar.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_polar.setFocusable(false);
+        button_polar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_polarMousePressed(e);
+            }
+        });
         contentPane.add(button_polar);
         button_polar.setBounds(50, 520, 100, 50);
 
@@ -503,6 +598,12 @@ public class Calculator_std extends JFrame {
         button_equal.setText("=");
         button_equal.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_equal.setFocusable(false);
+        button_equal.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_equalMousePressed(e);
+            }
+        });
         contentPane.add(button_equal);
         button_equal.setBounds(380, 520, 100, 50);
 
@@ -510,6 +611,12 @@ public class Calculator_std extends JFrame {
         button_plus.setText("+");
         button_plus.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_plus.setFocusable(false);
+        button_plus.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_plusMousePressed(e);
+            }
+        });
         contentPane.add(button_plus);
         button_plus.setBounds(380, 460, 100, 50);
 
@@ -517,6 +624,12 @@ public class Calculator_std extends JFrame {
         button_minus.setText("-");
         button_minus.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_minus.setFocusable(false);
+        button_minus.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_minusMousePressed(e);
+            }
+        });
         contentPane.add(button_minus);
         button_minus.setBounds(380, 400, 100, 50);
 
@@ -524,6 +637,12 @@ public class Calculator_std extends JFrame {
         button_mul.setText("\u00d7");
         button_mul.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_mul.setFocusable(false);
+        button_mul.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_mulMousePressed(e);
+            }
+        });
         contentPane.add(button_mul);
         button_mul.setBounds(380, 340, 100, 50);
 
@@ -531,6 +650,12 @@ public class Calculator_std extends JFrame {
         button_div.setText("\u00f7");
         button_div.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_div.setFocusable(false);
+        button_div.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_divMousePressed(e);
+            }
+        });
         contentPane.add(button_div);
         button_div.setBounds(380, 280, 100, 50);
 
@@ -538,6 +663,12 @@ public class Calculator_std extends JFrame {
         button_percent.setText("%");
         button_percent.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_percent.setFocusable(false);
+        button_percent.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_percentMousePressed(e);
+            }
+        });
         contentPane.add(button_percent);
         button_percent.setBounds(50, 220, 100, 50);
 
@@ -545,6 +676,12 @@ public class Calculator_std extends JFrame {
         button_cleanEntry.setText("CE");
         button_cleanEntry.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_cleanEntry.setFocusable(false);
+        button_cleanEntry.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_cleanEntryMousePressed(e);
+            }
+        });
         contentPane.add(button_cleanEntry);
         button_cleanEntry.setBounds(160, 220, 100, 50);
 
@@ -553,6 +690,12 @@ public class Calculator_std extends JFrame {
         button_clear.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_clear.setFocusable(false);
         button_clear.setAlignmentY(0.0F);
+        button_clear.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_clearMousePressed(e);
+            }
+        });
         contentPane.add(button_clear);
         button_clear.setBounds(270, 220, 100, 50);
 
@@ -574,6 +717,12 @@ public class Calculator_std extends JFrame {
         button_backspace.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_backspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
         button_backspace.setFocusable(false);
+        button_backspace.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_backspaceMousePressed(e);
+            }
+        });
         contentPane.add(button_backspace);
         button_backspace.setBounds(380, 220, 100, 50);
 
