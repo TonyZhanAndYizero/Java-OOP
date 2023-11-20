@@ -15,339 +15,309 @@ import javax.swing.border.*;
 
 
 /**
- * @author tonyzhan0514
+ * use JFormDesigner to build the frame.
+ *
+ * @author tonyzhan0514 and Yury.
  */
 public class Calculator_std extends JFrame {
     public Calculator_std() {
         initComponents();
     }
 
+
+    public static Robot robot;
+
+    static {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void createUIComponents() {
         // TODO: add custom component creation code here
     }
 
-
+    /**
+     * all the UI design and robot issues
+     *
+     * @author TonyZhan
+     */
     private void button1MousePressed(MouseEvent e) {
         //System.out.println(e.getButton());
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "1";
-                } else {
-                    str = str + "1";
-                }
-            } else {
-                str = "1";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_1);
         }
     }
 
     private void button2MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "2";
-                } else {
-                    str = str + "2";
-                }
-            } else {
-                str = "2";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_2);
         }
     }
 
     private void button3MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "3";
-                } else {
-                    str = str + "3";
-                }
-            } else {
-                str = "3";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_3);
         }
     }
 
     private void button4MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "4";
-                } else {
-                    str = str + "4";
-                }
-            } else {
-                str = "4";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_4);
         }
     }
 
     private void button5MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "5";
-                } else {
-                    str = str + "5";
-                }
-            } else {
-                str = "5";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_5);
         }
     }
 
     private void button6MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "6";
-                } else {
-                    str = str + "6";
-                }
-            } else {
-                str = "6";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_6);
         }
     }
 
     private void button7MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "7";
-                } else {
-                    str = str + "7";
-                }
-            } else {
-                str = "7";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_7);
         }
     }
 
     private void button8MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "8";
-                } else {
-                    str = str + "8";
-                }
-            } else {
-                str = "8";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_8);
         }
     }
 
     private void button9MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "9";
-                } else {
-                    str = str + "9";
-                }
-            } else {
-                str = "9";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_9);
         }
     }
 
     private void button0MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (lastOperation == 0) {
-                if (str.equals("0")) {
-                    str = "0";
-                } else {
-                    str = str + "0";
-                }
-            } else {
-                str = "0";
-            }
-            textField1.setText(str);
-            lastOperation = 0;
+            robot.keyPress(KeyEvent.VK_0);
         }
-    }
-
-    private int lastOperation;
-    private void button_backspaceMousePressed(MouseEvent e) {
-
-    }
-    private void button_equalMousePressed(MouseEvent e) {
-        String str;
-        str = textField1.getText();
-
-        String str_last;
-        str_last=Utilities.stdNum(label1.getText());
-        if (lastOperation == 1) {
-            // equal
-            return;
-        } else if (lastOperation == 0) {
-            // number
-            str=Utilities.stdNum(str);
-            String s=str_last+" "+str;
-            BigDecimal bd=FourArithmetic.calculate(s);
-            if (bd != null) {
-                label1.setText(s+" = ");
-            }else{
-                label1.setText(str+" = ");
-            }
-            str= String.valueOf(bd);
-            textField1.setText(str);
-        }
-        lastOperation = 1;
-    }
-    private void button_plusMousePressed(MouseEvent e) {
-        String str_last;
-        str_last=Utilities.stdNum(textField1.getText())+" +";
-        label1.setText(str_last);
-        pending_cal_toClear=true;
-        lastOperation = 2;
-    }
-    private void button_minusMousePressed(MouseEvent e) {
-        String str_last;
-        str_last=Utilities.stdNum(textField1.getText())+" -";
-        label1.setText(str_last);
-        pending_cal_toClear=true;
-        lastOperation = 3;
-    }
-    private void button_mulMousePressed(MouseEvent e) {
-        String str_last;
-        str_last=Utilities.stdNum(textField1.getText())+" *";
-        label1.setText(str_last);
-        pending_cal_toClear=true;
-        lastOperation = 4;
-    }
-    private void button_divMousePressed(MouseEvent e) {
-        String str_last;
-        str_last=Utilities.stdNum(textField1.getText())+" /";
-        label1.setText(str_last);
-        pending_cal_toClear=true;
-        lastOperation = 5;
-    }
-    private boolean pending_cal_toClear=false;
-    private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
-        String str;
-        str = textField1.getText();
-
-        String str_last;
-        str_last=Utilities.stdNum(label1.getText());
-
-        if(Utilities.KeycodeEqual_check(e.getKeyCode())){
-            str=Utilities.stdNum(str);
-            String s=str_last+" "+str;
-            BigDecimal bd=FourArithmetic.calculate(s);
-            if (bd != null) {
-                label1.setText(s+" = "+bd);
-            }else{
-                label1.setText(str+" = "+str);
-            }
-            str="0";
-        }
-        else if(Utilities.KeycodeCal_check_std(e.getKeyChar())){
-            str_last=Utilities.stdNum(textField1.getText())+" "+e.getKeyChar();
-            label1.setText(str_last);
-            pending_cal_toClear=true;
-        }
-        else {
-            if (pending_cal_toClear&&(Utilities.KeycodeNum_check_std(e.getKeyChar())||Utilities.KeycodeCal_check_std(e.getKeyChar()))){
-                str="";
-                pending_cal_toClear=false;
-            }
-            if(!str.equals("0")) {
-                if (Utilities.KeycodeNum_check_std(e.getKeyChar())&&Utilities.countDot(str)<1) {
-                    str = str + e.getKeyChar();
-                } else if (Character.isDigit(e.getKeyChar())) {
-                    str = str + e.getKeyChar();
-                } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                    if (!str.isEmpty()) {
-                        str = str.substring(0, str.length() - 1);
-                    }
-                }
-            } else {
-                if (Utilities.KeycodeNum_check_std(e.getKeyChar()) && e.getKeyChar() != '0' && e.getKeyChar() != '.') {
-                    str = "" + e.getKeyChar();
-                } else if (e.getKeyChar() == '.') {
-                    str = str + ".";
-                }
-            }
-        }
-        if (str.isEmpty())
-            str = "0";
-        textField1.setText(str);
     }
 
     private void button_dotMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_PERIOD);
+        }
+    }
+
+    private void button_backspaceMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+        }
+    }
+
+    private void button_divMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_DIVIDE);
+        }
+    }
+
+    private void button_mulMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_MULTIPLY);
+        }
+    }
+
+    private void button_minusMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_MINUS);
+        }
+    }
+
+    private void button_plusMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ADD);
+        }
+    }
+
+    private void button_equalMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ENTER);
+        }
+    }
+
+    private void button_clearMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+        }
+    }
+
+    private void button_cleanEntryMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_DELETE);
+        }
+    }
+
+    /**
+     * judge whether the textField1 should be cleared.
+     */
+    private boolean pending_cal_toClear = false;
+    /**
+     * judge the multiple consecutive calculate.
+     */
+    private boolean newNum = false;
+    /**
+     * judge whether consecutive equal
+     */
+    private boolean OnceEqual = false;
+    /**
+     * save the consecutive equal number
+     */
+    private String OnceEqualConst;
+
+    /**
+     * update the textField1 and label1, depending on the input logic
+     *
+     * @param e the KeyEvent.
+     * @author TonyZhan
+     */
+    private void textField1KeyPressed(KeyEvent e) {
+        // TODO add your code here
+        String str_last = Utilities.PureNumberWithoutArithmetics(label1.getText());
+        String str_arithmetic = Utilities.PureArithmetic(label1.getText().replace(str_last, ""));
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        if (Utilities.KeycodeNum_check_std(e.getKeyChar()) || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if (OnceEqual) {
+                label1.setText("");
+                textField1.setText("");
+                OnceEqual = false;
+            }
+            if (!pending_cal_toClear)
+                InputNumber(e);
+            else {
+                textField1.setText("");
+                InputNumber(e);
+                pending_cal_toClear = false;
+            }
+            newNum = true;
+        } else if (Utilities.KeycodeCal_check_std(e.getKeyChar()) && (!newNum || str_last.isEmpty())) {
+            label1.setText(str_now + " " + e.getKeyChar() + " ");
+            pending_cal_toClear = true;
+            newNum = false;
+            OnceEqual = false;
+        } else if (Utilities.KeycodeCal_check_std(e.getKeyChar()) && newNum) {
+            //TODO yunsuan
+            BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
+            if (ans != null) {
+                label1.setText(ans.toPlainString() + " " + e.getKeyChar() + " ");
+                textField1.setText(ans.toPlainString());
+            }
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = false;
+        } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && !OnceEqual) {
+            BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
+            if (ans != null) {
+                label1.setText(str_last + " " + str_arithmetic + " " + str_now + " = " + ans.toPlainString());
+                textField1.setText(ans.toPlainString());
+            }
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = true;
+            OnceEqualConst = str_now;
+        } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && OnceEqual) {
+            BigDecimal ans = FourArithmetic.calculatePlain(str_now, str_arithmetic, OnceEqualConst);
+            if (ans != null) {
+                label1.setText(str_now + " " + str_arithmetic + " " + OnceEqualConst + " = " + ans.toPlainString());
+                textField1.setText(ans.toPlainString());
+            }
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = true;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            label1.setText("");
+            textField1.setText("0");
+        } else if(e.getKeyCode() == KeyEvent.VK_DELETE){
+            textField1.setText("0");
+        }
+    }
+
+    public void InputNumber(KeyEvent e) {
+        String nowInput = textField1.getText();
+        if (!nowInput.equals("0")) {
+            //无前导0，输入数字
+            if (Utilities.KeycodeNum_check_std(e.getKeyChar()) && Utilities.countDot(nowInput) < 1) {
+                nowInput = nowInput + e.getKeyChar();
+            } else if (Character.isDigit(e.getKeyChar())) {
+                nowInput = nowInput + e.getKeyChar();
+            } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                if (!nowInput.isEmpty()) {
+                    nowInput = nowInput.substring(0, nowInput.length() - 1);
+                }
+            }
+        } else {
+            if (Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '0') {
+                nowInput = "" + e.getKeyChar();
+            } else if (e.getKeyChar() == '.') {
+                nowInput = nowInput + ".";
+            }
+        }
+        if (nowInput.isEmpty())
+            nowInput = "0";
+        textField1.setText(nowInput);
+    }
+
+    private void button_polarMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
             String str = textField1.getText();
-            str = str + ".";
+            if (!str.equals("0")) {
+                if (str.charAt(0) == '-') {
+                    str = str.substring(1);
+                } else {
+                    str = "-" + str;
+                }
+            }
             textField1.setText(str);
         }
     }
-    /**
-     * @Description method
-     * @param e
-     * @author yury
-     * @date 2023/11/20 16:14
-     */
-    private void radioButtonMenuItem1(ActionEvent e) {
+
+    private void button_percentMousePressed(MouseEvent e) {
         // TODO add your code here
-        CardLayout cardLayout = (CardLayout)mainPanel.getLayout();
-        cardLayout.show(mainPanel, "card1");
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+
+        BigDecimal ans = FourArithmetic.calculatePlain(str_now, "*", "0.01");
+        if (ans != null) {
+            label1.setText(str_now + " " + "*" + " " + "0.01" + " = " + ans.toPlainString());
+            textField1.setText(ans.toPlainString());
+        }
+        newNum = false;
+        pending_cal_toClear = true;
+        OnceEqual = true;
     }
 
-    private void radioButtonMenuItem2(ActionEvent e) {
-        // TODO add your code here
-        CardLayout cardLayout = (CardLayout)mainPanel.getLayout();
-        cardLayout.show(mainPanel, "card2");
-    }
-
-    private void radioButtonMenuItem3(ActionEvent e) {
-        // TODO add your code here
-        CardLayout cardLayout = (CardLayout)mainPanel.getLayout();
-        cardLayout.show(mainPanel, "card3");
-    }
 
     private void initComponents() {
         ImageIcon icon = new ImageIcon("Calculator/Resources/img/icon.png"); //图片和项目同一路径，故不用图片的路径
@@ -355,49 +325,41 @@ public class Calculator_std extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
         menu2 = new JMenu();
-
-        radioButtonMenuItem1 = new JRadioButtonMenuItem();
-        radioButtonMenuItem2 = new JRadioButtonMenuItem();
-        radioButtonMenuItem3 = new JRadioButtonMenuItem();
+        menuItem3 = new JMenuItem();
+        menuItem4 = new JMenuItem();
         menu1 = new JMenu();
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
-        mainPanel = new JPanel();
-        card1 = new JPanel();
-        button_smoke = new JButton();
-        button_David = new JButton();
-        textField1 = new JTextField();
-        label1 = new JLabel();
-        button_backspace = new JButton();
-        button_percent = new JButton();
-        button_polar = new JButton();
         button1 = new JButton();
         button2 = new JButton();
+        button3 = new JButton();
+        button4 = new JButton();
+        button5 = new JButton();
+        button6 = new JButton();
+        button7 = new JButton();
+        button8 = new JButton();
+        button9 = new JButton();
         button0 = new JButton();
         button_dot = new JButton();
+        button_polar = new JButton();
+        button_upsidedown = new JButton();
+        button_pow2 = new JButton();
+        button_sqrt = new JButton();
         button_equal = new JButton();
-        button3 = new JButton();
         button_plus = new JButton();
         button_minus = new JButton();
-        button6 = new JButton();
-        button5 = new JButton();
-        button4 = new JButton();
-        button7 = new JButton();
-        button_upsidedown = new JButton();
-        button8 = new JButton();
-        button_pow2 = new JButton();
-        button9 = new JButton();
         button_mul = new JButton();
         button_div = new JButton();
-        button_sqrt = new JButton();
-        button_clear = new JButton();
+        button_percent = new JButton();
         button_cleanEntry = new JButton();
-        label2 = new JLabel();
-        card2 = new JPanel();
-        label3 = new JLabel();
-        card3 = new JPanel();
-        label4 = new JLabel();
-
+        button_clear = new JButton();
+        button_smoke = new JButton();
+        button_David = new JButton();
+        button_backspace = new JButton();
+        scrollPane3 = new JScrollPane();
+        textField1 = new JTextField();
+        scrollPane4 = new JScrollPane();
+        label1 = new JLabel();
 
         //======== this ========
         setTitle("  Calculator");
@@ -422,23 +384,16 @@ public class Calculator_std extends JFrame {
                 menu2.setComponentPopupMenu(null);
                 menu2.setMargin(new Insets(5, 5, 5, 5));
 
+                //---- menuItem3 ----
+                menuItem3.setText("\u6807\u51c6");
+                menuItem3.setFont(new Font("\u5b8b\u4f53", menuItem3.getFont().getStyle() | Font.BOLD, menuItem3.getFont().getSize()));
+                menuItem3.setPreferredSize(new Dimension(73, 22));
+                menu2.add(menuItem3);
 
-                //---- radioButtonMenuItem1 ----
-                radioButtonMenuItem1.setText("\u6807\u51c6");
-                radioButtonMenuItem1.setSelected(true);
-                radioButtonMenuItem1.addActionListener(e -> radioButtonMenuItem1(e));
-                menu2.add(radioButtonMenuItem1);
-
-                //---- radioButtonMenuItem2 ----
-                radioButtonMenuItem2.setText("\u79d1\u5b66");
-                radioButtonMenuItem2.addActionListener(e -> radioButtonMenuItem2(e));
-                menu2.add(radioButtonMenuItem2);
-
-                //---- radioButtonMenuItem3 ----
-                radioButtonMenuItem3.setText("\u79ef\u5206");
-                radioButtonMenuItem3.addActionListener(e -> radioButtonMenuItem3(e));
-                menu2.add(radioButtonMenuItem3);
-
+                //---- menuItem4 ----
+                menuItem4.setText("\u79d1\u5b66");
+                menuItem4.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 12));
+                menu2.add(menuItem4);
             }
             menuBar1.add(menu2);
 
@@ -462,417 +417,396 @@ public class Calculator_std extends JFrame {
         }
         setJMenuBar(menuBar1);
 
-        //======== mainPanel ========
+        //---- button1 ----
+        button1.setText("1");
+        button1.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button1.setFocusable(false);
+        button1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button1MousePressed(e);
+            }
+        });
+        contentPane.add(button1);
+        button1.setBounds(50, 460, 100, 50);
+
+        //---- button2 ----
+        button2.setText("2");
+        button2.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button2.setFocusable(false);
+        button2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button2MousePressed(e);
+            }
+        });
+        contentPane.add(button2);
+        button2.setBounds(160, 460, 100, 50);
+
+        //---- button3 ----
+        button3.setText("3");
+        button3.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button3.setFocusable(false);
+        button3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button3MousePressed(e);
+            }
+        });
+        contentPane.add(button3);
+        button3.setBounds(270, 460, 100, 50);
+
+        //---- button4 ----
+        button4.setText("4");
+        button4.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button4.setFocusable(false);
+        button4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button4MousePressed(e);
+            }
+        });
+        contentPane.add(button4);
+        button4.setBounds(50, 400, 100, 50);
+
+        //---- button5 ----
+        button5.setText("5");
+        button5.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button5.setFocusable(false);
+        button5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button5MousePressed(e);
+            }
+        });
+        contentPane.add(button5);
+        button5.setBounds(160, 400, 100, 50);
+
+        //---- button6 ----
+        button6.setText("6");
+        button6.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button6.setFocusable(false);
+        button6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button6MousePressed(e);
+            }
+        });
+        contentPane.add(button6);
+        button6.setBounds(270, 400, 100, 50);
+
+        //---- button7 ----
+        button7.setText("7");
+        button7.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button7.setFocusable(false);
+        button7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button7MousePressed(e);
+            }
+        });
+        contentPane.add(button7);
+        button7.setBounds(50, 340, 100, 50);
+
+        //---- button8 ----
+        button8.setText("8");
+        button8.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button8.setFocusable(false);
+        button8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button8MousePressed(e);
+            }
+        });
+        contentPane.add(button8);
+        button8.setBounds(160, 340, 100, 50);
+
+        //---- button9 ----
+        button9.setText("9");
+        button9.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button9.setFocusable(false);
+        button9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button9MousePressed(e);
+            }
+        });
+        contentPane.add(button9);
+        button9.setBounds(270, 340, 100, 50);
+
+        //---- button0 ----
+        button0.setText("0");
+        button0.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button0.setFocusable(false);
+        button0.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button0MousePressed(e);
+            }
+        });
+        contentPane.add(button0);
+        button0.setBounds(160, 520, 100, 50);
+
+        //---- button_dot ----
+        button_dot.setText(".");
+        button_dot.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_dot.setFocusable(false);
+        button_dot.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_dotMousePressed(e);
+            }
+        });
+        contentPane.add(button_dot);
+        button_dot.setBounds(270, 520, 100, 50);
+
+        //---- button_polar ----
+        button_polar.setText("+/-");
+        button_polar.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_polar.setFocusable(false);
+        button_polar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_polarMousePressed(e);
+            }
+        });
+        contentPane.add(button_polar);
+        button_polar.setBounds(50, 520, 100, 50);
+
+        //---- button_upsidedown ----
+        button_upsidedown.setText("1/x");
+        button_upsidedown.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_upsidedown.setFocusable(false);
+        contentPane.add(button_upsidedown);
+        button_upsidedown.setBounds(50, 280, 100, 50);
+
+        //---- button_pow2 ----
+        button_pow2.setText("x^2");
+        button_pow2.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_pow2.setFocusable(false);
+        contentPane.add(button_pow2);
+        button_pow2.setBounds(160, 280, 100, 50);
+
+        //---- button_sqrt ----
+        button_sqrt.setText("\u221ax");
+        button_sqrt.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_sqrt.setFocusable(false);
+        contentPane.add(button_sqrt);
+        button_sqrt.setBounds(270, 280, 100, 50);
+
+        //---- button_equal ----
+        button_equal.setText("=");
+        button_equal.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_equal.setFocusable(false);
+        button_equal.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_equalMousePressed(e);
+            }
+        });
+        contentPane.add(button_equal);
+        button_equal.setBounds(380, 520, 100, 50);
+
+        //---- button_plus ----
+        button_plus.setText("+");
+        button_plus.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_plus.setFocusable(false);
+        button_plus.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_plusMousePressed(e);
+            }
+        });
+        contentPane.add(button_plus);
+        button_plus.setBounds(380, 460, 100, 50);
+
+        //---- button_minus ----
+        button_minus.setText("-");
+        button_minus.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_minus.setFocusable(false);
+        button_minus.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_minusMousePressed(e);
+            }
+        });
+        contentPane.add(button_minus);
+        button_minus.setBounds(380, 400, 100, 50);
+
+        //---- button_mul ----
+        button_mul.setText("\u00d7");
+        button_mul.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_mul.setFocusable(false);
+        button_mul.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_mulMousePressed(e);
+            }
+        });
+        contentPane.add(button_mul);
+        button_mul.setBounds(380, 340, 100, 50);
+
+        //---- button_div ----
+        button_div.setText("\u00f7");
+        button_div.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_div.setFocusable(false);
+        button_div.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_divMousePressed(e);
+            }
+        });
+        contentPane.add(button_div);
+        button_div.setBounds(380, 280, 100, 50);
+
+        //---- button_percent ----
+        button_percent.setText("%");
+        button_percent.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_percent.setFocusable(false);
+        button_percent.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_percentMousePressed(e);
+            }
+        });
+        contentPane.add(button_percent);
+        button_percent.setBounds(50, 220, 100, 50);
+
+        //---- button_cleanEntry ----
+        button_cleanEntry.setText("CE");
+        button_cleanEntry.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_cleanEntry.setFocusable(false);
+        button_cleanEntry.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_cleanEntryMousePressed(e);
+            }
+        });
+        contentPane.add(button_cleanEntry);
+        button_cleanEntry.setBounds(160, 220, 100, 50);
+
+        //---- button_clear ----
+        button_clear.setText("C");
+        button_clear.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_clear.setFocusable(false);
+        button_clear.setAlignmentY(0.0F);
+        button_clear.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_clearMousePressed(e);
+            }
+        });
+        contentPane.add(button_clear);
+        button_clear.setBounds(270, 220, 100, 50);
+
+        //---- button_smoke ----
+        button_smoke.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_smoke.setIcon(new ImageIcon(getClass().getResource("/Resources/img/smoke.png")));
+        button_smoke.setFocusable(false);
+        contentPane.add(button_smoke);
+        button_smoke.setBounds(490, 400, 100, 170);
+
+        //---- button_David ----
+        button_David.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_David.setIcon(new ImageIcon(getClass().getResource("/Resources/img/David.png")));
+        button_David.setFocusable(false);
+        contentPane.add(button_David);
+        button_David.setBounds(490, 220, 100, 170);
+
+        //---- button_backspace ----
+        button_backspace.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_backspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
+        button_backspace.setFocusable(false);
+        button_backspace.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_backspaceMousePressed(e);
+            }
+        });
+        contentPane.add(button_backspace);
+        button_backspace.setBounds(380, 220, 100, 50);
+
+        //======== scrollPane3 ========
         {
-            mainPanel.setLayout(new CardLayout());
 
-            //======== card1 ========
-            {
-                card1.setLayout(null);
-
-                //---- button_smoke ----
-                button_smoke.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_smoke.setIcon(new ImageIcon(getClass().getResource("/Resources/img/smoke.png")));
-                button_smoke.setFocusable(false);
-                card1.add(button_smoke);
-                button_smoke.setBounds(405, 305, 100, 130);
-
-                //---- button_David ----
-                button_David.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_David.setIcon(new ImageIcon(getClass().getResource("/Resources/img/David.png")));
-                button_David.setFocusable(false);
-                card1.add(button_David);
-                button_David.setBounds(405, 170, 100, 130);
-
-                //---- textField1 ----
-                textField1.setBorder(null);
-                textField1.setHorizontalAlignment(SwingConstants.TRAILING);
-                textField1.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 28));
-                textField1.setEditable(false);
-                textField1.setBackground(Color.white);
-                textField1.setText("0");
-                textField1.addKeyListener(new KeyAdapter() {
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                        textField1KeyPressed(e);
-                    }
-                });
-                card1.add(textField1);
-                textField1.setBounds(45, 95, 460, 65);
-
-                //---- label1 ----
-                label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
-                    new Font("Consolas", Font.BOLD | Font.ITALIC, 12)));
-                label1.setHorizontalAlignment(SwingConstants.TRAILING);
-                label1.setFont(new Font("Consolas", Font.PLAIN, 18));
-                label1.setForeground(Color.darkGray);
-                label1.setRequestFocusEnabled(false);
-                card1.add(label1);
-                label1.setBounds(45, 50, 460, 40);
-
-                //---- button_backspace ----
-                button_backspace.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_backspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
-                button_backspace.setFocusable(false);
-                button_backspace.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button_backspaceMousePressed(e);
-                    }
-                });
-                card1.add(button_backspace);
-                button_backspace.setBounds(315, 170, 85, 40);
-
-                //---- button_percent ----
-                button_percent.setText("%");
-                button_percent.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_percent.setFocusable(false);
-                card1.add(button_percent);
-                button_percent.setBounds(45, 170, 85, 40);
-
-                //---- button_polar ----
-                button_polar.setText("+/-");
-                button_polar.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_polar.setFocusable(false);
-                card1.add(button_polar);
-                button_polar.setBounds(45, 395, 85, 40);
-
-                //---- button1 ----
-                button1.setText("1");
-                button1.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button1.setFocusable(false);
-                button1.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button1MousePressed(e);
-                    }
-                });
-                card1.add(button1);
-                button1.setBounds(45, 350, 85, 40);
-
-                //---- button2 ----
-                button2.setText("2");
-                button2.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button2.setFocusable(false);
-                button2.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button2MousePressed(e);
-                    }
-                });
-                card1.add(button2);
-                button2.setBounds(135, 350, 85, 40);
-
-                //---- button0 ----
-                button0.setText("0");
-                button0.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button0.setFocusable(false);
-                button0.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button0MousePressed(e);
-                    }
-                });
-                card1.add(button0);
-                button0.setBounds(135, 395, 85, 40);
-
-                //---- button_dot ----
-                button_dot.setText(".");
-                button_dot.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_dot.setFocusable(false);
-                button_dot.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button_dotMousePressed(e);
-                    }
-                });
-                card1.add(button_dot);
-                button_dot.setBounds(225, 395, 85, 40);
-
-                //---- button_equal ----
-                button_equal.setText("=");
-                button_equal.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_equal.setFocusable(false);
-                button_equal.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button_equalMousePressed(e);
-                    }
-                });
-                card1.add(button_equal);
-                button_equal.setBounds(315, 395, 85, 40);
-
-                //---- button3 ----
-                button3.setText("3");
-                button3.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button3.setFocusable(false);
-                button3.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button3MousePressed(e);
-                    }
-                });
-                card1.add(button3);
-                button3.setBounds(225, 350, 85, 40);
-
-                //---- button_plus ----
-                button_plus.setText("+");
-                button_plus.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_plus.setFocusable(false);
-                button_plus.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button_plusMousePressed(e);
-                    }
-                });
-                card1.add(button_plus);
-                button_plus.setBounds(315, 350, 85, 40);
-
-                //---- button_minus ----
-                button_minus.setText("-");
-                button_minus.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_minus.setFocusable(false);
-                button_minus.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button_minusMousePressed(e);
-                    }
-                });
-                card1.add(button_minus);
-                button_minus.setBounds(315, 305, 85, 40);
-
-                //---- button6 ----
-                button6.setText("6");
-                button6.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button6.setFocusable(false);
-                button6.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button6MousePressed(e);
-                    }
-                });
-                card1.add(button6);
-                button6.setBounds(225, 305, 85, 40);
-
-                //---- button5 ----
-                button5.setText("5");
-                button5.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button5.setFocusable(false);
-                button5.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button5MousePressed(e);
-                    }
-                });
-                card1.add(button5);
-                button5.setBounds(135, 305, 85, 40);
-
-                //---- button4 ----
-                button4.setText("4");
-                button4.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button4.setFocusable(false);
-                button4.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button4MousePressed(e);
-                    }
-                });
-                card1.add(button4);
-                button4.setBounds(45, 305, 85, 40);
-
-                //---- button7 ----
-                button7.setText("7");
-                button7.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button7.setFocusable(false);
-                button7.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button7MousePressed(e);
-                    }
-                });
-                card1.add(button7);
-                button7.setBounds(45, 260, 85, 40);
-
-                //---- button_upsidedown ----
-                button_upsidedown.setText("1/x");
-                button_upsidedown.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_upsidedown.setFocusable(false);
-                card1.add(button_upsidedown);
-                button_upsidedown.setBounds(45, 215, 85, 40);
-
-                //---- button8 ----
-                button8.setText("8");
-                button8.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button8.setFocusable(false);
-                button8.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button8MousePressed(e);
-                    }
-                });
-                card1.add(button8);
-                button8.setBounds(135, 260, 85, 40);
-
-                //---- button_pow2 ----
-                button_pow2.setText("x^2");
-                button_pow2.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_pow2.setFocusable(false);
-                card1.add(button_pow2);
-                button_pow2.setBounds(135, 215, 85, 40);
-
-                //---- button9 ----
-                button9.setText("9");
-                button9.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button9.setFocusable(false);
-                button9.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button9MousePressed(e);
-                    }
-                });
-                card1.add(button9);
-                button9.setBounds(225, 260, 85, 40);
-
-                //---- button_mul ----
-                button_mul.setText("\u00d7");
-                button_mul.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_mul.setFocusable(false);
-                button_mul.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button_mulMousePressed(e);
-                    }
-                });
-                card1.add(button_mul);
-                button_mul.setBounds(315, 260, 85, 40);
-
-                //---- button_div ----
-                button_div.setText("\u00f7");
-                button_div.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_div.setFocusable(false);
-                button_div.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button_divMousePressed(e);
-                    }
-                });
-                card1.add(button_div);
-                button_div.setBounds(315, 215, 85, 40);
-
-                //---- button_sqrt ----
-                button_sqrt.setText("\u221ax");
-                button_sqrt.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_sqrt.setFocusable(false);
-                card1.add(button_sqrt);
-                button_sqrt.setBounds(225, 215, 85, 40);
-
-                //---- button_clear ----
-                button_clear.setText("C");
-                button_clear.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_clear.setFocusable(false);
-                button_clear.setAlignmentY(0.0F);
-                card1.add(button_clear);
-                button_clear.setBounds(225, 170, 85, 40);
-
-                //---- button_cleanEntry ----
-                button_cleanEntry.setText("CE");
-                button_cleanEntry.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_cleanEntry.setFocusable(false);
-                card1.add(button_cleanEntry);
-                button_cleanEntry.setBounds(135, 170, 85, 40);
-
-                //---- label2 ----
-                label2.setText("\u6807\u51c6\u8ba1\u7b97\u5668");
-                label2.setFont(new Font("\u6977\u4f53", Font.BOLD, 14));
-                card1.add(label2);
-                label2.setBounds(10, 10, 95, 30);
-            }
-            mainPanel.add(card1, "card1");
-
-            //======== card2 ========
-            {
-                card2.setLayout(null);
-
-                //---- label3 ----
-                label3.setText("\u79d1\u5b66\u8ba1\u7b97\u5668");
-                label3.setFont(new Font("\u6977\u4f53", Font.BOLD, 14));
-                card2.add(label3);
-                label3.setBounds(10, 10, 95, 30);
-            }
-            mainPanel.add(card2, "card2");
-
-            //======== card3 ========
-            {
-                card3.setLayout(null);
-
-                //---- label4 ----
-                label4.setText("\u79ef\u5206\u8ba1\u7b97\u5668");
-                label4.setFont(new Font("\u6977\u4f53", Font.BOLD, 14));
-                card3.add(label4);
-                label4.setBounds(10, 10, 95, 30);
-            }
-            mainPanel.add(card3, "card3");
+            //---- textField1 ----
+            textField1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.RAISED), "Now Step", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
+                new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
+            textField1.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 28));
+            textField1.setBackground(new Color(0xf0f0f0));
+            textField1.setText("0");
+            textField1.setAutoscrolls(false);
+            textField1.setHorizontalAlignment(SwingConstants.TRAILING);
+            textField1.setEditable(false);
+            textField1.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    textField1KeyPressed(e);
+                }
+            });
+            scrollPane3.setViewportView(textField1);
         }
-        contentPane.add(mainPanel);
-        mainPanel.setBounds(0, 0, 583, 508);
+        contentPane.add(scrollPane3);
+        scrollPane3.setBounds(40, 125, 560, 80);
 
-        contentPane.setPreferredSize(new Dimension(585, 565));
+        //======== scrollPane4 ========
+        {
+
+            //---- label1 ----
+            label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
+                new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
+            label1.setFont(new Font("Consolas", Font.PLAIN, 18));
+            label1.setForeground(Color.darkGray);
+            label1.setRequestFocusEnabled(false);
+            label1.setHorizontalAlignment(SwingConstants.TRAILING);
+            scrollPane4.setViewportView(label1);
+        }
+        contentPane.add(scrollPane4);
+        scrollPane4.setBounds(40, 35, 560, 70);
+
+        contentPane.setPreferredSize(new Dimension(640, 725));
         pack();
         setLocationRelativeTo(getOwner());
-
-        //---- buttonGroup1 ----
-        var buttonGroup1 = new ButtonGroup();
-        buttonGroup1.add(radioButtonMenuItem1);
-        buttonGroup1.add(radioButtonMenuItem2);
-        buttonGroup1.add(radioButtonMenuItem3);
-
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JMenuBar menuBar1;
     private JMenu menu2;
-    private JRadioButtonMenuItem radioButtonMenuItem1;
-    private JRadioButtonMenuItem radioButtonMenuItem2;
-    private JRadioButtonMenuItem radioButtonMenuItem3;
+    private JMenuItem menuItem3;
+    private JMenuItem menuItem4;
     private JMenu menu1;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
-    private JPanel mainPanel;
-    private JPanel card1;
-    private JButton button_smoke;
-    private JButton button_David;
-    private JTextField textField1;
-    private JLabel label1;
-    private JButton button_backspace;
-    private JButton button_percent;
-    private JButton button_polar;
     private JButton button1;
     private JButton button2;
+    private JButton button3;
+    private JButton button4;
+    private JButton button5;
+    private JButton button6;
+    private JButton button7;
+    private JButton button8;
+    private JButton button9;
     private JButton button0;
     private JButton button_dot;
+    private JButton button_polar;
+    private JButton button_upsidedown;
+    private JButton button_pow2;
+    private JButton button_sqrt;
     private JButton button_equal;
-    private JButton button3;
     private JButton button_plus;
     private JButton button_minus;
-    private JButton button6;
-    private JButton button5;
-    private JButton button4;
-    private JButton button7;
-    private JButton button_upsidedown;
-    private JButton button8;
-    private JButton button_pow2;
-    private JButton button9;
     private JButton button_mul;
     private JButton button_div;
-    private JButton button_sqrt;
-    private JButton button_clear;
+    private JButton button_percent;
     private JButton button_cleanEntry;
-    private JLabel label2;
-    private JPanel card2;
-    private JLabel label3;
-    private JPanel card3;
-    private JLabel label4;
-
+    private JButton button_clear;
+    private JButton button_smoke;
+    private JButton button_David;
+    private JButton button_backspace;
+    private JScrollPane scrollPane3;
+    private JTextField textField1;
+    private JScrollPane scrollPane4;
+    private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
