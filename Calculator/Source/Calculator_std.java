@@ -170,6 +170,183 @@ public class Calculator_std extends JFrame {
     private void button_dotMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
+<<<<<<< Updated upstream
+=======
+            robot.keyPress(KeyEvent.VK_PERIOD);
+        }
+    }
+
+    private void button_backspaceMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+        }
+    }
+
+    private void button_divMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_DIVIDE);
+        }
+    }
+
+    private void button_mulMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_MULTIPLY);
+        }
+    }
+
+    private void button_minusMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_MINUS);
+        }
+    }
+
+    private void button_plusMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ADD);
+        }
+    }
+
+    private void button_equalMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ENTER);
+        }
+    }
+
+    private void button_clearMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+        }
+    }
+
+    private void button_cleanEntryMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_DELETE);
+        }
+    }
+
+    /**
+     * judge whether the textField1 should be cleared.
+     */
+    private boolean pending_cal_toClear = false;
+    /**
+     * judge the multiple consecutive calculate.
+     */
+    private boolean newNum = false;
+    /**
+     * judge whether consecutive equal
+     */
+    private boolean OnceEqual = false;
+    /**
+     * save the consecutive equal number
+     */
+    private String OnceEqualConst;
+
+    /**
+     * update the textField1 and label1, depending on the input logic
+     *
+     * @param e the KeyEvent.
+     * @author TonyZhan
+     */
+    private void textField1KeyPressed(KeyEvent e) {
+        // TODO add your code here
+        String str_last = Utilities.PureNumberWithoutArithmetics(label1.getText());
+        String str_arithmetic = Utilities.PureArithmetic(label1.getText().replace(str_last, ""));
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        if (Utilities.KeycodeNum_check_std(e.getKeyChar()) || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if (OnceEqual) {
+                label1.setText("");
+                textField1.setText("");
+                OnceEqual = false;
+            }
+            if (!pending_cal_toClear)
+                InputNumber(e);
+            else {
+                textField1.setText("");
+                InputNumber(e);
+                pending_cal_toClear = false;
+            }
+            newNum = true;
+        } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar()) && (!newNum || str_last.isEmpty()))) {
+            label1.setText(str_now + " " + e.getKeyChar() + " ");
+            pending_cal_toClear = true;
+            newNum = false;
+            OnceEqual = false;
+        } else if (Utilities.KeycodeCal_check_std(e.getKeyChar()) && newNum) {
+            //TODO yunsuan
+            BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
+            if (ans != null) {
+                label1.setText(ans.toPlainString() + " " + e.getKeyChar() + " ");
+                textField1.setText(ans.toPlainString());
+            }
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = false;
+        } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && !OnceEqual) {
+            BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
+            if (ans != null) {
+                label1.setText(str_last + " " + str_arithmetic + " " + str_now + " = " + ans.toPlainString());
+                textField1.setText(ans.toPlainString());
+            }
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = true;
+            OnceEqualConst = str_now;
+        } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && OnceEqual) {
+            BigDecimal ans = FourArithmetic.calculatePlain(str_now, str_arithmetic, OnceEqualConst);
+            if (ans != null) {
+                label1.setText(str_now + " " + str_arithmetic + " " + OnceEqualConst + " = " + ans.toPlainString());
+                textField1.setText(ans.toPlainString());
+            }
+            newNum = false;
+            pending_cal_toClear = true;
+            OnceEqual = true;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            label1.setText("");
+            textField1.setText("0");
+        } else if(e.getKeyCode() == KeyEvent.VK_DELETE){
+            textField1.setText("0");
+        }
+    }
+
+    public void InputNumber(KeyEvent e) {
+        String nowInput = textField1.getText();
+        if (!nowInput.equals("0")) {
+            //无前导0，输入数字
+            if (Utilities.KeycodeNum_check_std(e.getKeyChar()) && Utilities.countDot(nowInput) < 1) {
+                nowInput = nowInput + e.getKeyChar();
+            } else if (Character.isDigit(e.getKeyChar())) {
+                nowInput = nowInput + e.getKeyChar();
+            } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                if (!nowInput.isEmpty()) {
+                    nowInput = nowInput.substring(0, nowInput.length() - 1);
+                }
+            }
+        } else {
+            if (Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '0') {
+                nowInput = "" + e.getKeyChar();
+            } else if (e.getKeyChar() == '.') {
+                nowInput = nowInput + ".";
+            }
+        }
+        if (nowInput.isEmpty())
+            nowInput = "0";
+        textField1.setText(nowInput);
+    }
+
+    private void button_polarMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+>>>>>>> Stashed changes
             String str = textField1.getText();
             str = str + ".";
             textField1.setText(str);
