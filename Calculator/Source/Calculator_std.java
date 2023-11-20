@@ -220,7 +220,7 @@ public class Calculator_std extends JFrame {
                 pending_cal_toClear = false;
             }
             newNum = true;
-        } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar()) && !newNum) || str_last.isEmpty()) {
+        } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar()) && (newNum || str_last.isEmpty()))) {
             label1.setText(str_now + " " + e.getKeyChar() + " ");
             pending_cal_toClear = true;
             newNum = false;
