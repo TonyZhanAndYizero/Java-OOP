@@ -5,6 +5,7 @@ import Source.Tools.FourArithmetic;
 import java.awt.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -208,10 +209,11 @@ public class Calculator_std extends JFrame {
     private void button_percentMousePressed(MouseEvent e) {
         String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
         String str_equal = Utilities.PureEqual(label1.getText());
+        System.out.println(str_equal);
         // TODO add your code here
         if (e.getButton() == 1) {
             BigDecimal ans = FourArithmetic.calculatePlain(str_now, "*", "0.01");
-            if (!str_equal.isEmpty()) {
+            if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
                 if (ans != null) {
                     label1.setText(str_now + " " + "*" + " " + "0.01" + " = " + ans.toPlainString());
                     textField1.setText(ans.toPlainString());
@@ -368,6 +370,76 @@ public class Calculator_std extends JFrame {
         if (nowInput.isEmpty())
             nowInput = "0";
         textField1.setText(nowInput);
+    }
+
+    private void button_upsidedownMousePressed(MouseEvent e) {
+        // TODO add your code here
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        String str_equal = Utilities.PureEqual(label1.getText());
+        if (e.getButton() == 1) {
+            BigDecimal ans = FourArithmetic.calculatePlain("1", "/", str_now);
+            if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
+                if (ans != null) {
+                    label1.setText("1" + " " + "/" + " " + str_now + " = " + ans.toPlainString());
+                    textField1.setText(ans.toPlainString());
+                }
+                newNum = false;
+                pending_cal_toClear = true;
+                OnceEqual = true;
+            } else {
+                if (ans != null) {
+                    textField1.setText(ans.toPlainString());
+                }
+            }
+        }
+    }
+
+    private void button_sqrtMousePressed(MouseEvent e) {
+        // TODO add your code here
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        String str_equal = Utilities.PureEqual(label1.getText());
+        if (e.getButton() == 1) {
+            BigDecimal ans;
+            try {
+                ans = new BigDecimal(str_now).sqrt(new MathContext(10));
+            } catch (ArithmeticException ae) {
+                label1.setText("");
+                textField1.setText("ERROR! Press any key to reset.");
+                error = true;
+                return;
+            }
+            if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
+                label1.setText("sqrt(" + str_now + ")" + " = " + ans.toPlainString());
+                textField1.setText(ans.toPlainString());
+                newNum = false;
+                pending_cal_toClear = true;
+                OnceEqual = true;
+            } else {
+                textField1.setText(ans.toPlainString());
+            }
+        }
+    }
+
+    private void button_pow2MousePressed(MouseEvent e) {
+        // TODO add your code here
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        String str_equal = Utilities.PureEqual(label1.getText());
+        if (e.getButton() == 1) {
+            BigDecimal ans = new BigDecimal(str_now).pow(2);
+            if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
+                if (ans != null) {
+                    label1.setText(str_now + "^2" + " = " + ans.toPlainString());
+                    textField1.setText(ans.toPlainString());
+                }
+                newNum = false;
+                pending_cal_toClear = true;
+                OnceEqual = true;
+            } else {
+                if (ans != null) {
+                    textField1.setText(ans.toPlainString());
+                }
+            }
+        }
     }
 
 
@@ -629,6 +701,12 @@ public class Calculator_std extends JFrame {
         button_upsidedown.setText("1/x");
         button_upsidedown.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_upsidedown.setFocusable(false);
+        button_upsidedown.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_upsidedownMousePressed(e);
+            }
+        });
         contentPane.add(button_upsidedown);
         button_upsidedown.setBounds(50, 280, 100, 50);
 
@@ -636,6 +714,12 @@ public class Calculator_std extends JFrame {
         button_pow2.setText("x^2");
         button_pow2.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_pow2.setFocusable(false);
+        button_pow2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_pow2MousePressed(e);
+            }
+        });
         contentPane.add(button_pow2);
         button_pow2.setBounds(160, 280, 100, 50);
 
@@ -643,6 +727,12 @@ public class Calculator_std extends JFrame {
         button_sqrt.setText("\u221ax");
         button_sqrt.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_sqrt.setFocusable(false);
+        button_sqrt.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_sqrtMousePressed(e);
+            }
+        });
         contentPane.add(button_sqrt);
         button_sqrt.setBounds(270, 280, 100, 50);
 
