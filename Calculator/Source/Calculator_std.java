@@ -377,19 +377,29 @@ public class Calculator_std extends JFrame {
         String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
         String str_equal = Utilities.PureEqual(label1.getText());
         if (e.getButton() == 1) {
-            BigDecimal ans = FourArithmetic.calculatePlain("1", "/", str_now);
-            if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
-                if (ans != null) {
-                    label1.setText("1" + " " + "/" + " " + str_now + " = " + ans.toPlainString());
-                    textField1.setText(ans.toPlainString());
+            if (!error) {
+                BigDecimal ans = FourArithmetic.calculatePlain("1", "/", str_now);
+                if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
+                    if (ans != null) {
+                        label1.setText("1" + " " + "/" + " " + str_now + " = " + ans.toPlainString());
+                        textField1.setText(ans.toPlainString());
+                    } else {
+                        label1.setText("");
+                        textField1.setText("ERROR! Press any key to reset.");
+                        error = true;
+                        return;
+                    }
+                    newNum = false;
+                    pending_cal_toClear = true;
+                    OnceEqual = true;
+                } else {
+                    if (ans != null) {
+                        textField1.setText(ans.toPlainString());
+                    }
                 }
-                newNum = false;
-                pending_cal_toClear = true;
-                OnceEqual = true;
             } else {
-                if (ans != null) {
-                    textField1.setText(ans.toPlainString());
-                }
+                textField1.setText("0");
+                error = false;
             }
         }
     }
@@ -400,22 +410,27 @@ public class Calculator_std extends JFrame {
         String str_equal = Utilities.PureEqual(label1.getText());
         if (e.getButton() == 1) {
             BigDecimal ans;
-            try {
-                ans = new BigDecimal(str_now).sqrt(new MathContext(10));
-            } catch (ArithmeticException ae) {
-                label1.setText("");
-                textField1.setText("ERROR! Press any key to reset.");
-                error = true;
-                return;
-            }
-            if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
-                label1.setText("sqrt(" + str_now + ")" + " = " + ans.toPlainString());
-                textField1.setText(ans.toPlainString());
-                newNum = false;
-                pending_cal_toClear = true;
-                OnceEqual = true;
-            } else {
-                textField1.setText(ans.toPlainString());
+            if (!error) {
+                try {
+                    ans = new BigDecimal(str_now).sqrt(new MathContext(10));
+                } catch (ArithmeticException ae) {
+                    label1.setText("");
+                    textField1.setText("ERROR! Press any key to reset.");
+                    error = true;
+                    return;
+                }
+                if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
+                    label1.setText("sqrt(" + str_now + ")" + " = " + ans.toPlainString());
+                    textField1.setText(ans.toPlainString());
+                    newNum = false;
+                    pending_cal_toClear = true;
+                    OnceEqual = true;
+                } else {
+                    textField1.setText(ans.toPlainString());
+                }
+            }else{
+                textField1.setText("0");
+                error = false;
             }
         }
     }
@@ -428,7 +443,7 @@ public class Calculator_std extends JFrame {
             BigDecimal ans = new BigDecimal(str_now).pow(2);
             if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
                 if (ans != null) {
-                    label1.setText(str_now + "^2" + " = " + ans.toPlainString());
+                    label1.setText("("+str_now+")" + "^2" + " = " + ans.toPlainString());
                     textField1.setText(ans.toPlainString());
                 }
                 newNum = false;
