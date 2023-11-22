@@ -120,13 +120,98 @@ public class Calculator_sci extends JPanel implements Calculator{
     private void button_backspaceMousePressed(MouseEvent e) {
         // TODO add your code here
     }
-
+    private String strToCal = "";
+    private String strToShow = "";
+    private String lastCh = "";
+    protected boolean inputtingNum = false;
+    protected boolean inputtingFunction = false;
+    protected boolean inputtingPIorE = false;
+    protected boolean inputtingPow = false;
+    protected int noLeftSpace = 0;
+    protected boolean isInputtingLeftBracketFunction = false;
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        String ch = String.valueOf(e.getKeyChar());
+        if (Utilities_sci.checkNum(ch)) {
+            inputNum(ch);
+        } else if (ch.equals("p") || ch.equals("e")) {
+            inputPIorE(ch);
+        } else if (ch.equals("m")) {
+            inputMod(ch);
+        } else if (ch.equals("^")) {
+            inputPow(ch);
+        } else if (Utilities_sci.checkLeftBracketFunction(ch)) {
+            inputLeftBracketFunction(ch);
+        }
+        lastCh = ch;
+        textField1.setText(strToShow);
     }
+    protected void inputNum(String ch) {
+        if (!Utilities_sci.checkPIorE(lastCh)) {
+            strToCal += ch;
+            if (Utilities_sci.checkLeftBracketFunction(lastCh) || Utilities_sci.checkPow(lastCh)) {
 
+            }
+            if (inputtingNum || noLeftSpace > 0) {
+                strToShow += ch;
+            } else {
+                strToShow += " " + ch;
+            }
+            inputtingNum = true;
+            inputtingFunction = false;
+        }
+    }
+    protected void inputPIorE(String ch) {
+        if (!inputtingNum) {
+            if (ch.equals("p")) {
+                strToCal += Math.PI;
+                if (noLeftSpace > 0) {
+                    strToShow += " ";
+                }
+                strToShow += Math.PI;
+            } else {
+                strToCal += Math.E;
+                if (noLeftSpace > 0) {
+                    strToShow += " ";
+                }
+                strToShow += Math.E;
+            }
+            inputtingPIorE = true;
+            inputtingFunction = false;
+        }
+        
+    }
+    protected void inputMod(String ch) {
+        if (!inputtingFunction) {
+            strToCal += "m";
+            strToShow += " mod";
+            inputtingFunction = true;
+            inputtingNum = false;
+            inputtingPIorE = false;
+        }
+    }
+    protected void inputPow(String ch) {
+        if (!inputtingFunction) {
+            strToCal += "^";
+            strToShow += "^";
+            noLeftSpace++;
+            inputtingFunction = true;
+            inputtingNum = false;
+            inputtingPIorE = false;
+        }
+    }
+    protected void inputLeftBracketFunction(String ch) {
+        if (!inputtingNum && !inputtingPIorE) {
+            if (ch.equals("s")) {
+
+            }
+        }
+
+    }
     private void progressBar1MouseReleased(MouseEvent e) {
         // TODO add your code here
+
     }
 
     private void initComponents() {
@@ -143,7 +228,6 @@ public class Calculator_sci extends JPanel implements Calculator{
         button0 = new JButton();
         button_dot = new JButton();
         button_polar = new JButton();
-        button_upsidedown = new JButton();
         button_pow2 = new JButton();
         button_sqrt = new JButton();
         button_equal = new JButton();
@@ -164,9 +248,7 @@ public class Calculator_sci extends JPanel implements Calculator{
         label1 = new JLabel();
         button_left = new JButton();
         button_right = new JButton();
-        button_abs = new JButton();
         button_fac = new JButton();
-        button_exp = new JButton();
         button_mod = new JButton();
         button_e = new JButton();
         button_pai = new JButton();
@@ -174,8 +256,6 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_tenpow = new JButton();
         button_log = new JButton();
         button_ln = new JButton();
-        menuBar1 = new JMenuBar();
-        menu1 = new JMenu();
         button_sin = new JButton();
         button_cos = new JButton();
         button_tan = new JButton();
@@ -338,19 +418,6 @@ public class Calculator_sci extends JPanel implements Calculator{
         });
         add(button_polar);
         button_polar.setBounds(135, 535, 80, 40);
-
-        //---- button_upsidedown ----
-        button_upsidedown.setText("1/x");
-        button_upsidedown.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_upsidedown.setFocusable(false);
-        button_upsidedown.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                button_upsidedownMousePressed(e);
-            }
-        });
-        add(button_upsidedown);
-        button_upsidedown.setBounds(135, 310, 80, 40);
 
         //---- button_pow2 ----
         button_pow2.setText("x^2");
@@ -604,19 +671,6 @@ public class Calculator_sci extends JPanel implements Calculator{
         add(button_right);
         button_right.setBounds(220, 355, 80, 40);
 
-        //---- button_abs ----
-        button_abs.setText("|x|");
-        button_abs.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_abs.setFocusable(false);
-        button_abs.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                button_upsidedownMousePressed(e);
-            }
-        });
-        add(button_abs);
-        button_abs.setBounds(220, 310, 80, 40);
-
         //---- button_fac ----
         button_fac.setText("n!");
         button_fac.setFont(new Font("Consolas", Font.PLAIN, 16));
@@ -630,19 +684,6 @@ public class Calculator_sci extends JPanel implements Calculator{
         });
         add(button_fac);
         button_fac.setBounds(305, 355, 80, 40);
-
-        //---- button_exp ----
-        button_exp.setText("exp");
-        button_exp.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_exp.setFocusable(false);
-        button_exp.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                button_upsidedownMousePressed(e);
-            }
-        });
-        add(button_exp);
-        button_exp.setBounds(305, 310, 80, 40);
 
         //---- button_mod ----
         button_mod.setText("mod");
@@ -735,55 +776,33 @@ public class Calculator_sci extends JPanel implements Calculator{
         add(button_ln);
         button_ln.setBounds(50, 535, 80, 40);
 
-        //======== menuBar1 ========
-        {
-            menuBar1.setMinimumSize(new Dimension(80, 40));
-            menuBar1.setBackground(new Color(0xcccccc));
-            menuBar1.setPreferredSize(null);
+        //---- button_sin ----
+        button_sin.setText(" sin ");
+        button_sin.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_sin.setPreferredSize(null);
+        button_sin.setMinimumSize(new Dimension(80, 40));
+        button_sin.setMaximumSize(new Dimension(100, 50));
+        button_sin.setMargin(null);
+        add(button_sin);
+        button_sin.setBounds(135, 310, 80, 40);
 
-            //======== menu1 ========
-            {
-                menu1.setText("\u4e09\u89d2\u51fd\u6570");
-                menu1.setFont(new Font("\u5b8b\u4f53", menu1.getFont().getStyle(), 14));
-                menu1.setBorder(UIManager.getBorder("Button.border"));
-                menu1.setHorizontalAlignment(SwingConstants.CENTER);
-                menu1.setHorizontalTextPosition(SwingConstants.CENTER);
-                menu1.setIconTextGap(0);
-                menu1.setBackground(new Color(0xcccccc));
-                menu1.setMaximumSize(new Dimension(80, 32767));
-                menu1.setMinimumSize(new Dimension(80, 40));
-                menu1.setMargin(null);
-                menu1.setPreferredSize(null);
+        //---- button_cos ----
+        button_cos.setText(" cos ");
+        button_cos.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_cos.setMinimumSize(new Dimension(80, 40));
+        button_cos.setMaximumSize(new Dimension(100, 50));
+        button_cos.setMargin(null);
+        add(button_cos);
+        button_cos.setBounds(220, 310, 80, 40);
 
-                //---- button_sin ----
-                button_sin.setText(" sin ");
-                button_sin.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_sin.setPreferredSize(null);
-                button_sin.setMinimumSize(new Dimension(80, 40));
-                button_sin.setMaximumSize(new Dimension(100, 50));
-                button_sin.setMargin(null);
-                menu1.add(button_sin);
-
-                //---- button_cos ----
-                button_cos.setText(" cos ");
-                button_cos.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_cos.setMinimumSize(new Dimension(80, 40));
-                button_cos.setMaximumSize(new Dimension(100, 50));
-                button_cos.setMargin(null);
-                menu1.add(button_cos);
-
-                //---- button_tan ----
-                button_tan.setText(" tan ");
-                button_tan.setFont(new Font("Consolas", Font.PLAIN, 16));
-                button_tan.setMinimumSize(new Dimension(80, 40));
-                button_tan.setMaximumSize(new Dimension(80, 40));
-                button_tan.setMargin(null);
-                menu1.add(button_tan);
-            }
-            menuBar1.add(menu1);
-        }
-        add(menuBar1);
-        menuBar1.setBounds(50, 220, 80, 40);
+        //---- button_tan ----
+        button_tan.setText(" tan ");
+        button_tan.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_tan.setMinimumSize(new Dimension(80, 40));
+        button_tan.setMaximumSize(new Dimension(80, 40));
+        button_tan.setMargin(null);
+        add(button_tan);
+        button_tan.setBounds(305, 310, 80, 40);
 
         setPreferredSize(new Dimension(795, 640));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -802,7 +821,6 @@ public class Calculator_sci extends JPanel implements Calculator{
     private JButton button0;
     private JButton button_dot;
     private JButton button_polar;
-    private JButton button_upsidedown;
     private JButton button_pow2;
     private JButton button_sqrt;
     private JButton button_equal;
@@ -823,9 +841,7 @@ public class Calculator_sci extends JPanel implements Calculator{
     private JLabel label1;
     private JButton button_left;
     private JButton button_right;
-    private JButton button_abs;
     private JButton button_fac;
-    private JButton button_exp;
     private JButton button_mod;
     private JButton button_e;
     private JButton button_pai;
@@ -833,8 +849,6 @@ public class Calculator_sci extends JPanel implements Calculator{
     private JButton button_tenpow;
     private JButton button_log;
     private JButton button_ln;
-    private JMenuBar menuBar1;
-    private JMenu menu1;
     private JButton button_sin;
     private JButton button_cos;
     private JButton button_tan;
