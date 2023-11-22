@@ -11,7 +11,6 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class EngineerArithmetic {
-    int indexYN;
     public static List<String> zhongZhui(String str) {//把输入的字符串转换成中缀表达式。存入list中
         int index = 0;
         List<String> list = new ArrayList<>();
@@ -233,7 +232,7 @@ public class EngineerArithmetic {
         }
     }
     public static void main(String[] args) {
-        String str = null;
+        String str;
         Scanner sc = new Scanner(System.in);
         while(true)
         {
