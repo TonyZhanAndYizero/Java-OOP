@@ -16,7 +16,7 @@ public class EngineerArithmetic {
         List<String> list = new ArrayList<>();
         do{
             char ch = str.charAt(index);
-            if("+-*/^!logsct()|".indexOf(str.charAt(index)) >= 0){
+            if("+-*/^!mlogsct()".indexOf(str.charAt(index)) >= 0){
                 if(str.charAt(index) == '-' && (list.isEmpty() || !isNumber(list.get(list.size() - 1))))
                 {
                     list.add("0");
@@ -112,6 +112,9 @@ public class EngineerArithmetic {
             case "/":
                 result = 2;
                 break;
+            case "m":
+                result = 2;
+                break;
             case "^":
                 result = 3;
                 break;
@@ -178,7 +181,13 @@ public class EngineerArithmetic {
                         {
                             res = num1.divide(num2, 10, RoundingMode.HALF_UP);
                         }
-                    } else if (list2.get(i).equals("^")) {
+                    }else if(list2.get(i).equals("m"))
+                    {
+                        BigDecimal num2= new BigDecimal(stack.pop());
+                        BigDecimal num1 = new BigDecimal(stack.pop());
+                        res = num1.remainder(num2, m1);
+                    }
+                    else if (list2.get(i).equals("^")) {
                         BigDecimal num2= new BigDecimal(stack.pop());
                         BigDecimal num1 = new BigDecimal(stack.pop());
                         res = BigDecimalMath.pow(num1, num2,m1);
