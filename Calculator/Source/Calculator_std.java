@@ -1,7 +1,9 @@
 package Source;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 
 //import com.jgoodies.forms.factories.*;
@@ -20,6 +22,94 @@ public class Calculator_std extends JFrame {
 
     private void createUIComponents() {
         // TODO: add custom component creation code here
+    }
+
+    private void button1MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button2MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button3MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button4MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button5MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button6MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button7MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button8MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button9MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button0MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_dotMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_polarMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_equalMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_plusMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_minusMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_mulMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_divMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_percentMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_cleanEntryMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_clearMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_backspaceMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void textField1KeyPressed(KeyEvent e) {
+        // TODO add your code here
     }
 
     private void initComponents() {
