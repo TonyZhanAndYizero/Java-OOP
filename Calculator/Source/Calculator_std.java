@@ -4,8 +4,13 @@ import Source.Tools.FourArithmetic;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
+import java.io.IOException;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -186,17 +191,19 @@ public class Calculator_std extends JFrame {
      * @author TonyZhan
      */
     private void button_polarMousePressed(MouseEvent e) {
-        // TODO add your code here
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        String str_equal = Utilities.PureEqual(label1.getText());
         if (e.getButton() == 1) {
-            String str = textField1.getText();
-            if (!str.equals("0")) {
-                if (str.charAt(0) == '-') {
-                    str = str.substring(1);
-                } else {
-                    str = "-" + str;
-                }
+            BigDecimal ans = new BigDecimal(str_now).negate();
+            if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
+                label1.setText("negate" + "(" + str_now + ")" + " = " + ans.toPlainString());
+                textField1.setText(ans.toPlainString());
+                newNum = false;
+                pending_cal_toClear = true;
+                OnceEqual = true;
+            } else {
+                textField1.setText(ans.toPlainString());
             }
-            textField1.setText(str);
         }
     }
 
@@ -266,8 +273,7 @@ public class Calculator_std extends JFrame {
                     InputNumber(e);
                     OnceEqual = false;
                     pending_cal_toClear = false;
-                } else if (!pending_cal_toClear)
-                    InputNumber(e);
+                } else if (!pending_cal_toClear) InputNumber(e);
                 else {
                     textField1.setText("");
                     InputNumber(e);
@@ -304,7 +310,7 @@ public class Calculator_std extends JFrame {
             } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && OnceEqual) {
                 BigDecimalCal(str_now, str_arithmetic, OnceEqualConst);
             }
-        } else {
+        } else if (Utilities.Keycode_check(e.getKeyChar()) || Utilities.KeySpecialCode_check(e.getKeyCode())) {
             textField1.setText("0");
             error = false;
         }
@@ -367,8 +373,7 @@ public class Calculator_std extends JFrame {
                 nowInput = nowInput + ".";
             }
         }
-        if (nowInput.isEmpty())
-            nowInput = "0";
+        if (nowInput.isEmpty()) nowInput = "0";
         textField1.setText(nowInput);
     }
 
@@ -412,7 +417,7 @@ public class Calculator_std extends JFrame {
             BigDecimal ans;
             if (!error) {
                 try {
-                    ans = new BigDecimal(str_now).sqrt(new MathContext(10));
+                    ans = new BigDecimal(str_now).sqrt(new MathContext(15));
                 } catch (ArithmeticException ae) {
                     label1.setText("");
                     textField1.setText("ERROR! Press any key to reset.");
@@ -428,7 +433,7 @@ public class Calculator_std extends JFrame {
                 } else {
                     textField1.setText(ans.toPlainString());
                 }
-            }else{
+            } else {
                 textField1.setText("0");
                 error = false;
             }
@@ -440,21 +445,91 @@ public class Calculator_std extends JFrame {
         String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
         String str_equal = Utilities.PureEqual(label1.getText());
         if (e.getButton() == 1) {
-            BigDecimal ans = new BigDecimal(str_now).pow(2);
-            if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
-                if (ans != null) {
-                    label1.setText("("+str_now+")" + "^2" + " = " + ans.toPlainString());
+            if (!error) {
+                BigDecimal ans = new BigDecimal(str_now).pow(2,MathContext.DECIMAL128);
+                System.out.println(ans);
+                if (ans.toPlainString().length() > 10000) {
+                    System.out.println("ok");
+                    ans = null;
+                }
+                if (ans == null) {
+                    label1.setText("");
+                    textField1.setText("ERROR! Press any key to reset.");
+                    error = true;
+                    return;
+                }
+                if (!str_equal.isEmpty() || label1.getText().isEmpty()) {
+                    label1.setText("(" + str_now + ")" + "^2" + " = " + ans.toPlainString());
+                    textField1.setText(ans.toPlainString());
+                    newNum = false;
+                    pending_cal_toClear = true;
+                    OnceEqual = true;
+                } else {
                     textField1.setText(ans.toPlainString());
                 }
-                newNum = false;
-                pending_cal_toClear = true;
-                OnceEqual = true;
             } else {
-                if (ans != null) {
-                    textField1.setText(ans.toPlainString());
-                }
+                textField1.setText("0");
+                error = false;
             }
         }
+    }
+
+    private boolean play = false;
+    private static final File DAVID = new File("Calculator/Resources/music/oh_David.wav");
+    private Clip clip = null;
+
+    {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(DAVID);
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void button_DavidMousePressed(MouseEvent e) {
+        // TODO add your code here
+        try {
+            if (!play) {
+                clip.start();
+                play = true;
+            } else {
+                clip.stop();
+                play = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void button_smokeMousePressed(MouseEvent k) {
+        if (clip != null) {
+            clip.stop();
+            play = false;
+        }
+        // TODO add your code here
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(DAVID);
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void progressBar1MousePressed(MouseEvent e) {
+
+    }
+
+    private void progressBar1MouseReleased(MouseEvent e) {
+        // TODO add your code here
+        int mouseX = e.getX();
+        int progressBarWidth = progressBar1.getWidth();
+        int progress = (int) ((double) mouseX / progressBarWidth * progressBar1.getMaximum());
+        progressBar1.setValue(progress);
+        long time = (long) ((double) mouseX / progressBarWidth * clip.getMicrosecondLength());
+        clip.setMicrosecondPosition(time);
     }
 
 
@@ -497,6 +572,8 @@ public class Calculator_std extends JFrame {
         button_backspace = new JButton();
         scrollPane3 = new JScrollPane();
         textField1 = new JTextField();
+        progressBar1 = new JProgressBar();
+        scrollPane1 = new JScrollPane();
         label1 = new JLabel();
 
         //======== this ========
@@ -857,18 +934,32 @@ public class Calculator_std extends JFrame {
         button_clear.setBounds(270, 220, 100, 50);
 
         //---- button_smoke ----
-        button_smoke.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_smoke.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
         button_smoke.setIcon(new ImageIcon(getClass().getResource("/Resources/img/smoke.png")));
         button_smoke.setFocusable(false);
+        button_smoke.setText("      \u91cd\u7f6e");
+        button_smoke.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_smokeMousePressed(e);
+            }
+        });
         contentPane.add(button_smoke);
-        button_smoke.setBounds(490, 400, 100, 170);
+        button_smoke.setBounds(490, 415, 170, 145);
 
         //---- button_David ----
-        button_David.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_David.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
         button_David.setIcon(new ImageIcon(getClass().getResource("/Resources/img/David.png")));
         button_David.setFocusable(false);
+        button_David.setText("\u64ad\u653e");
+        button_David.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_DavidMousePressed(e);
+            }
+        });
         contentPane.add(button_David);
-        button_David.setBounds(490, 220, 100, 170);
+        button_David.setBounds(490, 235, 170, 145);
 
         //---- button_backspace ----
         button_backspace.setFont(new Font("Consolas", Font.PLAIN, 16));
@@ -905,22 +996,37 @@ public class Calculator_std extends JFrame {
             scrollPane3.setViewportView(textField1);
         }
         contentPane.add(scrollPane3);
-        scrollPane3.setBounds(40, 125, 560, 80);
+        scrollPane3.setBounds(40, 125, 630, 80);
 
-        //---- label1 ----
-        label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
-            new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
-        label1.setFont(new Font("Consolas", Font.PLAIN, 18));
-        label1.setForeground(Color.darkGray);
-        label1.setHorizontalAlignment(SwingConstants.TRAILING);
-        label1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-        label1.setAlignmentX(0.5F);
-        label1.setOpaque(true);
-        label1.setBackground(new Color(0xf0f0f0));
-        contentPane.add(label1);
-        label1.setBounds(40, 35, 560, 70);
+        //---- progressBar1 ----
+        progressBar1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                progressBar1MouseReleased(e);
+            }
+        });
+        contentPane.add(progressBar1);
+        progressBar1.setBounds(85, 605, 210, 40);
 
-        contentPane.setPreferredSize(new Dimension(640, 725));
+        //======== scrollPane1 ========
+        {
+
+            //---- label1 ----
+            label1.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED), "Last Step", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
+                new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
+            label1.setFont(new Font("Consolas", Font.PLAIN, 18));
+            label1.setForeground(Color.darkGray);
+            label1.setHorizontalAlignment(SwingConstants.TRAILING);
+            label1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+            label1.setAlignmentX(0.5F);
+            label1.setOpaque(true);
+            label1.setBackground(new Color(0xf0f0f0));
+            scrollPane1.setViewportView(label1);
+        }
+        contentPane.add(scrollPane1);
+        scrollPane1.setBounds(40, 40, 630, 75);
+
+        contentPane.setPreferredSize(new Dimension(725, 785));
         pack();
         setLocationRelativeTo(getOwner());
 
@@ -967,6 +1073,8 @@ public class Calculator_std extends JFrame {
     private JButton button_backspace;
     private JScrollPane scrollPane3;
     private JTextField textField1;
+    private JProgressBar progressBar1;
+    private JScrollPane scrollPane1;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

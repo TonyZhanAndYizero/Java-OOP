@@ -193,6 +193,8 @@ public class FourArithmetic {
             System.out.println("运算符号错误！请重新输入:");
             return null;
         }
+        if(res.toPlainString().length()>10000)
+            return null;
         return res.stripTrailingZeros();
     }
 

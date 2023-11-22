@@ -20,7 +20,9 @@ public class Utilities {
     public static boolean Keycode_check(char keycode) {
         return Character.isDigit(keycode) || "+-*/.=".indexOf(keycode) != -1;
     }
-
+    public static boolean KeySpecialCode_check(int keycode){
+        return keycode==KeyEvent.VK_ESCAPE||keycode==KeyEvent.VK_DELETE||keycode==KeyEvent.VK_BACK_SPACE||keycode==KeyEvent.VK_ENTER;
+    }
     /**
      * to check the possible number input.
      *
