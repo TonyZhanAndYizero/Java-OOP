@@ -378,10 +378,5 @@ new FormModel {
 			"location": new java.awt.Point( 0, 15 )
 			"size": new java.awt.Dimension( 725, 785 )
 		} )
-		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
-			name: "buttonGroup1"
-		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 805 )
-		} )
 	}
 }
