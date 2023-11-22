@@ -184,7 +184,7 @@ public class EngineerArithmetic {
                         res = BigDecimalMath.pow(num1, num2,m1);
                     } else if (list2.get(i).equals("!")) {
                         BigDecimal num1 = new BigDecimal(stack.pop());
-                        res = BigDecimalMath.factorial(num1, m2);
+                        res = BigDecimalMath.factorial(num1, MathContext.UNLIMITED);
                     } else if (list2.get(i).equals("g")) {
                         BigDecimal num1 = new BigDecimal(stack.pop());
                         res = BigDecimalMath.sqrt(num1, m1);
