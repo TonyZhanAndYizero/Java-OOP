@@ -1,6 +1,9 @@
 package src;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.*;
 
@@ -226,14 +229,6 @@ public class FourArithmetic {
         return null;
     }
     public static void main(String []args){
-        System.out.println("请输入运算式：");
-        Scanner in = new Scanner(System.in);
-        while(true)
-        {
-            String s1 = in.nextLine();
-            String s2 = in.nextLine();
-            String s3 = in.nextLine();
-            System.out.println(caculatePlain(s1, s2, s3));
-        }
+        System.out.println(BigDecimalMath.log(new BigDecimal(Math.E * Math.E), new MathContext(10, RoundingMode.HALF_UP)));
     }
 }
