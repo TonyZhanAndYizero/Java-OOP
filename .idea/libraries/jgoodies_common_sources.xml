@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="jgoodies-common-sources">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jgoodies-common.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/intellij_forms_rt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/JTattoo-1.6.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jgoodies-forms.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/substance-4.3.jar!/" />
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/jgoodies-forms-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jgoodies-common-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/jgoodies-common-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jgoodies-forms-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/Calculator" />
+      <root url="file://$PROJECT_DIR$/FourArithmetic" />
+    </SOURCES>
+  </library>
+</component>

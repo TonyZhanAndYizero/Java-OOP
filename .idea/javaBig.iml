@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FourArithmetic" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ch.obermuhlner.math.big" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/newPanel" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -15,5 +16,7 @@
     <orderEntry type="library" name="substance-4.3" level="project" />
     <orderEntry type="library" name="JGoodies Forms" level="project" />
     <orderEntry type="library" name="big-math-2.3.2" level="project" />
+    <orderEntry type="library" name="jgoodies-common-sources" level="project" />
+    <orderEntry type="library" name="MigLayout" level="project" />
   </component>
 </module>
