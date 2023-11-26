@@ -16,7 +16,7 @@ public class Utilities_sci {
         return matcher.matches();
     }
     public static boolean checkLeftBracketFunction(String ch) {
-        return "sctlog!".contains(ch);
+        return "sctlog!a".contains(ch);
     }
     public static boolean checkPIorE(String ch) {
         return ch.equals("p") || ch.equals("e");
@@ -30,6 +30,7 @@ public class Utilities_sci {
     public static boolean checkOperation(String ch) {
         return "+-*/".contains(ch);
     }
+
 
     public static String PureNumberWithoutArithmetics(String Num){
         Pattern pattern = Pattern.compile("-?(0|[1-9]\\d*)(\\.\\d+)?");

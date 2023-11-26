@@ -104,6 +104,9 @@ public class Calculator_sci extends JPanel implements Calculator{
 
     private void button_absMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_A);
+        }
     }
 
     private void button_paiMousePressed(MouseEvent e) {
@@ -171,10 +174,23 @@ public class Calculator_sci extends JPanel implements Calculator{
 
     private void button_percentMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            if (Utilities_sci.checkNum(lastCh) || Utilities_sci.checkPIorE(lastCh) || lastCh.equals(")")) {
+                robot.keyPress(KeyEvent.VK_MULTIPLY);
+                robot.keyPress(KeyEvent.VK_0);
+                robot.keyPress(KeyEvent.VK_PERIOD);
+                robot.keyPress(KeyEvent.VK_0);
+                robot.keyPress(KeyEvent.VK_1);
+            }
+        }
     }
 
     private void button_cleanEntryMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+            robot.keyRelease(KeyEvent.VK_ESCAPE);
+        }
     }
 
     private void button_leftMousePressed(MouseEvent e) {
@@ -238,9 +254,6 @@ public class Calculator_sci extends JPanel implements Calculator{
         }
     }
 
-    private void button_clearMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
 
     private void button_tenpowMousePressed(MouseEvent e) {
         // TODO add your code here
@@ -305,16 +318,7 @@ public class Calculator_sci extends JPanel implements Calculator{
     protected int cntLeftBracket = 0;
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
-        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
         String ch = String.valueOf(e.getKeyChar());
-        if (lastCh.equals("=")) {
-            String strLast = label1.getText();
-            strLast += strToShow.get(0);
-            label1.setText(strLast);
-            strToCal.clear();
-            strToShow.clear();
-            lastCh = "";
-        }
         if (Utilities_sci.checkNum(ch)) {
             inputNum(ch);
         } else if (Utilities_sci.checkPIorE(ch)) {
@@ -335,6 +339,10 @@ public class Calculator_sci extends JPanel implements Calculator{
             backSpace();
         } else if (Utilities_sci.checkEqual(e)) {
             getResult();
+        } else if (e.getKeyChar() == KeyEvent.VK_ESCAPE) {
+            clearEntry();
+        } else if (ch.equals(".")) {
+            inputDot();
         }
         StringBuilder tmp = new StringBuilder();
         if (strToShow.isEmpty()) {
@@ -346,14 +354,20 @@ public class Calculator_sci extends JPanel implements Calculator{
         }
         textField1.setText(String.valueOf(tmp));
     }
+    protected void inputDot() {
+        if (!Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")") && !lastCh.equals(".")) {
+            if (!Utilities_sci.checkNum(lastCh)) {
+                strToCal.add("0");
+                strToShow.add("0");
+            }
+            strToCal.add(".");
+            strToShow.add(".");
+            lastCh = ".";
+        }
+    }
     protected void inputNum(String ch) {
         if (!Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add(ch);
-//            if (!lastCh.isEmpty() && (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh))) {
-//                strToShow.add(" " + ch);
-//            } else {
-//                strToShow.add(ch);
-//            }
             strToShow.add(ch);
             lastCh = ch;
         }
@@ -362,19 +376,9 @@ public class Calculator_sci extends JPanel implements Calculator{
         if (!Utilities_sci.checkNum((lastCh)) && !Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             if (ch.equals("p")) {
                 strToCal.add(String.valueOf(Math.PI));
-//                if (!lastCh.isEmpty() && (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh))) {
-//                    strToShow.add(" ¦Ð");
-//                } else {
-//                    strToShow.add("¦Ð");
-//                }
                 strToShow.add("¦Ð");
             } else {
                 strToCal.add(String.valueOf(Math.E));
-//                if (!lastCh.isEmpty() && (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh))) {
-//                    strToShow.add(" e");
-//                } else {
-//                    strToShow.add("e");
-//                }
                 strToShow.add("e");
             }
             lastCh = ch;
@@ -399,60 +403,28 @@ public class Calculator_sci extends JPanel implements Calculator{
         if (!Utilities_sci.checkNum((lastCh)) && !Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             if (ch.equals("s")) {
                 strToCal.add("s(");
-//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
-//                    strToShow.add(" sin(");
-//                } else {
-//                    strToShow.add("sin(");
-//                }
                 strToShow.add("sin(");
             } else if (ch.equals("c")) {
                 strToCal.add("c(");
-//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
-//                    strToShow.add(" cos(");
-//                } else {
-//                    strToShow.add("cos(");
-//                }
                 strToShow.add("cos(");
             } else if (ch.equals("t")) {
                 strToCal.add("t(");
-//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
-//                    strToShow.add(" tan(");
-//                } else {
-//                    strToShow.add("tan(");
-//                }
                 strToShow.add("tan(");
             } else if (ch.equals("l")) {
                 strToCal.add("l(");
-//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
-//                    strToShow.add(" ln(");
-//                } else {
-//                    strToShow.add("ln(");
-//                }
                 strToShow.add("ln(");
             } else if (ch.equals("o")) {
                 strToCal.add("o(");
-//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
-//                    strToShow.add(" log(");
-//                } else {
-//                    strToShow.add("log(");
-//                }
                 strToShow.add("log(");
             } else if (ch.equals("g")) {
                 strToCal.add("g(");
-//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
-//                    strToShow.add(" sqrt(");
-//                } else {
-//                    strToShow.add("sqrt(");
-//                }
                 strToShow.add("sqrt(");
             } else if (ch.equals("!")) {
                 strToCal.add("!(");
-//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
-//                    strToShow.add(" sqrt(");
-//                } else {
-//                    strToShow.add("sqrt(");
-//                }
                 strToShow.add("fact(");
+            } else if (ch.equals("a")) {
+                strToCal.add("a(");
+                strToShow.add("abs(");
             }
             cntLeftBracket++;
             lastCh = ch;
@@ -463,16 +435,17 @@ public class Calculator_sci extends JPanel implements Calculator{
             strToCal.add(ch);
             strToShow.add(ch);
             lastCh = ch;
+        } else if (ch.equals("-")) {
+            if (Utilities_sci.checkLeftBracketFunction(lastCh) || lastCh.equals("(") || lastCh.isEmpty() || lastCh.equals("=")) {
+                strToCal.add("-");
+                strToShow.add("-");
+                lastCh = "-";
+            }
         }
     }
     protected void inputLeftBracket(String ch) {
         if (!Utilities_sci.checkNum(lastCh) && !Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add("(");
-//            if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
-//                strToShow.add(" (");
-//            } else {
-//                strToShow.add("(");
-//            }
             strToShow.add("(");
             cntLeftBracket++;
             lastCh = ch;
@@ -486,8 +459,6 @@ public class Calculator_sci extends JPanel implements Calculator{
         }
     }
     protected void backSpace() {
-//        strToCal = (ArrayList<String>) strToCal.subList(0, strToCal.size() - 1);
-//        strToShow = (ArrayList<String>) strToShow.subList(0, strToShow.size() - 1);
         if (!strToShow.isEmpty()) {
             strToCal.remove(strToCal.size() - 1);
             strToShow.remove(strToShow.size() - 1);
@@ -511,18 +482,24 @@ public class Calculator_sci extends JPanel implements Calculator{
             }
             String ans = EngineerArithmetic.engineerCal(String.valueOf(tmp));
             tmp2.append(" = ");
+            if (ans != null) {
+                tmp2.append(ans);
+            } else {
+                tmp2.append("Error!");
+            }
+
             label1.setText(String.valueOf(tmp2));
             strToShow.clear();
             strToCal.clear();
-            if (ans != null) {
-                strToShow.add(ans);
-            } else {
-                strToShow.add("Error!");
-            }
+
             lastCh = "=";
         }
     }
-
+    protected void clearEntry() {
+        strToShow.clear();
+        strToCal.clear();
+        lastCh = "";
+    }
 
 
 
@@ -549,7 +526,6 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_div = new JButton();
         button_percent = new JButton();
         button_cleanEntry = new JButton();
-        button_clear = new JButton();
         button_smoke = new JButton();
         button_David = new JButton();
         button_backspace = new JButton();
@@ -719,7 +695,7 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_dot.setBounds(305, 535, 80, 40);
 
         //---- button_abs ----
-        button_abs.setText("|x|");
+        button_abs.setText("abs");
         button_abs.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_abs.setFocusable(false);
         button_abs.addMouseListener(new MouseAdapter() {
@@ -846,21 +822,7 @@ public class Calculator_sci extends JPanel implements Calculator{
             }
         });
         add(button_cleanEntry);
-        button_cleanEntry.setBounds(305, 220, 80, 40);
-
-        //---- button_clear ----
-        button_clear.setText("C");
-        button_clear.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_clear.setFocusable(false);
-        button_clear.setAlignmentY(0.0F);
-        button_clear.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                button_clearMousePressed(e);
-            }
-        });
-        add(button_clear);
-        button_clear.setBounds(305, 265, 80, 40);
+        button_cleanEntry.setBounds(305, 265, 80, 40);
 
         //---- button_smoke ----
         button_smoke.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
@@ -1163,7 +1125,6 @@ public class Calculator_sci extends JPanel implements Calculator{
     private JButton button_div;
     private JButton button_percent;
     private JButton button_cleanEntry;
-    private JButton button_clear;
     private JButton button_smoke;
     private JButton button_David;
     private JButton button_backspace;
