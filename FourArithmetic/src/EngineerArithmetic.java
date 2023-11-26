@@ -17,7 +17,7 @@ public class EngineerArithmetic {
         do{
             char ch = str.charAt(index);
             if("+-*/^!mlogscta()".indexOf(str.charAt(index)) >= 0){
-                if(str.charAt(index) == '-' && (list.isEmpty() || !isNumber(list.get(list.size() - 1))))
+                if(str.charAt(index) == '-' && (list.isEmpty() || !isNumber(list.get(list.size() - 1)) && !list.get(list.size() - 1).equals(")")))
                 {
                     list.add("0");
                 }
