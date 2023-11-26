@@ -6,8 +6,10 @@ package Source;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
+import Source.Tools.*;
 
 /**
  * @author Yury
@@ -16,85 +18,155 @@ public class Calculator_sci extends JPanel implements Calculator{
     public Calculator_sci() {
         initComponents();
     }
+    public static Robot robot;
 
+    static {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public JTextField getTextField1() {
+        return textField1;
+    }
     private void button1MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_1);
+        }
     }
-
-    private void button7MousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
     private void button2MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_2);
+        }
     }
-
     private void button3MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_3);
+        }
     }
-
     private void button4MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_4);
+        }
     }
 
     private void button5MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_5);
+        }
     }
 
     private void button6MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_6);
+        }
     }
-
+    private void button7MousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_7);
+        }
+    }
     private void button8MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_8);
+        }
     }
 
     private void button9MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_9);
+        }
     }
 
     private void button0MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_0);
+        }
     }
 
     private void button_dotMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_PERIOD);
+        }
     }
 
-    private void button_polarMousePressed(MouseEvent e) {
+    private void button_absMousePressed(MouseEvent e) {
         // TODO add your code here
     }
 
-    private void button_upsidedownMousePressed(MouseEvent e) {
+    private void button_paiMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_P);
+        }
     }
 
     private void button_pow2MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            if (Utilities_sci.checkNum(lastCh) || Utilities_sci.checkPIorE(lastCh) || lastCh.equals(")")) {
+                robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.keyPress(KeyEvent.VK_6);
+                robot.keyRelease(KeyEvent.VK_SHIFT);
+                robot.keyPress(KeyEvent.VK_2);
+            }
+        }
     }
 
-    private void button_sqrtMousePressed(MouseEvent e) {
+    private void button_xpowyMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_6);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+        }
     }
 
     private void button_equalMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ENTER);
+        }
     }
 
     private void button_plusMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ADD);
+        }
     }
 
     private void button_minusMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_MINUS);
+        }
     }
 
     private void button_mulMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_MULTIPLY);
+        }
     }
 
     private void button_divMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_DIVIDE);
+        }
     }
 
     private void button_percentMousePressed(MouseEvent e) {
@@ -105,10 +177,24 @@ public class Calculator_sci extends JPanel implements Calculator{
         // TODO add your code here
     }
 
-    private void button_clearMousePressed(MouseEvent e) {
+    private void button_leftMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_9);
+            robot.keyRelease(KeyEvent.VK_9);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+        }
     }
-
+    private void button_rightMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_0);
+            robot.keyRelease(KeyEvent.VK_0);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+        }
+    }
     private void button_smokeMousePressed(MouseEvent e) {
         // TODO add your code here
     }
@@ -116,118 +202,344 @@ public class Calculator_sci extends JPanel implements Calculator{
     private void button_DavidMousePressed(MouseEvent e) {
         // TODO add your code here
     }
-
-    private void button_backspaceMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-    private String strToCal = "";
-    private String strToShow = "";
-    private String lastCh = "";
-    protected boolean inputtingNum = false;
-    protected boolean inputtingFunction = false;
-    protected boolean inputtingPIorE = false;
-    protected boolean inputtingPow = false;
-    protected int noLeftSpace = 0;
-    protected boolean isInputtingLeftBracketFunction = false;
-    private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
-        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
-        String ch = String.valueOf(e.getKeyChar());
-        if (Utilities_sci.checkNum(ch)) {
-            inputNum(ch);
-        } else if (ch.equals("p") || ch.equals("e")) {
-            inputPIorE(ch);
-        } else if (ch.equals("m")) {
-            inputMod(ch);
-        } else if (ch.equals("^")) {
-            inputPow(ch);
-        } else if (Utilities_sci.checkLeftBracketFunction(ch)) {
-            inputLeftBracketFunction(ch);
-        }
-        lastCh = ch;
-        textField1.setText(strToShow);
-    }
-    protected void inputNum(String ch) {
-        if (!Utilities_sci.checkPIorE(lastCh)) {
-            strToCal += ch;
-            if (Utilities_sci.checkLeftBracketFunction(lastCh) || Utilities_sci.checkPow(lastCh)) {
-
-            }
-            if (inputtingNum || noLeftSpace > 0) {
-                strToShow += ch;
-            } else {
-                strToShow += " " + ch;
-            }
-            inputtingNum = true;
-            inputtingFunction = false;
-        }
-    }
-    protected void inputPIorE(String ch) {
-        if (!inputtingNum) {
-            if (ch.equals("p")) {
-                strToCal += Math.PI;
-                if (noLeftSpace > 0) {
-                    strToShow += " ";
-                }
-                strToShow += Math.PI;
-            } else {
-                strToCal += Math.E;
-                if (noLeftSpace > 0) {
-                    strToShow += " ";
-                }
-                strToShow += Math.E;
-            }
-            inputtingPIorE = true;
-            inputtingFunction = false;
-        }
-        
-    }
-    protected void inputMod(String ch) {
-        if (!inputtingFunction) {
-            strToCal += "m";
-            strToShow += " mod";
-            inputtingFunction = true;
-            inputtingNum = false;
-            inputtingPIorE = false;
-        }
-    }
-    protected void inputPow(String ch) {
-        if (!inputtingFunction) {
-            strToCal += "^";
-            strToShow += "^";
-            noLeftSpace++;
-            inputtingFunction = true;
-            inputtingNum = false;
-            inputtingPIorE = false;
-        }
-    }
-    protected void inputLeftBracketFunction(String ch) {
-        if (!inputtingNum && !inputtingPIorE) {
-            if (ch.equals("s")) {
-
-            }
-        }
-
-    }
     private void progressBar1MouseReleased(MouseEvent e) {
         // TODO add your code here
 
     }
+    private void button_backspaceMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+            robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+        }
+    }
+
+
+    private void button_eMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_E);
+        }
+    }
+
+    private void button_modMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_M);
+        }
+    }
+
+    private void button_facMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+        }
+    }
+
+    private void button_clearMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button_tenpowMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyPress(KeyEvent.VK_0);
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_6);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+        }
+    }
+
+    private void button_logMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_O);
+            robot.keyRelease(KeyEvent.VK_O);
+        }
+    }
+
+    private void button_lnMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_L);
+            robot.keyRelease(KeyEvent.VK_L);
+        }
+    }
+
+    private void button_sqrtMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_G);
+            robot.keyRelease(KeyEvent.VK_G);
+        }
+    }
+    private void button_sinMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_S);
+            robot.keyRelease(KeyEvent.VK_S);
+        }
+    }
+
+    private void button_cosMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_C);
+            robot.keyRelease(KeyEvent.VK_C);
+        }
+    }
+
+    private void button_tanMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_T);
+            robot.keyRelease(KeyEvent.VK_T);
+        }
+    }
+    private ArrayList<String> strToCal = new ArrayList<>();
+    private ArrayList<String> strToShow = new ArrayList<>();
+    private String lastCh = "";
+    protected int cntLeftBracket = 0;
+    private void textField1KeyPressed(KeyEvent e) {
+        // TODO add your code here
+        String str_now = Utilities.PureNumberWithoutArithmetics(textField1.getText());
+        String ch = String.valueOf(e.getKeyChar());
+        if (lastCh.equals("=")) {
+            String strLast = label1.getText();
+            strLast += strToShow.get(0);
+            label1.setText(strLast);
+            strToCal.clear();
+            strToShow.clear();
+            lastCh = "";
+        }
+        if (Utilities_sci.checkNum(ch)) {
+            inputNum(ch);
+        } else if (Utilities_sci.checkPIorE(ch)) {
+            inputPIorE(ch);
+        } else if (Utilities_sci.checkMod(ch)) {
+            inputMod(ch);
+        } else if (Utilities_sci.checkPow(ch)) {
+            inputPow(ch);
+        } else if (Utilities_sci.checkLeftBracketFunction(ch)) {
+            inputLeftBracketFunction(ch);
+        } else if (Utilities_sci.checkOperation(ch)) {
+            inputOperation(ch);
+        } else if (ch.equals("(")) {
+            inputLeftBracket(ch);
+        } else if (ch.equals(")")) {
+            inputRightBracket(ch);
+        } else if (e.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
+            backSpace();
+        } else if (Utilities_sci.checkEqual(e)) {
+            getResult();
+        }
+        StringBuilder tmp = new StringBuilder();
+        if (strToShow.isEmpty()) {
+            tmp.append("0");
+        } else {
+            for (String s : strToShow) {
+                tmp.append(s);
+            }
+        }
+        textField1.setText(String.valueOf(tmp));
+    }
+    protected void inputNum(String ch) {
+        if (!Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")")) {
+            strToCal.add(ch);
+//            if (!lastCh.isEmpty() && (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh))) {
+//                strToShow.add(" " + ch);
+//            } else {
+//                strToShow.add(ch);
+//            }
+            strToShow.add(ch);
+            lastCh = ch;
+        }
+    }
+    protected void inputPIorE(String ch) {
+        if (!Utilities_sci.checkNum((lastCh)) && !Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")")) {
+            if (ch.equals("p")) {
+                strToCal.add(String.valueOf(Math.PI));
+//                if (!lastCh.isEmpty() && (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh))) {
+//                    strToShow.add(" ¦Ð");
+//                } else {
+//                    strToShow.add("¦Ð");
+//                }
+                strToShow.add("¦Ð");
+            } else {
+                strToCal.add(String.valueOf(Math.E));
+//                if (!lastCh.isEmpty() && (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh))) {
+//                    strToShow.add(" e");
+//                } else {
+//                    strToShow.add("e");
+//                }
+                strToShow.add("e");
+            }
+            lastCh = ch;
+        }
+        
+    }
+    protected void inputMod(String ch) {
+        if (Utilities_sci.checkNum(lastCh) || Utilities_sci.checkPIorE(lastCh) || lastCh.equals(")")) {
+            strToCal.add("m");
+            strToShow.add("mod");
+            lastCh = ch;
+        }
+    }
+    protected void inputPow(String ch) {
+        if (Utilities_sci.checkNum(lastCh) || Utilities_sci.checkPIorE(lastCh) || lastCh.equals(")")) {
+            strToCal.add("^");
+            strToShow.add("^");
+            lastCh = ch;
+        }
+    }
+    protected void inputLeftBracketFunction(String ch) {
+        if (!Utilities_sci.checkNum((lastCh)) && !Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")")) {
+            if (ch.equals("s")) {
+                strToCal.add("s(");
+//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
+//                    strToShow.add(" sin(");
+//                } else {
+//                    strToShow.add("sin(");
+//                }
+                strToShow.add("sin(");
+            } else if (ch.equals("c")) {
+                strToCal.add("c(");
+//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
+//                    strToShow.add(" cos(");
+//                } else {
+//                    strToShow.add("cos(");
+//                }
+                strToShow.add("cos(");
+            } else if (ch.equals("t")) {
+                strToCal.add("t(");
+//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
+//                    strToShow.add(" tan(");
+//                } else {
+//                    strToShow.add("tan(");
+//                }
+                strToShow.add("tan(");
+            } else if (ch.equals("l")) {
+                strToCal.add("l(");
+//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
+//                    strToShow.add(" ln(");
+//                } else {
+//                    strToShow.add("ln(");
+//                }
+                strToShow.add("ln(");
+            } else if (ch.equals("o")) {
+                strToCal.add("o(");
+//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
+//                    strToShow.add(" log(");
+//                } else {
+//                    strToShow.add("log(");
+//                }
+                strToShow.add("log(");
+            } else if (ch.equals("g")) {
+                strToCal.add("g(");
+//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
+//                    strToShow.add(" sqrt(");
+//                } else {
+//                    strToShow.add("sqrt(");
+//                }
+                strToShow.add("sqrt(");
+            } else if (ch.equals("!")) {
+                strToCal.add("!(");
+//                if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
+//                    strToShow.add(" sqrt(");
+//                } else {
+//                    strToShow.add("sqrt(");
+//                }
+                strToShow.add("fact(");
+            }
+            cntLeftBracket++;
+            lastCh = ch;
+        }
+    }
+    protected void inputOperation(String ch) {
+        if (Utilities_sci.checkNum(lastCh) || Utilities_sci.checkPIorE(lastCh) || lastCh.equals(")")) {
+            strToCal.add(ch);
+            strToShow.add(ch);
+            lastCh = ch;
+        }
+    }
+    protected void inputLeftBracket(String ch) {
+        if (!Utilities_sci.checkNum(lastCh) && !Utilities_sci.checkPIorE(lastCh) && !lastCh.equals(")")) {
+            strToCal.add("(");
+//            if (Utilities_sci.checkMod(lastCh) || Utilities_sci.checkOperation(lastCh)) {
+//                strToShow.add(" (");
+//            } else {
+//                strToShow.add("(");
+//            }
+            strToShow.add("(");
+            cntLeftBracket++;
+            lastCh = ch;
+        }
+    }
+    protected void inputRightBracket(String ch) {
+        if (cntLeftBracket > 0 && (Utilities_sci.checkNum(lastCh) || Utilities_sci.checkPIorE(lastCh) || lastCh.equals(")"))) {
+            strToCal.add(")");
+            strToShow.add(")");
+            lastCh = ch;
+        }
+    }
+    protected void backSpace() {
+//        strToCal = (ArrayList<String>) strToCal.subList(0, strToCal.size() - 1);
+//        strToShow = (ArrayList<String>) strToShow.subList(0, strToShow.size() - 1);
+        if (!strToShow.isEmpty()) {
+            strToCal.remove(strToCal.size() - 1);
+            strToShow.remove(strToShow.size() - 1);
+            System.out.println(strToShow.size());
+            if (!strToShow.isEmpty()) {
+                lastCh = strToCal.get(strToCal.size() - 1);
+            } else {
+                lastCh = "";
+            }
+        }
+    }
+    protected void getResult() {
+        StringBuilder tmp = new StringBuilder();
+        StringBuilder tmp2 = new StringBuilder();
+        if (!strToCal.isEmpty()) {
+            for (String s : strToCal) {
+                tmp.append(s);
+            }
+            for (String s : strToShow) {
+                tmp2.append(s);
+            }
+            String ans = EngineerArithmetic.engineerCal(String.valueOf(tmp));
+            tmp2.append(" = ");
+            label1.setText(String.valueOf(tmp2));
+            strToShow.clear();
+            strToCal.clear();
+            if (ans != null) {
+                strToShow.add(ans);
+            } else {
+                strToShow.add("Error!");
+            }
+            lastCh = "=";
+        }
+    }
+
+
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        button7 = new JButton();
         button1 = new JButton();
         button2 = new JButton();
         button3 = new JButton();
         button4 = new JButton();
         button5 = new JButton();
         button6 = new JButton();
+        button7 = new JButton();
         button8 = new JButton();
         button9 = new JButton();
         button0 = new JButton();
         button_dot = new JButton();
-        button_polar = new JButton();
+        button_abs = new JButton();
         button_pow2 = new JButton();
         button_sqrt = new JButton();
         button_equal = new JButton();
@@ -262,19 +574,6 @@ public class Calculator_sci extends JPanel implements Calculator{
 
         //======== this ========
         setLayout(null);
-
-        //---- button7 ----
-        button7.setText("7");
-        button7.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button7.setFocusable(false);
-        button7.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                button7MousePressed(e);
-            }
-        });
-        add(button7);
-        button7.setBounds(135, 400, 80, 40);
 
         //---- button1 ----
         button1.setText("1");
@@ -354,6 +653,19 @@ public class Calculator_sci extends JPanel implements Calculator{
         add(button6);
         button6.setBounds(305, 445, 80, 40);
 
+        //---- button7 ----
+        button7.setText("7");
+        button7.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button7.setFocusable(false);
+        button7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button7MousePressed(e);
+            }
+        });
+        add(button7);
+        button7.setBounds(135, 400, 80, 40);
+
         //---- button8 ----
         button8.setText("8");
         button8.setFont(new Font("Consolas", Font.PLAIN, 16));
@@ -406,18 +718,18 @@ public class Calculator_sci extends JPanel implements Calculator{
         add(button_dot);
         button_dot.setBounds(305, 535, 80, 40);
 
-        //---- button_polar ----
-        button_polar.setText("+/-");
-        button_polar.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_polar.setFocusable(false);
-        button_polar.addMouseListener(new MouseAdapter() {
+        //---- button_abs ----
+        button_abs.setText("|x|");
+        button_abs.setFont(new Font("Consolas", Font.PLAIN, 16));
+        button_abs.setFocusable(false);
+        button_abs.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_polarMousePressed(e);
+                button_absMousePressed(e);
             }
         });
-        add(button_polar);
-        button_polar.setBounds(135, 535, 80, 40);
+        add(button_abs);
+        button_abs.setBounds(135, 535, 80, 40);
 
         //---- button_pow2 ----
         button_pow2.setText("x^2");
@@ -651,7 +963,7 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_left.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_clearMousePressed(e);
+                button_leftMousePressed(e);
             }
         });
         add(button_left);
@@ -665,21 +977,21 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_right.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_clearMousePressed(e);
+                button_rightMousePressed(e);
             }
         });
         add(button_right);
         button_right.setBounds(220, 355, 80, 40);
 
         //---- button_fac ----
-        button_fac.setText("n!");
+        button_fac.setText("fact");
         button_fac.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_fac.setFocusable(false);
         button_fac.setAlignmentY(0.0F);
         button_fac.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_clearMousePressed(e);
+                button_facMousePressed(e);
             }
         });
         add(button_fac);
@@ -692,7 +1004,7 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_mod.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_upsidedownMousePressed(e);
+                button_modMousePressed(e);
             }
         });
         add(button_mod);
@@ -705,20 +1017,20 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_e.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_upsidedownMousePressed(e);
+                button_eMousePressed(e);
             }
         });
         add(button_e);
         button_e.setBounds(220, 265, 80, 40);
 
         //---- button_pai ----
-        button_pai.setText("\u03a0");
+        button_pai.setText("\u03c0");
         button_pai.setFont(new Font("Consolas", Font.PLAIN, 16));
         button_pai.setFocusable(false);
         button_pai.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_upsidedownMousePressed(e);
+                button_paiMousePressed(e);
             }
         });
         add(button_pai);
@@ -731,7 +1043,7 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_xpowy.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_sqrtMousePressed(e);
+                button_xpowyMousePressed(e);
             }
         });
         add(button_xpowy);
@@ -744,7 +1056,7 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_tenpow.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_sqrtMousePressed(e);
+                button_tenpowMousePressed(e);
             }
         });
         add(button_tenpow);
@@ -757,7 +1069,7 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_log.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_sqrtMousePressed(e);
+                button_logMousePressed(e);
             }
         });
         add(button_log);
@@ -770,7 +1082,7 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_ln.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_sqrtMousePressed(e);
+                button_lnMousePressed(e);
             }
         });
         add(button_ln);
@@ -783,6 +1095,13 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_sin.setMinimumSize(new Dimension(80, 40));
         button_sin.setMaximumSize(new Dimension(100, 50));
         button_sin.setMargin(null);
+        button_sin.setFocusable(false);
+        button_sin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_sinMousePressed(e);
+            }
+        });
         add(button_sin);
         button_sin.setBounds(135, 310, 80, 40);
 
@@ -792,6 +1111,13 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_cos.setMinimumSize(new Dimension(80, 40));
         button_cos.setMaximumSize(new Dimension(100, 50));
         button_cos.setMargin(null);
+        button_cos.setFocusable(false);
+        button_cos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_cosMousePressed(e);
+            }
+        });
         add(button_cos);
         button_cos.setBounds(220, 310, 80, 40);
 
@@ -801,6 +1127,13 @@ public class Calculator_sci extends JPanel implements Calculator{
         button_tan.setMinimumSize(new Dimension(80, 40));
         button_tan.setMaximumSize(new Dimension(80, 40));
         button_tan.setMargin(null);
+        button_tan.setFocusable(false);
+        button_tan.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_tanMousePressed(e);
+            }
+        });
         add(button_tan);
         button_tan.setBounds(305, 310, 80, 40);
 
@@ -809,18 +1142,18 @@ public class Calculator_sci extends JPanel implements Calculator{
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JButton button7;
     private JButton button1;
     private JButton button2;
     private JButton button3;
     private JButton button4;
     private JButton button5;
     private JButton button6;
+    private JButton button7;
     private JButton button8;
     private JButton button9;
     private JButton button0;
     private JButton button_dot;
-    private JButton button_polar;
+    private JButton button_abs;
     private JButton button_pow2;
     private JButton button_sqrt;
     private JButton button_equal;

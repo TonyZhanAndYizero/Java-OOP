@@ -40,7 +40,9 @@ public class Calculator_std extends JPanel implements Calculator{
             throw new RuntimeException(e);
         }
     }
-
+    public JTextField getTextField1() {
+        return textField1;
+    }
     private void createUIComponents() {
         // TODO: add custom component creation code here
     }

@@ -53,26 +53,11 @@ public class Home extends JFrame {
         initComponents();
     }
 
-    private void showStd(MouseEvent e) {
-        // TODO add your code here
-        getContentPane().removeAll();
-        getContentPane().add(std);
-        revalidate();
-        repaint();
-    }
-
-    private void showSci(MouseEvent e) {
-        // TODO add your code here
-        getContentPane().removeAll();
-        getContentPane().add(sci);
-        revalidate();
-        repaint();
-    }
-
     private void showStd(ActionEvent e) {
         // TODO add your code here
         getContentPane().removeAll();
         getContentPane().add(std);
+        std.getTextField1().requestFocus();
         revalidate();
         repaint();
     }
@@ -81,8 +66,13 @@ public class Home extends JFrame {
         // TODO add your code here
         getContentPane().removeAll();
         getContentPane().add(sci);
+        sci.getTextField1().requestFocus();
         revalidate();
         repaint();
+    }
+
+    private void showSci(MouseEvent e) {
+        // TODO add your code here
     }
 
     private void initComponents() {
@@ -112,23 +102,11 @@ public class Home extends JFrame {
                 //---- radioButtonMenuItem1 ----
                 radioButtonMenuItem1.setText("\u6807\u51c6");
                 radioButtonMenuItem1.setSelected(true);
-                radioButtonMenuItem1.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        showStd(e);
-                    }
-                });
                 radioButtonMenuItem1.addActionListener(e -> showStd(e));
                 menu1.add(radioButtonMenuItem1);
 
                 //---- radioButtonMenuItem2 ----
                 radioButtonMenuItem2.setText("\u79d1\u5b66");
-                radioButtonMenuItem2.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        showSci(e);
-                    }
-                });
                 radioButtonMenuItem2.addActionListener(e -> showSci(e));
                 menu1.add(radioButtonMenuItem2);
             }

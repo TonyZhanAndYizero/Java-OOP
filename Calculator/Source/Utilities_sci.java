@@ -1,5 +1,6 @@
 package Source;
 
+import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,9 +16,7 @@ public class Utilities_sci {
         return matcher.matches();
     }
     public static boolean checkLeftBracketFunction(String ch) {
-        Pattern pattern = Pattern.compile("[sct!log]");
-        Matcher matcher = pattern.matcher(ch);
-        return matcher.matches();
+        return "sctlog!".contains(ch);
     }
     public static boolean checkPIorE(String ch) {
         return ch.equals("p") || ch.equals("e");
@@ -25,6 +24,13 @@ public class Utilities_sci {
     public static boolean checkPow(String ch) {
         return ch.equals("^");
     }
+    public static boolean checkMod(String ch) {
+        return ch.equals("m");
+    }
+    public static boolean checkOperation(String ch) {
+        return "+-*/".contains(ch);
+    }
+
     public static String PureNumberWithoutArithmetics(String Num){
         Pattern pattern = Pattern.compile("-?(0|[1-9]\\d*)(\\.\\d+)?");
         Matcher matcher = pattern.matcher(Num);
@@ -32,6 +38,9 @@ public class Utilities_sci {
             return matcher.group();
         else
             return "";
+    }
+    public static boolean checkEqual(KeyEvent e) {
+        return e.getKeyChar() == '=' || e.getKeyChar() == KeyEvent.VK_ENTER;
     }
 //    public void estimate(){//≈–∂œ ‰»Î «∑Ò¥ÌŒÛ
 //        int i = 0;

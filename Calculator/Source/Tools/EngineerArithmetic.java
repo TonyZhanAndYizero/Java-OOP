@@ -16,8 +16,8 @@ public class EngineerArithmetic {
         List<String> list = new ArrayList<>();
         do{
             char ch = str.charAt(index);
-            if("+-*/^!mlogsct()".indexOf(str.charAt(index)) >= 0){
-                if(str.charAt(index) == '-' && (list.isEmpty() || !isNumber(list.get(list.size() - 1))))
+            if("+-*/^!mlogscta()".indexOf(str.charAt(index)) >= 0){
+                if(str.charAt(index) == '-' && (list.isEmpty() || !isNumber(list.get(list.size() - 1)) && !list.get(list.size() - 1).equals(")")))
                 {
                     list.add("0");
                 }
@@ -139,7 +139,9 @@ public class EngineerArithmetic {
             case "t":
                 result = 4;
                 break;
-
+            case "a":
+                result = 4;
+                break;
         }
         return result;
     }
@@ -212,8 +214,11 @@ public class EngineerArithmetic {
                     } else if (list2.get(i).equals("t")) {
                         BigDecimal num1 = new BigDecimal(stack.pop());
                         res = BigDecimalMath.tan(num1, m1);
+                    } else if (list2.get(i).equals("a")) {
+                        BigDecimal num1 = new BigDecimal(stack.pop());
+                        res = num1.abs();
                     }
-                    stack.push("" + res);
+                    stack.push("" + res.setScale(10, RoundingMode.HALF_UP));
                 }
             }
         }catch (ArithmeticException a)
@@ -231,6 +236,15 @@ public class EngineerArithmetic {
         str = str.replaceAll(" ", "");
         List<String> list;
         try {
+            str = str.replaceAll("mod", "m");
+            str = str.replaceAll("sqrt", "g");
+            str = str.replaceAll("log", "o");
+            str = str.replaceAll("sin", "s");
+            str = str.replaceAll("cos", "c");
+            str = str.replaceAll("tan", "t");
+            str = str.replaceAll("abs", "a");
+            str = str.replaceAll("pi", "p");
+            str = str.replaceAll("ln", "l");
             list = zhongZhui(str);
             list = houZhui(list);
             return math(list).toPlainString();
