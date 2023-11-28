@@ -20,7 +20,9 @@ public class Utilities {
     public static boolean Keycode_check(char keycode) {
         return Character.isDigit(keycode) || "+-*/.=".indexOf(keycode) != -1;
     }
-
+    public static boolean KeySpecialCode_check(int keycode){
+        return keycode==KeyEvent.VK_ESCAPE||keycode==KeyEvent.VK_DELETE||keycode==KeyEvent.VK_BACK_SPACE||keycode==KeyEvent.VK_ENTER;
+    }
     /**
      * to check the possible number input.
      *
@@ -84,14 +86,6 @@ public class Utilities {
      * @author TonyZhan
      */
 
-//    public static String stdNum(String Num) {
-//        if (Num.length() >= 2) {
-//            if (Num.charAt(Num.length() - 1) == '.') {
-//                return new String(Num.toCharArray(), 0, Num.length() - 1);
-//            }
-//        }
-//        return Num;
-//    }
     public static String PureNumberWithoutArithmetics(String Num){
         Pattern pattern = Pattern.compile("-?(0|[1-9]\\d*)(\\.\\d+)?");
         Matcher matcher = pattern.matcher(Num);
@@ -103,6 +97,15 @@ public class Utilities {
 
     public static String PureArithmetic(String Num){
         Pattern pattern = Pattern.compile("[+\\-*/]");
+        Matcher matcher = pattern.matcher(Num);
+        if (matcher.find())
+            return matcher.group();
+        else
+            return "";
+    }
+
+    public static String PureEqual(String Num){
+        Pattern pattern = Pattern.compile("=");
         Matcher matcher = pattern.matcher(Num);
         if (matcher.find())
             return matcher.group();

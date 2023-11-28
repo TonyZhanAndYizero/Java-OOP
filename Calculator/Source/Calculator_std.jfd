@@ -158,6 +158,7 @@ new FormModel {
 				"text": "1/x"
 				"font": #Font0
 				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_upsidedownMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -169,6 +170,7 @@ new FormModel {
 				"text": "x^2"
 				"font": #Font0
 				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_pow2MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -180,6 +182,7 @@ new FormModel {
 				"text": "√x"
 				"font": #Font0
 				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_sqrtMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -285,28 +288,32 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_smoke"
-				"font": new java.awt.Font( "Consolas", 0, 16 )
+				"font": new java.awt.Font( "宋体", 1, 16 )
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/smoke.png" )
 				"focusable": false
+				"text": "      重置"
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "button_smoke"
 				}
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_smokeMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 100
-				"height": 170
+				"width": 170
+				"height": 145
 				"x": 490
-				"y": 400
+				"y": 415
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_David"
-				"font": #Font1
+				"font": new java.awt.Font( "宋体", 1, 16 )
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/David.png" )
 				"focusable": false
+				"text": "播放"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_DavidMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 100
-				"height": 170
+				"width": 170
+				"height": 145
 				"x": 490
-				"y": 220
+				"y": 235
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_backspace"
@@ -331,29 +338,42 @@ new FormModel {
 					"autoscrolls": false
 					"horizontalAlignment": 11
 					"editable": false
+					"cursor": &Cursor0 new java.awt.Cursor( 2 )
 					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textField1KeyPressed", true ) )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 40
 				"y": 125
-				"width": 560
+				"width": 630
 				"height": 80
 			} )
+			add( new FormComponent( "javax.swing.JProgressBar" ) {
+				name: "progressBar1"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "progressBar1MouseReleased", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 85
+				"y": 605
+				"width": 210
+				"height": 40
+			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane4"
+				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"
 					"border": new javax.swing.border.TitledBorder( new javax.swing.border.SoftBevelBorder( 1, null, null, null, null ), "Last Step", 2, 0, new java.awt.Font( "Consolas", 3, 14 ), null )
 					"font": new java.awt.Font( "Consolas", 0, 18 )
 					"foreground": sfield java.awt.Color darkGray
-					"requestFocusEnabled": false
 					"horizontalAlignment": 11
+					"cursor": #Cursor0
+					"alignmentX": 0.5f
+					"opaque": true
+					"background": new java.awt.Color( 240, 240, 240, 255 )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 40
-				"y": 35
-				"width": 560
-				"height": 70
+				"y": 40
+				"width": 630
+				"height": 75
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
@@ -370,16 +390,19 @@ new FormModel {
 					"autoscrolls": true
 					"componentPopupMenu": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					"margin": new java.awt.Insets( 5, 5, 5, 5 )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "menuItem3"
 						"text": "标准"
 						"font": new com.jformdesigner.model.SwingDerivedFont( "宋体", 1, 0, false )
 						"preferredSize": new java.awt.Dimension( 73, 22 )
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"selected": true
 					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "menuItem4"
 						"text": "科学"
 						"font": new java.awt.Font( "宋体", 1, 12 )
+						"$buttonGroup": new FormReference( "buttonGroup1" )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -400,8 +423,13 @@ new FormModel {
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 20, 25 )
-			"size": new java.awt.Dimension( 640, 725 )
+			"location": new java.awt.Point( 0, 15 )
+			"size": new java.awt.Dimension( 725, 785 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 805 )
 		} )
 	}
 }

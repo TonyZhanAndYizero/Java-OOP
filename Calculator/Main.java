@@ -1,9 +1,11 @@
 import Source.Calculator_std;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedAudioFileException, IOException {
         try {
             JFrame.setDefaultLookAndFeelDecorated(true);
 //            //需要下载JTatto-1.6.13.jar到与src同级的lib中，然后在左上角项目结构中添加该库
