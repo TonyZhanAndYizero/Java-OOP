@@ -15,7 +15,7 @@ public class LengthConverter {
             System.out.println("conversion factor:" + conversionFactor);
             double convertedNumber = (double) (originalNumber * conversionFactor);
             // 构造输出字符串
-            return convertedNumber + changeUnit;
+            return String.valueOf(convertedNumber);
         } catch (NumberFormatException e) {
             return "Invalid input: " + e.getMessage();
         }
