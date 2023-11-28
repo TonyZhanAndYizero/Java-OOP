@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  *
  * @author TonyZhan
  */
-public class Utilities {
+public class Utilities_std {
     /**
      * to check the possible input.
      *

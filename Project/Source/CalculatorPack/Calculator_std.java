@@ -191,11 +191,11 @@ public class Calculator_std extends JPanel implements Calculator {
     protected ArrayList<String> textField1_texts=new ArrayList<>();
     protected ArrayList<String> label1_texts=new ArrayList<>();
     private void button_polarMousePressed(MouseEvent e) {
-        CalProgress.polar(e, this);
+        CalProgress_std.polar(e, this);
     }
 
     private void button_percentMousePressed(MouseEvent e) {
-        CalProgress.percent(e, this);
+        CalProgress_std.percent(e, this);
     }
 
     /**
@@ -219,42 +219,42 @@ public class Calculator_std extends JPanel implements Calculator {
 
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
-        CalProgress.textFieldAndLabel(e, this);
+        CalProgress_std.textFieldAndLabel(e, this);
     }
 
     private void button_upsidedownMousePressed(MouseEvent e) {
         // TODO add your code here
-        CalProgress.upsidedown(e, this);
+        CalProgress_std.upsidedown(e, this);
     }
 
     private void button_sqrtMousePressed(MouseEvent e) {
         // TODO add your code here
-        CalProgress.sqrt(e, this);
+        CalProgress_std.sqrt(e, this);
     }
 
     private void button_pow2MousePressed(MouseEvent e) {
         // TODO add your code here
-        CalProgress.pow2(e, this);
+        CalProgress_std.pow2(e, this);
     }
 
     private void button_floorMousePressed(MouseEvent e) {
         // TODO add your code here
-        CalProgress.floor_ceil(e, this, 0);
+        CalProgress_std.floor_ceil(e, this, 0);
     }
 
     private void button_ceilMousePressed(MouseEvent e) {
         // TODO add your code here
-        CalProgress.floor_ceil(e, this, 1);
+        CalProgress_std.floor_ceil(e, this, 1);
     }
 
     private void button_aEbMousePressed(MouseEvent e) {
         // TODO add your code here
-        CalProgress.science(e, this);
+        CalProgress_std.science(e, this);
     }
 
     private void button_PlainMousePressed(MouseEvent e) {
         // TODO add your code here
-        CalProgress.plain(e, this);
+        CalProgress_std.plain(e, this);
     }
 
     private boolean play = false;

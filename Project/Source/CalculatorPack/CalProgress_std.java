@@ -1,7 +1,7 @@
 package Source.CalculatorPack;
 
 import Source.ToolsPack.FourArithmetic;
-import Source.Utilities;
+import Source.Utilities_std;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-public class CalProgress {
+public class CalProgress_std {
     /**
      * to reverse the polar of a number
      *
@@ -18,8 +18,8 @@ public class CalProgress {
      * @author TonyZhan
      */
     public static void polar(MouseEvent e, Calculator_std std) {
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
-        String str_equal = Utilities.PureEqual(std.label1.getText());
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_equal = Utilities_std.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             BigDecimal ans = new BigDecimal(str_now).negate();
             if (!str_equal.isEmpty() || std.label1.getText().isEmpty()) {
@@ -46,8 +46,8 @@ public class CalProgress {
      * @author TonyZhan
      */
     public static void percent(MouseEvent e, Calculator_std std) {
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
-        String str_equal = Utilities.PureEqual(std.label1.getText());
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_equal = Utilities_std.PureEqual(std.label1.getText());
         System.out.println(str_equal);
         // TODO add your code here
         if (e.getButton() == 1) {
@@ -77,11 +77,11 @@ public class CalProgress {
      */
 
     public static void textFieldAndLabel(KeyEvent e, Calculator_std std) {
-        String str_last = Utilities.PureNumberWithoutArithmetics(std.label1.getText());
-        String str_arithmetic = Utilities.PureArithmetic(std.label1.getText().replace(str_last, ""));
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_last = Utilities_std.PureNumberWithoutArithmetics(std.label1.getText());
+        String str_arithmetic = Utilities_std.PureArithmetic(std.label1.getText().replace(str_last, ""));
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
         if (!std.error) {
-            if (Utilities.KeycodeNum_check_std(e.getKeyChar()) || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if (Utilities_std.KeycodeNum_check_std(e.getKeyChar()) || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                 if (std.OnceEqual) {
                     std.label1.setText("");
                     std.textField1.setText("0");
@@ -96,12 +96,12 @@ public class CalProgress {
                     std.pending_cal_toClear = false;
                 }
                 std.newNum = true;
-            } else if ((Utilities.KeycodeCal_check_std(e.getKeyChar()) && (!std.newNum || str_last.isEmpty()))) {
+            } else if ((Utilities_std.KeycodeCal_check_std(e.getKeyChar()) && (!std.newNum || str_last.isEmpty()))) {
                 std.label1.setText(str_now + " " + e.getKeyChar() + " ");
                 std.pending_cal_toClear = true;
                 std.newNum = false;
                 std.OnceEqual = false;
-            } else if (Utilities.KeycodeCal_check_std(e.getKeyChar()) && std.newNum) {
+            } else if (Utilities_std.KeycodeCal_check_std(e.getKeyChar()) && std.newNum) {
                 //TODO yunsuan
                 BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
                 if (ans != null) {
@@ -115,18 +115,18 @@ public class CalProgress {
                 std.newNum = false;
                 std.pending_cal_toClear = true;
                 std.OnceEqual = false;
-            } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && str_arithmetic.isEmpty()) {
+            } else if (Utilities_std.KeycodeEqual_check(e.getKeyCode()) && str_arithmetic.isEmpty()) {
                 std.label1.setText(str_now + " = " + str_now);
                 std.newNum = false;
                 std.pending_cal_toClear = true;
                 std.OnceEqual = true;
-            } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && !std.OnceEqual) {
+            } else if (Utilities_std.KeycodeEqual_check(e.getKeyCode()) && !std.OnceEqual) {
                 BigDecimalCal(std, str_last, str_arithmetic, str_now);
                 std.OnceEqualConst = str_now;
-            } else if (Utilities.KeycodeEqual_check(e.getKeyCode()) && std.OnceEqual) {
+            } else if (Utilities_std.KeycodeEqual_check(e.getKeyCode()) && std.OnceEqual) {
                 BigDecimalCal(std, str_now, str_arithmetic, std.OnceEqualConst);
             }
-        } else if (Utilities.Keycode_check(e.getKeyChar()) || Utilities.KeySpecialCode_check(e.getKeyCode())) {
+        } else if (Utilities_std.Keycode_check(e.getKeyChar()) || Utilities_std.KeySpecialCode_check(e.getKeyCode())) {
             std.textField1.setText("0");
             std.error = false;
         }
@@ -175,7 +175,7 @@ public class CalProgress {
         String nowInput = std.textField1.getText();
         if (!nowInput.equals("0")) {
             //无前导0，输入数字
-            if (Utilities.KeycodeNum_check_std(e.getKeyChar()) && Utilities.countDot(nowInput) < 1) {
+            if (Utilities_std.KeycodeNum_check_std(e.getKeyChar()) && Utilities_std.countDot(nowInput) < 1) {
                 nowInput = nowInput + e.getKeyChar();
             } else if (Character.isDigit(e.getKeyChar())) {
                 nowInput = nowInput + e.getKeyChar();
@@ -203,8 +203,8 @@ public class CalProgress {
      * @author TonyZhan
      */
     public static void upsidedown(MouseEvent e, Calculator_std std) {
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
-        String str_equal = Utilities.PureEqual(std.label1.getText());
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_equal = Utilities_std.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             if (!std.error) {
                 BigDecimal ans = FourArithmetic.calculatePlain("1", "/", str_now);
@@ -241,8 +241,8 @@ public class CalProgress {
      * @author TonyZhan
      */
     public static void sqrt(MouseEvent e, Calculator_std std) {
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
-        String str_equal = Utilities.PureEqual(std.label1.getText());
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_equal = Utilities_std.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             BigDecimal ans;
             if (!std.error) {
@@ -278,8 +278,8 @@ public class CalProgress {
      * @author TonyZhan
      */
     public static void pow2(MouseEvent e, Calculator_std std) {
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
-        String str_equal = Utilities.PureEqual(std.label1.getText());
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_equal = Utilities_std.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             if (!std.error) {
                 BigDecimal ans = new BigDecimal(str_now).pow(2, MathContext.DECIMAL128);
@@ -319,8 +319,8 @@ public class CalProgress {
      * @author TonyZhan
      */
     public static void floor_ceil(MouseEvent e, Calculator_std std, int op) {
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
-        String str_equal = Utilities.PureEqual(std.label1.getText());
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_equal = Utilities_std.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             BigDecimal ans = null;
             if (!std.error) {
@@ -362,8 +362,8 @@ public class CalProgress {
      * @author TonyZhan
      */
     public static void science(MouseEvent e, Calculator_std std) {
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
-        String str_equal = Utilities.PureEqual(std.label1.getText());
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_equal = Utilities_std.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             BigDecimal ans = new BigDecimal(str_now);
             if (!std.error) {
@@ -401,8 +401,8 @@ public class CalProgress {
      * @author TonyZhan
      */
     public static void plain(MouseEvent e, Calculator_std std) {
-        String str_now = Utilities.PureNumberWithoutArithmetics(std.textField1.getText());
-        String str_equal = Utilities.PureEqual(std.label1.getText());
+        String str_now = Utilities_std.PureNumberWithoutArithmetics(std.textField1.getText());
+        String str_equal = Utilities_std.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             BigDecimal ans = new BigDecimal(str_now);
             if (!std.error) {
