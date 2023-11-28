@@ -1,10 +1,10 @@
 import java.awt.event.*;
 import Source.Calculator_sci;
 import Source.Calculator_std;
+import Source.Converter;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
 /*
  * Created by JFormDesigner on Tue Nov 21 18:26:39 CST 2023
  */
@@ -17,6 +17,7 @@ import javax.swing.border.*;
 public class Home extends JFrame {
     private static Calculator_std std;
     private static Calculator_sci sci;
+    private static Converter converter;
     public static void main(String[] args) {
         try {
             JFrame.setDefaultLookAndFeelDecorated(true);
@@ -50,6 +51,7 @@ public class Home extends JFrame {
     public Home() {
         std = new Calculator_std();
         sci = new Calculator_sci();
+        converter = new Converter();
         initComponents();
     }
 
@@ -85,6 +87,18 @@ public class Home extends JFrame {
         repaint();
     }
 
+    private void showLengConverter(ActionEvent e) {
+        // TODO add your code here
+        getContentPane().removeAll();
+        getContentPane().add(converter);
+        revalidate();
+        repaint();
+    }
+
+    private void radioButtonMenuItem3MouseClicked(MouseEvent e) {
+        // TODO add your code here
+
+    }
     private void initComponents() {
         ImageIcon icon = new ImageIcon("Calculator/Resources/img/icon.png"); //图片和项目同一路径，故不用图片的路径
         this.setIconImage(icon.getImage());
@@ -93,6 +107,7 @@ public class Home extends JFrame {
         menu1 = new JMenu();
         radioButtonMenuItem1 = new JRadioButtonMenuItem();
         radioButtonMenuItem2 = new JRadioButtonMenuItem();
+        radioButtonMenuItem3 = new JRadioButtonMenuItem();
         menu2 = new JMenu();
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
@@ -131,6 +146,18 @@ public class Home extends JFrame {
                 });
                 radioButtonMenuItem2.addActionListener(e -> showSci(e));
                 menu1.add(radioButtonMenuItem2);
+
+                //---- radioButtonMenuItem3 ----
+                radioButtonMenuItem3.setText("\u957f\u5ea6");
+                radioButtonMenuItem3.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        radioButtonMenuItem3MouseClicked(e);
+                    }
+                });
+
+                radioButtonMenuItem3.addActionListener(e -> showLengConverter(e));
+                menu1.add(radioButtonMenuItem3);
             }
             menuBar1.add(menu1);
 
@@ -164,6 +191,7 @@ public class Home extends JFrame {
     private JMenu menu1;
     private JRadioButtonMenuItem radioButtonMenuItem1;
     private JRadioButtonMenuItem radioButtonMenuItem2;
+    private JRadioButtonMenuItem radioButtonMenuItem3;
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
