@@ -86,6 +86,16 @@ public class Home extends JFrame {
         repaint();
     }
 
+    private void showAngleTransform(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  Angle Transformer");
+        getContentPane().removeAll();
+        getContentPane().add(angle);
+        //sci.getTextField1().requestFocus();
+        revalidate();
+        repaint();
+    }
+
     private void initComponents() {
         ImageIcon icon = new ImageIcon("Project/Resources/img/icon.png"); //图片和项目同一路径，故不用图片的路径
         this.setIconImage(icon.getImage());
@@ -94,11 +104,10 @@ public class Home extends JFrame {
         menu1 = new JMenu();
         radioButtonMenuItem1 = new JRadioButtonMenuItem();
         radioButtonMenuItem2 = new JRadioButtonMenuItem();
+        radioButtonMenuItem3 = new JRadioButtonMenuItem();
         menu2 = new JMenu();
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
-        menu3 = new JMenu();
-        menuItem3 = new JMenuItem();
 
         //======== this ========
         setMinimumSize(new Dimension(800, 800));
@@ -124,6 +133,16 @@ public class Home extends JFrame {
                 radioButtonMenuItem2.setText("\u79d1\u5b66");
                 radioButtonMenuItem2.addActionListener(e -> showSci(e));
                 menu1.add(radioButtonMenuItem2);
+
+                //---- radioButtonMenuItem3 ----
+                radioButtonMenuItem3.setText("\u5355\u4f4d\u8f6c\u6362:\u89d2\u5ea6");
+                radioButtonMenuItem3.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showAngleTransform(e);
+                    }
+                });
+                menu1.add(radioButtonMenuItem3);
             }
             menuBar1.add(menu1);
 
@@ -142,23 +161,6 @@ public class Home extends JFrame {
                 menu2.add(menuItem2);
             }
             menuBar1.add(menu2);
-
-            //======== menu3 ========
-            {
-                menu3.setText("\u5355\u4f4d\u8f6c\u6362");
-                menu3.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 14));
-
-                //---- menuItem3 ----
-                menuItem3.setText("\u89d2\u5ea6");
-                menuItem3.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        menuItem3MousePressed(e);
-                    }
-                });
-                menu3.add(menuItem3);
-            }
-            menuBar1.add(menu3);
         }
         setJMenuBar(menuBar1);
         pack();
@@ -168,6 +170,7 @@ public class Home extends JFrame {
         var buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(radioButtonMenuItem1);
         buttonGroup1.add(radioButtonMenuItem2);
+        buttonGroup1.add(radioButtonMenuItem3);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -176,11 +179,10 @@ public class Home extends JFrame {
     private JMenu menu1;
     private JRadioButtonMenuItem radioButtonMenuItem1;
     private JRadioButtonMenuItem radioButtonMenuItem2;
+    private JRadioButtonMenuItem radioButtonMenuItem3;
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
-    private JMenu menu3;
-    private JMenuItem menuItem3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
 /*

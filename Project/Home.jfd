@@ -26,6 +26,12 @@ new FormModel {
 						"$buttonGroup": new FormReference( "buttonGroup1" )
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showSci", true ) )
 					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem3"
+						"text": "单位转换:角度"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showAngleTransform", true ) )
+					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu2"
@@ -39,16 +45,6 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem2"
 						"text": "保存文件"
-					} )
-				} )
-				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "menu3"
-					"text": "单位转换"
-					"font": new java.awt.Font( "宋体", 1, 14 )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem3"
-						"text": "角度"
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem3MousePressed", true ) )
 					} )
 				} )
 			}
