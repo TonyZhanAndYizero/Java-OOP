@@ -3,6 +3,7 @@ import java.awt.event.*;
 import Source.CalculatorPack.Calculator_sci;
 import Source.CalculatorPack.Calculator_std;
 import Source.TransformPack.Angle;
+import Source.TransformPack.Jinzhi;
 
 import java.awt.*;
 import javax.swing.*;
@@ -29,6 +30,7 @@ public class Home extends JFrame {
     private static Calculator_sci sci;
     private static Calculator_std std;
     private static Angle angle;
+    private static Jinzhi jinzhi;
     public Home(){
         try {
 //            //需要下载JTatto-1.6.13.jar到与src同级的lib中，然后在左上角项目结构中添加该库
@@ -53,6 +55,7 @@ public class Home extends JFrame {
         sci=new Calculator_sci();
         std=new Calculator_std();
         angle=new Angle();
+        jinzhi = new Jinzhi();
         initComponents();
     }
 
@@ -76,11 +79,11 @@ public class Home extends JFrame {
         repaint();
     }
 
-    private void menuItem3MousePressed(MouseEvent e) {
+    private void showJinzhiTransform(MouseEvent e) {
         // TODO add your code here
-        this.setTitle("  Angle Transformer");
+        this.setTitle("  Jinzhi Transformer");
         getContentPane().removeAll();
-        getContentPane().add(angle);
+        getContentPane().add(jinzhi);
         //sci.getTextField1().requestFocus();
         revalidate();
         repaint();
@@ -96,6 +99,7 @@ public class Home extends JFrame {
         repaint();
     }
 
+
     private void initComponents() {
         ImageIcon icon = new ImageIcon("Project/Resources/img/icon.png"); //图片和项目同一路径，故不用图片的路径
         this.setIconImage(icon.getImage());
@@ -105,6 +109,7 @@ public class Home extends JFrame {
         radioButtonMenuItem1 = new JRadioButtonMenuItem();
         radioButtonMenuItem2 = new JRadioButtonMenuItem();
         radioButtonMenuItem3 = new JRadioButtonMenuItem();
+        radioButtonMenuItem4 = new JRadioButtonMenuItem();
         menu2 = new JMenu();
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
@@ -143,6 +148,16 @@ public class Home extends JFrame {
                     }
                 });
                 menu1.add(radioButtonMenuItem3);
+
+                //---- radioButtonMenuItem4 ----
+                radioButtonMenuItem4.setText("\u8fdb\u5236\u8f6c\u6362");
+                radioButtonMenuItem4.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showJinzhiTransform(e);
+                    }
+                });
+                menu1.add(radioButtonMenuItem4);
             }
             menuBar1.add(menu1);
 
@@ -171,6 +186,7 @@ public class Home extends JFrame {
         buttonGroup1.add(radioButtonMenuItem1);
         buttonGroup1.add(radioButtonMenuItem2);
         buttonGroup1.add(radioButtonMenuItem3);
+        buttonGroup1.add(radioButtonMenuItem4);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -180,6 +196,7 @@ public class Home extends JFrame {
     private JRadioButtonMenuItem radioButtonMenuItem1;
     private JRadioButtonMenuItem radioButtonMenuItem2;
     private JRadioButtonMenuItem radioButtonMenuItem3;
+    private JRadioButtonMenuItem radioButtonMenuItem4;
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;

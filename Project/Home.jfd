@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.0.0.331" Java: "17.0.8" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.0.0.331" Java: "17.0.7" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -31,6 +31,12 @@ new FormModel {
 						"text": "单位转换:角度"
 						"$buttonGroup": new FormReference( "buttonGroup1" )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showAngleTransform", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem4"
+						"text": "进制转换"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "radioButtonMenuItem4MousePressed", true ) )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
