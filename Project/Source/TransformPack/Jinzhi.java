@@ -2,12 +2,19 @@ package Source.TransformPack;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
+import javax.swing.text.AbstractDocument;
+
 import net.miginfocom.swing.*;
 
 public class Jinzhi extends JPanel{
+    private String inputString = "0";
+    private String outputString = "0";
     public Jinzhi() {
         try {
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
@@ -17,46 +24,195 @@ public class Jinzhi extends JPanel{
         initComponents();
     }
 
+    private String JinzhiSwitch(String nums, int op1, int op2){
+        String stringInop2 = "";
+        BigDecimal numIn10 = new BigDecimal(0);
+        BigDecimal op1BigDecimal = new BigDecimal(op1);
+        BigDecimal op2BigDecimal = new BigDecimal(op2);
+        for (int i = 0; i < nums.length(); i++) {
+            char c = nums.charAt(i);
+            numIn10 = numIn10.multiply(op1BigDecimal).add(new BigDecimal(c - '0'));
+        }
+
+        while(numIn10.compareTo(BigDecimal.ZERO) > 0){
+            stringInop2 += (char)('0' + numIn10.remainder(op2BigDecimal).intValue());
+            numIn10 = numIn10.divide(op2BigDecimal);
+        }
+        StringBuilder stringBuilder = new StringBuilder(stringInop2);
+        stringBuilder.reverse();
+        String reversedString = stringBuilder.toString();
+        return reversedString;
+    }
+
+    private void solve(){
+        //inputString = textField1.getText();
+
+        int p1 = comboBox1.getSelectedIndex();
+        int p2 = comboBox2.getSelectedIndex();
+
+        String res = null;
+        switch (p1)
+        {
+            case 0:
+                switch (p2){
+                    case 0 -> {
+                        res = inputString;
+                    }
+                    case 1 -> {
+                        res = JinzhiSwitch(inputString, 10, 8);
+                    }
+                    case 2 -> {
+                        res = JinzhiSwitch(inputString, 10, 16);
+                    }
+                }
+                break;
+            case 1:
+                switch (p2){
+                    case 0 -> {
+                        res = JinzhiSwitch(inputString, 8, 10);
+                    }
+                    case 1 -> {
+                        res = inputString;
+                    }
+                    case 2 -> {
+                        res = JinzhiSwitch(inputString, 8, 16);
+                    }
+                }
+                break;
+            case 2:
+                switch (p2){
+                    case 0 -> {
+                        res = JinzhiSwitch(inputString, 16, 10);
+                    }
+                    case 1 -> {
+                        res = JinzhiSwitch(inputString, 16, 8);
+                    }
+                    case 2 -> {
+                        res = inputString;
+                    }
+                }
+                break;
+        }
+        textField2.setText(res);
+    }
+
     private void textField1CaretUpdate(CaretEvent e) {
         // TODO add your code here
+        ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new Angle.RestrictedDocumentFilter());
     }
 
     private void textField1FocusGained(FocusEvent e) {
         // TODO add your code here
+        //solve();
+        inputString = textField1.getText();
+        textField1.setFont(new Font("Inter", Font.BOLD, 28));
+        textField2.setFont(new Font("Inter", Font.PLAIN, 28));
+        textField1.getDocument().addDocumentListener(new DocumentListener() {
+            private boolean firstInput = true;
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                handleInput();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                handleInput();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                handleInput();
+            }
+
+            private void handleInput() {
+                if (firstInput) {
+                    SwingUtilities.invokeLater(() -> {
+                        String str1 = textField1.getText();
+                        str1 = str1.replaceAll(inputString, "");
+                        textField1.setText(str1);
+                        // 清空原始文本
+                    });
+                    firstInput = false;
+                }
+                // 可以在这里处理用户输入后的逻辑
+            }
+        });
     }
 
     private void textField1KeyReleased(KeyEvent e) {
         // TODO add your code here
+        solve();
     }
 
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
+        //solve();
     }
 
     private void textField2CaretUpdate(CaretEvent e) {
         // TODO add your code here
+        ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new Angle.RestrictedDocumentFilter());
     }
 
     private void textField2FocusGained(FocusEvent e) {
         // TODO add your code here
+        //solve();
+        String str = textField2.getText();
+        textField1.setFont(new Font("Inter", Font.PLAIN, 28));
+        textField2.setFont(new Font("Inter", Font.BOLD, 28));
+        textField2.getDocument().addDocumentListener(new DocumentListener() {
+            private boolean firstInput = true;
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                handleInput();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                handleInput();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                handleInput();
+            }
+
+            private void handleInput() {
+                if (firstInput) {
+                    SwingUtilities.invokeLater(() -> {
+                        String str1 = textField2.getText();
+                        str1 = str1.replaceAll(str, "");
+                        textField2.setText(str1);
+                        // 清空原始文本
+                    });
+                    firstInput = false;
+                }
+                // 可以在这里处理用户输入后的逻辑
+            }
+        });
     }
 
     private void textField2KeyReleased(KeyEvent e) {
         // TODO add your code here
+        solve();
     }
 
     private void comboBox1ItemStateChanged(ItemEvent e) {
         // TODO add your code here
+        solve();
     }
 
     private void comboBox2ItemStateChanged(ItemEvent e) {
         // TODO add your code here
+        solve();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         this2 = new JPanel();
-        进制 = new JLabel();
+        角度 = new JLabel();
         textField1 = new JTextField();
         textField2 = new JTextField();
         button1 = new JButton();
@@ -95,11 +251,11 @@ public class Jinzhi extends JPanel{
             this2.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
             this2.setLayout(null);
 
-            //---- 进制 ----
-            进制.setText("\u8fdb\u5236");
-            进制.setFont(进制.getFont().deriveFont(进制.getFont().getStyle() | Font.BOLD, 进制.getFont().getSize() + 10f));
-            this2.add(进制);
-            进制.setBounds(new Rectangle(new Point(15, 25), 进制.getPreferredSize()));
+            //---- 角度 ----
+            角度.setText("\u8fdb\u5236");
+            角度.setFont(角度.getFont().deriveFont(角度.getFont().getStyle() | Font.BOLD, 角度.getFont().getSize() + 10f));
+            this2.add(角度);
+            角度.setBounds(new Rectangle(new Point(15, 25), 角度.getPreferredSize()));
 
             //---- textField1 ----
             textField1.setColumns(10);
@@ -205,26 +361,26 @@ public class Jinzhi extends JPanel{
 
             //---- comboBox1 ----
             comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
-                "    \u5ea6",
-                "  \u5f27\u5ea6",
-                "\u767e\u5206\u5ea6"
+                "\u5341\u8fdb\u5236",
+                "\u516b\u8fdb\u5236",
+                "\u5341\u516d\u8fdb\u5236"
             }));
             comboBox1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
             comboBox1.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
             comboBox1.setFocusable(false);
             comboBox1.addItemListener(e -> comboBox1ItemStateChanged(e));
-            this2.add(comboBox1);
+            add(comboBox1);
             comboBox1.setBounds(15, 130, 105, 40);
 
             //---- comboBox2 ----
             comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
-                "    \u5ea6",
-                "  \u5f27\u5ea6",
-                "\u767e\u5206\u5ea6"
+                "\u5341\u8fdb\u5236",
+                "\u516b\u8fdb\u5236",
+                "\u5341\u516d\u8fdb\u5236"
             }));
             comboBox2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
             comboBox2.addItemListener(e -> comboBox2ItemStateChanged(e));
-            this2.add(comboBox2);
+            add(comboBox2);
             comboBox2.setBounds(15, 240, 105, 40);
             this2.add(scrollPane1);
             scrollPane1.setBounds(new Rectangle(new Point(260, 180), scrollPane1.getPreferredSize()));
@@ -286,7 +442,7 @@ public class Jinzhi extends JPanel{
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel this2;
-    private JLabel 进制;
+    private JLabel 角度;
     private JTextField textField1;
     private JTextField textField2;
     private JButton button1;
