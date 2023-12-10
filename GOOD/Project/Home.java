@@ -1,6 +1,9 @@
 import java.awt.event.*;
-import Source.CalculatorPack.Calculator_sci;
-import Source.CalculatorPack.Calculator_std;
+
+import Source.Calculator.CalculatorSci;
+import Source.Calculator.CalculatorStd;
+import Source.Physics.LinearRegression;
+import Source.Transform.Angle;
 
 import java.awt.*;
 import javax.swing.*;
@@ -9,16 +12,27 @@ import javax.swing.*;
  */
 
 
-
 /**
  * @author Yury
  */
 public class Home extends JFrame {
-    private static final Calculator_std std=new Calculator_std();
-    private static final Calculator_sci sci=new Calculator_sci();
     public static void main(String[] args) {
+        Home home = new Home();
+        home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // 初始界面为标准计算器
+        home.getContentPane().removeAll();
+        home.getContentPane().add(std);
+        home.setTitle("  Standard Calculator");
+        home.revalidate();
+        home.repaint();
+        home.setVisible(true);
+    }
+    private static CalculatorSci sci;
+    private static CalculatorStd std;
+    private static Angle angle;
+    private static LinearRegression linearRegression;
+    public Home(){
         try {
-            JFrame.setDefaultLookAndFeelDecorated(true);
 //            //需要下载JTatto-1.6.13.jar到与src同级的lib中，然后在左上角项目结构中添加该库
 //            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
@@ -33,20 +47,15 @@ public class Home extends JFrame {
 //            com.jtattoo.plaf.bernstein.BernsteinLookAndFeel 黄色风格
 //            com.jtattoo.plaf.aluminium.AluminiumLookAndFeel 椭圆按钮+翠绿色按钮背景+金属质感（默认）
 //            com.jtattoo.plaf.aero.AeroLookAndFeel xp清新风格
-//            com.jtattoo.plafacryl.AcrylLookAndFeel 布质感+swing纯风格
+//            com.jtattoo.plaf.acryl.AcrylLookAndFeel 布质感+swing纯风格
+//            com.jtattoo.plaf.texture.TextureLookAndFeel
+//            com.jtattoo.plaf.graphite.GraphiteLookAndFeel
         } catch (Exception ignored) {
         }
-
-        Home home = new Home();
-        home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // 初始界面为标准计算器
-        home.getContentPane().add(std);
-        home.setTitle("  Standard Calculator");
-        home.revalidate();
-        home.repaint();
-        home.setVisible(true);
-    }
-    public Home() {
+        sci=new CalculatorSci();
+        std=new CalculatorStd();
+        angle=new Angle();
+        linearRegression=new LinearRegression();
         initComponents();
     }
 
@@ -65,6 +74,25 @@ public class Home extends JFrame {
         this.setTitle("  Scientific Calculator");
         getContentPane().removeAll();
         getContentPane().add(sci);
+        sci.getTextField1().requestFocus();
+        revalidate();
+        repaint();
+    }
+
+    private void menuItem3MousePressed(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  Angle Transformer");
+        getContentPane().removeAll();
+        getContentPane().add(angle);
+        revalidate();
+        repaint();
+    }
+
+    private void menuItem4MousePressed(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  Linear Regression");
+        getContentPane().removeAll();
+        getContentPane().add(linearRegression);
         revalidate();
         repaint();
     }
@@ -80,11 +108,15 @@ public class Home extends JFrame {
         menu2 = new JMenu();
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
+        menu3 = new JMenu();
+        menuItem3 = new JMenuItem();
+        menu4 = new JMenu();
+        menuItem4 = new JMenuItem();
 
         //======== this ========
         setMinimumSize(new Dimension(800, 800));
         var contentPane = getContentPane();
-        contentPane.setLayout(null);
+        contentPane.setLayout(new GridLayout());
 
         //======== menuBar1 ========
         {
@@ -123,23 +155,42 @@ public class Home extends JFrame {
                 menu2.add(menuItem2);
             }
             menuBar1.add(menu2);
+
+            //======== menu3 ========
+            {
+                menu3.setText("\u5355\u4f4d\u8f6c\u6362");
+                menu3.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 14));
+
+                //---- menuItem3 ----
+                menuItem3.setText("\u89d2\u5ea6");
+                menuItem3.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        menuItem3MousePressed(e);
+                    }
+                });
+                menu3.add(menuItem3);
+            }
+            menuBar1.add(menu3);
+
+            //======== menu4 ========
+            {
+                menu4.setText("\u7269\u7406\u8ba1\u7b97");
+                menu4.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 14));
+
+                //---- menuItem4 ----
+                menuItem4.setText("\u4e00\u5143\u7ebf\u6027\u56de\u5f52");
+                menuItem4.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        menuItem4MousePressed(e);
+                    }
+                });
+                menu4.add(menuItem4);
+            }
+            menuBar1.add(menu4);
         }
         setJMenuBar(menuBar1);
-
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for(int i = 0; i < contentPane.getComponentCount(); i++) {
-                Rectangle bounds = contentPane.getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = contentPane.getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            contentPane.setMinimumSize(preferredSize);
-            contentPane.setPreferredSize(preferredSize);
-        }
         pack();
         setLocationRelativeTo(getOwner());
 
@@ -158,6 +209,10 @@ public class Home extends JFrame {
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
+    private JMenu menu3;
+    private JMenuItem menuItem3;
+    private JMenu menu4;
+    private JMenuItem menuItem4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
 /*

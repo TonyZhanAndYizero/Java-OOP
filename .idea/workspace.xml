@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eb0f1dd6-d56c-41bf-82d6-663e0c6fd838" name="更改" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2YGZIsRJO1CaqGvt9xCAkbVSiIs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/28600/Desktop/GOOD/Project/Source&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;库&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\28600\Desktop\GOOD\Project\Source" />
+      <recent name="C:\Users\28600\Desktop\GOOD\Project\Source\ToolsPack" />
+      <recent name="C:\Users\28600\Desktop\GOOD\Project\Source\CalculatorPack" />
+      <recent name="C:\Users\28600\Desktop\javaBig\Calculator\Source\Tools" />
+      <recent name="C:\Users\28600\Desktop\javaBig\Calculator\Source\FourArithmetic" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\28600\Desktop\GOOD\Project\Source\CalculatorPack" />
+      <recent name="C:\Users\28600\Desktop\GOOD\Project\Source" />
+    </key>
+  </component>
+  <component name="RunManager" selected="应用程序.Home">
+    <configuration name="EngineerArithmetic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Source.ToolsPack.EngineerArithmetic" />
+      <module name="javaBig" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Source.ToolsPack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FourArithmetic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Source.ToolsPack.FourArithmetic" />
+      <module name="javaBig" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Source.ToolsPack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Home" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Home" />
+      <module name="javaBig" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="javaBig" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TotalDifferential" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Source.ToolsPack.TotalDifferential" />
+      <module name="javaBig" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Source.ToolsPack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.Home" />
+        <item itemvalue="应用程序.TotalDifferential" />
+        <item itemvalue="应用程序.EngineerArithmetic" />
+        <item itemvalue="应用程序.Main" />
+        <item itemvalue="应用程序.FourArithmetic" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="eb0f1dd6-d56c-41bf-82d6-663e0c6fd838" name="更改" comment="" />
+      <created>1700153799734</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700153799734</updated>
+      <workItem from="1700153800763" duration="4402000" />
+      <workItem from="1700195454884" duration="128000" />
+      <workItem from="1700286787246" duration="11000" />
+      <workItem from="1700287269450" duration="346000" />
+      <workItem from="1700287755742" duration="29000" />
+      <workItem from="1700287873996" duration="41000" />
+      <workItem from="1700287970111" duration="451000" />
+      <workItem from="1700288487100" duration="241000" />
+      <workItem from="1700288783565" duration="14000" />
+      <workItem from="1700288833576" duration="743000" />
+      <workItem from="1700289648717" duration="702000" />
+      <workItem from="1700290416754" duration="5323000" />
+      <workItem from="1700296517907" duration="4102000" />
+      <workItem from="1700304343085" duration="454000" />
+      <workItem from="1700312195232" duration="10000" />
+      <workItem from="1700312255484" duration="3158000" />
+      <workItem from="1700385577461" duration="3763000" />
+      <workItem from="1700389597128" duration="6063000" />
+      <workItem from="1700396236240" duration="1592000" />
+      <workItem from="1700397972170" duration="288000" />
+      <workItem from="1700405154218" duration="9802000" />
+      <workItem from="1700451785145" duration="18744000" />
+      <workItem from="1700472875767" duration="31000" />
+      <workItem from="1700473442463" duration="584000" />
+      <workItem from="1700490475971" duration="3541000" />
+      <workItem from="1700540771375" duration="358000" />
+      <workItem from="1700553227544" duration="1839000" />
+      <workItem from="1700555110696" duration="2710000" />
+      <workItem from="1700557879291" duration="5602000" />
+      <workItem from="1700568992402" duration="14000" />
+      <workItem from="1700573293165" duration="911000" />
+      <workItem from="1700588281196" duration="1056000" />
+      <workItem from="1700636091752" duration="85000" />
+      <workItem from="1700653760219" duration="15325000" />
+      <workItem from="1700675277548" duration="457000" />
+      <workItem from="1700675748354" duration="943000" />
+      <workItem from="1700676815559" duration="25000" />
+      <workItem from="1700677488628" duration="3305000" />
+      <workItem from="1700680851104" duration="1259000" />
+      <workItem from="1700682132918" duration="4049000" />
+      <workItem from="1700727587657" duration="5849000" />
+      <workItem from="1700796589690" duration="619000" />
+      <workItem from="1700935467992" duration="3216000" />
+      <workItem from="1701157986690" duration="1389000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Project/Source/CalculatorPack/Calculator_std.java</url>
+          <line>909</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Project/Source/HistoryPack/history_std.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Project/Home.java</url>
+          <line>68</line>
+          <properties class="Home" method="showSci">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
