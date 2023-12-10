@@ -21,7 +21,7 @@ public class Test extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         dialogPane = new JPanel();
         contentPanel = new JPanel();
-        panel1 = new Angle();
+        panel1 = new jinzhiSwitch();
 
         //======== this ========
         setMinimumSize(new Dimension(398, 585));
@@ -100,7 +100,7 @@ public class Test extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel dialogPane;
     private JPanel contentPanel;
-    private Angle panel1;
+    private jinzhiSwitch panel1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     public static void main(String[] args) {
         new Test().setVisible(true);

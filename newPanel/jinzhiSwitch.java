@@ -1,96 +1,160 @@
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
+import java.math.BigInteger;
 import javax.swing.*;
-import javax.swing.border.*;
 import javax.swing.event.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-
-import ch.obermuhlner.math.big.BigDecimalMath;
-import com.intellij.uiDesigner.core.*;
-
 /*
- * Created by JFormDesigner on Sat Nov 25 15:58:14 CST 2023
+ * Created by JFormDesigner on Sun Dec 10 16:05:11 CST 2023
  */
-
 
 
 /**
  * @author HeMercy
  */
-public class Angle extends JPanel {
+public class jinzhiSwitch extends JPanel {
     Boolean whichFocus = true;
-    public Angle() {
+
+    public jinzhiSwitch() {
         initComponents();
     }
-    private void exchange(JTextField textField1, JTextField textField2, JComboBox comboBox1, JComboBox comboBox2)
-    {
+
+    private String JinzhiSwitch(String nums, int op1, int op2) {
+        return new BigInteger(nums, op1).toString(op2);
+    }
+
+    private void solve(JTextField textField1, JTextField textField2, JComboBox<String> comboBox1, JComboBox<String> comboBox2) {
+        String inputString = textField1.getText();
+        BigDecimal a = new BigDecimal(inputString);
+        inputString = a.toString();
         int p1 = comboBox1.getSelectedIndex();
         int p2 = comboBox2.getSelectedIndex();
-        BigDecimal bg1 = new BigDecimal(textField1.getText());
-        BigDecimal res = null;
-        switch (p1)
-        {
+
+        String res = null;
+        switch (p1) {
             case 0:
-                switch (p2){
+                switch (p2) {
                     case 0 -> {
-                        res = bg1;
+                        res = inputString;
                     }
                     case 1 -> {
-                        res = bg1.multiply(new BigDecimal(Math.PI)).divide(new BigDecimal(180), 7, RoundingMode.HALF_UP);
+                        res = JinzhiSwitch(inputString, 2, 8);
                     }
                     case 2 -> {
-                        res = bg1.divide(new BigDecimal(0.9), 7, RoundingMode.HALF_UP);
+                        res = JinzhiSwitch(inputString, 2, 10);
+                    }
+                    case 3 -> {
+                        res = JinzhiSwitch(inputString, 2, 16);
                     }
                 }
                 break;
             case 1:
-                switch (p2){
+                switch (p2) {
                     case 0 -> {
-                        res = bg1.multiply(new BigDecimal(180)).divide(new BigDecimal(Math.PI), 7, RoundingMode.HALF_UP);
+                        res = JinzhiSwitch(inputString, 8, 2);
                     }
                     case 1 -> {
-                        res = bg1;
+                        res = inputString;
                     }
                     case 2 -> {
-                        res = bg1.multiply(new BigDecimal(200)).divide(new BigDecimal(Math.PI), 7, RoundingMode.HALF_UP);
+                        res = JinzhiSwitch(inputString, 8, 10);
+                    }
+                    case 3 -> {
+                        res = JinzhiSwitch(inputString, 8, 16);
                     }
                 }
                 break;
             case 2:
-                switch (p2){
+                switch (p2) {
                     case 0 -> {
-                        res = bg1.multiply(new BigDecimal(0.9), new MathContext(7, RoundingMode.HALF_UP));
+                        res = JinzhiSwitch(inputString, 10, 2);
                     }
                     case 1 -> {
-                        res = bg1.multiply(new BigDecimal(Math.PI)).divide(new BigDecimal(200), 7, RoundingMode.HALF_UP);
+                        res = JinzhiSwitch(inputString, 10, 8);
                     }
                     case 2 -> {
-                        res = bg1;
+                        res = inputString;
+                    }
+                    case 3 -> {
+                        res = JinzhiSwitch(inputString, 10, 16);
+                    }
+                }
+                break;
+            case 3:
+                switch (p2) {
+                    case 0 -> {
+                        res = JinzhiSwitch(inputString, 16, 2);
+                    }
+                    case 1 -> {
+                        res = JinzhiSwitch(inputString, 16, 8);
+                    }
+                    case 2 -> {
+                        res = JinzhiSwitch(inputString, 16, 10);
+                    }
+                    case 3 -> {
+                        res = inputString;
                     }
                 }
                 break;
         }
-        textField2.setText(res.stripTrailingZeros().toPlainString());
+        textField2.setText(res);
+    }
+    static class RestrictedDocumentFilter extends DocumentFilter {
+        int op;
+
+        public RestrictedDocumentFilter(int op) {
+            this.op = op;
+        }
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            super.insertString(fb, offset, filter(string), attr);
+        }
+
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+            super.replace(fb, offset, length, filter(text), attrs);
+        }
+
+        private String filter(String input) {
+            // 此处可以根据需要定义文本框的输入限制
+            // 这个例子中只允许输入数字
+            input.replaceAll("\\.\\.", ".");
+            if(input.charAt(0) == '.')
+                input.replaceFirst("\\.", "");
+            switch (op)
+            {
+                case 0 -> {
+                    return input.replaceAll("[^0-1.]", "");
+                }
+                case 1 -> {
+                    return input.replaceAll("[^0-7.]", "");
+                }
+                case 2 -> {
+                    return input.replaceAll("[^0-9.]", "");
+                }
+                case 3 -> {
+                    return input.replaceAll("[^0-9a-fA-F.]", "");
+                }
+                default -> {
+                    return input;
+                }
+            }
+        }
     }
     private void textField1CaretUpdate(CaretEvent e) {
         // TODO add your code here
-        ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
-    }
-
-    private void textField2CaretUpdate(CaretEvent e) {
-        // TODO add your code here
-        ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
+        ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox1.getSelectedIndex()));
     }
 
     private void textField1FocusGained(FocusEvent e) {
+        // TODO add your code here
         String str = textField1.getText();
         whichFocus = true;
         textField1.setFont(new Font("Inter", Font.BOLD, 28));
@@ -128,6 +192,21 @@ public class Angle extends JPanel {
         });
     }
 
+    private void textField1KeyReleased(KeyEvent e) {
+        // TODO add your code here
+//        ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox1.getSelectedIndex()));
+        solve(textField1, textField2, comboBox1, comboBox2);
+    }
+
+    private void textField1KeyPressed(KeyEvent e) {
+        // TODO add your code here
+    }
+
+    private void textField2CaretUpdate(CaretEvent e) {
+
+        // TODO add your code here
+        ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox2.getSelectedIndex()));
+    }
     private void textField2FocusGained(FocusEvent e) {
         // TODO add your code here
         String str = textField2.getText();
@@ -167,61 +246,31 @@ public class Angle extends JPanel {
         });
     }
 
-    private void textField1KeyPressed(KeyEvent e) {
+    private void textField2KeyReleased(KeyEvent e) {
         // TODO add your code here
-//        exchange(textField1, textField2);
-    }
-
-    private void textField1KeyReleased(KeyEvent e) {
-        // TODO add your code here
-        exchange(textField1, textField2, comboBox1, comboBox2);
+//        ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox2.getSelectedIndex()));
+        solve(textField2, textField1, comboBox2, comboBox1);
     }
 
     private void comboBox1ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if(whichFocus)
-            exchange(textField1, textField2, comboBox1, comboBox2);
+        if (whichFocus)
+            solve(textField1, textField2, comboBox1, comboBox2);
         else
-            exchange(textField2, textField1, comboBox2, comboBox1);
+            solve(textField2, textField1, comboBox2, comboBox1);
     }
 
     private void comboBox2ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if(whichFocus)
-            exchange(textField1, textField2, comboBox1, comboBox2);
+        if (whichFocus)
+            solve(textField1, textField2, comboBox1, comboBox2);
         else
-            exchange(textField2, textField1, comboBox2, comboBox1);
+            solve(textField2, textField1, comboBox2, comboBox1);
     }
 
-    private void textField2KeyReleased(KeyEvent e) {
-        // TODO add your code here
-        exchange(textField2, textField1, comboBox2, comboBox1);
-    }
-
-
-    static class RestrictedDocumentFilter extends DocumentFilter {
-        @Override
-        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-            super.insertString(fb, offset, filter(string), attr);
-        }
-
-        @Override
-        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-            super.replace(fb, offset, length, filter(text), attrs);
-        }
-
-        private String filter(String input) {
-            // 此处可以根据需要定义文本框的输入限制
-            // 这个例子中只允许输入数字
-            input.replaceAll("..", ".");
-            if(input.charAt(0) == '.')
-                input.replaceFirst(".", "");
-            return input.replaceAll("[^0-9.]", "");
-        }
-    }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        角度 = new JLabel();
+        进制转换 = new JLabel();
         textField1 = new JTextField();
         textField2 = new JTextField();
         button1 = new JButton();
@@ -246,11 +295,11 @@ public class Angle extends JPanel {
         setMinimumSize(new Dimension(398, 564));
         setLayout(null);
 
-        //---- 角度 ----
-        角度.setText("\u89d2\u5ea6");
-        角度.setFont(角度.getFont().deriveFont(角度.getFont().getStyle() | Font.BOLD, 角度.getFont().getSize() + 10f));
-        add(角度);
-        角度.setBounds(new Rectangle(new Point(15, 25), 角度.getPreferredSize()));
+        //---- 进制转换 ----
+        进制转换.setText("\u8fdb\u5236\u8f6c\u6362");
+        进制转换.setFont(进制转换.getFont().deriveFont(进制转换.getFont().getStyle() | Font.BOLD, 进制转换.getFont().getSize() + 10f));
+        add(进制转换);
+        进制转换.setBounds(new Rectangle(new Point(15, 25), 进制转换.getPreferredSize()));
 
         //---- textField1 ----
         textField1.setColumns(10);
@@ -391,25 +440,27 @@ public class Angle extends JPanel {
 
         //---- comboBox1 ----
         comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
-            "    \u5ea6",
-            "  \u5f27\u5ea6",
-            "\u767e\u5206\u5ea6"
+            "\u4e8c\u8fdb\u5236",
+            "\u516b\u8fdb\u5236",
+            "\u5341\u8fdb\u5236",
+            "\u5341\u516d\u8fdb\u5236"
         }));
         comboBox1.setFont(comboBox1.getFont().deriveFont(comboBox1.getFont().getStyle() | Font.BOLD, comboBox1.getFont().getSize() + 4f));
         comboBox1.addItemListener(e -> comboBox1ItemStateChanged(e));
         add(comboBox1);
-        comboBox1.setBounds(5, 130, 80, 40);
+        comboBox1.setBounds(5, 130, 110, 40);
 
         //---- comboBox2 ----
         comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
-            "    \u5ea6",
-            "  \u5f27\u5ea6",
-            "\u767e\u5206\u5ea6"
+            "\u4e8c\u8fdb\u5236",
+            "\u516b\u8fdb\u5236",
+            "\u5341\u8fdb\u5236",
+            "\u5341\u516d\u8fdb\u5236"
         }));
         comboBox2.setFont(comboBox2.getFont().deriveFont(comboBox2.getFont().getStyle() | Font.BOLD, comboBox2.getFont().getSize() + 4f));
         comboBox2.addItemListener(e -> comboBox2ItemStateChanged(e));
         add(comboBox2);
-        comboBox2.setBounds(5, 235, 80, 40);
+        comboBox2.setBounds(5, 235, 110, 40);
 
         {
             // compute preferred size
@@ -429,7 +480,7 @@ public class Angle extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JLabel 角度;
+    private JLabel 进制转换;
     private JTextField textField1;
     private JTextField textField2;
     private JButton button1;
