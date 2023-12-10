@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/javaBig.iml" filepath="$PROJECT_DIR$/.idea/javaBig.iml" />
-      <module fileurl="file://$PROJECT_DIR$/newPanel/newPanel.iml" filepath="$PROJECT_DIR$/newPanel/newPanel.iml" />
     </modules>
   </component>
 </project>
