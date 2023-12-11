@@ -228,7 +228,7 @@ public class LinearRegression extends JPanel {
                     BigDecimal up = aveXY.subtract(aveX.multiply(aveY));
                     BigDecimal section1 = aveX2.subtract(aveX.pow(2));
                     BigDecimal section2 = aveY2.subtract(aveY.pow(2));
-                    BigDecimal low = section1.multiply(section2).sqrt(new MathContext(10000));
+                    BigDecimal low = section1.multiply(section2).sqrt(new MathContext(514));
 
                     r = up.divide(low, 6, RoundingMode.HALF_UP);
                     b = (aveX.multiply(aveY).subtract(aveXY)).divide(aveX.pow(2).subtract(aveX2), 6, RoundingMode.HALF_UP);
@@ -307,6 +307,7 @@ public class LinearRegression extends JPanel {
                 JOptionPane.showMessageDialog(null, "Data Wrong");
             } else {
                 FileWriter fw = new FileWriter(file);
+                fw.write("k=" + XNums.size() + "\n");
                 for (String name : columnNames) {
                     fw.write(String.format("%-30s", name));
                 }
@@ -338,8 +339,20 @@ public class LinearRegression extends JPanel {
             int state = fileChooser.showSaveDialog(null);
             if (state == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
+                String filepath = file.getPath();
+                if (!filepath.endsWith(".txt")) {
+                    filepath = filepath + ".txt";
+                    file = new File(filepath);
+                }
                 WriteTxt(file);
             }
+        }
+    }
+
+    private void button8MousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1 && data != null) {
+            new LinearRegressionDemo(this);
         }
     }
 
@@ -374,6 +387,7 @@ public class LinearRegression extends JPanel {
         label6 = new JLabel();
         scrollPane7 = new JScrollPane();
         label10 = new JLabel();
+        button8 = new JButton();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -564,7 +578,7 @@ public class LinearRegression extends JPanel {
             }
         });
         add(button6);
-        button6.setBounds(675, 330, 75, 40);
+        button6.setBounds(675, 405, 75, 40);
 
         //---- button7 ----
         button7.setText("\u5bfc\u51fa");
@@ -577,7 +591,7 @@ public class LinearRegression extends JPanel {
             }
         });
         add(button7);
-        button7.setBounds(675, 415, 75, 40);
+        button7.setBounds(675, 465, 75, 40);
 
         //======== scrollPane5 ========
         {
@@ -608,6 +622,19 @@ public class LinearRegression extends JPanel {
         }
         add(scrollPane7);
         scrollPane7.setBounds(650, 615, 125, 50);
+
+        //---- button8 ----
+        button8.setText("\u56fe\u50cf");
+        button8.setFont(button8.getFont().deriveFont(button8.getFont().getStyle() | Font.BOLD, button8.getFont().getSize() + 4f));
+        button8.setFocusable(false);
+        button8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button8MousePressed(e);
+            }
+        });
+        add(button8);
+        button8.setBounds(675, 345, 75, 40);
 
         {
             // compute preferred size
@@ -656,5 +683,6 @@ public class LinearRegression extends JPanel {
     private JLabel label6;
     private JScrollPane scrollPane7;
     private JLabel label10;
+    private JButton button8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
