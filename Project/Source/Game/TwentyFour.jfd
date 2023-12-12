@@ -9,17 +9,17 @@ new FormModel {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label5"
-				"text": "text"
 				"border": new javax.swing.border.BevelBorder( 1, null, null, null, null )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 430
 				"y": 260
-				"width": 40
+				"width": 75
 				"height": 50
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
-				"font": new java.awt.Font( "Consolas", 1, 28 )
+				"font": new java.awt.Font( "Consolas", 1, 20 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button1MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 45
 				"y": 60
@@ -28,7 +28,8 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button2"
-				"font": new java.awt.Font( "Consolas", 1, 14 )
+				"font": new java.awt.Font( "Consolas", 1, 20 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button2MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 60
@@ -37,7 +38,8 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button3"
-				"font": new java.awt.Font( "Consolas", 1, 14 )
+				"font": new java.awt.Font( "Consolas", 1, 20 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button3MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 60
@@ -46,7 +48,8 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button4"
-				"font": new java.awt.Font( "Consolas", 1, 14 )
+				"font": new java.awt.Font( "Consolas", 1, 20 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button4MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 60
@@ -169,9 +172,55 @@ new FormModel {
 				"x": 330
 				"y": 180
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "title"
+				"text": "24点"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 10, false )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 60
+				"height": 23
+				"x": 15
+				"y": 15
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"font": new java.awt.Font( "宋体", 1, 16 )
+				"text": "开始/重置"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button4MousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonReplayMousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 110
+				"height": 60
+				"x": 425
+				"y": 60
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_equal"
+				"font": &Font2 new java.awt.Font( "宋体", 1, 18 )
+				"focusable": false
+				"text": "确认"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_equalMousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 110
+				"height": 40
+				"x": 425
+				"y": 180
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button_ans"
+				"font": #Font2
+				"focusable": false
+				"text": "答案"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_equalMousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 110
+				"height": 40
+				"x": 425
+				"y": 130
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 100, 10 )
-			"size": new java.awt.Dimension( 490, 380 )
+			"location": new java.awt.Point( 95, 25 )
+			"size": new java.awt.Dimension( 575, 395 )
 		} )
 	}
 }

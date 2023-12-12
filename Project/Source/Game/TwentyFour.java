@@ -4,6 +4,9 @@
 
 package Source.Game;
 
+import Source.Tools.EngineerArithmetic;
+import Source.UtilitiesSci;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -18,32 +21,80 @@ public class TwentyFour extends JPanel {
         initComponents();
     }
 
-    private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
-    }
 
     private void button_divMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
+            strToCal.add("¡Â");
+            strToShow.add("¡Â");
+            lastCh = "¡Â";
+            SetTextField1();
+        }
     }
 
     private void button_mulMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
+            strToCal.add("¡Á");
+            strToShow.add("¡Á");
+            lastCh = "¡Á";
+            SetTextField1();
+        }
     }
 
     private void button_minusMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
+            strToCal.add("-");
+            strToShow.add("-");
+            lastCh = "-";
+            SetTextField1();
+        }
     }
 
     private void button_plusMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
+            strToCal.add("+");
+            strToShow.add("+");
+            lastCh = "+";
+            SetTextField1();
+        }
     }
 
     private void button_rightMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (cntLeftBracket > 0 && (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")"))) {
+            strToCal.add(")");
+            strToShow.add(")");
+            lastCh = ")";
+            SetTextField1();
+        }
     }
 
     private void button_leftMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (!UtilitiesSci.checkNum(lastCh) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
+            strToCal.add("(");
+            strToShow.add("(");
+            cntLeftBracket++;
+            lastCh = "(";
+            SetTextField1();
+        }
+
+    }
+
+    private void button_cleanEntryMousePressed(MouseEvent e) {
+        // TODO add your code here
+        clearEntry();
+        SetTextField1();
+    }
+
+
+    private void button_backspaceMousePressed(MouseEvent e) {
+        // TODO add your code here
+        backSpace();
+        SetTextField1();
     }
 
     private void button1MousePressed(MouseEvent e) {
@@ -61,118 +112,82 @@ public class TwentyFour extends JPanel {
     private void button4MousePressed(MouseEvent e) {
         // TODO add your code here
     }
-
-    private void button5MousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button6MousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button7MousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button8MousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button9MousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button0MousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_dotMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_absMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_pow2MousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_sqrtMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
     private void button_equalMousePressed(MouseEvent e) {
         // TODO add your code here
     }
 
-    private void button_percentMousePressed(MouseEvent e) {
+    private void buttonReplayMousePressed(MouseEvent e) {
         // TODO add your code here
+
     }
 
-    private void button_cleanEntryMousePressed(MouseEvent e) {
+    private ArrayList<String> strToCal = new ArrayList<>();
+    private ArrayList<String> strToShow = new ArrayList<>();
+    private String lastCh = "";
+    protected int cntLeftBracket = 0;
+    private void SetTextField1() {
         // TODO add your code here
+
+        StringBuilder tmp = new StringBuilder();
+        if (strToShow.isEmpty()) {
+            //tmp.append("0");
+        } else {
+            for (String s : strToShow) {
+                tmp.append(s);
+            }
+        }
+        textField1.setText(String.valueOf(tmp));
+    }
+    protected void inputNum(String ch) {
+        if (!UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
+            strToCal.add(ch);
+            strToShow.add(ch);
+            lastCh = ch;
+        }
+    }
+    protected void backSpace() {
+        if (!strToShow.isEmpty()) {
+            strToCal.remove(strToCal.size() - 1);
+            strToShow.remove(strToShow.size() - 1);
+            System.out.println(strToShow.size());
+            if (!strToShow.isEmpty()) {
+                lastCh = strToCal.get(strToCal.size() - 1);
+            } else {
+                lastCh = "";
+            }
+        }
+    }
+    protected void getResult() {
+        StringBuilder tmp = new StringBuilder();
+        StringBuilder tmp2 = new StringBuilder();
+        if (!strToCal.isEmpty()) {
+            for (String s : strToCal) {
+                tmp.append(s);
+            }
+            for (String s : strToShow) {
+                tmp2.append(s);
+            }
+            String ans = EngineerArithmetic.engineerCal(String.valueOf(tmp));
+            tmp2.append(" = ");
+            if (ans != null) {
+                tmp2.append(ans);
+            } else {
+                tmp2.append("Error!");
+            }
+
+            //label1.setText(String.valueOf(tmp2));
+            strToShow.clear();
+            strToCal.clear();
+
+            lastCh = "=";
+        }
+    }
+    protected void clearEntry() {
+        strToShow.clear();
+        strToCal.clear();
+        lastCh = "";
     }
 
-    private void button_smokeMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_DavidMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_backspaceMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void progressBar1MouseReleased(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_facMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_modMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_eMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_paiMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_xpowyMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_tenpowMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_logMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_lnMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_sinMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_cosMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void button_tanMousePressed(MouseEvent e) {
-        // TODO add your code here
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -191,33 +206,60 @@ public class TwentyFour extends JPanel {
         button_left = new JButton();
         button_cleanEntry = new JButton();
         button_backspace = new JButton();
+        title = new JLabel();
+        button5 = new JButton();
+        button_equal = new JButton();
+        button_ans = new JButton();
 
         //======== this ========
         setLayout(null);
 
         //---- label5 ----
-        label5.setText("text");
         label5.setBorder(new BevelBorder(BevelBorder.LOWERED));
         add(label5);
-        label5.setBounds(430, 260, 40, 50);
+        label5.setBounds(430, 260, 75, 50);
 
         //---- button1 ----
-        button1.setFont(new Font("Consolas", Font.BOLD, 28));
+        button1.setFont(new Font("Consolas", Font.BOLD, 20));
+        button1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button1MousePressed(e);
+            }
+        });
         add(button1);
         button1.setBounds(45, 60, 80, 60);
 
         //---- button2 ----
-        button2.setFont(new Font("Consolas", Font.BOLD, 14));
+        button2.setFont(new Font("Consolas", Font.BOLD, 20));
+        button2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button2MousePressed(e);
+            }
+        });
         add(button2);
         button2.setBounds(140, 60, 80, 60);
 
         //---- button3 ----
-        button3.setFont(new Font("Consolas", Font.BOLD, 14));
+        button3.setFont(new Font("Consolas", Font.BOLD, 20));
+        button3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button3MousePressed(e);
+            }
+        });
         add(button3);
         button3.setBounds(235, 60, 80, 60);
 
         //---- button4 ----
-        button4.setFont(new Font("Consolas", Font.BOLD, 14));
+        button4.setFont(new Font("Consolas", Font.BOLD, 20));
+        button4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button4MousePressed(e);
+            }
+        });
         add(button4);
         button4.setBounds(330, 60, 80, 60);
 
@@ -344,7 +386,52 @@ public class TwentyFour extends JPanel {
         add(button_backspace);
         button_backspace.setBounds(330, 180, 80, 40);
 
-        setPreferredSize(new Dimension(490, 380));
+        //---- title ----
+        title.setText("24\u70b9");
+        title.setFont(title.getFont().deriveFont(title.getFont().getStyle() | Font.BOLD, title.getFont().getSize() + 10f));
+        add(title);
+        title.setBounds(15, 15, 60, 23);
+
+        //---- button5 ----
+        button5.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+        button5.setText("\u5f00\u59cb/\u91cd\u7f6e");
+        button5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button4MousePressed(e);
+                buttonReplayMousePressed(e);
+            }
+        });
+        add(button5);
+        button5.setBounds(425, 60, 110, 60);
+
+        //---- button_equal ----
+        button_equal.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 18));
+        button_equal.setFocusable(false);
+        button_equal.setText("\u786e\u8ba4");
+        button_equal.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_equalMousePressed(e);
+            }
+        });
+        add(button_equal);
+        button_equal.setBounds(425, 180, 110, 40);
+
+        //---- button_ans ----
+        button_ans.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 18));
+        button_ans.setFocusable(false);
+        button_ans.setText("\u7b54\u6848");
+        button_ans.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button_equalMousePressed(e);
+            }
+        });
+        add(button_ans);
+        button_ans.setBounds(425, 130, 110, 40);
+
+        setPreferredSize(new Dimension(575, 395));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -364,5 +451,9 @@ public class TwentyFour extends JPanel {
     private JButton button_left;
     private JButton button_cleanEntry;
     private JButton button_backspace;
+    private JLabel title;
+    private JButton button5;
+    private JButton button_equal;
+    private JButton button_ans;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

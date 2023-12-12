@@ -59,6 +59,16 @@ public class Variance extends JPanel {
 
             BigDecimal sqrtVar=var.sqrt(MathContext.DECIMAL64);
             label7.setText(sqrtVar.toPlainString());
+
+            BigDecimal ua=var.divide(n,4,RoundingMode.HALF_UP).sqrt(MathContext.DECIMAL64);
+            label9.setText(ua.toPlainString());
+
+            BigDecimal deltaB=new BigDecimal(textField2.getText());
+            BigDecimal ub=deltaB.divide(new BigDecimal(3).sqrt(MathContext.DECIMAL64),4,RoundingMode.HALF_UP);
+            label12.setText(ub.toPlainString());
+
+            BigDecimal u=(ua.pow(2).add(ub.pow(2))).sqrt(MathContext.DECIMAL64);
+            label14.setText(u.toPlainString());
         }
     }
 
@@ -80,6 +90,14 @@ public class Variance extends JPanel {
         label6 = new JLabel();
         label7 = new JLabel();
         button1 = new JButton();
+        label8 = new JLabel();
+        label9 = new JLabel();
+        label10 = new JLabel();
+        label11 = new JLabel();
+        textField2 = new JTextField();
+        label12 = new JLabel();
+        label13 = new JLabel();
+        label14 = new JLabel();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -87,7 +105,6 @@ public class Variance extends JPanel {
 
         //---- textField1 ----
         textField1.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        textField1.setFont(new Font("Consolas", Font.PLAIN, 14));
         add(textField1);
         textField1.setBounds(95, 85, 450, 45);
 
@@ -100,32 +117,32 @@ public class Variance extends JPanel {
         //---- label2 ----
         label2.setIcon(new ImageIcon(getClass().getResource("/Resources/img/ave.png")));
         add(label2);
-        label2.setBounds(95, 140, 140, 120);
+        label2.setBounds(95, 130, 140, 110);
 
         //---- label3 ----
         label3.setIcon(new ImageIcon(getClass().getResource("/Resources/img/var.png")));
         add(label3);
-        label3.setBounds(95, 265, 225, 120);
+        label3.setBounds(95, 240, 225, 105);
 
         //---- label4 ----
         label4.setIcon(new ImageIcon(getClass().getResource("/Resources/img/sqrtVar.png")));
         add(label4);
-        label4.setBounds(95, 390, 225, 120);
+        label4.setBounds(95, 345, 225, 120);
 
         //---- label5 ----
         label5.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
         add(label5);
-        label5.setBounds(230, 195, 315, 45);
+        label5.setBounds(230, 185, 400, 45);
 
         //---- label6 ----
         label6.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
         add(label6);
-        label6.setBounds(310, 320, 235, 45);
+        label6.setBounds(310, 290, 320, 45);
 
         //---- label7 ----
         label7.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
         add(label7);
-        label7.setBounds(320, 450, 225, 45);
+        label7.setBounds(320, 405, 310, 45);
 
         //---- button1 ----
         button1.setText("\u8ba1\u7b97");
@@ -139,7 +156,47 @@ public class Variance extends JPanel {
         add(button1);
         button1.setBounds(560, 90, 70, 35);
 
-        setPreferredSize(new Dimension(655, 595));
+        //---- label8 ----
+        label8.setIcon(new ImageIcon(getClass().getResource("/Resources/img/ua.png")));
+        add(label8);
+        label8.setBounds(95, 465, 325, 120);
+
+        //---- label9 ----
+        label9.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+        add(label9);
+        label9.setBounds(420, 525, 210, 45);
+
+        //---- label10 ----
+        label10.setIcon(new ImageIcon(getClass().getResource("/Resources/img/ub.png")));
+        add(label10);
+        label10.setBounds(95, 585, 125, 80);
+
+        //---- label11 ----
+        label11.setIcon(new ImageIcon(getClass().getResource("/Resources/img/divSqrt3.png")));
+        add(label11);
+        label11.setBounds(220, 585, label11.getPreferredSize().width, 80);
+
+        //---- textField2 ----
+        textField2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        add(textField2);
+        textField2.setBounds(225, 590, 40, 30);
+
+        //---- label12 ----
+        label12.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+        add(label12);
+        label12.setBounds(290, 600, 340, 45);
+
+        //---- label13 ----
+        label13.setIcon(new ImageIcon(getClass().getResource("/Resources/img/u.png")));
+        add(label13);
+        label13.setBounds(95, 665, 180, 80);
+
+        //---- label14 ----
+        label14.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+        add(label14);
+        label14.setBounds(275, 685, 355, 45);
+
+        setPreferredSize(new Dimension(755, 765));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -153,5 +210,13 @@ public class Variance extends JPanel {
     private JLabel label6;
     private JLabel label7;
     private JButton button1;
+    private JLabel label8;
+    private JLabel label9;
+    private JLabel label10;
+    private JLabel label11;
+    private JTextField textField2;
+    private JLabel label12;
+    private JLabel label13;
+    private JLabel label14;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
