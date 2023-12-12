@@ -59,11 +59,15 @@ new FormModel {
 						add( null )
 					} )
 					"focusable": false
+					"autoscrolls": false
+					"opaque": false
+					"border": new javax.swing.border.MatteBorder( 1, 1, 1, 1, sfield java.awt.Color black )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 175
-				"y": 250
-				"height": 290
+				"x": 145
+				"y": 245
+				"height": 295
+				"width": 500
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
