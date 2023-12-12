@@ -157,7 +157,7 @@ public class LinearRegressionDemo extends JFrame {
             int px = 150 + (int) Double.parseDouble(linearRegression.XNums.get(i).multiply(xPixel).toPlainString());
             int py = 600 - (int) Double.parseDouble(linearRegression.YNums.get(i).multiply(yPixel).toPlainString());
             // 绘制一个半径为4的圆点
-            g.fillOval(px - 4, py - 4, 8, 8);
+            g.drawOval(px - 3, py - 3, 6, 6);
         }
         // 绘制回归线
         stokeLine = new BasicStroke(1.5f);
