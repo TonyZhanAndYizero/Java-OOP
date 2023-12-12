@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class UtilitiesSci {
     public static boolean checkNum(String num) {
-        Pattern pattern = Pattern.compile("[0-9]");
+        Pattern pattern = Pattern.compile("[0-9]+");
         Matcher matcher = pattern.matcher(num);
         return matcher.matches();
     }

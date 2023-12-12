@@ -12,39 +12,42 @@ new FormModel {
 				"border": new javax.swing.border.BevelBorder( 1, null, null, null, null )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 430
-				"y": 260
-				"width": 75
+				"y": 75
+				"width": 105
 				"height": 50
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"font": new java.awt.Font( "Consolas", 1, 20 )
+				"text": "5"
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button1MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 45
-				"y": 60
+				"y": 155
 				"height": 60
 				"width": 80
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button2"
 				"font": new java.awt.Font( "Consolas", 1, 20 )
+				"text": "6"
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button2MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 60
 				"x": 140
-				"y": 60
+				"y": 155
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button3"
 				"font": new java.awt.Font( "Consolas", 1, 20 )
+				"text": "78"
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button3MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 60
 				"x": 235
-				"y": 60
+				"y": 155
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button4"
@@ -54,14 +57,14 @@ new FormModel {
 				"width": 80
 				"height": 60
 				"x": 330
-				"y": 60
+				"y": 155
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane3"
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textField1"
 					"border": new javax.swing.border.TitledBorder( new javax.swing.border.SoftBevelBorder( 0, null, null, null, null ), "Your Equation", 2, 0, new java.awt.Font( "Consolas", 3, 14 ), null )
-					"font": new java.awt.Font( "Consolas", 3, 28 )
+					"font": new java.awt.Font( "宋体", 3, 28 )
 					"background": new java.awt.Color( 240, 240, 240, 255 )
 					"autoscrolls": false
 					"horizontalAlignment": 0
@@ -72,7 +75,7 @@ new FormModel {
 				"width": 385
 				"height": 70
 				"x": 35
-				"y": 245
+				"y": 60
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_div"
@@ -84,7 +87,7 @@ new FormModel {
 				"width": 80
 				"height": 40
 				"x": 45
-				"y": 130
+				"y": 225
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_mul"
@@ -96,7 +99,7 @@ new FormModel {
 				"width": 80
 				"height": 40
 				"x": 140
-				"y": 130
+				"y": 225
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_minus"
@@ -108,7 +111,7 @@ new FormModel {
 				"width": 80
 				"height": 40
 				"x": 235
-				"y": 130
+				"y": 225
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_plus"
@@ -120,7 +123,7 @@ new FormModel {
 				"width": 80
 				"height": 40
 				"x": 330
-				"y": 130
+				"y": 225
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_right"
@@ -133,7 +136,7 @@ new FormModel {
 				"width": 80
 				"height": 40
 				"x": 140
-				"y": 180
+				"y": 275
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_left"
@@ -146,7 +149,7 @@ new FormModel {
 				"width": 80
 				"height": 40
 				"x": 45
-				"y": 180
+				"y": 275
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_cleanEntry"
@@ -158,7 +161,7 @@ new FormModel {
 				"width": 80
 				"height": 40
 				"x": 235
-				"y": 180
+				"y": 275
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_backspace"
@@ -170,7 +173,7 @@ new FormModel {
 				"width": 80
 				"height": 40
 				"x": 330
-				"y": 180
+				"y": 275
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "title"
@@ -192,11 +195,11 @@ new FormModel {
 				"width": 110
 				"height": 60
 				"x": 425
-				"y": 60
+				"y": 155
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_equal"
-				"font": &Font2 new java.awt.Font( "宋体", 1, 18 )
+				"font": new java.awt.Font( "宋体", 1, 16 )
 				"focusable": false
 				"text": "确认"
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_equalMousePressed", true ) )
@@ -204,11 +207,11 @@ new FormModel {
 				"width": 110
 				"height": 40
 				"x": 425
-				"y": 180
+				"y": 275
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button_ans"
-				"font": #Font2
+				"font": new java.awt.Font( "宋体", 1, 16 )
 				"focusable": false
 				"text": "答案"
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_equalMousePressed", true ) )
@@ -216,10 +219,10 @@ new FormModel {
 				"width": 110
 				"height": 40
 				"x": 425
-				"y": 130
+				"y": 225
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 95, 25 )
+			"location": new java.awt.Point( 90, 10 )
 			"size": new java.awt.Dimension( 575, 395 )
 		} )
 	}

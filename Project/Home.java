@@ -23,7 +23,7 @@ public class Home extends JFrame {
     public static void main(String[] args) {
         Home home = new Home();
         home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ³õÊ¼½çÃæÎª±ê×¼¼ÆËãÆ÷
         home.getContentPane().removeAll();
         home.getContentPane().add(std);
         home.setTitle("  Standard Calculator");
@@ -42,21 +42,21 @@ public class Home extends JFrame {
     private static Variance variance;
     public Home() {
         try {
-//            //ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½JTatto-1.6.13.jarï¿½ï¿½ï¿½ï¿½srcÍ¬ï¿½ï¿½ï¿½ï¿½libï¿½Ð£ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½Ä¿ï¿½á¹¹ï¿½ï¿½ï¿½ï¿½Ó¸Ã¿ï¿½
+//            //ÐèÒªÏÂÔØJTatto-1.6.13.jarµ½ÓësrcÍ¬¼¶µÄlibÖÐ£¬È»ºóÔÚ×óÉÏ½ÇÏîÄ¿½á¹¹ÖÐÌí¼Ó¸Ã¿â
 //            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
             UIManager.setLookAndFeel(lookAndFeel);
-//            com.jtattoo.plaf.noire.NoireLookAndFeel ï¿½ï¿½Íºï¿½
-//            com.jtattoo.plaf.smart.SmartLookAndFeel Ä¾ï¿½Ê¸ï¿½+xpï¿½ï¿½ï¿½
-//            com.jtattoo.plaf.mint.MintLookAndFeel ï¿½ï¿½Ô²ï¿½ï¿½Å¥+ï¿½ï¿½É«ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
-//            com.jtattoo.plaf.mcwin.McWinLookAndFeel ï¿½ï¿½Ô²ï¿½ï¿½Å¥+ï¿½ï¿½É«ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
-//            com.jtattoo.plaf.luna.LunaLookAndFeel ï¿½ï¿½XPï¿½ï¿½ï¿½
-//            com.jtattoo.plaf.hifi.HiFiLookAndFeel ï¿½ï¿½É«ï¿½ï¿½ï¿½
-//            com.jtattoo.plaf.fast.FastLookAndFeel ï¿½ï¿½Í¨swingï¿½ï¿½ï¿½+ï¿½ï¿½É«ï¿½ß¿ï¿½
-//            com.jtattoo.plaf.bernstein.BernsteinLookAndFeel ï¿½ï¿½É«ï¿½ï¿½ï¿½
-//            com.jtattoo.plaf.aluminium.AluminiumLookAndFeel ï¿½ï¿½Ô²ï¿½ï¿½Å¥+ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½ï¿½ï¿½Ê¸Ð£ï¿½Ä¬ï¿½Ï£ï¿½
-//            com.jtattoo.plaf.aero.AeroLookAndFeel xpï¿½ï¿½ï¿½Â·ï¿½ï¿½
-//            com.jtattoo.plaf.acryl.AcrylLookAndFeel ï¿½ï¿½ï¿½Ê¸ï¿½+swingï¿½ï¿½ï¿½ï¿½ï¿½
+//            com.jtattoo.plaf.noire.NoireLookAndFeel ÈáºÍºÚ
+//            com.jtattoo.plaf.smart.SmartLookAndFeel Ä¾ÖÊ¸Ð+xp·ç¸ñ
+//            com.jtattoo.plaf.mint.MintLookAndFeel ÍÖÔ²°´Å¥+»ÆÉ«°´Å¥±³¾°
+//            com.jtattoo.plaf.mcwin.McWinLookAndFeel ÍÖÔ²°´Å¥+ÂÌÉ«°´Å¥±³¾°
+//            com.jtattoo.plaf.luna.LunaLookAndFeel ´¿XP·ç¸ñ
+//            com.jtattoo.plaf.hifi.HiFiLookAndFeel ºÚÉ«·ç¸ñ
+//            com.jtattoo.plaf.fast.FastLookAndFeel ÆÕÍ¨swing·ç¸ñ+À¶É«±ß¿ò
+//            com.jtattoo.plaf.bernstein.BernsteinLookAndFeel »ÆÉ«·ç¸ñ
+//            com.jtattoo.plaf.aluminium.AluminiumLookAndFeel ÍÖÔ²°´Å¥+´äÂÌÉ«°´Å¥±³¾°+½ðÊôÖÊ¸Ð£¨Ä¬ÈÏ£©
+//            com.jtattoo.plaf.aero.AeroLookAndFeel xpÇåÐÂ·ç¸ñ
+//            com.jtattoo.plaf.acryl.AcrylLookAndFeel ²¼ÖÊ¸Ð+swing´¿·ç¸ñ
 //            com.jtattoo.plaf.texture.TextureLookAndFeel
 //            com.jtattoo.plaf.graphite.GraphiteLookAndFeel
         } catch (Exception ignored) {
@@ -144,7 +144,7 @@ public class Home extends JFrame {
     }
 
     private void initComponents() {
-        ImageIcon icon = new ImageIcon("Project/Resources/img/icon.png"); //Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ä¿Í¬Ò»Â·ï¿½ï¿½ï¿½ï¿½ï¿½Ê²ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Â·ï¿½ï¿½
+        ImageIcon icon = new ImageIcon("Project/Resources/img/icon.png"); //Í¼Æ¬ºÍÏîÄ¿Í¬Ò»Â·¾¶£¬¹Ê²»ÓÃÍ¼Æ¬µÄÂ·¾¶
         this.setIconImage(icon.getImage());
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
