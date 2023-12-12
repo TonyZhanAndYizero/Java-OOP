@@ -3,7 +3,9 @@ JFDML JFormDesigner: "8.2.0.0.331" Java: "17.0.8" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+			"autoSize": false
+		} ) {
 			name: "this"
 			"background": new com.jformdesigner.model.SwingColor( "Panel.background" )
 			"foreground": new com.jformdesigner.model.SwingColor( "Panel.foreground" )
@@ -566,22 +568,6 @@ new FormModel {
 				"x": 60
 				"y": 180
 				"width": 630
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_history"
-				"focusable": false
-				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/history.png" )
-				"alignmentY": 0.0f
-				"background": new com.jformdesigner.model.SwingColor( "Panel.background" )
-				"foreground": new com.jformdesigner.model.SwingColor( "Panel.foreground" )
-				"border": new javax.swing.border.SoftBevelBorder( 0, null, null, null, null )
-				"margin": new java.awt.Insets( 2, 2, 2, 2 )
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_historyMousePressed", true ) )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 705
-				"y": 65
-				"width": 60
-				"height": 60
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

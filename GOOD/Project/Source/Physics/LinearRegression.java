@@ -4,7 +4,6 @@
 
 package Source.Physics;
 
-import org.matheclipse.core.builtin.functions.ZetaJS;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -407,10 +406,13 @@ public class LinearRegression extends JPanel {
                 }
             ));
             table1.setFocusable(false);
+            table1.setAutoscrolls(false);
+            table1.setOpaque(false);
+            table1.setBorder(new MatteBorder(1, 1, 1, 1, Color.black));
             scrollPane1.setViewportView(table1);
         }
         add(scrollPane1);
-        scrollPane1.setBounds(175, 250, scrollPane1.getPreferredSize().width, 290);
+        scrollPane1.setBounds(145, 245, 500, 295);
 
         //---- label1 ----
         label1.setText("\u8bf7\u8f93\u5165\u5904\u7406\u6570\u636e\u70b9\u4e2a\u6570(\u53ef\u9009)\uff1a");
@@ -636,20 +638,7 @@ public class LinearRegression extends JPanel {
         add(button8);
         button8.setBounds(675, 345, 75, 40);
 
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for(int i = 0; i < getComponentCount(); i++) {
-                Rectangle bounds = getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            setMinimumSize(preferredSize);
-            setPreferredSize(preferredSize);
-        }
+        setPreferredSize(new Dimension(830, 740));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 

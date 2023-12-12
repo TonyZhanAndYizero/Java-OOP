@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 import Source.Tools.*;
+import Source.UtilitiesSci;
 
 /**
  * @author Yury
  */
-public class CalculatorSci extends JPanel {
+public class CalculatorSci extends JPanel implements Calculator{
     public CalculatorSci() {
         initComponents();
     }
@@ -1100,7 +1101,7 @@ public class CalculatorSci extends JPanel {
         add(button_tan);
         button_tan.setBounds(325, 285, 80, 40);
 
-        setPreferredSize(new Dimension(845, 720));
+        setPreferredSize(new Dimension(755, 655));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 

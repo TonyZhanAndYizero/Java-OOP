@@ -62,6 +62,9 @@ public class EngineerArithmetic {
                                 while (!fuZhan.isEmpty() && !"(".equals(fuZhan.peek())){
                                     if(adv(list.get(i)) <= adv(fuZhan.peek())){
                                         list2.add(fuZhan.pop());
+                                    } else {
+                                        fuZhan.push(list.get(i));
+                                        break;
                                     }
                                 }
                                 if (fuZhan.isEmpty() || fuZhan.peek().charAt(0) == '('){
@@ -246,7 +249,10 @@ public class EngineerArithmetic {
             str = str.replaceAll("pi", "p");
             str = str.replaceAll("ln", "l");
             list = zhongZhui(str);
+            System.out.println(list);
+
             list = houZhui(list);
+            System.out.println(list);
             return math(list).toPlainString();
         }catch (Exception e)
         {

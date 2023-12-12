@@ -5,7 +5,8 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.GridLayout ) ) {
 			name: "this"
-			"minimumSize": new java.awt.Dimension( 800, 800 )
+			"minimumSize": new java.awt.Dimension( 200, 200 )
+			"$locationPolicy": 2
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -13,18 +14,98 @@ new FormModel {
 					"text": "类型"
 					"font": new java.awt.Font( "宋体", 1, 14 )
 					"margin": new java.awt.Insets( 5, 5, 5, 5 )
+					"contentAreaFilled": false
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": " 计算器 "
+						"font": new java.awt.Font( "宋体", 1, 14 )
+						"foreground": sfield java.awt.Color gray
+						"minimumSize": new java.awt.Dimension( 80, 20 )
+						"maximumSize": new java.awt.Dimension( 80, 20 )
+						"border": new javax.swing.border.EmptyBorder( 5, 0, 0, 0 )
+						"preferredSize": new java.awt.Dimension( 80, 20 )
+					} )
 					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "radioButtonMenuItem1"
 						"text": "标准"
 						"$buttonGroup": new FormReference( "buttonGroup1" )
 						"selected": true
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/std.png" )
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"iconTextGap": 5
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showStd", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "radioButtonMenuItem2"
 						"text": "科学"
 						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/sci.png" )
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"iconTextGap": 5
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showSci", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": " 转换器 "
+						"font": new java.awt.Font( "宋体", 1, 14 )
+						"foreground": sfield java.awt.Color gray
+						"border": new javax.swing.border.EmptyBorder( 5, 0, 0, 0 )
+						"maximumSize": new java.awt.Dimension( 80, 20 )
+						"minimumSize": new java.awt.Dimension( 80, 20 )
+						"preferredSize": new java.awt.Dimension( 80, 20 )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem3"
+						"text": "角度"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/angle.png" )
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"iconTextGap": 5
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem3MousePressed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem5"
+						"text": "进制"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/decimal.png" )
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"iconTextGap": 5
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showDecimalConversion", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": " 物理计算 "
+						"font": new java.awt.Font( "宋体", 1, 14 )
+						"foreground": sfield java.awt.Color gray
+						"border": new javax.swing.border.EmptyBorder( 5, 0, 0, 0 )
+						"maximumSize": new java.awt.Dimension( 80, 20 )
+						"minimumSize": new java.awt.Dimension( 80, 20 )
+						"preferredSize": new java.awt.Dimension( 80, 20 )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem4"
+						"text": "一元线性回归"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/linear.png" )
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"iconTextGap": 5
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem4MousePressed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": " 益智 "
+						"font": new java.awt.Font( "宋体", 1, 14 )
+						"foreground": sfield java.awt.Color gray
+						"preferredSize": new java.awt.Dimension( 80, 20 )
+						"minimumSize": new java.awt.Dimension( 80, 20 )
+						"maximumSize": new java.awt.Dimension( 80, 20 )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem6"
+						"text": "24点"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/24.png" )
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"$buttonGroup": new FormReference( "buttonGroup1" )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -41,35 +122,15 @@ new FormModel {
 						"text": "保存文件"
 					} )
 				} )
-				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "menu3"
-					"text": "单位转换"
-					"font": &Font0 new java.awt.Font( "宋体", 1, 14 )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem3"
-						"text": "角度"
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem3MousePressed", true ) )
-					} )
-				} )
-				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "menu4"
-					"text": "物理计算"
-					"font": #Font0
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem4"
-						"text": "一元线性回归"
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem4MousePressed", true ) )
-					} )
-				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 65, 10 )
+			"location": new java.awt.Point( 75, 10 )
 			"size": new java.awt.Dimension( 590, 375 )
 		} )
 		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
 			name: "buttonGroup1"
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 25, 440 )
+			"location": new java.awt.Point( 35, 440 )
 		} )
 	}
 }

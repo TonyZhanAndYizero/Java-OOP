@@ -76,10 +76,10 @@ public class LinearRegressionDemo extends JFrame {
         BufferedImage image = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         // 从BufferedImage对象中获取一个Graphics2D对象
         Graphics2D g = image.createGraphics();
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        //g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setBackground(Color.WHITE);
         g.clearRect(0, 0, 1000, 1000);
-        draw(g,drawPanel);
+        draw(g, drawPanel);
         // 创建一个File对象，指定要保存的文件名和路径
         try {
             // 使用ImageIO类的write方法，将BufferedImage对象保存为png文件
@@ -90,7 +90,7 @@ public class LinearRegressionDemo extends JFrame {
         }
     }
 
-    private void draw(Graphics g,JPanel jPanel) {
+    private void draw(Graphics g, JPanel jPanel) {
         // 设置背景颜色为白色
         jPanel.setBackground(Color.WHITE);
 
@@ -157,7 +157,7 @@ public class LinearRegressionDemo extends JFrame {
             int px = 150 + (int) Double.parseDouble(linearRegression.XNums.get(i).multiply(xPixel).toPlainString());
             int py = 600 - (int) Double.parseDouble(linearRegression.YNums.get(i).multiply(yPixel).toPlainString());
             // 绘制一个半径为4的圆点
-            g.fillOval(px - 4, py - 4, 8, 8);
+            g.drawOval(px - 3, py - 3, 6, 6);
         }
         // 绘制回归线
         stokeLine = new BasicStroke(1.5f);
@@ -176,10 +176,13 @@ public class LinearRegressionDemo extends JFrame {
         g.setColor(Color.BLACK); // 设置画笔颜色为黑色
         // 格式化方程中的小数
         String sb = String.format("%.2f", linearRegression.b);
-        String sa = String.format("%.2f", linearRegression.a);
+        String sa = String.format("%.2f", linearRegression.a.abs());
         // 绘制方程的字符串
         g.setFont(new Font("Times New Roman", Font.BOLD, 24));
-        g.drawString("y = " + sb + "x + " + sa, 200, 80);
+        if (linearRegression.a.compareTo(BigDecimal.ZERO) >= 0)
+            g.drawString("y = " + sb + "x " + "+" + " " + sa, 200, 80);
+        else
+            g.drawString("y = " + sb + "x " + "-" + " " + sa, 200, 80);
     }
 
     /**
@@ -192,7 +195,7 @@ public class LinearRegressionDemo extends JFrame {
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            draw(g,this);
+            draw(g, this);
         }
     }
 

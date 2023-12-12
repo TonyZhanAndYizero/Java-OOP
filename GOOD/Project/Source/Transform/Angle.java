@@ -20,31 +20,32 @@ import javax.swing.text.DocumentFilter;
  */
 
 
+
 /**
  * @author HeMercy
  */
 public class Angle extends JPanel {
     Boolean whichFocus = true;
-
     public Angle() {
         try {
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
             UIManager.setLookAndFeel(lookAndFeel);
-        } catch (Exception ignored) {
+        }catch (Exception ignored){
         }
         initComponents();
     }
-
-    private void exchange(JTextField textField1, JTextField textField2) {
+    private void exchange(JTextField textField1, JTextField textField2)
+    {
         int p1 = comboBox1.getSelectedIndex();
         int p2 = comboBox2.getSelectedIndex();
         System.out.println(p1 + " " + p2);
         String text;
         BigDecimal bg1 = new BigDecimal(textField1.getText());
         BigDecimal res = null;
-        switch (p1) {
-            case 0 -> {
-                switch (p2) {
+        switch (p1)
+        {
+            case 0:
+                switch (p2){
                     case 0 -> {
                         res = bg1;
                     }
@@ -52,12 +53,12 @@ public class Angle extends JPanel {
                         res = bg1.multiply(new BigDecimal(Math.PI)).divide(new BigDecimal(180), 7, RoundingMode.HALF_UP);
                     }
                     case 2 -> {
-                        res = bg1.divide(new BigDecimal("0.9"), 7, RoundingMode.HALF_UP);
+                        res = bg1.divide(new BigDecimal(0.9), 7, RoundingMode.HALF_UP);
                     }
                 }
-            }
-            case 1 -> {
-                switch (p2) {
+                break;
+            case 1:
+                switch (p2){
                     case 0 -> {
                         res = bg1.multiply(new BigDecimal(180)).divide(new BigDecimal(Math.PI), 7, RoundingMode.HALF_UP);
                     }
@@ -68,11 +69,11 @@ public class Angle extends JPanel {
                         res = bg1.multiply(new BigDecimal(200)).divide(new BigDecimal(Math.PI), 7, RoundingMode.HALF_UP);
                     }
                 }
-            }
-            case 2 -> {
-                switch (p2) {
+                break;
+            case 2:
+                switch (p2){
                     case 0 -> {
-                        res = bg1.multiply(new BigDecimal("0.9"), new MathContext(7, RoundingMode.HALF_UP));
+                        res = bg1.multiply(new BigDecimal(0.9), new MathContext(7, RoundingMode.HALF_UP));
                     }
                     case 1 -> {
                         res = bg1.multiply(new BigDecimal(Math.PI)).divide(new BigDecimal(200), 7, RoundingMode.HALF_UP);
@@ -81,13 +82,10 @@ public class Angle extends JPanel {
                         res = bg1;
                     }
                 }
-            }
+                break;
         }
-        if (res != null) {
-            textField2.setText(res.stripTrailingZeros().toPlainString());
-        }
+        textField2.setText(res.stripTrailingZeros().toPlainString());
     }
-
     private void textField1CaretUpdate(CaretEvent e) {
         // TODO add your code here
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
@@ -187,7 +185,7 @@ public class Angle extends JPanel {
 
     private void comboBox1ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if (whichFocus)
+        if(whichFocus)
             exchange(textField1, textField2);
         else
             exchange(textField2, textField1);
@@ -195,7 +193,7 @@ public class Angle extends JPanel {
 
     private void comboBox2ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if (whichFocus)
+        if(whichFocus)
             exchange(textField1, textField2);
         else
             exchange(textField2, textField1);
@@ -222,15 +220,14 @@ public class Angle extends JPanel {
             // 此处可以根据需要定义文本框的输入限制
             // 这个例子中只允许输入数字
             input.replaceAll("..", ".");
-            if (input.charAt(0) == '.')
+            if(input.charAt(0) == '.')
                 input.replaceFirst(".", "");
             return input.replaceAll("[^0-9.]", "");
         }
     }
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        angle = new JLabel();
+        角度 = new JLabel();
         textField1 = new JTextField();
         textField2 = new JTextField();
         button1 = new JButton();
@@ -253,15 +250,15 @@ public class Angle extends JPanel {
 
         //======== this ========
         setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
-        setMinimumSize(new Dimension(398, 564));
+        setMinimumSize(new Dimension(450, 564));
         setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
         setLayout(null);
 
-        //---- angle ----
-        angle.setText("\u89d2\u5ea6");
-        angle.setFont(angle.getFont().deriveFont(angle.getFont().getStyle() | Font.BOLD, angle.getFont().getSize() + 10f));
-        add(angle);
-        angle.setBounds(new Rectangle(new Point(15, 25), angle.getPreferredSize()));
+        //---- 角度 ----
+        角度.setText("\u89d2\u5ea6");
+        角度.setFont(角度.getFont().deriveFont(角度.getFont().getStyle() | Font.BOLD, 角度.getFont().getSize() + 10f));
+        add(角度);
+        角度.setBounds(new Rectangle(new Point(15, 25), 角度.getPreferredSize()));
 
         //---- textField1 ----
         textField1.setColumns(10);
@@ -385,7 +382,6 @@ public class Angle extends JPanel {
             "\u767e\u5206\u5ea6"
         }));
         comboBox2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
-        comboBox2.setBorder(new BevelBorder(BevelBorder.LOWERED));
         comboBox2.addItemListener(e -> comboBox2ItemStateChanged(e));
         add(comboBox2);
         comboBox2.setBounds(15, 240, 105, 40);
@@ -428,25 +424,12 @@ public class Angle extends JPanel {
         add(button21);
         button21.setBounds(140, 505, 120, 50);
 
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for(int i = 0; i < getComponentCount(); i++) {
-                Rectangle bounds = getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            setMinimumSize(preferredSize);
-            setPreferredSize(preferredSize);
-        }
+        setPreferredSize(new Dimension(400, 570));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JLabel angle;
+    private JLabel 角度;
     private JTextField textField1;
     private JTextField textField2;
     private JButton button1;

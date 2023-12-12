@@ -1,4 +1,4 @@
-package Source.Calculator;
+package Source;
 
 import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
@@ -15,29 +15,24 @@ public class UtilitiesSci {
         Matcher matcher = pattern.matcher(num);
         return matcher.matches();
     }
-
     public static boolean checkLeftBracketFunction(String ch) {
         return "sctlog!a".contains(ch);
     }
-
     public static boolean checkPIorE(String ch) {
         return ch.equals("p") || ch.equals("e");
     }
-
     public static boolean checkPow(String ch) {
         return ch.equals("^");
     }
-
     public static boolean checkMod(String ch) {
         return ch.equals("m");
     }
-
     public static boolean checkOperation(String ch) {
         return "+-*/".contains(ch);
     }
 
 
-    public static String PureNumberWithoutArithmetics(String Num) {
+    public static String PureNumberWithoutArithmetics(String Num){
         Pattern pattern = Pattern.compile("-?(0|[1-9]\\d*)(\\.\\d+)?");
         Matcher matcher = pattern.matcher(Num);
         if (matcher.find())
@@ -45,7 +40,6 @@ public class UtilitiesSci {
         else
             return "";
     }
-
     public static boolean checkEqual(KeyEvent e) {
         return e.getKeyChar() == '=' || e.getKeyChar() == KeyEvent.VK_ENTER;
     }
