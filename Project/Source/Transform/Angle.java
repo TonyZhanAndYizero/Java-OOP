@@ -38,8 +38,6 @@ public class Angle extends JPanel {
     {
         int p1 = comboBox1.getSelectedIndex();
         int p2 = comboBox2.getSelectedIndex();
-        System.out.println(p1 + " " + p2);
-        String text;
         BigDecimal bg1 = new BigDecimal(textField1.getText());
         BigDecimal res = null;
         switch (p1)
@@ -123,8 +121,7 @@ public class Angle extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField1.getText();
-                        str1 = str1.replaceAll(str, "");
-                        textField1.setText(str1);
+                        textField1.setText(str1.substring(str.length()));
                         // 清空原始文本
                     });
                     firstInput = false;
@@ -162,8 +159,7 @@ public class Angle extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField2.getText();
-                        str1 = str1.replaceAll(str, "");
-                        textField2.setText(str1);
+                        textField2.setText(str1.substring(str.length()));
                         // 清空原始文本
                     });
                     firstInput = false;
