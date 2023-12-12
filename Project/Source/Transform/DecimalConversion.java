@@ -125,7 +125,7 @@ public class DecimalConversion extends JPanel {
             // 此处可以根据需要定义文本框的输入限制
             // 这个例子中只允许输入数字
             input.replaceAll("\\.\\.", ".");
-            if(input.charAt(0) == '.')
+            if(!input.isEmpty() && input.charAt(0) == '.')
                 input.replaceFirst("\\.", "");
             switch (op)
             {
@@ -198,11 +198,6 @@ public class DecimalConversion extends JPanel {
 
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
-//        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
-//        {
-//            if(textField1.getText().length() == 1)
-//                textField1.setText("0");
-//        }
     }
 
     private void textField2CaretUpdate(CaretEvent e) {
@@ -278,6 +273,10 @@ public class DecimalConversion extends JPanel {
             textField2.setText("0");
             solve(textField2, textField1, comboBox2, comboBox1);
         }
+    }
+
+    private void textField2KeyPressed(KeyEvent e) {
+        // TODO add your code here
     }
 
     private void initComponents() {
@@ -360,6 +359,10 @@ public class DecimalConversion extends JPanel {
             }
         });
         textField2.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                textField2KeyPressed(e);
+            }
             @Override
             public void keyReleased(KeyEvent e) {
                 textField2KeyReleased(e);
