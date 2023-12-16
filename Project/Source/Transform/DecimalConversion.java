@@ -2,7 +2,6 @@ package Source.Transform;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -180,7 +179,11 @@ public class DecimalConversion extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField1.getText();
-                        textField1.setText(str1.substring(str.length()));
+                        try {
+                            textField1.setText(str1.substring(str.length()));
+                        }catch (Exception ignored)
+                        {
+                        }
                         // 清空原始文本
                     });
                     firstInput = false;
@@ -232,8 +235,12 @@ public class DecimalConversion extends JPanel {
             private void handleInput() {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
-                        String str1 = textField1.getText();
-                        textField1.setText(str1.substring(str.length()));
+                        String str1 = textField2.getText();
+                        try {
+                            textField2.setText(str1.substring(str.length()));
+                        }catch (Exception ignored)
+                        {
+                        }
                         // 清空原始文本
                     });
                     firstInput = false;
@@ -251,28 +258,18 @@ public class DecimalConversion extends JPanel {
 
     private void comboBox1ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if (whichFocus)
-        {
-            textField1.setText("0");
-            solve(textField1, textField2, comboBox1, comboBox2);
-        }
-        else
-        {
-            solve(textField2, textField1, comboBox2, comboBox1);
-        }
+        whichFocus = false;
+        textField1.setFont(new Font("Inter", Font.PLAIN, 28));
+        textField2.setFont(new Font("Inter", Font.BOLD, 28));
+        solve(textField2, textField1, comboBox2, comboBox1);
     }
 
     private void comboBox2ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if (whichFocus)
-        {
-            solve(textField1, textField2, comboBox1, comboBox2);
-        }
-        else
-        {
-            textField2.setText("0");
-            solve(textField2, textField1, comboBox2, comboBox1);
-        }
+        whichFocus = true;
+        textField1.setFont(new Font("Inter", Font.BOLD, 28));
+        textField2.setFont(new Font("Inter", Font.PLAIN, 28));
+        solve(textField1, textField2, comboBox1, comboBox2);
     }
 
     private void textField2KeyPressed(KeyEvent e) {
