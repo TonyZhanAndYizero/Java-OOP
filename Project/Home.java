@@ -3,7 +3,6 @@ import javax.swing.border.*;
 
 import Source.Calculator.CalculatorSci;
 import Source.Calculator.CalculatorStd;
-import Source.Game.GuessNumber;
 import Source.Game.TwentyFour;
 import Source.Physics.LinearRegression;
 import Source.Physics.Variance;
@@ -41,7 +40,6 @@ public class Home extends JFrame {
     private static DecimalConversion decimalConversion;
     private static TwentyFour twentyFour;
     private static Variance variance;
-    private static GuessNumber guessNumber;
     public Home() {
         try {
 //            //需要下载JTatto-1.6.13.jar到与src同级的lib中，然后在左上角项目结构中添加该库
@@ -70,7 +68,6 @@ public class Home extends JFrame {
         linearRegression = new LinearRegression();
         twentyFour = new TwentyFour();
         variance = new Variance();
-        guessNumber = new GuessNumber();
         initComponents();
     }
 
@@ -148,12 +145,6 @@ public class Home extends JFrame {
 
     private void showGuessNumber(MouseEvent e) {
         // TODO add your code here
-        this.setTitle("  Guess Number");
-        getContentPane().removeAll();
-        getContentPane().add(guessNumber);
-        revalidate();
-        repaint();
-        pack();
     }
 
     private void initComponents() {

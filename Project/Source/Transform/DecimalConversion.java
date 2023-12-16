@@ -26,7 +26,9 @@ public class DecimalConversion extends JPanel {
     }
 
     private String JinzhiSwitch(String nums, int op1, int op2) {
-        return new BigInteger(nums, op1).toString(op2);
+        if(!nums.isEmpty())
+            return new BigInteger(nums, op1).toString(op2);
+        return null;
     }
 
     private void solve(JTextField textField1, JTextField textField2, JComboBox<String> comboBox1, JComboBox<String> comboBox2) {
