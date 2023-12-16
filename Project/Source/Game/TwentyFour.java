@@ -424,6 +424,7 @@ public class TwentyFour extends JPanel {
         //---- button1 ----
         button1.setFont(new Font("Consolas", Font.BOLD, 20));
         button1.setAlignmentY(0.0F);
+        button1.setFocusable(false);
         button1.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -436,6 +437,7 @@ public class TwentyFour extends JPanel {
         //---- button2 ----
         button2.setFont(new Font("Consolas", Font.BOLD, 20));
         button2.setAlignmentY(0.0F);
+        button2.setFocusable(false);
         button2.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -448,6 +450,7 @@ public class TwentyFour extends JPanel {
         //---- button3 ----
         button3.setFont(new Font("Consolas", Font.BOLD, 20));
         button3.setAlignmentY(0.0F);
+        button3.setFocusable(false);
         button3.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -460,6 +463,7 @@ public class TwentyFour extends JPanel {
         //---- button4 ----
         button4.setFont(new Font("Consolas", Font.BOLD, 20));
         button4.setAlignmentY(0.0F);
+        button4.setFocusable(false);
         button4.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -601,6 +605,7 @@ public class TwentyFour extends JPanel {
         //---- buttonReplay ----
         buttonReplay.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
         buttonReplay.setText("\u5f00\u59cb/\u91cd\u7f6e");
+        buttonReplay.setFocusable(false);
         buttonReplay.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -684,7 +689,7 @@ public class TwentyFour extends JPanel {
 
             dialog1ContentPane.setPreferredSize(new Dimension(205, 220));
             dialog1.pack();
-            dialog1.setLocationRelativeTo(null);
+            dialog1.setLocationRelativeTo(dialog1.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }

@@ -4,10 +4,15 @@
 
 package Source.Game;
 
+import Source.UtilitiesSci;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
+
+import static Source.UtilitiesSci.checkNum;
 
 /**
  * @author Yury
@@ -16,54 +21,415 @@ public class GuessNumber extends JPanel {
     public GuessNumber() {
         initComponents();
     }
+    public static Robot robot;
 
+    static {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public JTextField getTextField1() {
+        return textField1;
+    }
     private void button0MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_0);
+        }
     }
 
     private void button1MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_1);
+        }
     }
 
     private void button2MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_2);
+        }
     }
 
     private void button3MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_3);
+        }
     }
 
     private void button4MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_4);
+        }
     }
 
     private void button5MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_5);
+        }
     }
 
     private void button6MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_6);
+        }
     }
 
     private void button7MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_7);
+        }
     }
 
     private void button8MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_8);
+        }
     }
 
     private void button9MousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_9);
+        }
     }
-
+    private String[] s = new String[4];
+    private int statusCode = -1;
     private void buttonReplayMousePressed(MouseEvent e) {
         // TODO add your code here
+        clearEntry();
+
+        line = 0;
+
+        label1.setText("");
+        label2.setText("");
+        label3.setText("");
+        label4.setText("");
+        label5.setText("");
+        label6.setText("");
+        label7.setText("");
+        label8.setText("");
+        label9.setText("");
+        label10.setText("");
+        label11.setText("");
+        label12.setText("");
+        label13.setText("");
+        label14.setText("");
+        label15.setText("");
+        label16.setText("");
+        label17.setText("");
+        label18.setText("");
+        label19.setText("");
+        label20.setText("");
+        label21.setText("");
+        label22.setText("");
+        label23.setText("");
+        label24.setText("");
+
+        label25.setText("?");
+        label26.setText("?");
+        label27.setText("?");
+        label28.setText("?");
+
+        label1.setBackground(new Color(0xf0f0f0));
+        label2.setBackground(new Color(0xf0f0f0));
+        label3.setBackground(new Color(0xf0f0f0));
+        label4.setBackground(new Color(0xf0f0f0));
+        label5.setBackground(new Color(0xf0f0f0));
+        label6.setBackground(new Color(0xf0f0f0));
+        label7.setBackground(new Color(0xf0f0f0));
+        label8.setBackground(new Color(0xf0f0f0));
+        label9.setBackground(new Color(0xf0f0f0));
+        label10.setBackground(new Color(0xf0f0f0));
+        label11.setBackground(new Color(0xf0f0f0));
+        label12.setBackground(new Color(0xf0f0f0));
+        label13.setBackground(new Color(0xf0f0f0));
+        label14.setBackground(new Color(0xf0f0f0));
+        label15.setBackground(new Color(0xf0f0f0));
+        label16.setBackground(new Color(0xf0f0f0));
+        label17.setBackground(new Color(0xf0f0f0));
+        label18.setBackground(new Color(0xf0f0f0));
+        label19.setBackground(new Color(0xf0f0f0));
+        label20.setBackground(new Color(0xf0f0f0));
+        label21.setBackground(new Color(0xf0f0f0));
+        label22.setBackground(new Color(0xf0f0f0));
+        label23.setBackground(new Color(0xf0f0f0));
+        label24.setBackground(new Color(0xf0f0f0));
+
+        status.setText("Playing");
+        status.setForeground(Color.darkGray);
+
+        status1.setText("");
+        status2.setText("");
+        status3.setText("");
+        status4.setText("");
+        status5.setText("");
+        status6.setText("");
+
+        int num1 = 6, num2 = 6, num3 = 6, num4 = 6;
+        Utilities24 utilities24 = new Utilities24();
+        num1 = utilities24.getRandomNum(10) - 1;
+        num2 = utilities24.getRandomNum(10) - 1;
+        num3 = utilities24.getRandomNum(10) - 1;
+        num4 = utilities24.getRandomNum(10) - 1;
+        s[0] = String.valueOf(num1);
+        s[1] = String.valueOf(num2);
+        s[2] = String.valueOf(num3);
+        s[3] = String.valueOf(num4);
+
+        statusCode = 1;
+
+        cntCorrect = 0;
+        cntHave = 0;
+
+
+
     }
 
-    private void buttonEqualMousePressed(MouseEvent e) {
+    private void buttonConfirmMousePressed(MouseEvent e) {
         // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ENTER);
+        }
     }
+
+    private void buttonBackspaceMousePressed(MouseEvent e) {
+        // TODO add your code here
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+        }
+    }
+
+    private ArrayList<String> strToShow = new ArrayList<>();
+    private int line = 0;
+
+    protected void textField1KeyPressed(KeyEvent e) {
+        if (statusCode == 1) {
+            String ch = String.valueOf(e.getKeyChar());
+            if (UtilitiesSci.checkNum(ch)) {
+                inputNum(ch);
+            } else if (e.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
+                backSpace();
+            } else if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                getResult();
+            }
+        } else {
+            showDialog2();
+        }
+    }
+
+    protected void setTextField1() {
+        StringBuilder tmp = new StringBuilder();
+        for (String s : strToShow) {
+            tmp.append(s);
+        }
+        textField1.setText(String.valueOf(tmp));
+    }
+
+    protected void inputNum(String ch) {
+        if (statusCode != 1) {
+            showDialog2();
+            return;
+        }
+        strToShow.add(ch);
+        setTextField1();
+    }
+
+    protected void backSpace() {
+        if (statusCode != 1) {
+            showDialog2();
+            return;
+        }
+        if (!strToShow.isEmpty()) {
+            strToShow.remove(strToShow.size() - 1);
+            setTextField1();
+            //System.out.println(strToShow.size());
+        }
+    }
+    private int cntCorrect = 0, cntHave = 0;
+    protected void checkAns(JLabel label, int j) {
+        if (label.getText().equals(s[j])) {
+            cntCorrect++;
+            label.setBackground(new Color(0, 128, 0));
+            return;
+        } else {
+            for (int i = 0; i < 4; i++) {
+                if (i == j) continue;
+                if (label.getText().equals(s[i])) {
+                    cntHave++;
+                    label.setBackground(new Color(220, 128, 0));
+                    return;
+                }
+            }
+        }
+        label.setBackground(new Color(128, 0, 0));
+    }
+    protected boolean checkCorrect() {
+        if (cntCorrect == 4) {
+            status.setText("Correct");
+            status.setForeground(new Color(0, 128, 0));
+            statusCode = 2;
+            showAns();
+            clearEntry();
+            return true;
+        }
+        return false;
+    }
+    protected void showAns() {
+        label25.setText(s[0]);
+        label26.setText(s[1]);
+        label27.setText(s[2]);
+        label28.setText(s[3]);
+
+    }
+    protected void showFail() {
+        status.setText("Fail");
+        status.setForeground(Color.RED);
+        statusCode = -1;
+        showAns();
+    }
+    protected void getResult() {
+        if (statusCode == 1) {
+            String input = textField1.getText();
+            if (input.length() != 4) {
+                dialog1.setVisible(true);
+                return;
+            }
+            if (line == 0) {
+                label1.setText(input.substring(0, 1));
+                checkAns(label1, 0);
+                label2.setText(input.substring(1, 2));
+                checkAns(label2, 1);
+                label3.setText(input.substring(2, 3));
+                checkAns(label3, 2);
+                label4.setText(input.substring(3));
+                checkAns(label4, 3);
+
+                status1.setText(cntCorrect + "A" + cntHave + "B");
+                if (checkCorrect()) {
+                    return;
+                }
+                line++;
+                cntCorrect = 0;
+                cntHave = 0;
+            } else if (line == 1) {
+                label5.setText(input.substring(0, 1));
+                checkAns(label5, 0);
+                label6.setText(input.substring(1, 2));
+                checkAns(label6, 1);
+                label7.setText(input.substring(2, 3));
+                checkAns(label7, 2);
+                label8.setText(input.substring(3));
+                checkAns(label8, 3);
+
+                status2.setText(cntCorrect + "A" + cntHave + "B");
+                if (checkCorrect()) {
+                    return;
+                }
+                line++;
+                cntCorrect = 0;
+                cntHave = 0;
+            } else if (line == 2) {
+                label9.setText(input.substring(0, 1));
+                checkAns(label9, 0);
+                label10.setText(input.substring(1, 2));
+                checkAns(label10, 1);
+                label11.setText(input.substring(2, 3));
+                checkAns(label11, 2);
+                label12.setText(input.substring(3));
+                checkAns(label12, 3);
+
+                status3.setText(cntCorrect + "A" + cntHave + "B");
+                if (checkCorrect()) {
+                    return;
+                }
+                line++;
+                cntCorrect = 0;
+                cntHave = 0;
+            } else if (line == 3) {
+                label13.setText(input.substring(0, 1));
+                checkAns(label13, 0);
+                label14.setText(input.substring(1, 2));
+                checkAns(label14, 1);
+                label15.setText(input.substring(2, 3));
+                checkAns(label15, 2);
+                label16.setText(input.substring(3));
+                checkAns(label16, 3);
+
+                status4.setText(cntCorrect + "A" + cntHave + "B");
+                if (checkCorrect()) {
+                    return;
+                }
+                line++;
+                cntCorrect = 0;
+                cntHave = 0;
+            } else if (line == 4) {
+                label17.setText(input.substring(0, 1));
+                checkAns(label17, 0);
+                label18.setText(input.substring(1, 2));
+                checkAns(label18, 1);
+                label19.setText(input.substring(2, 3));
+                checkAns(label19, 2);
+                label20.setText(input.substring(3));
+                checkAns(label20, 3);
+
+                status5.setText(cntCorrect + "A" + cntHave + "B");
+                if (checkCorrect()) {
+                    return;
+                }
+                line++;
+                cntCorrect = 0;
+                cntHave = 0;
+            } else if (line == 5) {
+                label21.setText(input.substring(0, 1));
+                checkAns(label21, 0);
+                label22.setText(input.substring(1, 2));
+                checkAns(label22, 1);
+                label23.setText(input.substring(2, 3));
+                checkAns(label23, 2);
+                label24.setText(input.substring(3));
+                checkAns(label24, 3);
+
+                status6.setText(cntCorrect + "A" + cntHave + "B");
+                if (checkCorrect()) {
+                    return;
+                } else {
+                    showFail();
+                }
+            }
+            clearEntry();
+        } else {
+            showDialog2();
+        }
+
+    }
+    protected void clearEntry() {
+        strToShow.clear();
+        setTextField1();
+    }
+    protected void showDialog2() {
+        dialog2.setVisible(true);
+    }
+    private void closeDialog1(MouseEvent e) {
+        // TODO add your code here
+        dialog1.setVisible(false);
+    }
+
+    private void closeDialog2(MouseEvent e) {
+        // TODO add your code here
+        dialog2.setVisible(false);
+    }
+
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -104,13 +470,25 @@ public class GuessNumber extends JPanel {
         button9 = new JButton();
         textField1 = new JTextField();
         buttonReplay = new JButton();
-        buttonEqual = new JButton();
-        status = new JLabel();
+        buttonConfirm = new JButton();
+        status1 = new JLabel();
         status2 = new JLabel();
         status3 = new JLabel();
         status4 = new JLabel();
         status5 = new JLabel();
         status6 = new JLabel();
+        label25 = new JLabel();
+        label26 = new JLabel();
+        label27 = new JLabel();
+        label28 = new JLabel();
+        buttonBackspace = new JButton();
+        status = new JLabel();
+        dialog1 = new JDialog();
+        label29 = new JLabel();
+        button10 = new JButton();
+        dialog2 = new JDialog();
+        label30 = new JLabel();
+        button11 = new JButton();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -429,7 +807,7 @@ public class GuessNumber extends JPanel {
             }
         });
         add(button8);
-        button8.setBounds(305, 425, 80, 40);
+        button8.setBounds(300, 430, 80, 40);
 
         //---- button9 ----
         button9.setText("9");
@@ -453,12 +831,19 @@ public class GuessNumber extends JPanel {
         textField1.setHorizontalAlignment(SwingConstants.CENTER);
         textField1.setEditable(false);
         textField1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        textField1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                textField1KeyPressed(e);
+            }
+        });
         add(textField1);
-        textField1.setBounds(120, 310, 350, 50);
+        textField1.setBounds(120, 315, 350, 50);
 
         //---- buttonReplay ----
         buttonReplay.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
         buttonReplay.setText("\u5f00\u59cb/\u91cd\u7f6e");
+        buttonReplay.setFocusable(false);
         buttonReplay.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -466,33 +851,31 @@ public class GuessNumber extends JPanel {
             }
         });
         add(buttonReplay);
-        buttonReplay.setBounds(495, 375, 110, 40);
+        buttonReplay.setBounds(495, 145, 110, 40);
 
-        //---- buttonEqual ----
-        buttonEqual.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
-        buttonEqual.setFocusable(false);
-        buttonEqual.setText("\u786e\u8ba4");
-        buttonEqual.addMouseListener(new MouseAdapter() {
+        //---- buttonConfirm ----
+        buttonConfirm.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+        buttonConfirm.setFocusable(false);
+        buttonConfirm.setText("\u786e\u8ba4");
+        buttonConfirm.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                buttonEqualMousePressed(e);
+                buttonConfirmMousePressed(e);
             }
         });
-        add(buttonEqual);
-        buttonEqual.setBounds(495, 425, 110, 40);
+        add(buttonConfirm);
+        buttonConfirm.setBounds(495, 375, 110, 40);
 
-        //---- status ----
-        status.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        status.setText("Not Start");
-        status.setHorizontalAlignment(SwingConstants.CENTER);
-        status.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
-        status.setAlignmentY(0.0F);
-        add(status);
-        status.setBounds(325, 65, 120, 35);
+        //---- status1 ----
+        status1.setBorder(new BevelBorder(BevelBorder.LOWERED));
+        status1.setHorizontalAlignment(SwingConstants.CENTER);
+        status1.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
+        status1.setAlignmentY(0.0F);
+        add(status1);
+        status1.setBounds(325, 65, 120, 35);
 
         //---- status2 ----
         status2.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        status2.setText("Not Start");
         status2.setHorizontalAlignment(SwingConstants.CENTER);
         status2.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
         status2.setAlignmentY(0.0F);
@@ -501,7 +884,6 @@ public class GuessNumber extends JPanel {
 
         //---- status3 ----
         status3.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        status3.setText("Not Start");
         status3.setHorizontalAlignment(SwingConstants.CENTER);
         status3.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
         status3.setAlignmentY(0.0F);
@@ -510,7 +892,6 @@ public class GuessNumber extends JPanel {
 
         //---- status4 ----
         status4.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        status4.setText("Not Start");
         status4.setHorizontalAlignment(SwingConstants.CENTER);
         status4.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
         status4.setAlignmentY(0.0F);
@@ -519,7 +900,6 @@ public class GuessNumber extends JPanel {
 
         //---- status5 ----
         status5.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        status5.setText("Not Start");
         status5.setHorizontalAlignment(SwingConstants.CENTER);
         status5.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
         status5.setAlignmentY(0.0F);
@@ -528,14 +908,125 @@ public class GuessNumber extends JPanel {
 
         //---- status6 ----
         status6.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        status6.setText("Not Start");
         status6.setHorizontalAlignment(SwingConstants.CENTER);
         status6.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
         status6.setAlignmentY(0.0F);
         add(status6);
         status6.setBounds(325, 265, 120, 35);
 
-        setPreferredSize(new Dimension(635, 505));
+        //---- label25 ----
+        label25.setBorder(null);
+        label25.setFont(new Font("\u5e7c\u5706", Font.BOLD, 18));
+        label25.setHorizontalAlignment(SwingConstants.CENTER);
+        label25.setText("\uff1f");
+        add(label25);
+        label25.setBounds(145, 25, 35, 35);
+
+        //---- label26 ----
+        label26.setText("\uff1f");
+        label26.setBorder(null);
+        label26.setFont(new Font("\u5e7c\u5706", Font.BOLD, 18));
+        label26.setHorizontalAlignment(SwingConstants.CENTER);
+        add(label26);
+        label26.setBounds(185, 25, 35, 35);
+
+        //---- label27 ----
+        label27.setText("\uff1f");
+        label27.setBorder(null);
+        label27.setFont(new Font("\u5e7c\u5706", Font.BOLD, 18));
+        label27.setHorizontalAlignment(SwingConstants.CENTER);
+        add(label27);
+        label27.setBounds(225, 25, 35, 35);
+
+        //---- label28 ----
+        label28.setText("\uff1f");
+        label28.setBorder(null);
+        label28.setFont(new Font("\u5e7c\u5706", Font.BOLD, 18));
+        label28.setHorizontalAlignment(SwingConstants.CENTER);
+        add(label28);
+        label28.setBounds(265, 25, 35, 35);
+
+        //---- buttonBackspace ----
+        buttonBackspace.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonBackspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
+        buttonBackspace.setFocusable(false);
+        buttonBackspace.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonBackspaceMousePressed(e);
+            }
+        });
+        add(buttonBackspace);
+        buttonBackspace.setBounds(495, 425, 110, 40);
+
+        //---- status ----
+        status.setBorder(new BevelBorder(BevelBorder.LOWERED));
+        status.setText("Not Start");
+        status.setHorizontalAlignment(SwingConstants.CENTER);
+        status.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
+        status.setAlignmentY(0.0F);
+        add(status);
+        status.setBounds(325, 25, 120, 35);
+
+        setPreferredSize(new Dimension(630, 505));
+
+        //======== dialog1 ========
+        {
+            var dialog1ContentPane = dialog1.getContentPane();
+            dialog1ContentPane.setLayout(null);
+
+            //---- label29 ----
+            label29.setText("\u8bf7\u8f93\u51654\u4e2a\u6570\u5b57\uff01");
+            label29.setFont(new Font("\u5e7c\u5706", Font.BOLD, 16));
+            label29.setHorizontalAlignment(SwingConstants.CENTER);
+            dialog1ContentPane.add(label29);
+            label29.setBounds(20, 30, 155, 50);
+
+            //---- button10 ----
+            button10.setText("\u5173\u95ed");
+            button10.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+            button10.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    closeDialog1(e);
+                }
+            });
+            dialog1ContentPane.add(button10);
+            button10.setBounds(65, 105, button10.getPreferredSize().width, 40);
+
+            dialog1ContentPane.setPreferredSize(new Dimension(200, 200));
+            dialog1.pack();
+            dialog1.setLocationRelativeTo(dialog1.getOwner());
+        }
+
+        //======== dialog2 ========
+        {
+            var dialog2ContentPane = dialog2.getContentPane();
+            dialog2ContentPane.setLayout(null);
+
+            //---- label30 ----
+            label30.setText("\u8bf7\u70b9\u51fb\u201c\u5f00\u59cb/\u91cd\u7f6e\u201d\uff01");
+            label30.setFont(new Font("\u5e7c\u5706", Font.BOLD, 16));
+            label30.setHorizontalAlignment(SwingConstants.CENTER);
+            dialog2ContentPane.add(label30);
+            label30.setBounds(5, 30, 190, 50);
+
+            //---- button11 ----
+            button11.setText("\u5173\u95ed");
+            button11.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+            button11.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    closeDialog2(e);
+                }
+            });
+            dialog2ContentPane.add(button11);
+            button11.setBounds(65, 105, button11.getPreferredSize().width, 40);
+
+            dialog2ContentPane.setPreferredSize(new Dimension(200, 200));
+            dialog2.pack();
+            dialog2.setLocationRelativeTo(dialog2.getOwner());
+        }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -577,12 +1068,24 @@ public class GuessNumber extends JPanel {
     private JButton button9;
     private JTextField textField1;
     private JButton buttonReplay;
-    private JButton buttonEqual;
-    private JLabel status;
+    private JButton buttonConfirm;
+    private JLabel status1;
     private JLabel status2;
     private JLabel status3;
     private JLabel status4;
     private JLabel status5;
     private JLabel status6;
+    private JLabel label25;
+    private JLabel label26;
+    private JLabel label27;
+    private JLabel label28;
+    private JButton buttonBackspace;
+    private JLabel status;
+    private JDialog dialog1;
+    private JLabel label29;
+    private JButton button10;
+    private JDialog dialog2;
+    private JLabel label30;
+    private JButton button11;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

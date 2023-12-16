@@ -411,8 +411,8 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
-				"x": 305
-				"y": 425
+				"x": 300
+				"y": 430
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button9"
@@ -435,39 +435,40 @@ new FormModel {
 				"horizontalAlignment": 0
 				"editable": false
 				"cursor": new java.awt.Cursor( 2 )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textField1KeyPressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 350
 				"height": 50
 				"x": 120
-				"y": 310
+				"y": 315
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonReplay"
 				"font": new java.awt.Font( "宋体", 1, 16 )
 				"text": "开始/重置"
+				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonReplayMousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 110
+				"height": 40
+				"x": 495
+				"y": 145
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonConfirm"
+				"font": new java.awt.Font( "宋体", 1, 16 )
+				"focusable": false
+				"text": "确认"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonConfirmMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 110
 				"height": 40
 				"x": 495
 				"y": 375
 			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "buttonEqual"
-				"font": new java.awt.Font( "宋体", 1, 16 )
-				"focusable": false
-				"text": "确认"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonEqualMousePressed", true ) )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 110
-				"height": 40
-				"x": 495
-				"y": 425
-			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "status"
+				name: "status1"
 				"border": &BevelBorder1 new javax.swing.border.BevelBorder( 1, null, null, null, null )
-				"text": "Not Start"
 				"horizontalAlignment": 0
 				"font": &Font2 new java.awt.Font( "Consolas", 3, 20 )
 				"alignmentY": 0.0f
@@ -480,7 +481,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "status2"
 				"border": #BevelBorder1
-				"text": "Not Start"
 				"horizontalAlignment": 0
 				"font": #Font2
 				"alignmentY": 0.0f
@@ -493,7 +493,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "status3"
 				"border": #BevelBorder1
-				"text": "Not Start"
 				"horizontalAlignment": 0
 				"font": #Font2
 				"alignmentY": 0.0f
@@ -506,7 +505,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "status4"
 				"border": #BevelBorder1
-				"text": "Not Start"
 				"horizontalAlignment": 0
 				"font": #Font2
 				"alignmentY": 0.0f
@@ -519,7 +517,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "status5"
 				"border": #BevelBorder1
-				"text": "Not Start"
 				"horizontalAlignment": 0
 				"font": #Font2
 				"alignmentY": 0.0f
@@ -532,7 +529,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "status6"
 				"border": #BevelBorder1
-				"text": "Not Start"
 				"horizontalAlignment": 0
 				"font": #Font2
 				"alignmentY": 0.0f
@@ -542,9 +538,140 @@ new FormModel {
 				"x": 325
 				"y": 265
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label25"
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"font": new java.awt.Font( "幼圆", 1, 18 )
+				"horizontalAlignment": 0
+				"text": "？"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 35
+				"height": 35
+				"x": 145
+				"y": 25
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label26"
+				"text": "？"
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"font": new java.awt.Font( "幼圆", 1, 18 )
+				"horizontalAlignment": 0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 35
+				"height": 35
+				"x": 185
+				"y": 25
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label27"
+				"text": "？"
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"font": new java.awt.Font( "幼圆", 1, 18 )
+				"horizontalAlignment": 0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 35
+				"height": 35
+				"x": 225
+				"y": 25
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label28"
+				"text": "？"
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"font": new java.awt.Font( "幼圆", 1, 18 )
+				"horizontalAlignment": 0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 35
+				"height": 35
+				"x": 265
+				"y": 25
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonBackspace"
+				"font": new java.awt.Font( "Consolas", 0, 16 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/delete(1).png" )
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonBackspaceMousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 110
+				"height": 40
+				"x": 495
+				"y": 425
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "status"
+				"border": new javax.swing.border.BevelBorder( 1, null, null, null, null )
+				"text": "Not Start"
+				"horizontalAlignment": 0
+				"font": new java.awt.Font( "Consolas", 3, 20 )
+				"alignmentY": 0.0f
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 120
+				"height": 35
+				"x": 325
+				"y": 25
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 20, 0 )
-			"size": new java.awt.Dimension( 635, 505 )
+			"size": new java.awt.Dimension( 630, 505 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+			"autoSize": false
+		} ) {
+			name: "dialog1"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label29"
+				"text": "请输入4个数字！"
+				"font": &Font3 new java.awt.Font( "幼圆", 1, 16 )
+				"horizontalAlignment": 0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 20
+				"y": 30
+				"width": 155
+				"height": 50
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button10"
+				"text": "关闭"
+				"font": &Font4 new java.awt.Font( "宋体", 1, 16 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "closeDialog1", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 65
+				"y": 105
+				"height": 40
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 90, 510 )
+			"size": &Dimension0 new java.awt.Dimension( 200, 200 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+			"autoSize": false
+		} ) {
+			name: "dialog2"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label30"
+				"text": "请点击“开始/重置”！"
+				"font": #Font3
+				"horizontalAlignment": 0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 5
+				"y": 30
+				"width": 190
+				"height": 50
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button11"
+				"text": "关闭"
+				"font": #Font4
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "closeDialog2", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 65
+				"y": 105
+				"height": 40
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": #Dimension0
+			"location": new java.awt.Point( 300, 510 )
 		} )
 	}
 }
