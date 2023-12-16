@@ -4,16 +4,28 @@ import java.util.ArrayList;
 import java.util.Random;
 import Source.Tools.*;
 /**
- * @author yury
- * @Description:
- * @date 2023/12/12 14:56
+ * Description: Utilities for 24-point game.
+ * @author Yury
  */
 public class Utilities24 {
     Random random = new Random();
-
+    /**
+     * Description: To get a random number from 1 to mod.
+     * 
+     * @param mod int, modulus
+     * @return int      
+     * @author Yury
+     */
     protected int getRandomNum(int mod) {
         return (random.nextInt() % mod + mod) % mod + 1;
     }
+    /**
+     * Description: Get a sign of operation through op.
+     *
+     * @param op int
+     * @return java.lang.String
+     * @author Yury
+     */
     protected String getOp(int op) {
         if (op == 1) return "+";
         else if (op == 2) return "-";
@@ -21,11 +33,28 @@ public class Utilities24 {
         else return "\u00F7";
     }
     ArrayList<String> ansList = new ArrayList<>();
+    /**
+     * Description: If the answer equals to 24, add it to the answer list.
+     *
+     * @param ans String
+     * @param model String, the equation
+     * @author Yury
+     */
     protected void checkAns(String ans, String model) {
         if (ans != null && ans.equals("24")) {
             ansList.add(model);
         }
     }
+    /**
+     * Description: To check if the equation with a, b, c and d has an answer.
+     *
+     * @param a int
+     * @param b int
+     * @param c int
+     * @param d int
+     * @return boolean
+     * @author Yury
+     */
     protected boolean checkExistingAnswer(int a, int b, int c, int d) {
         ansList.clear();
         int op1, op2, op3;

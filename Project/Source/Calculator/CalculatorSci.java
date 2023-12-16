@@ -31,6 +31,7 @@ public class CalculatorSci extends JPanel implements Calculator{
     public JTextField getTextField1() {
         return textField1;
     }
+
     private void button1MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
@@ -96,28 +97,28 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_dotMousePressed(MouseEvent e) {
+    private void buttonDotMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_PERIOD);
         }
     }
 
-    private void button_absMousePressed(MouseEvent e) {
+    private void buttonAbsMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_A);
         }
     }
 
-    private void button_paiMousePressed(MouseEvent e) {
+    private void buttonPaiMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_P);
         }
     }
 
-    private void button_pow2MousePressed(MouseEvent e) {
+    private void buttonPow2MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
@@ -129,7 +130,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_xpowyMousePressed(MouseEvent e) {
+    private void buttonXpowyMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
@@ -138,42 +139,42 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_equalMousePressed(MouseEvent e) {
+    private void buttonEqualMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ENTER);
         }
     }
 
-    private void button_plusMousePressed(MouseEvent e) {
+    private void buttonPlusMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ADD);
         }
     }
 
-    private void button_minusMousePressed(MouseEvent e) {
+    private void buttonMinusMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_MINUS);
         }
     }
 
-    private void button_mulMousePressed(MouseEvent e) {
+    private void buttonMulMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_MULTIPLY);
         }
     }
 
-    private void button_divMousePressed(MouseEvent e) {
+    private void buttonDivMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_DIVIDE);
         }
     }
 
-    private void button_percentMousePressed(MouseEvent e) {
+    private void buttonPercentMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
@@ -186,7 +187,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_cleanEntryMousePressed(MouseEvent e) {
+    private void buttonCleanEntryMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ESCAPE);
@@ -194,7 +195,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_leftMousePressed(MouseEvent e) {
+    private void buttonLeftMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
@@ -203,7 +204,7 @@ public class CalculatorSci extends JPanel implements Calculator{
             robot.keyRelease(KeyEvent.VK_SHIFT);
         }
     }
-    private void button_rightMousePressed(MouseEvent e) {
+    private void buttonRightMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
@@ -212,18 +213,18 @@ public class CalculatorSci extends JPanel implements Calculator{
             robot.keyRelease(KeyEvent.VK_SHIFT);
         }
     }
-    private void button_smokeMousePressed(MouseEvent e) {
+    private void buttonSmokeMousePressed(MouseEvent e) {
         // TODO add your code here
     }
 
-    private void button_DavidMousePressed(MouseEvent e) {
+    private void buttonDavidMousePressed(MouseEvent e) {
         // TODO add your code here
     }
     private void progressBar1MouseReleased(MouseEvent e) {
         // TODO add your code here
 
     }
-    private void button_backspaceMousePressed(MouseEvent e) {
+    private void buttonBackspaceMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
@@ -232,21 +233,21 @@ public class CalculatorSci extends JPanel implements Calculator{
     }
 
 
-    private void button_eMousePressed(MouseEvent e) {
+    private void buttonEMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_E);
         }
     }
 
-    private void button_modMousePressed(MouseEvent e) {
+    private void buttonModMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_M);
         }
     }
 
-    private void button_facMousePressed(MouseEvent e) {
+    private void buttonFacMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
@@ -256,7 +257,7 @@ public class CalculatorSci extends JPanel implements Calculator{
     }
 
 
-    private void button_tenpowMousePressed(MouseEvent e) {
+    private void buttonTenpowMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_1);
@@ -267,7 +268,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_logMousePressed(MouseEvent e) {
+    private void buttonLogMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_O);
@@ -275,7 +276,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_lnMousePressed(MouseEvent e) {
+    private void buttonLnMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_L);
@@ -283,14 +284,14 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_sqrtMousePressed(MouseEvent e) {
+    private void buttonSqrtMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_G);
             robot.keyRelease(KeyEvent.VK_G);
         }
     }
-    private void button_sinMousePressed(MouseEvent e) {
+    private void buttonSinMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_S);
@@ -298,7 +299,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_cosMousePressed(MouseEvent e) {
+    private void buttonCosMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_C);
@@ -306,7 +307,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void button_tanMousePressed(MouseEvent e) {
+    private void buttonTanMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_T);
@@ -317,6 +318,12 @@ public class CalculatorSci extends JPanel implements Calculator{
     private ArrayList<String> strToShow = new ArrayList<>();
     private String lastCh = "";
     protected int cntLeftBracket = 0;
+    /**
+     * Description: According to the char input, choose a function to input a char into the textField.
+     *
+     * @param e KeyEvent
+     * @author Yury
+     */
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
         String ch = String.valueOf(e.getKeyChar());
@@ -355,6 +362,11 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
         textField1.setText(String.valueOf(tmp));
     }
+    /**
+     * Description: Input a dot.
+     *
+     * @author Yury
+     */
     protected void inputDot() {
         if (!UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")") && !lastCh.equals(".")) {
             if (!UtilitiesSci.checkNum(lastCh)) {
@@ -366,6 +378,12 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ".";
         }
     }
+    /**
+     * Description: Input a number.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputNum(String ch) {
         if (!UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add(ch);
@@ -373,6 +391,12 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
+    /**
+     * Description: Input ¦Ð or e.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputPIorE(String ch) {
         if (!UtilitiesSci.checkNum((lastCh)) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             if (ch.equals("p")) {
@@ -386,6 +410,12 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
         
     }
+    /**
+     * Description: Input mod.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputMod(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("m");
@@ -393,6 +423,12 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
+    /**
+     * Description: Input the mark of power.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputPow(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("^");
@@ -400,6 +436,12 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
+    /**
+     * Description: Input function with left bracket.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputLeftBracketFunction(String ch) {
         if (!UtilitiesSci.checkNum((lastCh)) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             if (ch.equals("s")) {
@@ -431,10 +473,22 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
+    /**
+     * Description: Input sign of operation.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputOperation(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add(ch);
-            strToShow.add(ch);
+            if (ch.equals("/")) {
+                strToShow.add("\u00F7");
+            } else if (ch.equals("*")) {
+                strToShow.add("\u00D7");
+            } else {
+                strToShow.add(ch);
+            }
             lastCh = ch;
         } else if (ch.equals("-")) {
             if (UtilitiesSci.checkLeftBracketFunction(lastCh) || lastCh.equals("(") || lastCh.isEmpty() || lastCh.equals("=")) {
@@ -444,6 +498,12 @@ public class CalculatorSci extends JPanel implements Calculator{
             }
         }
     }
+    /**
+     * Description: Input a left bracket.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputLeftBracket(String ch) {
         if (!UtilitiesSci.checkNum(lastCh) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add("(");
@@ -452,6 +512,12 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
+    /**
+     * Description: Input a right bracket.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputRightBracket(String ch) {
         if (cntLeftBracket > 0 && (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")"))) {
             strToCal.add(")");
@@ -459,6 +525,11 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
+    /**
+     * Description: backspace
+     *
+     * @author Yury
+     */
     protected void backSpace() {
         if (!strToShow.isEmpty()) {
             strToCal.remove(strToCal.size() - 1);
@@ -471,6 +542,11 @@ public class CalculatorSci extends JPanel implements Calculator{
             }
         }
     }
+    /**
+     * Description: Calculate the equation and give the answer.
+     *
+     * @author Yury
+     */
     protected void getResult() {
         StringBuilder tmp = new StringBuilder();
         StringBuilder tmp2 = new StringBuilder();
@@ -496,6 +572,11 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = "=";
         }
     }
+    /**
+     * Description: Clear the textField.
+     *
+     * @author Yury
+     */
     protected void clearEntry() {
         strToShow.clear();
         strToCal.clear();
@@ -516,38 +597,38 @@ public class CalculatorSci extends JPanel implements Calculator{
         button8 = new JButton();
         button9 = new JButton();
         button0 = new JButton();
-        button_dot = new JButton();
-        button_abs = new JButton();
-        button_pow2 = new JButton();
-        button_sqrt = new JButton();
-        button_equal = new JButton();
-        button_plus = new JButton();
-        button_minus = new JButton();
-        button_mul = new JButton();
-        button_div = new JButton();
-        button_percent = new JButton();
-        button_cleanEntry = new JButton();
+        buttonDot = new JButton();
+        buttonAbs = new JButton();
+        buttonPow2 = new JButton();
+        buttonSqrt = new JButton();
+        buttonEqual = new JButton();
+        buttonPlus = new JButton();
+        buttonMinus = new JButton();
+        buttonMul = new JButton();
+        buttonDiv = new JButton();
+        buttonPercent = new JButton();
+        buttonCleanEntry = new JButton();
         button_smoke = new JButton();
-        button_David = new JButton();
-        button_backspace = new JButton();
+        buttonDavid = new JButton();
+        buttonBackspace = new JButton();
         scrollPane3 = new JScrollPane();
         textField1 = new JTextField();
         progressBar1 = new JProgressBar();
         scrollPane1 = new JScrollPane();
         label1 = new JLabel();
-        button_left = new JButton();
-        button_right = new JButton();
-        button_fac = new JButton();
-        button_mod = new JButton();
-        button_e = new JButton();
-        button_pai = new JButton();
-        button_xpowy = new JButton();
-        button_tenpow = new JButton();
-        button_log = new JButton();
-        button_ln = new JButton();
-        button_sin = new JButton();
-        button_cos = new JButton();
-        button_tan = new JButton();
+        buttonLeft = new JButton();
+        buttonRight = new JButton();
+        buttonFac = new JButton();
+        buttonMod = new JButton();
+        buttonE = new JButton();
+        buttonPai = new JButton();
+        buttonXpowy = new JButton();
+        buttonTenpow = new JButton();
+        buttonLog = new JButton();
+        buttonLn = new JButton();
+        buttonSin = new JButton();
+        buttonCos = new JButton();
+        buttonTan = new JButton();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -683,148 +764,148 @@ public class CalculatorSci extends JPanel implements Calculator{
         add(button0);
         button0.setBounds(240, 510, 80, 40);
 
-        //---- button_dot ----
-        button_dot.setText(".");
-        button_dot.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_dot.setFocusable(false);
-        button_dot.addMouseListener(new MouseAdapter() {
+        //---- buttonDot ----
+        buttonDot.setText(".");
+        buttonDot.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonDot.setFocusable(false);
+        buttonDot.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_dotMousePressed(e);
+                buttonDotMousePressed(e);
             }
         });
-        add(button_dot);
-        button_dot.setBounds(325, 510, 80, 40);
+        add(buttonDot);
+        buttonDot.setBounds(325, 510, 80, 40);
 
-        //---- button_abs ----
-        button_abs.setText("abs");
-        button_abs.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_abs.setFocusable(false);
-        button_abs.addMouseListener(new MouseAdapter() {
+        //---- buttonAbs ----
+        buttonAbs.setText("abs");
+        buttonAbs.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonAbs.setFocusable(false);
+        buttonAbs.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_absMousePressed(e);
+                buttonAbsMousePressed(e);
             }
         });
-        add(button_abs);
-        button_abs.setBounds(155, 510, 80, 40);
+        add(buttonAbs);
+        buttonAbs.setBounds(155, 510, 80, 40);
 
-        //---- button_pow2 ----
-        button_pow2.setText("x^2");
-        button_pow2.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_pow2.setFocusable(false);
-        button_pow2.addMouseListener(new MouseAdapter() {
+        //---- buttonPow2 ----
+        buttonPow2.setText("x^2");
+        buttonPow2.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonPow2.setFocusable(false);
+        buttonPow2.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_pow2MousePressed(e);
+                buttonPow2MousePressed(e);
             }
         });
-        add(button_pow2);
-        button_pow2.setBounds(70, 285, 80, 40);
+        add(buttonPow2);
+        buttonPow2.setBounds(70, 285, 80, 40);
 
-        //---- button_sqrt ----
-        button_sqrt.setText("\u221ax");
-        button_sqrt.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_sqrt.setFocusable(false);
-        button_sqrt.addMouseListener(new MouseAdapter() {
+        //---- buttonSqrt ----
+        buttonSqrt.setText("\u221ax");
+        buttonSqrt.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonSqrt.setFocusable(false);
+        buttonSqrt.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_sqrtMousePressed(e);
+                buttonSqrtMousePressed(e);
             }
         });
-        add(button_sqrt);
-        button_sqrt.setBounds(70, 330, 80, 40);
+        add(buttonSqrt);
+        buttonSqrt.setBounds(70, 330, 80, 40);
 
-        //---- button_equal ----
-        button_equal.setText("=");
-        button_equal.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_equal.setFocusable(false);
-        button_equal.addMouseListener(new MouseAdapter() {
+        //---- buttonEqual ----
+        buttonEqual.setText("=");
+        buttonEqual.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonEqual.setFocusable(false);
+        buttonEqual.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_equalMousePressed(e);
+                buttonEqualMousePressed(e);
             }
         });
-        add(button_equal);
-        button_equal.setBounds(410, 510, 80, 40);
+        add(buttonEqual);
+        buttonEqual.setBounds(410, 510, 80, 40);
 
-        //---- button_plus ----
-        button_plus.setText("+");
-        button_plus.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_plus.setFocusable(false);
-        button_plus.addMouseListener(new MouseAdapter() {
+        //---- buttonPlus ----
+        buttonPlus.setText("+");
+        buttonPlus.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonPlus.setFocusable(false);
+        buttonPlus.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_plusMousePressed(e);
+                buttonPlusMousePressed(e);
             }
         });
-        add(button_plus);
-        button_plus.setBounds(410, 465, 80, 40);
+        add(buttonPlus);
+        buttonPlus.setBounds(410, 465, 80, 40);
 
-        //---- button_minus ----
-        button_minus.setText("-");
-        button_minus.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_minus.setFocusable(false);
-        button_minus.addMouseListener(new MouseAdapter() {
+        //---- buttonMinus ----
+        buttonMinus.setText("-");
+        buttonMinus.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonMinus.setFocusable(false);
+        buttonMinus.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_minusMousePressed(e);
+                buttonMinusMousePressed(e);
             }
         });
-        add(button_minus);
-        button_minus.setBounds(410, 420, 80, 40);
+        add(buttonMinus);
+        buttonMinus.setBounds(410, 420, 80, 40);
 
-        //---- button_mul ----
-        button_mul.setText("\u00d7");
-        button_mul.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_mul.setFocusable(false);
-        button_mul.addMouseListener(new MouseAdapter() {
+        //---- buttonMul ----
+        buttonMul.setText("\u00d7");
+        buttonMul.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonMul.setFocusable(false);
+        buttonMul.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_mulMousePressed(e);
+                buttonMulMousePressed(e);
             }
         });
-        add(button_mul);
-        button_mul.setBounds(410, 375, 80, 40);
+        add(buttonMul);
+        buttonMul.setBounds(410, 375, 80, 40);
 
-        //---- button_div ----
-        button_div.setText("\u00f7");
-        button_div.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_div.setFocusable(false);
-        button_div.addMouseListener(new MouseAdapter() {
+        //---- buttonDiv ----
+        buttonDiv.setText("\u00f7");
+        buttonDiv.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonDiv.setFocusable(false);
+        buttonDiv.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_divMousePressed(e);
+                buttonDivMousePressed(e);
             }
         });
-        add(button_div);
-        button_div.setBounds(410, 330, 80, 40);
+        add(buttonDiv);
+        buttonDiv.setBounds(410, 330, 80, 40);
 
-        //---- button_percent ----
-        button_percent.setText("%");
-        button_percent.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_percent.setFocusable(false);
-        button_percent.addMouseListener(new MouseAdapter() {
+        //---- buttonPercent ----
+        buttonPercent.setText("%");
+        buttonPercent.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonPercent.setFocusable(false);
+        buttonPercent.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_percentMousePressed(e);
+                buttonPercentMousePressed(e);
             }
         });
-        add(button_percent);
-        button_percent.setBounds(70, 240, 80, 40);
+        add(buttonPercent);
+        buttonPercent.setBounds(70, 240, 80, 40);
 
-        //---- button_cleanEntry ----
-        button_cleanEntry.setText("CE");
-        button_cleanEntry.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_cleanEntry.setFocusable(false);
-        button_cleanEntry.addMouseListener(new MouseAdapter() {
+        //---- buttonCleanEntry ----
+        buttonCleanEntry.setText("CE");
+        buttonCleanEntry.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonCleanEntry.setFocusable(false);
+        buttonCleanEntry.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_cleanEntryMousePressed(e);
+                buttonCleanEntryMousePressed(e);
             }
         });
-        add(button_cleanEntry);
-        button_cleanEntry.setBounds(325, 240, 80, 40);
+        add(buttonCleanEntry);
+        buttonCleanEntry.setBounds(325, 240, 80, 40);
 
         //---- button_smoke ----
         button_smoke.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
@@ -834,38 +915,38 @@ public class CalculatorSci extends JPanel implements Calculator{
         button_smoke.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_smokeMousePressed(e);
+                buttonSmokeMousePressed(e);
             }
         });
         add(button_smoke);
         button_smoke.setBounds(510, 405, 170, 145);
 
-        //---- button_David ----
-        button_David.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
-        button_David.setIcon(new ImageIcon(getClass().getResource("/Resources/img/David.png")));
-        button_David.setFocusable(false);
-        button_David.setText("\u64ad\u653e");
-        button_David.addMouseListener(new MouseAdapter() {
+        //---- buttonDavid ----
+        buttonDavid.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+        buttonDavid.setIcon(new ImageIcon(getClass().getResource("/Resources/img/David.png")));
+        buttonDavid.setFocusable(false);
+        buttonDavid.setText("\u64ad\u653e");
+        buttonDavid.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_DavidMousePressed(e);
+                buttonDavidMousePressed(e);
             }
         });
-        add(button_David);
-        button_David.setBounds(510, 240, 170, 145);
+        add(buttonDavid);
+        buttonDavid.setBounds(510, 240, 170, 145);
 
-        //---- button_backspace ----
-        button_backspace.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_backspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
-        button_backspace.setFocusable(false);
-        button_backspace.addMouseListener(new MouseAdapter() {
+        //---- buttonBackspace ----
+        buttonBackspace.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonBackspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
+        buttonBackspace.setFocusable(false);
+        buttonBackspace.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_backspaceMousePressed(e);
+                buttonBackspaceMousePressed(e);
             }
         });
-        add(button_backspace);
-        button_backspace.setBounds(410, 240, 80, 40);
+        add(buttonBackspace);
+        buttonBackspace.setBounds(410, 240, 80, 40);
 
         //======== scrollPane3 ========
         {
@@ -919,187 +1000,187 @@ public class CalculatorSci extends JPanel implements Calculator{
         add(scrollPane1);
         scrollPane1.setBounds(60, 15, 630, 75);
 
-        //---- button_left ----
-        button_left.setText("(");
-        button_left.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_left.setFocusable(false);
-        button_left.setAlignmentY(0.0F);
-        button_left.addMouseListener(new MouseAdapter() {
+        //---- buttonLeft ----
+        buttonLeft.setText("(");
+        buttonLeft.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonLeft.setFocusable(false);
+        buttonLeft.setAlignmentY(0.0F);
+        buttonLeft.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_leftMousePressed(e);
+                buttonLeftMousePressed(e);
             }
         });
-        add(button_left);
-        button_left.setBounds(155, 330, 80, 40);
+        add(buttonLeft);
+        buttonLeft.setBounds(155, 330, 80, 40);
 
-        //---- button_right ----
-        button_right.setText(")");
-        button_right.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_right.setFocusable(false);
-        button_right.setAlignmentY(0.0F);
-        button_right.addMouseListener(new MouseAdapter() {
+        //---- buttonRight ----
+        buttonRight.setText(")");
+        buttonRight.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonRight.setFocusable(false);
+        buttonRight.setAlignmentY(0.0F);
+        buttonRight.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_rightMousePressed(e);
+                buttonRightMousePressed(e);
             }
         });
-        add(button_right);
-        button_right.setBounds(240, 330, 80, 40);
+        add(buttonRight);
+        buttonRight.setBounds(240, 330, 80, 40);
 
-        //---- button_fac ----
-        button_fac.setText("fact");
-        button_fac.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_fac.setFocusable(false);
-        button_fac.setAlignmentY(0.0F);
-        button_fac.addMouseListener(new MouseAdapter() {
+        //---- buttonFac ----
+        buttonFac.setText("fact");
+        buttonFac.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonFac.setFocusable(false);
+        buttonFac.setAlignmentY(0.0F);
+        buttonFac.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_facMousePressed(e);
+                buttonFacMousePressed(e);
             }
         });
-        add(button_fac);
-        button_fac.setBounds(325, 330, 80, 40);
+        add(buttonFac);
+        buttonFac.setBounds(325, 330, 80, 40);
 
-        //---- button_mod ----
-        button_mod.setText("mod");
-        button_mod.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_mod.setFocusable(false);
-        button_mod.addMouseListener(new MouseAdapter() {
+        //---- buttonMod ----
+        buttonMod.setText("mod");
+        buttonMod.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonMod.setFocusable(false);
+        buttonMod.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_modMousePressed(e);
+                buttonModMousePressed(e);
             }
         });
-        add(button_mod);
-        button_mod.setBounds(410, 285, 80, 40);
+        add(buttonMod);
+        buttonMod.setBounds(410, 285, 80, 40);
 
-        //---- button_e ----
-        button_e.setText("e");
-        button_e.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_e.setFocusable(false);
-        button_e.addMouseListener(new MouseAdapter() {
+        //---- buttonE ----
+        buttonE.setText("e");
+        buttonE.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonE.setFocusable(false);
+        buttonE.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_eMousePressed(e);
+                buttonEMousePressed(e);
             }
         });
-        add(button_e);
-        button_e.setBounds(240, 240, 80, 40);
+        add(buttonE);
+        buttonE.setBounds(240, 240, 80, 40);
 
-        //---- button_pai ----
-        button_pai.setText("\u03c0");
-        button_pai.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_pai.setFocusable(false);
-        button_pai.addMouseListener(new MouseAdapter() {
+        //---- buttonPai ----
+        buttonPai.setText("\u03c0");
+        buttonPai.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonPai.setFocusable(false);
+        buttonPai.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_paiMousePressed(e);
+                buttonPaiMousePressed(e);
             }
         });
-        add(button_pai);
-        button_pai.setBounds(155, 240, 80, 40);
+        add(buttonPai);
+        buttonPai.setBounds(155, 240, 80, 40);
 
-        //---- button_xpowy ----
-        button_xpowy.setText("x^y");
-        button_xpowy.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_xpowy.setFocusable(false);
-        button_xpowy.addMouseListener(new MouseAdapter() {
+        //---- buttonXpowy ----
+        buttonXpowy.setText("x^y");
+        buttonXpowy.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonXpowy.setFocusable(false);
+        buttonXpowy.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_xpowyMousePressed(e);
+                buttonXpowyMousePressed(e);
             }
         });
-        add(button_xpowy);
-        button_xpowy.setBounds(70, 375, 80, 40);
+        add(buttonXpowy);
+        buttonXpowy.setBounds(70, 375, 80, 40);
 
-        //---- button_tenpow ----
-        button_tenpow.setText("10^x");
-        button_tenpow.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_tenpow.setFocusable(false);
-        button_tenpow.addMouseListener(new MouseAdapter() {
+        //---- buttonTenpow ----
+        buttonTenpow.setText("10^x");
+        buttonTenpow.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonTenpow.setFocusable(false);
+        buttonTenpow.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_tenpowMousePressed(e);
+                buttonTenpowMousePressed(e);
             }
         });
-        add(button_tenpow);
-        button_tenpow.setBounds(70, 420, 80, 40);
+        add(buttonTenpow);
+        buttonTenpow.setBounds(70, 420, 80, 40);
 
-        //---- button_log ----
-        button_log.setText("log");
-        button_log.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_log.setFocusable(false);
-        button_log.addMouseListener(new MouseAdapter() {
+        //---- buttonLog ----
+        buttonLog.setText("log");
+        buttonLog.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonLog.setFocusable(false);
+        buttonLog.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_logMousePressed(e);
+                buttonLogMousePressed(e);
             }
         });
-        add(button_log);
-        button_log.setBounds(70, 465, 80, 40);
+        add(buttonLog);
+        buttonLog.setBounds(70, 465, 80, 40);
 
-        //---- button_ln ----
-        button_ln.setText("ln");
-        button_ln.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_ln.setFocusable(false);
-        button_ln.addMouseListener(new MouseAdapter() {
+        //---- buttonLn ----
+        buttonLn.setText("ln");
+        buttonLn.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonLn.setFocusable(false);
+        buttonLn.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_lnMousePressed(e);
+                buttonLnMousePressed(e);
             }
         });
-        add(button_ln);
-        button_ln.setBounds(70, 510, 80, 40);
+        add(buttonLn);
+        buttonLn.setBounds(70, 510, 80, 40);
 
-        //---- button_sin ----
-        button_sin.setText(" sin ");
-        button_sin.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_sin.setPreferredSize(null);
-        button_sin.setMinimumSize(new Dimension(80, 40));
-        button_sin.setMaximumSize(new Dimension(100, 50));
-        button_sin.setMargin(null);
-        button_sin.setFocusable(false);
-        button_sin.addMouseListener(new MouseAdapter() {
+        //---- buttonSin ----
+        buttonSin.setText(" sin ");
+        buttonSin.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonSin.setPreferredSize(null);
+        buttonSin.setMinimumSize(new Dimension(80, 40));
+        buttonSin.setMaximumSize(new Dimension(100, 50));
+        buttonSin.setMargin(null);
+        buttonSin.setFocusable(false);
+        buttonSin.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_sinMousePressed(e);
+                buttonSinMousePressed(e);
             }
         });
-        add(button_sin);
-        button_sin.setBounds(155, 285, 80, 40);
+        add(buttonSin);
+        buttonSin.setBounds(155, 285, 80, 40);
 
-        //---- button_cos ----
-        button_cos.setText(" cos ");
-        button_cos.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_cos.setMinimumSize(new Dimension(80, 40));
-        button_cos.setMaximumSize(new Dimension(100, 50));
-        button_cos.setMargin(null);
-        button_cos.setFocusable(false);
-        button_cos.addMouseListener(new MouseAdapter() {
+        //---- buttonCos ----
+        buttonCos.setText(" cos ");
+        buttonCos.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonCos.setMinimumSize(new Dimension(80, 40));
+        buttonCos.setMaximumSize(new Dimension(100, 50));
+        buttonCos.setMargin(null);
+        buttonCos.setFocusable(false);
+        buttonCos.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_cosMousePressed(e);
+                buttonCosMousePressed(e);
             }
         });
-        add(button_cos);
-        button_cos.setBounds(240, 285, 80, 40);
+        add(buttonCos);
+        buttonCos.setBounds(240, 285, 80, 40);
 
-        //---- button_tan ----
-        button_tan.setText(" tan ");
-        button_tan.setFont(new Font("Consolas", Font.PLAIN, 16));
-        button_tan.setMinimumSize(new Dimension(80, 40));
-        button_tan.setMaximumSize(new Dimension(80, 40));
-        button_tan.setMargin(null);
-        button_tan.setFocusable(false);
-        button_tan.addMouseListener(new MouseAdapter() {
+        //---- buttonTan ----
+        buttonTan.setText(" tan ");
+        buttonTan.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonTan.setMinimumSize(new Dimension(80, 40));
+        buttonTan.setMaximumSize(new Dimension(80, 40));
+        buttonTan.setMargin(null);
+        buttonTan.setFocusable(false);
+        buttonTan.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button_tanMousePressed(e);
+                buttonTanMousePressed(e);
             }
         });
-        add(button_tan);
-        button_tan.setBounds(325, 285, 80, 40);
+        add(buttonTan);
+        buttonTan.setBounds(325, 285, 80, 40);
 
         setPreferredSize(new Dimension(755, 655));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -1116,37 +1197,37 @@ public class CalculatorSci extends JPanel implements Calculator{
     private JButton button8;
     private JButton button9;
     private JButton button0;
-    private JButton button_dot;
-    private JButton button_abs;
-    private JButton button_pow2;
-    private JButton button_sqrt;
-    private JButton button_equal;
-    private JButton button_plus;
-    private JButton button_minus;
-    private JButton button_mul;
-    private JButton button_div;
-    private JButton button_percent;
-    private JButton button_cleanEntry;
+    private JButton buttonDot;
+    private JButton buttonAbs;
+    private JButton buttonPow2;
+    private JButton buttonSqrt;
+    private JButton buttonEqual;
+    private JButton buttonPlus;
+    private JButton buttonMinus;
+    private JButton buttonMul;
+    private JButton buttonDiv;
+    private JButton buttonPercent;
+    private JButton buttonCleanEntry;
     private JButton button_smoke;
-    private JButton button_David;
-    private JButton button_backspace;
+    private JButton buttonDavid;
+    private JButton buttonBackspace;
     private JScrollPane scrollPane3;
     private JTextField textField1;
     private JProgressBar progressBar1;
     private JScrollPane scrollPane1;
     private JLabel label1;
-    private JButton button_left;
-    private JButton button_right;
-    private JButton button_fac;
-    private JButton button_mod;
-    private JButton button_e;
-    private JButton button_pai;
-    private JButton button_xpowy;
-    private JButton button_tenpow;
-    private JButton button_log;
-    private JButton button_ln;
-    private JButton button_sin;
-    private JButton button_cos;
-    private JButton button_tan;
+    private JButton buttonLeft;
+    private JButton buttonRight;
+    private JButton buttonFac;
+    private JButton buttonMod;
+    private JButton buttonE;
+    private JButton buttonPai;
+    private JButton buttonXpowy;
+    private JButton buttonTenpow;
+    private JButton buttonLog;
+    private JButton buttonLn;
+    private JButton buttonSin;
+    private JButton buttonCos;
+    private JButton buttonTan;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

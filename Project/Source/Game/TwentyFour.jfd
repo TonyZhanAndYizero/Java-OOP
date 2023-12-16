@@ -84,11 +84,11 @@ new FormModel {
 				"y": 60
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_div"
+				name: "buttonDiv"
 				"text": "÷"
 				"font": &Font0 new java.awt.Font( "Consolas", 0, 16 )
 				"focusable": false
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_divMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonDivMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
@@ -96,11 +96,11 @@ new FormModel {
 				"y": 225
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_mul"
+				name: "buttonMul"
 				"text": "×"
 				"font": #Font0
 				"focusable": false
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_mulMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonMulMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
@@ -108,11 +108,11 @@ new FormModel {
 				"y": 225
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_minus"
+				name: "buttonMinus"
 				"text": "-"
 				"font": #Font0
 				"focusable": false
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_minusMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonMinusMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
@@ -120,11 +120,11 @@ new FormModel {
 				"y": 225
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_plus"
+				name: "buttonPlus"
 				"text": "+"
 				"font": #Font0
 				"focusable": false
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_plusMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonPlusMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
@@ -132,12 +132,12 @@ new FormModel {
 				"y": 225
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_right"
+				name: "buttonRight"
 				"text": ")"
 				"font": &Font1 new java.awt.Font( "Consolas", 0, 16 )
 				"focusable": false
 				"alignmentY": 0.0f
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_rightMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonRightMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
@@ -145,12 +145,12 @@ new FormModel {
 				"y": 275
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_left"
+				name: "buttonLeft"
 				"text": "("
 				"font": #Font1
 				"focusable": false
 				"alignmentY": 0.0f
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_leftMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonLeftMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
@@ -158,11 +158,11 @@ new FormModel {
 				"y": 275
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_cleanEntry"
+				name: "buttonCleanEntry"
 				"text": "CE"
 				"font": #Font1
 				"focusable": false
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_cleanEntryMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonCleanEntryMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
@@ -170,11 +170,11 @@ new FormModel {
 				"y": 275
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_backspace"
+				name: "buttonBackspace"
 				"font": #Font0
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/delete(1).png" )
 				"focusable": false
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_backspaceMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonBackspaceMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
@@ -207,7 +207,7 @@ new FormModel {
 				"font": new java.awt.Font( "宋体", 1, 16 )
 				"focusable": false
 				"text": "确认"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_equalMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonEqualMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 110
 				"height": 40
