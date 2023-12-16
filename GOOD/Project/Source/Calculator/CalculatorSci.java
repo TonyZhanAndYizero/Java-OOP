@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 import Source.Tools.*;
-import Source.UtilitiesSci;
 
 /**
  * @author Yury

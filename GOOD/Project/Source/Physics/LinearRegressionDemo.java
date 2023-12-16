@@ -73,10 +73,10 @@ public class LinearRegressionDemo extends JFrame {
     }
 
     private void saveImage(File file) {
-        BufferedImage image = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
         // 从BufferedImage对象中获取一个Graphics2D对象
         Graphics2D g = image.createGraphics();
-        //g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setBackground(Color.WHITE);
         g.clearRect(0, 0, 1000, 1000);
         draw(g, drawPanel);
@@ -88,6 +88,7 @@ public class LinearRegressionDemo extends JFrame {
             // 处理异常
             e.printStackTrace();
         }
+
     }
 
     private void draw(Graphics g, JPanel jPanel) {
@@ -97,6 +98,7 @@ public class LinearRegressionDemo extends JFrame {
         BasicStroke stokeLine = new BasicStroke(0.5f);
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(stokeLine);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setColor(Color.LIGHT_GRAY);
         for (int i = 1; i < 21; i++) {
             g.drawLine(150 + i * 35, 900, 150 + i * 35, 50);

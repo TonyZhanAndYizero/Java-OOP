@@ -8,5 +8,7 @@ import java.awt.event.KeyEvent;
  * @date 2023/11/23 13:37
  */
 public class CalProgressSci {
+    public void KeyPressed(KeyEvent e) {
 
+    }
 }

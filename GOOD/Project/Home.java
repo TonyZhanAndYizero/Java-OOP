@@ -1,9 +1,12 @@
 import java.awt.event.*;
 import javax.swing.border.*;
 
+import Source.Calculator.CalculatorMatrix;
 import Source.Calculator.CalculatorSci;
 import Source.Calculator.CalculatorStd;
+import Source.Game.TwentyFour;
 import Source.Physics.LinearRegression;
+import Source.Physics.Variance;
 import Source.Transform.Angle;
 import Source.Transform.DecimalConversion;
 
@@ -31,12 +34,14 @@ public class Home extends JFrame {
         home.setVisible(true);
     }
 
+    private static CalculatorMatrix cm;
     private static CalculatorSci sci;
     private static CalculatorStd std;
     private static Angle angle;
     private static LinearRegression linearRegression;
     private static DecimalConversion decimalConversion;
-
+    private static TwentyFour twentyFour;
+    private static Variance variance;
     public Home() {
         try {
 //            //需要下载JTatto-1.6.13.jar到与src同级的lib中，然后在左上角项目结构中添加该库
@@ -63,6 +68,9 @@ public class Home extends JFrame {
         angle = new Angle();
         decimalConversion = new DecimalConversion();
         linearRegression = new LinearRegression();
+        twentyFour = new TwentyFour();
+        variance = new Variance();
+        cm=new CalculatorMatrix();
         initComponents();
     }
 
@@ -70,8 +78,7 @@ public class Home extends JFrame {
         // TODO add your code here
         this.setTitle("  Standard Calculator");
         getContentPane().removeAll();
-        getContentPane().add(std);
-        std.getTextField1().requestFocus();
+        getContentPane().add(cm);
         revalidate();
         repaint();
         pack();
@@ -118,6 +125,26 @@ public class Home extends JFrame {
         pack();
     }
 
+    private void showTwentyFour(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  24-Point Game");
+        getContentPane().removeAll();
+        getContentPane().add(twentyFour);
+        revalidate();
+        repaint();
+        pack();
+    }
+
+    private void showVariance(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  Variance");
+        getContentPane().removeAll();
+        getContentPane().add(variance);
+        revalidate();
+        repaint();
+        pack();
+    }
+
     private void initComponents() {
         ImageIcon icon = new ImageIcon("Project/Resources/img/icon.png"); //图片和项目同一路径，故不用图片的路径
         this.setIconImage(icon.getImage());
@@ -132,6 +159,7 @@ public class Home extends JFrame {
         radioButtonMenuItem5 = new JRadioButtonMenuItem();
         label3 = new JLabel();
         radioButtonMenuItem4 = new JRadioButtonMenuItem();
+        radioButtonMenuItem7 = new JRadioButtonMenuItem();
         label4 = new JLabel();
         radioButtonMenuItem6 = new JRadioButtonMenuItem();
         menu2 = new JMenu();
@@ -228,7 +256,7 @@ public class Home extends JFrame {
 
                 //---- radioButtonMenuItem4 ----
                 radioButtonMenuItem4.setText("\u4e00\u5143\u7ebf\u6027\u56de\u5f52");
-                radioButtonMenuItem4.setIcon(new ImageIcon(getClass().getResource("/Resources/img/linear.png")));
+                radioButtonMenuItem4.setIcon(new ImageIcon(getClass().getResource("/Resources/img/linear2.png")));
                 radioButtonMenuItem4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
                 radioButtonMenuItem4.setIconTextGap(5);
                 radioButtonMenuItem4.addMouseListener(new MouseAdapter() {
@@ -238,6 +266,19 @@ public class Home extends JFrame {
                     }
                 });
                 menu1.add(radioButtonMenuItem4);
+
+                //---- radioButtonMenuItem7 ----
+                radioButtonMenuItem7.setText("\u65b9\u5dee");
+                radioButtonMenuItem7.setIcon(new ImageIcon(getClass().getResource("/Resources/img/variance.png")));
+                radioButtonMenuItem7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                radioButtonMenuItem7.setIconTextGap(5);
+                radioButtonMenuItem7.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showVariance(e);
+                    }
+                });
+                menu1.add(radioButtonMenuItem7);
 
                 //---- label4 ----
                 label4.setText(" \u76ca\u667a ");
@@ -252,6 +293,13 @@ public class Home extends JFrame {
                 radioButtonMenuItem6.setText("24\u70b9");
                 radioButtonMenuItem6.setIcon(new ImageIcon(getClass().getResource("/Resources/img/24.png")));
                 radioButtonMenuItem6.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                radioButtonMenuItem6.setIconTextGap(5);
+                radioButtonMenuItem6.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showTwentyFour(e);
+                    }
+                });
                 menu1.add(radioButtonMenuItem6);
             }
             menuBar1.add(menu1);
@@ -282,6 +330,7 @@ public class Home extends JFrame {
         buttonGroup1.add(radioButtonMenuItem3);
         buttonGroup1.add(radioButtonMenuItem5);
         buttonGroup1.add(radioButtonMenuItem4);
+        buttonGroup1.add(radioButtonMenuItem7);
         buttonGroup1.add(radioButtonMenuItem6);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -297,6 +346,7 @@ public class Home extends JFrame {
     private JRadioButtonMenuItem radioButtonMenuItem5;
     private JLabel label3;
     private JRadioButtonMenuItem radioButtonMenuItem4;
+    private JRadioButtonMenuItem radioButtonMenuItem7;
     private JLabel label4;
     private JRadioButtonMenuItem radioButtonMenuItem6;
     private JMenu menu2;

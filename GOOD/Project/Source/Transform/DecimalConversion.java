@@ -32,8 +32,6 @@ public class DecimalConversion extends JPanel {
 
     private void solve(JTextField textField1, JTextField textField2, JComboBox<String> comboBox1, JComboBox<String> comboBox2) {
         String inputString = textField1.getText();
-        BigDecimal a = new BigDecimal(inputString);
-        inputString = a.toString();
         int p1 = comboBox1.getSelectedIndex();
         int p2 = comboBox2.getSelectedIndex();
 
@@ -182,8 +180,7 @@ public class DecimalConversion extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField1.getText();
-                        str1 = str1.replaceAll(str, "");
-                        textField1.setText(str1);
+                        textField1.setText(str1.substring(str.length()));
                         // 清空原始文本
                     });
                     firstInput = false;
@@ -201,6 +198,11 @@ public class DecimalConversion extends JPanel {
 
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
+//        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+//        {
+//            if(textField1.getText().length() == 1)
+//                textField1.setText("0");
+//        }
     }
 
     private void textField2CaretUpdate(CaretEvent e) {
@@ -235,9 +237,8 @@ public class DecimalConversion extends JPanel {
             private void handleInput() {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
-                        String str1 = textField2.getText();
-                        str1 = str1.replaceAll(str, "");
-                        textField2.setText(str1);
+                        String str1 = textField1.getText();
+                        textField1.setText(str1.substring(str.length()));
                         // 清空原始文本
                     });
                     firstInput = false;
@@ -256,17 +257,27 @@ public class DecimalConversion extends JPanel {
     private void comboBox1ItemStateChanged(ItemEvent e) {
         // TODO add your code here
         if (whichFocus)
+        {
+            textField1.setText("0");
             solve(textField1, textField2, comboBox1, comboBox2);
+        }
         else
+        {
             solve(textField2, textField1, comboBox2, comboBox1);
+        }
     }
 
     private void comboBox2ItemStateChanged(ItemEvent e) {
         // TODO add your code here
         if (whichFocus)
+        {
             solve(textField1, textField2, comboBox1, comboBox2);
+        }
         else
+        {
+            textField2.setText("0");
             solve(textField2, textField1, comboBox2, comboBox1);
+        }
     }
 
     private void initComponents() {

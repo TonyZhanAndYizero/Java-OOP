@@ -7,7 +7,6 @@ package Source.Physics;
 import java.awt.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -50,25 +49,32 @@ public class Variance extends JPanel {
             ave = ave.divide(n, 4, RoundingMode.HALF_UP);
             label5.setText(ave.toPlainString());
 
-            BigDecimal var=BigDecimal.ZERO;
-            for (BigDecimal bd:Nums) {
-                var=var.add(bd.subtract(ave).pow(2));
+            BigDecimal var = BigDecimal.ZERO;
+            for (BigDecimal bd : Nums) {
+                var = var.add(bd.subtract(ave).pow(2));
             }
-            var = var.divide(n.subtract(BigDecimal.ONE),4,RoundingMode.HALF_UP);
+            var = var.divide(n.subtract(BigDecimal.ONE), 4, RoundingMode.HALF_UP);
             label6.setText(var.toPlainString());
 
-            BigDecimal sqrtVar=var.sqrt(MathContext.DECIMAL64);
+            BigDecimal sqrtVar = var.sqrt(MathContext.DECIMAL64);
             label7.setText(sqrtVar.toPlainString());
 
-            BigDecimal ua=var.divide(n,4,RoundingMode.HALF_UP).sqrt(MathContext.DECIMAL64);
+            BigDecimal ua = var.divide(n, 8, RoundingMode.HALF_UP).sqrt(MathContext.DECIMAL128);
             label9.setText(ua.toPlainString());
 
-            BigDecimal deltaB=new BigDecimal(textField2.getText());
-            BigDecimal ub=deltaB.divide(new BigDecimal(3).sqrt(MathContext.DECIMAL64),4,RoundingMode.HALF_UP);
-            label12.setText(ub.toPlainString());
+            BigDecimal deltaB;
+            try {
+                deltaB = new BigDecimal(textField2.getText());
+                BigDecimal ub = deltaB.divide(new BigDecimal(3).sqrt(MathContext.DECIMAL64), 4, RoundingMode.HALF_UP);
+                label12.setText(ub.toPlainString());
 
-            BigDecimal u=(ua.pow(2).add(ub.pow(2))).sqrt(MathContext.DECIMAL64);
-            label14.setText(u.toPlainString());
+                BigDecimal u = (ua.pow(2).add(ub.pow(2))).sqrt(MathContext.DECIMAL64);
+                label14.setText(u.toPlainString());
+            } catch (NumberFormatException efe) {
+                label12.setText("null");
+                label14.setText("null");
+            }
+
         }
     }
 
@@ -94,10 +100,12 @@ public class Variance extends JPanel {
         label9 = new JLabel();
         label10 = new JLabel();
         label11 = new JLabel();
-        textField2 = new JTextField();
         label12 = new JLabel();
         label13 = new JLabel();
         label14 = new JLabel();
+        scrollPane1 = new JScrollPane();
+        textField2 = new JTextField();
+        label15 = new JLabel();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -106,7 +114,7 @@ public class Variance extends JPanel {
         //---- textField1 ----
         textField1.setBorder(new BevelBorder(BevelBorder.LOWERED));
         add(textField1);
-        textField1.setBounds(95, 85, 450, 45);
+        textField1.setBounds(105, 85, 450, 45);
 
         //---- label1 ----
         label1.setText("\u8bf7\u8f93\u5165\u5f85\u8ba1\u7b97\u6837\u672c\u6570\u7684\u5e8f\u5217(\u7528\u7a7a\u683c\u5206\u5f00):");
@@ -154,7 +162,7 @@ public class Variance extends JPanel {
             }
         });
         add(button1);
-        button1.setBounds(560, 90, 70, 35);
+        button1.setBounds(570, 90, 70, 35);
 
         //---- label8 ----
         label8.setIcon(new ImageIcon(getClass().getResource("/Resources/img/ua.png")));
@@ -169,34 +177,47 @@ public class Variance extends JPanel {
         //---- label10 ----
         label10.setIcon(new ImageIcon(getClass().getResource("/Resources/img/ub.png")));
         add(label10);
-        label10.setBounds(95, 585, 125, 80);
+        label10.setBounds(95, 615, 125, 80);
 
         //---- label11 ----
         label11.setIcon(new ImageIcon(getClass().getResource("/Resources/img/divSqrt3.png")));
         add(label11);
-        label11.setBounds(220, 585, label11.getPreferredSize().width, 80);
-
-        //---- textField2 ----
-        textField2.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        add(textField2);
-        textField2.setBounds(225, 590, 40, 30);
+        label11.setBounds(245, 615, 50, 80);
 
         //---- label12 ----
         label12.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
         add(label12);
-        label12.setBounds(290, 600, 340, 45);
+        label12.setBounds(345, 630, 285, 45);
 
         //---- label13 ----
         label13.setIcon(new ImageIcon(getClass().getResource("/Resources/img/u.png")));
         add(label13);
-        label13.setBounds(95, 665, 180, 80);
+        label13.setBounds(95, 695, 180, 80);
 
         //---- label14 ----
         label14.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
         add(label14);
-        label14.setBounds(275, 685, 355, 45);
+        label14.setBounds(280, 715, 350, 45);
 
-        setPreferredSize(new Dimension(755, 765));
+        //======== scrollPane1 ========
+        {
+            scrollPane1.setBorder(new BevelBorder(BevelBorder.LOWERED));
+
+            //---- textField2 ----
+            textField2.setFont(new Font("Times New Roman", Font.BOLD, 16));
+            scrollPane1.setViewportView(textField2);
+        }
+        add(scrollPane1);
+        scrollPane1.setBounds(225, 595, 90, 54);
+
+        //---- label15 ----
+        label15.setIcon(null);
+        label15.setText("=");
+        label15.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        add(label15);
+        label15.setBounds(320, 615, 20, 80);
+
+        setPreferredSize(new Dimension(755, 835));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -214,9 +235,11 @@ public class Variance extends JPanel {
     private JLabel label9;
     private JLabel label10;
     private JLabel label11;
-    private JTextField textField2;
     private JLabel label12;
     private JLabel label13;
     private JLabel label14;
+    private JScrollPane scrollPane1;
+    private JTextField textField2;
+    private JLabel label15;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
