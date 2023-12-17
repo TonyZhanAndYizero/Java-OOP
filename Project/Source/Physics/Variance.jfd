@@ -11,6 +11,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField1"
 				"border": new javax.swing.border.BevelBorder( 1, null, null, null, null )
+				"font": new java.awt.Font( "Times New Roman", 0, 20 )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 95
 				"y": 85

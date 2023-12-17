@@ -573,6 +573,7 @@ public class LinearRegression extends JPanel {
         button6.setText("\u5bfc\u5165");
         button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 4f));
         button6.setFocusable(false);
+        button6.setToolTipText("\u8bf7\u4e25\u683c\u4f7f\u7528 k: \u3001 x: \u548c y: \u6765\u533a\u5206(\u5747\u4e3a\u5168\u82f1\u5b57\u7b26\u5e76\u5c0f\u5199)");
         button6.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

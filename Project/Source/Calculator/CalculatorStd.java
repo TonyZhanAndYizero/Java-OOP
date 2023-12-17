@@ -316,11 +316,6 @@ public class CalculatorStd extends JPanel {
         clip.setMicrosecondPosition(time);
     }
 
-    private void button_historyMousePressed(MouseEvent e) {
-        // TODO add your code here
-
-    }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -362,7 +357,6 @@ public class CalculatorStd extends JPanel {
         menu2 = new JMenu();
         button_floor = new JMenuItem();
         button_ceil = new JMenuItem();
-        button_history = new JButton();
 
         //======== this ========
         setBackground(UIManager.getColor("Panel.background"));
@@ -873,24 +867,7 @@ public class CalculatorStd extends JPanel {
         add(menuBar1);
         menuBar1.setBounds(60, 180, 630, menuBar1.getPreferredSize().height);
 
-        //---- button_history ----
-        button_history.setFocusable(false);
-        button_history.setIcon(new ImageIcon(getClass().getResource("/Resources/img/history.png")));
-        button_history.setAlignmentY(0.0F);
-        button_history.setBackground(UIManager.getColor("Panel.background"));
-        button_history.setForeground(UIManager.getColor("Panel.foreground"));
-        button_history.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
-        button_history.setMargin(new Insets(2, 2, 2, 2));
-        button_history.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                button_historyMousePressed(e);
-            }
-        });
-        add(button_history);
-        button_history.setBounds(705, 65, 60, 60);
-
-        setPreferredSize(new Dimension(845, 785));
+        setPreferredSize(new Dimension(755, 785));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -933,6 +910,5 @@ public class CalculatorStd extends JPanel {
     private JMenu menu2;
     protected JMenuItem button_floor;
     protected JMenuItem button_ceil;
-    private JButton button_history;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

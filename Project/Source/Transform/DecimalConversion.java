@@ -129,16 +129,16 @@ public class DecimalConversion extends JPanel {
             switch (op)
             {
                 case 0 -> {
-                    return input.replaceAll("[^0-1.]", "");
+                    return input.replaceAll("[^\\-0-1.]", "");
                 }
                 case 1 -> {
-                    return input.replaceAll("[^0-7.]", "");
+                    return input.replaceAll("[^\\-0-7.]", "");
                 }
                 case 2 -> {
-                    return input.replaceAll("[^0-9.]", "");
+                    return input.replaceAll("[^\\-0-9.]", "");
                 }
                 case 3 -> {
-                    return input.replaceAll("[^0-9a-fA-F.]", "");
+                    return input.replaceAll("[^\\-0-9a-fA-F.]", "");
                 }
                 default -> {
                     return input;
@@ -376,6 +376,7 @@ public class DecimalConversion extends JPanel {
 
         //---- button6 ----
         button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 6f));
+        button6.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
         add(button6);
         button6.setBounds(270, 285, 120, 50);
 
@@ -434,7 +435,7 @@ public class DecimalConversion extends JPanel {
         button12.setBounds(270, 450, 120, 50);
 
         //---- button13 ----
-        button13.setText("+/_");
+        button13.setText("+/-");
         button13.setFont(button13.getFont().deriveFont(button13.getFont().getStyle() | Font.BOLD, button13.getFont().getSize() + 6f));
         add(button13);
         button13.setBounds(10, 505, 120, 50);

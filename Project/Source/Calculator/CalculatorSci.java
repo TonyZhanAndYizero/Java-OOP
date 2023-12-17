@@ -31,7 +31,6 @@ public class CalculatorSci extends JPanel implements Calculator{
     public JTextField getTextField1() {
         return textField1;
     }
-
     private void button1MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
@@ -97,28 +96,28 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonDotMousePressed(MouseEvent e) {
+    private void button_dotMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_PERIOD);
         }
     }
 
-    private void buttonAbsMousePressed(MouseEvent e) {
+    private void button_absMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_A);
         }
     }
 
-    private void buttonPaiMousePressed(MouseEvent e) {
+    private void button_paiMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_P);
         }
     }
 
-    private void buttonPow2MousePressed(MouseEvent e) {
+    private void button_pow2MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
@@ -130,7 +129,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonXpowyMousePressed(MouseEvent e) {
+    private void button_xpowyMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
@@ -139,42 +138,42 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonEqualMousePressed(MouseEvent e) {
+    private void button_equalMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ENTER);
         }
     }
 
-    private void buttonPlusMousePressed(MouseEvent e) {
+    private void button_plusMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ADD);
         }
     }
 
-    private void buttonMinusMousePressed(MouseEvent e) {
+    private void button_minusMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_MINUS);
         }
     }
 
-    private void buttonMulMousePressed(MouseEvent e) {
+    private void button_mulMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_MULTIPLY);
         }
     }
 
-    private void buttonDivMousePressed(MouseEvent e) {
+    private void button_divMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_DIVIDE);
         }
     }
 
-    private void buttonPercentMousePressed(MouseEvent e) {
+    private void button_percentMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
@@ -187,7 +186,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonCleanEntryMousePressed(MouseEvent e) {
+    private void button_cleanEntryMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ESCAPE);
@@ -195,7 +194,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonLeftMousePressed(MouseEvent e) {
+    private void button_leftMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
@@ -204,7 +203,7 @@ public class CalculatorSci extends JPanel implements Calculator{
             robot.keyRelease(KeyEvent.VK_SHIFT);
         }
     }
-    private void buttonRightMousePressed(MouseEvent e) {
+    private void button_rightMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
@@ -213,18 +212,18 @@ public class CalculatorSci extends JPanel implements Calculator{
             robot.keyRelease(KeyEvent.VK_SHIFT);
         }
     }
-    private void buttonSmokeMousePressed(MouseEvent e) {
+    private void button_smokeMousePressed(MouseEvent e) {
         // TODO add your code here
     }
 
-    private void buttonDavidMousePressed(MouseEvent e) {
+    private void button_DavidMousePressed(MouseEvent e) {
         // TODO add your code here
     }
     private void progressBar1MouseReleased(MouseEvent e) {
         // TODO add your code here
 
     }
-    private void buttonBackspaceMousePressed(MouseEvent e) {
+    private void button_backspaceMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
@@ -233,21 +232,21 @@ public class CalculatorSci extends JPanel implements Calculator{
     }
 
 
-    private void buttonEMousePressed(MouseEvent e) {
+    private void button_eMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_E);
         }
     }
 
-    private void buttonModMousePressed(MouseEvent e) {
+    private void button_modMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_M);
         }
     }
 
-    private void buttonFacMousePressed(MouseEvent e) {
+    private void button_facMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
@@ -257,7 +256,7 @@ public class CalculatorSci extends JPanel implements Calculator{
     }
 
 
-    private void buttonTenpowMousePressed(MouseEvent e) {
+    private void button_tenpowMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_1);
@@ -268,7 +267,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonLogMousePressed(MouseEvent e) {
+    private void button_logMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_O);
@@ -276,7 +275,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonLnMousePressed(MouseEvent e) {
+    private void button_lnMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_L);
@@ -284,14 +283,14 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonSqrtMousePressed(MouseEvent e) {
+    private void button_sqrtMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_G);
             robot.keyRelease(KeyEvent.VK_G);
         }
     }
-    private void buttonSinMousePressed(MouseEvent e) {
+    private void button_sinMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_S);
@@ -299,7 +298,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonCosMousePressed(MouseEvent e) {
+    private void button_cosMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_C);
@@ -307,7 +306,7 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
     }
 
-    private void buttonTanMousePressed(MouseEvent e) {
+    private void button_tanMousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_T);
@@ -318,12 +317,6 @@ public class CalculatorSci extends JPanel implements Calculator{
     private ArrayList<String> strToShow = new ArrayList<>();
     private String lastCh = "";
     protected int cntLeftBracket = 0;
-    /**
-     * Description: According to the char input, choose a function to input a char into the textField.
-     *
-     * @param e KeyEvent
-     * @author Yury
-     */
     private void textField1KeyPressed(KeyEvent e) {
         // TODO add your code here
         String ch = String.valueOf(e.getKeyChar());
@@ -362,11 +355,6 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
         textField1.setText(String.valueOf(tmp));
     }
-    /**
-     * Description: Input a dot.
-     *
-     * @author Yury
-     */
     protected void inputDot() {
         if (!UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")") && !lastCh.equals(".")) {
             if (!UtilitiesSci.checkNum(lastCh)) {
@@ -378,12 +366,6 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ".";
         }
     }
-    /**
-     * Description: Input a number.
-     *
-     * @param ch String
-     * @author Yury
-     */
     protected void inputNum(String ch) {
         if (!UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add(ch);
@@ -391,12 +373,6 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
-    /**
-     * Description: Input ¦Ð or e.
-     *
-     * @param ch String
-     * @author Yury
-     */
     protected void inputPIorE(String ch) {
         if (!UtilitiesSci.checkNum((lastCh)) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             if (ch.equals("p")) {
@@ -410,12 +386,6 @@ public class CalculatorSci extends JPanel implements Calculator{
         }
         
     }
-    /**
-     * Description: Input mod.
-     *
-     * @param ch String
-     * @author Yury
-     */
     protected void inputMod(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("m");
@@ -423,12 +393,6 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
-    /**
-     * Description: Input the mark of power.
-     *
-     * @param ch String
-     * @author Yury
-     */
     protected void inputPow(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("^");
@@ -436,12 +400,6 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
-    /**
-     * Description: Input function with left bracket.
-     *
-     * @param ch String
-     * @author Yury
-     */
     protected void inputLeftBracketFunction(String ch) {
         if (!UtilitiesSci.checkNum((lastCh)) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             if (ch.equals("s")) {
@@ -473,22 +431,10 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
-    /**
-     * Description: Input sign of operation.
-     *
-     * @param ch String
-     * @author Yury
-     */
     protected void inputOperation(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add(ch);
-            if (ch.equals("/")) {
-                strToShow.add("\u00F7");
-            } else if (ch.equals("*")) {
-                strToShow.add("\u00D7");
-            } else {
-                strToShow.add(ch);
-            }
+            strToShow.add(ch);
             lastCh = ch;
         } else if (ch.equals("-")) {
             if (UtilitiesSci.checkLeftBracketFunction(lastCh) || lastCh.equals("(") || lastCh.isEmpty() || lastCh.equals("=")) {
@@ -498,12 +444,6 @@ public class CalculatorSci extends JPanel implements Calculator{
             }
         }
     }
-    /**
-     * Description: Input a left bracket.
-     *
-     * @param ch String
-     * @author Yury
-     */
     protected void inputLeftBracket(String ch) {
         if (!UtilitiesSci.checkNum(lastCh) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add("(");
@@ -512,12 +452,6 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
-    /**
-     * Description: Input a right bracket.
-     *
-     * @param ch String
-     * @author Yury
-     */
     protected void inputRightBracket(String ch) {
         if (cntLeftBracket > 0 && (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")"))) {
             strToCal.add(")");
@@ -525,11 +459,6 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = ch;
         }
     }
-    /**
-     * Description: backspace
-     *
-     * @author Yury
-     */
     protected void backSpace() {
         if (!strToShow.isEmpty()) {
             strToCal.remove(strToCal.size() - 1);
@@ -542,11 +471,6 @@ public class CalculatorSci extends JPanel implements Calculator{
             }
         }
     }
-    /**
-     * Description: Calculate the equation and give the answer.
-     *
-     * @author Yury
-     */
     protected void getResult() {
         StringBuilder tmp = new StringBuilder();
         StringBuilder tmp2 = new StringBuilder();
@@ -572,15 +496,118 @@ public class CalculatorSci extends JPanel implements Calculator{
             lastCh = "=";
         }
     }
-    /**
-     * Description: Clear the textField.
-     *
-     * @author Yury
-     */
     protected void clearEntry() {
         strToShow.clear();
         strToCal.clear();
         lastCh = "";
+    }
+
+    private void buttonDotMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonAbsMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonPow2MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonSqrtMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonEqualMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonPlusMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonMinusMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonMulMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonDivMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonPercentMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonCleanEntryMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonSmokeMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonDavidMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonBackspaceMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonLeftMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonRightMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonFacMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonModMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonEMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonPaiMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonXpowyMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonTenpowMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonLogMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonLnMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonSinMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonCosMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonTanMousePressed(MouseEvent e) {
+        // TODO add your code here
     }
 
 

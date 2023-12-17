@@ -63,13 +63,11 @@ public class CalculatorMatrix extends JPanel {
             }
 
             double det = determinant(coefficients, n);
-            System.out.println(det);
+            label6.setText(String.format("%.3f",det));
             if (det != 0) {
                 StringBuilder ans = new StringBuilder();
                 for (int i = 0; i < n; i++) {
                     answer[i] = determinant(replaceColumn(coefficients, constants, i), n) / det;
-                    System.out.println(answer[i]);
-
                     ans.append(String.format("%.3f", answer[i])).append(" ");
                 }
                 label5.setText(ans.toString());
@@ -88,26 +86,19 @@ public class CalculatorMatrix extends JPanel {
      * @author TonyZhan
      */
     public static double determinant(double[][] matrix, int n) {
-        //如果n为1，直接返回矩阵元素
         if (n == 1) {
             return matrix[0][0];
         }
-        //如果n为2，返回二阶行列式的值
         if (n == 2) {
             return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
         }
-        //如果n大于2，用拉普拉斯展开定理计算
-        double sum = 0; //用于累加各项的值
+        //Laplace
+        double sum = 0;
         for (int i = 0; i < n; i++) {
-            //计算代数余子式的符号
             int sign = (i % 2 == 0) ? 1 : -1;
-            //计算代数余子式的值，即去掉第一行和第i+1列的n-1阶行列式的值
             double subDet = determinant(subMatrix(matrix, n, i), n - 1);
-            System.out.println("good:" + subDet);
-            //累加
             sum += sign * matrix[0][i] * subDet;
         }
-        //返回结果
         return sum;
     }
 
@@ -118,7 +109,6 @@ public class CalculatorMatrix extends JPanel {
      * @author TonyZhan
      */
     public static double[][] subMatrix(double[][] matrix, int n, int j) {
-        //创建一个n-1阶的二维数组
         double[][] sub = new double[n - 1][n - 1];
         //遍历原矩阵，跳过第一行和第j列，将元素复制到子矩阵中
         for (int i = 1; i < n; i++) {
@@ -126,15 +116,11 @@ public class CalculatorMatrix extends JPanel {
                 if (k == j) {
                     continue; //跳过第j列
                 }
-                //计算子矩阵的行列下标
                 int sub_i = i - 1;
                 int sub_j = (k < j) ? k : k - 1;
-                //复制元素
                 sub[sub_i][sub_j] = matrix[i][k];
             }
         }
-        System.out.println(Arrays.deepToString(sub));
-        //返回子矩阵
         return sub;
     }
 
@@ -145,16 +131,13 @@ public class CalculatorMatrix extends JPanel {
      * @author TonyZhan
      */
     public static double[][] replaceColumn(double[][] matrix, double[] constants, int j) {
-        //创建一个新的矩阵，复制原矩阵的元素
         double[][] newMatrix = new double[matrix.length][matrix[0].length];
         for (int i = 0; i < matrix.length; i++) {
             System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[0].length);
         }
-        //将新矩阵的第j列替换为常数项向量
         for (int i = 0; i < constants.length; i++) {
             newMatrix[i][j] = constants[i];
         }
-        //返回新矩阵
         return newMatrix;
     }
 
@@ -219,6 +202,8 @@ public class CalculatorMatrix extends JPanel {
         button2 = new JButton();
         scrollPane3 = new JScrollPane();
         label5 = new JLabel();
+        label3 = new JLabel();
+        label6 = new JLabel();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -228,35 +213,38 @@ public class CalculatorMatrix extends JPanel {
         {
 
             //---- textPane1 ----
-            textPane1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+            textPane1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
             scrollPane1.setViewportView(textPane1);
         }
         add(scrollPane1);
-        scrollPane1.setBounds(85, 115, 200, 200);
+        scrollPane1.setBounds(125, 135, 240, 240);
 
         //======== scrollPane2 ========
         {
 
             //---- textPane2 ----
-            textPane2.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+            textPane2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
             scrollPane2.setViewportView(textPane2);
         }
         add(scrollPane2);
-        scrollPane2.setBounds(340, 115, 50, 200);
+        scrollPane2.setBounds(430, 135, 40, 240);
 
         //---- label1 ----
         label1.setText("=");
         label1.setFont(new Font("Times New Roman", Font.BOLD, 30));
         add(label1);
-        label1.setBounds(305, 210, 20, 20);
+        label1.setBounds(390, 245, 20, 20);
+
+        //---- textField1 ----
+        textField1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         add(textField1);
-        textField1.setBounds(185, 50, 40, 40);
+        textField1.setBounds(225, 70, 40, 40);
 
         //---- label2 ----
         label2.setText("\u8bf7\u8f93\u5165\u9636\u6570:");
         label2.setFont(label2.getFont().deriveFont(label2.getFont().getStyle() | Font.BOLD, label2.getFont().getSize() + 4f));
         add(label2);
-        label2.setBounds(85, 55, 100, 25);
+        label2.setBounds(125, 75, 100, 25);
 
         //---- label4 ----
         label4.setBorder(new TitledBorder(new BevelBorder(BevelBorder.LOWERED), "Status", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
@@ -264,7 +252,7 @@ public class CalculatorMatrix extends JPanel {
         label4.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 12));
         label4.setHorizontalAlignment(SwingConstants.CENTER);
         add(label4);
-        label4.setBounds(335, 40, 100, 55);
+        label4.setBounds(375, 60, 100, 55);
 
         //---- button1 ----
         button1.setText("\u786e\u8ba4");
@@ -276,7 +264,7 @@ public class CalculatorMatrix extends JPanel {
             }
         });
         add(button1);
-        button1.setBounds(255, 50, 65, 35);
+        button1.setBounds(295, 70, 65, 35);
 
         //---- button2 ----
         button2.setText("\u8ba1\u7b97");
@@ -288,7 +276,7 @@ public class CalculatorMatrix extends JPanel {
             }
         });
         add(button2);
-        button2.setBounds(415, 200, 65, 35);
+        button2.setBounds(490, 240, 65, 35);
 
         //======== scrollPane3 ========
         {
@@ -301,7 +289,18 @@ public class CalculatorMatrix extends JPanel {
             scrollPane3.setViewportView(label5);
         }
         add(scrollPane3);
-        scrollPane3.setBounds(85, 330, 305, 65);
+        scrollPane3.setBounds(125, 435, 350, 65);
+
+        //---- label3 ----
+        label3.setText("det = | A | =");
+        label3.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 26));
+        add(label3);
+        label3.setBounds(125, 390, 135, 35);
+
+        //---- label6 ----
+        label6.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+        add(label6);
+        label6.setBounds(260, 390, 210, 35);
 
         setPreferredSize(new Dimension(675, 555));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -320,6 +319,8 @@ public class CalculatorMatrix extends JPanel {
     private JButton button2;
     private JScrollPane scrollPane3;
     private JLabel label5;
+    private JLabel label3;
+    private JLabel label6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 }

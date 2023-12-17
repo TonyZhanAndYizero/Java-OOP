@@ -7,7 +7,6 @@ package Source.Physics;
 import java.awt.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -50,25 +49,32 @@ public class Variance extends JPanel {
             ave = ave.divide(n, 4, RoundingMode.HALF_UP);
             label5.setText(ave.toPlainString());
 
-            BigDecimal var=BigDecimal.ZERO;
-            for (BigDecimal bd:Nums) {
-                var=var.add(bd.subtract(ave).pow(2));
+            BigDecimal var = BigDecimal.ZERO;
+            for (BigDecimal bd : Nums) {
+                var = var.add(bd.subtract(ave).pow(2));
             }
-            var = var.divide(n.subtract(BigDecimal.ONE),4,RoundingMode.HALF_UP);
+            var = var.divide(n.subtract(BigDecimal.ONE), 4, RoundingMode.HALF_UP);
             label6.setText(var.toPlainString());
 
-            BigDecimal sqrtVar=var.sqrt(MathContext.DECIMAL64);
+            BigDecimal sqrtVar = var.sqrt(MathContext.DECIMAL64);
             label7.setText(sqrtVar.toPlainString());
 
-            BigDecimal ua=var.divide(n,4,RoundingMode.HALF_UP).sqrt(MathContext.DECIMAL64);
+            BigDecimal ua = var.divide(n, 8, RoundingMode.HALF_UP).sqrt(MathContext.DECIMAL128);
             label9.setText(ua.toPlainString());
 
-            BigDecimal deltaB=new BigDecimal(textField2.getText());
-            BigDecimal ub=deltaB.divide(new BigDecimal(3).sqrt(MathContext.DECIMAL64),4,RoundingMode.HALF_UP);
-            label12.setText(ub.toPlainString());
+            BigDecimal deltaB;
+            try {
+                deltaB = new BigDecimal(textField2.getText());
+                BigDecimal ub = deltaB.divide(new BigDecimal(3).sqrt(MathContext.DECIMAL64), 4, RoundingMode.HALF_UP);
+                label12.setText(ub.toPlainString());
 
-            BigDecimal u=(ua.pow(2).add(ub.pow(2))).sqrt(MathContext.DECIMAL64);
-            label14.setText(u.toPlainString());
+                BigDecimal u = (ua.pow(2).add(ub.pow(2))).sqrt(MathContext.DECIMAL64);
+                label14.setText(u.toPlainString());
+            } catch (NumberFormatException efe) {
+                label12.setText("null");
+                label14.setText("null");
+            }
+
         }
     }
 
@@ -105,6 +111,7 @@ public class Variance extends JPanel {
 
         //---- textField1 ----
         textField1.setBorder(new BevelBorder(BevelBorder.LOWERED));
+        textField1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         add(textField1);
         textField1.setBounds(95, 85, 450, 45);
 

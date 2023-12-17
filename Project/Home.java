@@ -1,6 +1,7 @@
 import java.awt.event.*;
 import javax.swing.border.*;
 
+import Source.Calculator.CalculatorMatrix;
 import Source.Calculator.CalculatorSci;
 import Source.Calculator.CalculatorStd;
 import Source.Game.GuessNumber;
@@ -36,12 +37,14 @@ public class Home extends JFrame {
 
     private static CalculatorSci sci;
     private static CalculatorStd std;
+    private static CalculatorMatrix matrix;
     private static Angle angle;
     private static LinearRegression linearRegression;
     private static DecimalConversion decimalConversion;
     private static TwentyFour twentyFour;
     private static Variance variance;
     private static GuessNumber guessNumber;
+
     public Home() {
         try {
 //            //需要下载JTatto-1.6.13.jar到与src同级的lib中，然后在左上角项目结构中添加该库
@@ -71,6 +74,7 @@ public class Home extends JFrame {
         twentyFour = new TwentyFour();
         variance = new Variance();
         guessNumber = new GuessNumber();
+        matrix = new CalculatorMatrix();
         initComponents();
     }
 
@@ -157,6 +161,16 @@ public class Home extends JFrame {
         pack();
     }
 
+    private void showMatrix(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  Matrix Calculator");
+        getContentPane().removeAll();
+        getContentPane().add(matrix);
+        revalidate();
+        repaint();
+        pack();
+    }
+
     private void initComponents() {
         ImageIcon icon = new ImageIcon("Project/Resources/img/icon.png"); //图片和项目同一路径，故不用图片的路径
         this.setIconImage(icon.getImage());
@@ -166,6 +180,7 @@ public class Home extends JFrame {
         label1 = new JLabel();
         radioButtonMenuItem1 = new JRadioButtonMenuItem();
         radioButtonMenuItem2 = new JRadioButtonMenuItem();
+        radioButtonMenuItem9 = new JRadioButtonMenuItem();
         label2 = new JLabel();
         radioButtonMenuItem3 = new JRadioButtonMenuItem();
         radioButtonMenuItem5 = new JRadioButtonMenuItem();
@@ -220,6 +235,20 @@ public class Home extends JFrame {
                 radioButtonMenuItem2.setIconTextGap(5);
                 radioButtonMenuItem2.addActionListener(e -> showSci(e));
                 menu1.add(radioButtonMenuItem2);
+
+                //---- radioButtonMenuItem9 ----
+                radioButtonMenuItem9.setText("\u77e9\u9635");
+                radioButtonMenuItem9.setSelected(true);
+                radioButtonMenuItem9.setIcon(new ImageIcon(getClass().getResource("/Resources/img/std.png")));
+                radioButtonMenuItem9.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                radioButtonMenuItem9.setIconTextGap(5);
+                radioButtonMenuItem9.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showMatrix(e);
+                    }
+                });
+                menu1.add(radioButtonMenuItem9);
 
                 //---- label2 ----
                 label2.setText(" \u8f6c\u6362\u5668 ");
@@ -353,6 +382,7 @@ public class Home extends JFrame {
         var buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(radioButtonMenuItem1);
         buttonGroup1.add(radioButtonMenuItem2);
+        buttonGroup1.add(radioButtonMenuItem9);
         buttonGroup1.add(radioButtonMenuItem3);
         buttonGroup1.add(radioButtonMenuItem5);
         buttonGroup1.add(radioButtonMenuItem4);
@@ -368,6 +398,7 @@ public class Home extends JFrame {
     private JLabel label1;
     private JRadioButtonMenuItem radioButtonMenuItem1;
     private JRadioButtonMenuItem radioButtonMenuItem2;
+    private JRadioButtonMenuItem radioButtonMenuItem9;
     private JLabel label2;
     private JRadioButtonMenuItem radioButtonMenuItem3;
     private JRadioButtonMenuItem radioButtonMenuItem5;
@@ -382,6 +413,3 @@ public class Home extends JFrame {
     private JMenuItem menuItem2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
-/*
-
- */
