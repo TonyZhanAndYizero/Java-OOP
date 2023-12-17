@@ -103,6 +103,7 @@ public class DecimalConversion extends JPanel {
         }
         textField2.setText(res);
     }
+
     static class RestrictedDocumentFilter extends DocumentFilter {
         int op;
 
@@ -124,10 +125,9 @@ public class DecimalConversion extends JPanel {
             // 此处可以根据需要定义文本框的输入限制
             // 这个例子中只允许输入数字
             input.replaceAll("\\.\\.", ".");
-            if(!input.isEmpty() && input.charAt(0) == '.')
+            if (!input.isEmpty() && input.charAt(0) == '.')
                 input.replaceFirst("\\.", "");
-            switch (op)
-            {
+            switch (op) {
                 case 0 -> {
                     return input.replaceAll("[^\\-0-1.]", "");
                 }
@@ -146,6 +146,7 @@ public class DecimalConversion extends JPanel {
             }
         }
     }
+
     private void textField1CaretUpdate(CaretEvent e) {
         // TODO add your code here
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox1.getSelectedIndex()));
@@ -181,8 +182,7 @@ public class DecimalConversion extends JPanel {
                         String str1 = textField1.getText();
                         try {
                             textField1.setText(str1.substring(str.length()));
-                        }catch (Exception ignored)
-                        {
+                        } catch (Exception ignored) {
                         }
                         // 清空原始文本
                     });
@@ -208,6 +208,7 @@ public class DecimalConversion extends JPanel {
         // TODO add your code here
         ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox2.getSelectedIndex()));
     }
+
     private void textField2FocusGained(FocusEvent e) {
         // TODO add your code here
         String str = textField2.getText();
@@ -238,8 +239,7 @@ public class DecimalConversion extends JPanel {
                         String str1 = textField2.getText();
                         try {
                             textField2.setText(str1.substring(str.length()));
-                        }catch (Exception ignored)
-                        {
+                        } catch (Exception ignored) {
                         }
                         // 清空原始文本
                     });

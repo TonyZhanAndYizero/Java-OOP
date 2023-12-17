@@ -4,7 +4,7 @@
 
 package Source.Game;
 
-import Source.UtilitiesSci;
+import Source.Calculator.UtilitiesSci;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import static Source.UtilitiesSci.checkNum;
+import static Source.Calculator.UtilitiesSci.checkNum;
 
 /**
  * @author Yury
@@ -21,6 +21,7 @@ public class GuessNumber extends JPanel {
     public GuessNumber() {
         initComponents();
     }
+
     public static Robot robot;
 
     static {
@@ -30,9 +31,11 @@ public class GuessNumber extends JPanel {
             throw new RuntimeException(e);
         }
     }
+
     public JTextField getTextField1() {
         return textField1;
     }
+
     private void button0MousePressed(MouseEvent e) {
         // TODO add your code here
         if (e.getButton() == 1) {
@@ -102,8 +105,16 @@ public class GuessNumber extends JPanel {
             robot.keyPress(KeyEvent.VK_9);
         }
     }
+
     private String[] s = new String[4];
     private int statusCode = -1;
+
+    /**
+     * Description: To reset the game.
+     *
+     * @param e MouseEvent
+     * @author Yury
+     */
     private void buttonReplayMousePressed(MouseEvent e) {
         // TODO add your code here
         clearEntry();
@@ -191,8 +202,6 @@ public class GuessNumber extends JPanel {
         cntCorrect = 0;
         cntHave = 0;
 
-
-
     }
 
     private void buttonConfirmMousePressed(MouseEvent e) {
@@ -212,6 +221,12 @@ public class GuessNumber extends JPanel {
     private ArrayList<String> strToShow = new ArrayList<>();
     private int line = 0;
 
+    /**
+     * Description: To execute keyboard input.
+     *
+     * @param e KeyEvent
+     * @author Yury
+     */
     protected void textField1KeyPressed(KeyEvent e) {
         if (statusCode == 1) {
             String ch = String.valueOf(e.getKeyChar());
@@ -227,6 +242,11 @@ public class GuessNumber extends JPanel {
         }
     }
 
+    /**
+     * Description: To set text od textField1
+     *
+     * @author Yury
+     */
     protected void setTextField1() {
         StringBuilder tmp = new StringBuilder();
         for (String s : strToShow) {
@@ -235,6 +255,12 @@ public class GuessNumber extends JPanel {
         textField1.setText(String.valueOf(tmp));
     }
 
+    /**
+     * Description: To input a number.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputNum(String ch) {
         if (statusCode != 1) {
             showDialog2();
@@ -244,6 +270,11 @@ public class GuessNumber extends JPanel {
         setTextField1();
     }
 
+    /**
+     * Description: Execute backspace.
+     *
+     * @author Yury
+     */
     protected void backSpace() {
         if (statusCode != 1) {
             showDialog2();
@@ -255,7 +286,16 @@ public class GuessNumber extends JPanel {
             //System.out.println(strToShow.size());
         }
     }
+
     private int cntCorrect = 0, cntHave = 0;
+
+    /**
+     * Description: To check if the input is legal.
+     *
+     * @param label JLabel
+     * @param j     int
+     * @author Yury
+     */
     protected void checkAns(JLabel label, int j) {
         if (label.getText().equals(s[j])) {
             cntCorrect++;
@@ -273,6 +313,13 @@ public class GuessNumber extends JPanel {
         }
         label.setBackground(new Color(128, 0, 0));
     }
+
+    /**
+     * Description: To check if the input is correct and execute something after correct.
+     *
+     * @return boolean
+     * @author Yury
+     */
     protected boolean checkCorrect() {
         if (cntCorrect == 4) {
             status.setText("Correct");
@@ -284,6 +331,12 @@ public class GuessNumber extends JPanel {
         }
         return false;
     }
+
+    /**
+     * Description: To show the answer.
+     *
+     * @author Yury
+     */
     protected void showAns() {
         label25.setText(s[0]);
         label26.setText(s[1]);
@@ -291,12 +344,24 @@ public class GuessNumber extends JPanel {
         label28.setText(s[3]);
 
     }
+
+    /**
+     * Description: If the player failed, show failure event.
+     *
+     * @author Yury
+     */
     protected void showFail() {
         status.setText("Fail");
         status.setForeground(Color.RED);
         statusCode = -1;
         showAns();
     }
+
+    /**
+     * Description: To execute confirming.
+     *
+     * @author Yury
+     */
     protected void getResult() {
         if (statusCode == 1) {
             String input = textField1.getText();
@@ -412,13 +477,16 @@ public class GuessNumber extends JPanel {
         }
 
     }
+
     protected void clearEntry() {
         strToShow.clear();
         setTextField1();
     }
+
     protected void showDialog2() {
         dialog2.setVisible(true);
     }
+
     private void closeDialog1(MouseEvent e) {
         // TODO add your code here
         dialog1.setVisible(false);
@@ -429,6 +497,15 @@ public class GuessNumber extends JPanel {
         dialog2.setVisible(false);
     }
 
+    private void buttonRulesMousePressed(MouseEvent e) {
+        // TODO add your code here
+        dialog3.setVisible(true);
+    }
+
+    private void closeRules(MouseEvent e) {
+        // TODO add your code here
+        dialog3.setVisible(false);
+    }
 
 
     private void initComponents() {
@@ -483,12 +560,17 @@ public class GuessNumber extends JPanel {
         label28 = new JLabel();
         buttonBackspace = new JButton();
         status = new JLabel();
+        buttonRules = new JButton();
         dialog1 = new JDialog();
         label29 = new JLabel();
         button10 = new JButton();
         dialog2 = new JDialog();
         label30 = new JLabel();
         button11 = new JButton();
+        dialog3 = new JDialog();
+        button12 = new JButton();
+        scrollPane1 = new JScrollPane();
+        textArea1 = new JTextArea();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -968,6 +1050,19 @@ public class GuessNumber extends JPanel {
         add(status);
         status.setBounds(325, 25, 120, 35);
 
+        //---- buttonRules ----
+        buttonRules.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+        buttonRules.setText("\u6e38\u620f\u89c4\u5219");
+        buttonRules.setFocusable(false);
+        buttonRules.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonRulesMousePressed(e);
+            }
+        });
+        add(buttonRules);
+        buttonRules.setBounds(495, 190, 110, 40);
+
         setPreferredSize(new Dimension(630, 505));
 
         //======== dialog1 ========
@@ -992,9 +1087,9 @@ public class GuessNumber extends JPanel {
                 }
             });
             dialog1ContentPane.add(button10);
-            button10.setBounds(65, 105, button10.getPreferredSize().width, 40);
+            button10.setBounds(65, 120, button10.getPreferredSize().width, 40);
 
-            dialog1ContentPane.setPreferredSize(new Dimension(200, 200));
+            dialog1ContentPane.setPreferredSize(new Dimension(200, 190));
             dialog1.pack();
             dialog1.setLocationRelativeTo(dialog1.getOwner());
         }
@@ -1021,11 +1116,48 @@ public class GuessNumber extends JPanel {
                 }
             });
             dialog2ContentPane.add(button11);
-            button11.setBounds(65, 105, button11.getPreferredSize().width, 40);
+            button11.setBounds(65, 120, button11.getPreferredSize().width, 40);
 
-            dialog2ContentPane.setPreferredSize(new Dimension(200, 200));
+            dialog2ContentPane.setPreferredSize(new Dimension(200, 190));
             dialog2.pack();
             dialog2.setLocationRelativeTo(dialog2.getOwner());
+        }
+
+        //======== dialog3 ========
+        {
+            dialog3.setPreferredSize(new Dimension(365, 300));
+            var dialog3ContentPane = dialog3.getContentPane();
+            dialog3ContentPane.setLayout(null);
+
+            //---- button12 ----
+            button12.setText("\u5173\u95ed");
+            button12.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+            button12.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    closeRules(e);
+                }
+            });
+            dialog3ContentPane.add(button12);
+            button12.setBounds(150, 230, button12.getPreferredSize().width, 40);
+
+            //======== scrollPane1 ========
+            {
+                scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                scrollPane1.setFocusable(false);
+
+                //---- textArea1 ----
+                textArea1.setText("\u731c\u6570\u5b57\uff08\u53c8\u79f0 Bulls and Cows \uff09\n\u662f\u4e00\u79cd\u53e4\u8001\u7684\u7684\u5bc6\u7801\u7834\u8bd1\u7c7b\u3001\u76ca\u667a\u7c7b\u5c0f\u6e38\u620f\uff0c\n\u8d77\u6e90\u4e8e20\u4e16\u7eaa\u4e2d\u671f\u3002\u7ed9\u5b9a\u56db\u4e2a\u6570\u5b57\uff080-9\uff09\uff0c\n\u4f60\u9700\u8981\u57286\u6b21\u5185\u731c\u51fa\u8fd9\u56db\u4e2a\u6570\u5b57\u662f\u4ec0\u4e48\uff0c\u4ee5\u53ca\n\u5b83\u4eec\u7684\u4f4d\u7f6e\u3002\u6bcf\u731c\u4e00\u6b21\uff0c\u5728\u5bf9\u5e94\u65b9\u683c\u4f1a\u663e\u793a\n\u989c\u8272\uff0c\u7eff\u8272\u4ee3\u8868\u6570\u5b57\u53ca\u5176\u4f4d\u7f6e\u90fd\u6b63\u786e\uff0c\u9ec4\u8272\n\u4ee3\u8868\u8fd94\u4e2a\u6570\u5b57\u4e2d\u6709\u4f60\u731c\u6d4b\u7684\u8fd9\u4e2a\u6570\u3001\u4f46\u4f4d\u7f6e\n\u4e0d\u6b63\u786e\uff0c\u7ea2\u8272\u4ee3\u8868\u6570\u5b57\u548c\u4f4d\u7f6e\u90fd\u9519\u8bef\u3002\n\u4e14\u6bcf\u6b21\u731c\u6d4b\u540e\u4f1a\u7ed9\u51fa\u51e0A\u51e0B\uff0c\u5176\u4e2dA\u524d\u9762\u7684\n\u6570\u5b57\u8868\u793a\u4f4d\u7f6e\u6b63\u786e\u7684\u6570\u7684\u4e2a\u6570\uff0c\u800cB\u524d\u7684\u6570\n\u5b57\u8868\u793a\u6570\u5b57\u6b63\u786e\u800c\u4f4d\u7f6e\u4e0d\u5bf9\u7684\u6570\u7684\u4e2a\u6570\u3002");
+                textArea1.setEditable(false);
+                textArea1.setFont(new Font("\u5e7c\u5706", Font.BOLD, 16));
+                scrollPane1.setViewportView(textArea1);
+            }
+            dialog3ContentPane.add(scrollPane1);
+            scrollPane1.setBounds(0, 0, 360, 215);
+
+            dialog3ContentPane.setPreferredSize(new Dimension(365, 300));
+            dialog3.pack();
+            dialog3.setLocationRelativeTo(dialog3.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -1081,11 +1213,16 @@ public class GuessNumber extends JPanel {
     private JLabel label28;
     private JButton buttonBackspace;
     private JLabel status;
+    private JButton buttonRules;
     private JDialog dialog1;
     private JLabel label29;
     private JButton button10;
     private JDialog dialog2;
     private JLabel label30;
     private JButton button11;
+    private JDialog dialog3;
+    private JButton button12;
+    private JScrollPane scrollPane1;
+    private JTextArea textArea1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

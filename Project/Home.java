@@ -100,7 +100,7 @@ public class Home extends JFrame {
         pack();
     }
 
-    private void menuItem3MousePressed(MouseEvent e) {
+    private void showAngleTransformer(MouseEvent e) {
         // TODO add your code here
         this.setTitle("  Angle Transformer");
         getContentPane().removeAll();
@@ -110,7 +110,7 @@ public class Home extends JFrame {
         pack();
     }
 
-    private void menuItem4MousePressed(MouseEvent e) {
+    private void showLinearRegression(MouseEvent e) {
         // TODO add your code here
         this.setTitle("  Linear Regression");
         getContentPane().removeAll();
@@ -268,7 +268,7 @@ public class Home extends JFrame {
                 radioButtonMenuItem3.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        menuItem3MousePressed(e);
+                        showAngleTransformer(e);
                     }
                 });
                 menu1.add(radioButtonMenuItem3);
@@ -304,7 +304,7 @@ public class Home extends JFrame {
                 radioButtonMenuItem4.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        menuItem4MousePressed(e);
+                        showLinearRegression(e);
                     }
                 });
                 menu1.add(radioButtonMenuItem4);

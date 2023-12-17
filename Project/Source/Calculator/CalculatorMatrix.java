@@ -63,7 +63,7 @@ public class CalculatorMatrix extends JPanel {
             }
 
             double det = determinant(coefficients, n);
-            label6.setText(String.format("%.3f",det));
+            label6.setText(String.format("%.3f", det));
             if (det != 0) {
                 StringBuilder ans = new StringBuilder();
                 for (int i = 0; i < n; i++) {

@@ -5,7 +5,7 @@
 package Source.Game;
 
 import Source.Tools.EngineerArithmetic;
-import Source.UtilitiesSci;
+import Source.Calculator.UtilitiesSci;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -16,7 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import static Source.UtilitiesSci.checkNum;
+import static Source.Calculator.UtilitiesSci.checkNum;
 
 /**
  * @author Yury
@@ -41,6 +41,7 @@ public class TwentyFour extends JPanel {
             SetTextField1();
         }
     }
+
     /**
      * Description: To execute multiply.
      *
@@ -56,6 +57,7 @@ public class TwentyFour extends JPanel {
             SetTextField1();
         }
     }
+
     /**
      * Description: To execute Minus.
      *
@@ -71,6 +73,7 @@ public class TwentyFour extends JPanel {
             SetTextField1();
         }
     }
+
     /**
      * Description: To execute plus.
      *
@@ -86,6 +89,7 @@ public class TwentyFour extends JPanel {
             SetTextField1();
         }
     }
+
     /**
      * Description: To execute RightBracket
      *
@@ -101,6 +105,7 @@ public class TwentyFour extends JPanel {
             SetTextField1();
         }
     }
+
     /**
      * Description: To execute LeftBracket.
      *
@@ -117,6 +122,7 @@ public class TwentyFour extends JPanel {
             SetTextField1();
         }
     }
+
     /**
      * Description: To execute clearEntry.
      *
@@ -144,6 +150,7 @@ public class TwentyFour extends JPanel {
         backSpace();
         SetTextField1();
     }
+
     /**
      * Description: To execute "equal".
      *
@@ -161,7 +168,9 @@ public class TwentyFour extends JPanel {
 
         //SetTextField1();
     }
+
     boolean flagButton1, flagButton2, flagButton3, flagButton4;
+
     private void button1MousePressed(MouseEvent e) {
         // TODO add your code here
         if (!flagButton1) {
@@ -206,7 +215,9 @@ public class TwentyFour extends JPanel {
             }
         }
     }
+
     Utilities24 utilities24 = new Utilities24();
+
     /**
      * Description: Reset the game.
      *
@@ -239,6 +250,7 @@ public class TwentyFour extends JPanel {
         flagButton3 = false;
         flagButton4 = false;
     }
+
     /**
      * Description: To show the answer in a popped window.
      *
@@ -249,7 +261,7 @@ public class TwentyFour extends JPanel {
         // TODO add your code here
         StringBuilder ans = new StringBuilder();
         for (String k : utilities24.ansList) {
-                ans.append(k).append("\r\n");
+            ans.append(k).append("\r\n");
         }
         textArea1.setText(String.valueOf(ans));
         dialog1.setVisible(true);
@@ -259,6 +271,7 @@ public class TwentyFour extends JPanel {
     private ArrayList<String> strToShow = new ArrayList<>();
     private String lastCh = "";
     protected int cntLeftBracket = 0;
+
     /**
      * Description: Set the textField1.
      *
@@ -276,6 +289,7 @@ public class TwentyFour extends JPanel {
         }
         textField1.setText(String.valueOf(tmp));
     }
+
     /**
      * Description: Input a number. Return true if success.
      *
@@ -292,6 +306,7 @@ public class TwentyFour extends JPanel {
         }
         return false;
     }
+
     /**
      * Description: Backspace and reset the flags.
      *
@@ -300,7 +315,7 @@ public class TwentyFour extends JPanel {
     protected void backSpace() {
         if (!strToShow.isEmpty()) {
             String tmp = null;
-            if (checkNum(strToCal.get(strToCal.size() - 1))){
+            if (checkNum(strToCal.get(strToCal.size() - 1))) {
                 tmp = strToCal.get(strToCal.size() - 1);
             }
             //System.out.println(tmp);
@@ -327,6 +342,7 @@ public class TwentyFour extends JPanel {
             }
         }
     }
+
     /**
      * Description: Calculate the equation and set the status to corresponding String.
      *
@@ -366,6 +382,7 @@ public class TwentyFour extends JPanel {
             lastCh = "=";
         }
     }
+
     /**
      * Description: Clear the textField.
      *
@@ -377,6 +394,16 @@ public class TwentyFour extends JPanel {
         lastCh = "";
     }
 
+    /**
+     * Description: To close dialog1
+     *
+     * @param e MouseEvent
+     * @author Yury
+     */
+    private void closeDialog1(MouseEvent e) {
+        // TODO add your code here
+        dialog1.setVisible(false);
+    }
 
 
     private void initComponents() {
@@ -407,6 +434,7 @@ public class TwentyFour extends JPanel {
         dialog1 = new JDialog();
         scrollPane2 = new JScrollPane();
         textArea1 = new JTextArea();
+        button11 = new JButton();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -685,9 +713,22 @@ public class TwentyFour extends JPanel {
                 scrollPane2.setViewportView(textArea1);
             }
             dialog1ContentPane.add(scrollPane2);
-            scrollPane2.setBounds(10, 10, 175, 170);
+            scrollPane2.setBounds(0, 0, 215, 170);
 
-            dialog1ContentPane.setPreferredSize(new Dimension(205, 220));
+            //---- button11 ----
+            button11.setText("\u5173\u95ed");
+            button11.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+            button11.setFocusable(false);
+            button11.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    closeDialog1(e);
+                }
+            });
+            dialog1ContentPane.add(button11);
+            button11.setBounds(75, 175, 65, 40);
+
+            dialog1ContentPane.setPreferredSize(new Dimension(215, 245));
             dialog1.pack();
             dialog1.setLocationRelativeTo(dialog1.getOwner());
         }
@@ -721,5 +762,6 @@ public class TwentyFour extends JPanel {
     private JDialog dialog1;
     private JScrollPane scrollPane2;
     private JTextArea textArea1;
+    private JButton button11;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

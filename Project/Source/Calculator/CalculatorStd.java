@@ -27,7 +27,7 @@ public class CalculatorStd extends JPanel {
         try {
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
             UIManager.setLookAndFeel(lookAndFeel);
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
         }
         initComponents();
     }
@@ -188,8 +188,9 @@ public class CalculatorStd extends JPanel {
         }
     }
 
-    protected ArrayList<String> textField1_texts=new ArrayList<>();
-    protected ArrayList<String> label1_texts=new ArrayList<>();
+    protected ArrayList<String> textField1_texts = new ArrayList<>();
+    protected ArrayList<String> label1_texts = new ArrayList<>();
+
     private void button_polarMousePressed(MouseEvent e) {
         CalProgressStd.polar(e, this);
     }

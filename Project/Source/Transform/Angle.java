@@ -20,30 +20,29 @@ import javax.swing.text.DocumentFilter;
  */
 
 
-
 /**
  * @author HeMercy
  */
 public class Angle extends JPanel {
     Boolean whichFocus = true;
+
     public Angle() {
         try {
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
             UIManager.setLookAndFeel(lookAndFeel);
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
         }
         initComponents();
     }
-    private void exchange(JTextField textField1, JTextField textField2)
-    {
+
+    private void exchange(JTextField textField1, JTextField textField2) {
         int p1 = comboBox1.getSelectedIndex();
         int p2 = comboBox2.getSelectedIndex();
         BigDecimal bg1 = new BigDecimal(textField1.getText());
         BigDecimal res = null;
-        switch (p1)
-        {
+        switch (p1) {
             case 0:
-                switch (p2){
+                switch (p2) {
                     case 0 -> {
                         res = bg1;
                     }
@@ -56,7 +55,7 @@ public class Angle extends JPanel {
                 }
                 break;
             case 1:
-                switch (p2){
+                switch (p2) {
                     case 0 -> {
                         res = bg1.multiply(new BigDecimal(180)).divide(new BigDecimal(Math.PI), 7, RoundingMode.HALF_UP);
                     }
@@ -69,7 +68,7 @@ public class Angle extends JPanel {
                 }
                 break;
             case 2:
-                switch (p2){
+                switch (p2) {
                     case 0 -> {
                         res = bg1.multiply(new BigDecimal(0.9), new MathContext(7, RoundingMode.HALF_UP));
                     }
@@ -84,6 +83,7 @@ public class Angle extends JPanel {
         }
         textField2.setText(res.stripTrailingZeros().toPlainString());
     }
+
     private void textField1CaretUpdate(CaretEvent e) {
         // TODO add your code here
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
@@ -181,7 +181,7 @@ public class Angle extends JPanel {
 
     private void comboBox1ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if(whichFocus)
+        if (whichFocus)
             exchange(textField1, textField2);
         else
             exchange(textField2, textField1);
@@ -189,7 +189,7 @@ public class Angle extends JPanel {
 
     private void comboBox2ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if(whichFocus)
+        if (whichFocus)
             exchange(textField1, textField2);
         else
             exchange(textField2, textField1);
@@ -216,11 +216,12 @@ public class Angle extends JPanel {
             // 此处可以根据需要定义文本框的输入限制
             // 这个例子中只允许输入数字
             input.replaceAll("..", ".");
-            if(input.charAt(0) == '.')
+            if (input.charAt(0) == '.')
                 input.replaceFirst(".", "");
             return input.replaceAll("[^0-9.]", "");
         }
     }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         角度 = new JLabel();
