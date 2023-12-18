@@ -524,11 +524,14 @@ public class DecimalConversion extends JPanel {
 
     private void buttonAnti(ActionEvent e) {
         // TODO add your code here
+        firstInput = false;
         if(whichFocus)
         {
             if(!textField1.getText().isEmpty() && textField1.getText().charAt(0) != '-')
             {
-                textField1.setText("-" + textField1.getText());
+                String now = textField1.getText();
+                System.out.println(now);
+                textField1.setText("-" + now);
                 solve(textField1, textField2, comboBox1, comboBox2);
             }
             else if(!textField1.getText().isEmpty())
