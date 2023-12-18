@@ -202,6 +202,7 @@ public class DecimalConversion extends JPanel {
                         String str1 = textField1.getText();
                         try {
                             textField1.setText(str1.substring(str.length()));
+                            solve(textField1, textField2, comboBox1, comboBox2);
                         }catch (Exception ignored)
                         {
                         }
@@ -259,6 +260,7 @@ public class DecimalConversion extends JPanel {
                         String str1 = textField2.getText();
                         try {
                             textField2.setText(str1.substring(str.length()));
+                            solve(textField2, textField1, comboBox2, comboBox1);
                         }catch (Exception ignored)
                         {
                         }
@@ -455,6 +457,100 @@ public class DecimalConversion extends JPanel {
         }
     }
 
+    private void buttonA(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "a");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "a");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void buttonB(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "b");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "b");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void buttonC(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "c");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "c");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void buttonD(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "d");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "d");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void buttonE(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "e");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "e");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void buttonAnti(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            if(!textField1.getText().isEmpty() && textField1.getText().charAt(0) != '-')
+            {
+                textField1.setText("-" + textField1.getText());
+                solve(textField1, textField2, comboBox1, comboBox2);
+            }
+            else if(!textField1.getText().isEmpty())
+            {
+                textField1.setText(textField1.getText().substring(1));
+                solve(textField1, textField2, comboBox1, comboBox2);
+            }
+        }
+        else {
+            if(!textField2.getText().isEmpty() && textField2.getText().charAt(0) != '-')
+            {
+                textField2.setText("-" + textField2.getText());
+                solve(textField2, textField1, comboBox2, comboBox1);
+            }
+            else if(!textField2.getText().isEmpty())
+            {
+                textField2.setText(textField2.getText().substring(1));
+                solve(textField2, textField1, comboBox2, comboBox1);
+            }
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         decimalConversion = new JLabel();
@@ -476,6 +572,11 @@ public class DecimalConversion extends JPanel {
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
         button15 = new JButton();
+        button2 = new JButton();
+        button16 = new JButton();
+        button17 = new JButton();
+        button18 = new JButton();
+        button19 = new JButton();
 
         //======== this ========
         setFont(new Font("Consolas", Font.PLAIN, 18));
@@ -553,7 +654,7 @@ public class DecimalConversion extends JPanel {
         button1.setFocusable(false);
         button1.addActionListener(e -> buttonCE(e));
         add(button1);
-        button1.setBounds(140, 285, 120, 50);
+        button1.setBounds(190, 285, 90, 50);
 
         //---- button6 ----
         button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 6f));
@@ -562,7 +663,7 @@ public class DecimalConversion extends JPanel {
         button6.setFocusable(false);
         button6.addActionListener(e -> buttonBack(e));
         add(button6);
-        button6.setBounds(270, 285, 120, 50);
+        button6.setBounds(280, 285, 90, 50);
 
         //---- button3 ----
         button3.setText("7");
@@ -570,7 +671,7 @@ public class DecimalConversion extends JPanel {
         button3.setFocusable(false);
         button3.addActionListener(e -> button7(e));
         add(button3);
-        button3.setBounds(10, 340, 120, 50);
+        button3.setBounds(100, 340, 90, 50);
 
         //---- button4 ----
         button4.setText("8");
@@ -578,7 +679,7 @@ public class DecimalConversion extends JPanel {
         button4.setFocusable(false);
         button4.addActionListener(e -> button8(e));
         add(button4);
-        button4.setBounds(140, 340, 120, 50);
+        button4.setBounds(190, 340, 90, 50);
 
         //---- button7 ----
         button7.setText("9");
@@ -586,7 +687,7 @@ public class DecimalConversion extends JPanel {
         button7.setFocusable(false);
         button7.addActionListener(e -> button9(e));
         add(button7);
-        button7.setBounds(270, 340, 120, 50);
+        button7.setBounds(280, 340, 90, 50);
 
         //---- button5 ----
         button5.setText("4");
@@ -594,7 +695,7 @@ public class DecimalConversion extends JPanel {
         button5.setFocusable(false);
         button5.addActionListener(e -> button4(e));
         add(button5);
-        button5.setBounds(10, 395, 120, 50);
+        button5.setBounds(100, 395, 90, 50);
 
         //---- button8 ----
         button8.setText("5");
@@ -602,7 +703,7 @@ public class DecimalConversion extends JPanel {
         button8.setFocusable(false);
         button8.addActionListener(e -> button5(e));
         add(button8);
-        button8.setBounds(140, 395, 120, 50);
+        button8.setBounds(190, 395, 90, 50);
 
         //---- button9 ----
         button9.setText("6");
@@ -610,7 +711,7 @@ public class DecimalConversion extends JPanel {
         button9.setFocusable(false);
         button9.addActionListener(e -> button6(e));
         add(button9);
-        button9.setBounds(270, 395, 120, 50);
+        button9.setBounds(280, 395, 90, 50);
 
         //---- button10 ----
         button10.setText("1");
@@ -618,7 +719,7 @@ public class DecimalConversion extends JPanel {
         button10.setFocusable(false);
         button10.addActionListener(e -> button1(e));
         add(button10);
-        button10.setBounds(10, 450, 120, 50);
+        button10.setBounds(100, 450, 90, 50);
 
         //---- button11 ----
         button11.setText("2");
@@ -626,7 +727,7 @@ public class DecimalConversion extends JPanel {
         button11.setFocusable(false);
         button11.addActionListener(e -> button2(e));
         add(button11);
-        button11.setBounds(140, 450, 120, 50);
+        button11.setBounds(190, 450, 90, 50);
 
         //---- button12 ----
         button12.setText("3");
@@ -634,14 +735,15 @@ public class DecimalConversion extends JPanel {
         button12.setFocusable(false);
         button12.addActionListener(e -> button3(e));
         add(button12);
-        button12.setBounds(270, 450, 120, 50);
+        button12.setBounds(280, 450, 90, 50);
 
         //---- button13 ----
         button13.setText("+/-");
         button13.setFont(new Font("Consolas", Font.PLAIN, 18));
         button13.setFocusable(false);
+        button13.addActionListener(e -> buttonAnti(e));
         add(button13);
-        button13.setBounds(10, 505, 120, 50);
+        button13.setBounds(100, 505, 90, 50);
 
         //---- button14 ----
         button14.setText("0");
@@ -649,7 +751,7 @@ public class DecimalConversion extends JPanel {
         button14.setFocusable(false);
         button14.addActionListener(e -> button0(e));
         add(button14);
-        button14.setBounds(140, 505, 120, 50);
+        button14.setBounds(190, 505, 90, 50);
 
         //---- comboBox1 ----
         comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -681,9 +783,49 @@ public class DecimalConversion extends JPanel {
         button15.setBackground(new Color(0x999999));
         button15.setFocusable(false);
         add(button15);
-        button15.setBounds(270, 505, 120, 50);
+        button15.setBounds(280, 505, 90, 50);
 
-        setPreferredSize(new Dimension(400, 570));
+        //---- button2 ----
+        button2.setText("a");
+        button2.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button2.setFocusable(false);
+        button2.addActionListener(e -> buttonA(e));
+        add(button2);
+        button2.setBounds(10, 285, 90, 50);
+
+        //---- button16 ----
+        button16.setText("b");
+        button16.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button16.setFocusable(false);
+        button16.addActionListener(e -> buttonB(e));
+        add(button16);
+        button16.setBounds(10, 340, 90, 50);
+
+        //---- button17 ----
+        button17.setText("c");
+        button17.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button17.setFocusable(false);
+        button17.addActionListener(e -> buttonC(e));
+        add(button17);
+        button17.setBounds(10, 395, 90, 50);
+
+        //---- button18 ----
+        button18.setText("d");
+        button18.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button18.setFocusable(false);
+        button18.addActionListener(e -> buttonD(e));
+        add(button18);
+        button18.setBounds(10, 450, 90, 50);
+
+        //---- button19 ----
+        button19.setText("e");
+        button19.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button19.setFocusable(false);
+        button19.addActionListener(e -> buttonE(e));
+        add(button19);
+        button19.setBounds(10, 505, 90, 50);
+
+        setPreferredSize(new Dimension(380, 570));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -707,5 +849,10 @@ public class DecimalConversion extends JPanel {
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
     private JButton button15;
+    private JButton button2;
+    private JButton button16;
+    private JButton button17;
+    private JButton button18;
+    private JButton button19;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -65,9 +65,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonCE", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 140
+				"x": 190
 				"y": 285
-				"width": 120
+				"width": 90
 				"height": 50
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -78,9 +78,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonBack", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 270
+				"x": 280
 				"y": 285
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -90,9 +90,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button7", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 10
+				"x": 100
 				"y": 340
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -102,9 +102,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button8", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 140
+				"x": 190
 				"y": 340
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -114,9 +114,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button9", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 270
+				"x": 280
 				"y": 340
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -126,9 +126,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 10
+				"x": 100
 				"y": 395
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -138,9 +138,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button5", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 140
+				"x": 190
 				"y": 395
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -150,9 +150,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button6", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 270
+				"x": 280
 				"y": 395
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -162,9 +162,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 10
+				"x": 100
 				"y": 450
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -174,9 +174,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button2", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 140
+				"x": 190
 				"y": 450
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -186,9 +186,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button3", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 270
+				"x": 280
 				"y": 450
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -196,10 +196,11 @@ new FormModel {
 				"text": "+/-"
 				"font": #Font0
 				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonAnti", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 10
+				"x": 100
 				"y": 505
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -209,9 +210,9 @@ new FormModel {
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button0", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 140
+				"x": 190
 				"y": 505
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
@@ -255,14 +256,74 @@ new FormModel {
 				"background": new java.awt.Color( 153, 153, 153, 255 )
 				"focusable": false
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 120
+				"width": 90
 				"height": 50
-				"x": 270
+				"x": 280
+				"y": 505
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "a"
+				"font": #Font0
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonA", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 90
+				"height": 50
+				"x": 10
+				"y": 285
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button16"
+				"text": "b"
+				"font": #Font0
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonB", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 90
+				"height": 50
+				"x": 10
+				"y": 340
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button17"
+				"text": "c"
+				"font": #Font0
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonC", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 90
+				"height": 50
+				"x": 10
+				"y": 395
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button18"
+				"text": "d"
+				"font": #Font0
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonD", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 90
+				"height": 50
+				"x": 10
+				"y": 450
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button19"
+				"text": "e"
+				"font": #Font0
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonE", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 90
+				"height": 50
+				"x": 10
 				"y": 505
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 185, 0 )
-			"size": new java.awt.Dimension( 400, 570 )
+			"size": new java.awt.Dimension( 380, 570 )
 		} )
 	}
 }
