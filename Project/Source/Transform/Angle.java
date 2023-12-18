@@ -225,7 +225,93 @@ public class Angle extends JPanel {
     private void textField2KeyReleased(KeyEvent e) {
         exchange(textField2, textField1);
     }
+    public static Robot robot;
 
+    static {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void button1MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_1);
+        }
+    }
+
+    private void button2MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_2);
+        }
+    }
+
+    private void button3MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_3);
+        }
+    }
+
+    private void button4MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_4);
+        }
+    }
+
+    private void button5MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_5);
+        }
+    }
+
+    private void button6MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_6);
+        }
+    }
+
+    private void button7MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_7);
+        }
+    }
+
+    private void button8MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_8);
+        }
+    }
+
+    private void button9MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_9);
+        }
+    }
+
+    private void button0MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_0);
+        }
+    }
+
+    private void buttonDotMousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_PERIOD);
+        }
+    }
+
+    private void buttonBackspaceMousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+        }
+    }
+
+    private void buttonClearMousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+        }
+    }
 
     static class RestrictedDocumentFilter extends DocumentFilter {
         @Override
@@ -250,25 +336,25 @@ public class Angle extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        角度 = new JLabel();
+        Angle = new JLabel();
         textField1 = new JTextField();
         textField2 = new JTextField();
+        buttonClear = new JButton();
+        buttonBackspace = new JButton();
+        button0 = new JButton();
         button1 = new JButton();
-        button6 = new JButton();
+        button2 = new JButton();
         button3 = new JButton();
         button4 = new JButton();
-        button7 = new JButton();
         button5 = new JButton();
+        button6 = new JButton();
+        button7 = new JButton();
         button8 = new JButton();
         button9 = new JButton();
+        buttonDot = new JButton();
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
         scrollPane1 = new JScrollPane();
-        button17 = new JButton();
-        button18 = new JButton();
-        button19 = new JButton();
-        button20 = new JButton();
-        button21 = new JButton();
 
         //======== this ========
         setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
@@ -276,11 +362,11 @@ public class Angle extends JPanel {
         setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
         setLayout(null);
 
-        //---- 角度 ----
-        角度.setText("\u89d2\u5ea6");
-        角度.setFont(角度.getFont().deriveFont(角度.getFont().getStyle() | Font.BOLD, 角度.getFont().getSize() + 10f));
-        add(角度);
-        角度.setBounds(new Rectangle(new Point(15, 25), 角度.getPreferredSize()));
+        //---- Angle ----
+        Angle.setText("\u89d2\u5ea6");
+        Angle.setFont(Angle.getFont().deriveFont(Angle.getFont().getStyle() | Font.BOLD, Angle.getFont().getSize() + 10f));
+        add(Angle);
+        Angle.setBounds(new Rectangle(new Point(15, 25), Angle.getPreferredSize()));
 
         //---- textField1 ----
         textField1.setColumns(10);
@@ -332,53 +418,174 @@ public class Angle extends JPanel {
         add(textField2);
         textField2.setBounds(10, 180, 380, 50);
 
-        //---- button1 ----
-        button1.setText("C");
-        button1.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button1);
-        button1.setBounds(140, 285, 120, 50);
+        //---- buttonClear ----
+        buttonClear.setText("C");
+        buttonClear.setFont(new Font("Consolas", Font.PLAIN, 18));
+        buttonClear.setFocusable(false);
+        buttonClear.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonClearMousePressed(e);
+            }
+        });
+        add(buttonClear);
+        buttonClear.setBounds(140, 285, 120, 50);
 
-        //---- button6 ----
-        button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 6f));
-        button6.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
-        add(button6);
-        button6.setBounds(270, 285, 120, 50);
+        //---- buttonBackspace ----
+        buttonBackspace.setFont(buttonBackspace.getFont().deriveFont(buttonBackspace.getFont().getStyle() | Font.BOLD, buttonBackspace.getFont().getSize() + 6f));
+        buttonBackspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
+        buttonBackspace.setFocusable(false);
+        buttonBackspace.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonBackspaceMousePressed(e);
+            }
+        });
+        add(buttonBackspace);
+        buttonBackspace.setBounds(270, 285, 120, 50);
+
+        //---- button0 ----
+        button0.setText("0");
+        button0.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button0.setFocusable(false);
+        button0.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button0MousePressed(e);
+            }
+        });
+        add(button0);
+        button0.setBounds(140, 505, 120, 50);
+
+        //---- button1 ----
+        button1.setText("1");
+        button1.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button1.setFocusable(false);
+        button1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button1MousePressed(e);
+            }
+        });
+        add(button1);
+        button1.setBounds(10, 450, 120, 50);
+
+        //---- button2 ----
+        button2.setText("2");
+        button2.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button2.setFocusable(false);
+        button2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button2MousePressed(e);
+            }
+        });
+        add(button2);
+        button2.setBounds(140, 450, 120, 50);
 
         //---- button3 ----
-        button3.setText("7");
+        button3.setText("3");
         button3.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button3.setFocusable(false);
+        button3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button3MousePressed(e);
+            }
+        });
         add(button3);
-        button3.setBounds(10, 340, 120, 50);
+        button3.setBounds(270, 450, 120, 50);
 
         //---- button4 ----
-        button4.setText("8");
+        button4.setText("4");
         button4.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button4.setFocusable(false);
+        button4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button4MousePressed(e);
+            }
+        });
         add(button4);
-        button4.setBounds(140, 340, 120, 50);
-
-        //---- button7 ----
-        button7.setText("9");
-        button7.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button7);
-        button7.setBounds(270, 340, 120, 50);
+        button4.setBounds(10, 395, 120, 50);
 
         //---- button5 ----
-        button5.setText("4");
+        button5.setText("5");
         button5.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button5.setFocusable(false);
+        button5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button5MousePressed(e);
+            }
+        });
         add(button5);
-        button5.setBounds(10, 395, 120, 50);
+        button5.setBounds(140, 395, 120, 50);
+
+        //---- button6 ----
+        button6.setText("6");
+        button6.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button6.setFocusable(false);
+        button6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button6MousePressed(e);
+            }
+        });
+        add(button6);
+        button6.setBounds(270, 395, 120, 50);
+
+        //---- button7 ----
+        button7.setText("7");
+        button7.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button7.setFocusable(false);
+        button7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button7MousePressed(e);
+            }
+        });
+        add(button7);
+        button7.setBounds(10, 340, 120, 50);
 
         //---- button8 ----
-        button8.setText("5");
+        button8.setText("8");
         button8.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button8.setFocusable(false);
+        button8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button8MousePressed(e);
+            }
+        });
         add(button8);
-        button8.setBounds(140, 395, 120, 50);
+        button8.setBounds(140, 340, 120, 50);
 
         //---- button9 ----
-        button9.setText("6");
+        button9.setText("9");
         button9.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button9.setFocusable(false);
+        button9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button9MousePressed(e);
+            }
+        });
         add(button9);
-        button9.setBounds(270, 395, 120, 50);
+        button9.setBounds(270, 340, 120, 50);
+
+        //---- buttonDot ----
+        buttonDot.setText(".");
+        buttonDot.setFont(new Font("Consolas", Font.PLAIN, 18));
+        buttonDot.setFocusable(false);
+        buttonDot.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonDotMousePressed(e);
+            }
+        });
+        add(buttonDot);
+        buttonDot.setBounds(270, 505, 120, 50);
 
         //---- comboBox1 ----
         comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -387,7 +594,7 @@ public class Angle extends JPanel {
             "\u767e\u5206\u5ea6"
         }));
         comboBox1.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
-        comboBox1.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
+        comboBox1.setBorder(null);
         comboBox1.setFocusable(false);
         comboBox1.addItemListener(e -> comboBox1ItemStateChanged(e));
         add(comboBox1);
@@ -406,59 +613,29 @@ public class Angle extends JPanel {
         add(scrollPane1);
         scrollPane1.setBounds(new Rectangle(new Point(260, 180), scrollPane1.getPreferredSize()));
 
-        //---- button17 ----
-        button17.setText("1");
-        button17.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button17);
-        button17.setBounds(10, 450, 120, 50);
-
-        //---- button18 ----
-        button18.setText("2");
-        button18.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button18);
-        button18.setBounds(140, 450, 120, 50);
-
-        //---- button19 ----
-        button19.setText("3");
-        button19.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button19);
-        button19.setBounds(270, 450, 120, 50);
-
-        //---- button20 ----
-        button20.setText(".");
-        button20.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button20);
-        button20.setBounds(270, 505, 120, 50);
-
-        //---- button21 ----
-        button21.setText("0");
-        button21.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button21);
-        button21.setBounds(140, 505, 120, 50);
-
         setPreferredSize(new Dimension(400, 570));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JLabel 角度;
+    private JLabel Angle;
     private JTextField textField1;
     private JTextField textField2;
+    private JButton buttonClear;
+    private JButton buttonBackspace;
+    private JButton button0;
     private JButton button1;
-    private JButton button6;
+    private JButton button2;
     private JButton button3;
     private JButton button4;
-    private JButton button7;
     private JButton button5;
+    private JButton button6;
+    private JButton button7;
     private JButton button8;
     private JButton button9;
+    private JButton buttonDot;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
     private JScrollPane scrollPane1;
-    private JButton button17;
-    private JButton button18;
-    private JButton button19;
-    private JButton button20;
-    private JButton button21;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

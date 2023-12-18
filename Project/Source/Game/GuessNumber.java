@@ -5,7 +5,6 @@
 package Source.Game;
 
 import Source.Calculator.UtilitiesSci;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.awt.*;
 import java.awt.event.*;
