@@ -24,9 +24,31 @@ public class DecimalConversion extends JPanel {
     public DecimalConversion() {
         initComponents();
     }
-
     private String JinzhiSwitch(String nums, int op1, int op2) {
-        return new BigInteger(nums, op1).toString(op2);
+        try {
+            if(!nums.isEmpty())
+            {
+                if(nums.charAt(0) == '-' && op2 != 10)
+                {
+                    String newNums = new BigInteger(nums.substring(1), op1).toString(2);
+                    StringBuilder res = new StringBuilder("1");
+                    for(char i : newNums.toCharArray())
+                    {
+                        if(i == '1')
+                            res.append('0');
+                        else
+                            res.append('1');
+                    }
+                    return new BigInteger(res.toString(), 2).add(BigInteger.ONE).toString(op2);
+                }
+                else
+                    return new BigInteger(nums, op1).toString(op2);
+            }
+            return null;
+        }catch (Exception e)
+        {
+            return null;
+        }
     }
 
     private void solve(JTextField textField1, JTextField textField2, JComboBox<String> comboBox1, JComboBox<String> comboBox2) {
@@ -39,7 +61,7 @@ public class DecimalConversion extends JPanel {
             case 0:
                 switch (p2) {
                     case 0 -> {
-                        res = inputString;
+                        res = JinzhiSwitch(inputString, 2, 2);
                     }
                     case 1 -> {
                         res = JinzhiSwitch(inputString, 2, 8);
@@ -58,7 +80,7 @@ public class DecimalConversion extends JPanel {
                         res = JinzhiSwitch(inputString, 8, 2);
                     }
                     case 1 -> {
-                        res = inputString;
+                        res = JinzhiSwitch(inputString, 8, 8);
                     }
                     case 2 -> {
                         res = JinzhiSwitch(inputString, 8, 10);
@@ -77,7 +99,7 @@ public class DecimalConversion extends JPanel {
                         res = JinzhiSwitch(inputString, 10, 8);
                     }
                     case 2 -> {
-                        res = inputString;
+                        res = JinzhiSwitch(inputString, 10, 10);
                     }
                     case 3 -> {
                         res = JinzhiSwitch(inputString, 10, 16);
@@ -96,7 +118,7 @@ public class DecimalConversion extends JPanel {
                         res = JinzhiSwitch(inputString, 16, 10);
                     }
                     case 3 -> {
-                        res = inputString;
+                        res = JinzhiSwitch(inputString, 16, 16);
                     }
                 }
                 break;
@@ -123,25 +145,24 @@ public class DecimalConversion extends JPanel {
         private String filter(String input) {
             // 此处可以根据需要定义文本框的输入限制
             // 这个例子中只允许输入数字
-            input.replaceAll("\\.\\.", ".");
-            if(!input.isEmpty() && input.charAt(0) == '.')
-                input.replaceFirst("\\.", "");
+            if(input == null || input.isEmpty())
+                return null;
             switch (op)
             {
                 case 0 -> {
-                    return input.replaceAll("[^0-1.]", "");
+                    return input.replaceAll("[^-0-1]", "");
                 }
                 case 1 -> {
-                    return input.replaceAll("[^0-7.]", "");
+                    return input.replaceAll("[^-0-7]", "");
                 }
                 case 2 -> {
-                    return input.replaceAll("[^0-9.]", "");
+                    return input.replaceAll("[^-0-9]", "");
                 }
                 case 3 -> {
-                    return input.replaceAll("[^0-9a-fA-F.]", "");
+                    return input.replaceAll("[^-0-9a-fA-F]", "");
                 }
                 default -> {
-                    return input;
+                    return null;
                 }
             }
         }
