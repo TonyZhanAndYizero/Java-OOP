@@ -406,10 +406,13 @@ public class LinearRegression extends JPanel {
                 }
             ));
             table1.setFocusable(false);
+            table1.setAutoscrolls(false);
+            table1.setOpaque(false);
+            table1.setBorder(new MatteBorder(1, 1, 1, 1, Color.black));
             scrollPane1.setViewportView(table1);
         }
         add(scrollPane1);
-        scrollPane1.setBounds(175, 250, scrollPane1.getPreferredSize().width, 290);
+        scrollPane1.setBounds(145, 245, 500, 295);
 
         //---- label1 ----
         label1.setText("\u8bf7\u8f93\u5165\u5904\u7406\u6570\u636e\u70b9\u4e2a\u6570(\u53ef\u9009)\uff1a");
@@ -570,6 +573,7 @@ public class LinearRegression extends JPanel {
         button6.setText("\u5bfc\u5165");
         button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 4f));
         button6.setFocusable(false);
+        button6.setToolTipText("\u8bf7\u4e25\u683c\u4f7f\u7528 k: \u3001 x: \u548c y: \u6765\u533a\u5206(\u5747\u4e3a\u5168\u82f1\u5b57\u7b26\u5e76\u5c0f\u5199)");
         button6.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

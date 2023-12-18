@@ -121,10 +121,8 @@ public class LinearRegressionDemo extends JFrame {
         g.drawLine(900, 600, 890, 605);
 
 
-        BigDecimal xEnd = getMax(linearRegression.XNums).multiply(new BigDecimal("1.1")).setScale(0, RoundingMode.CEILING),
-                yEnd = getMax(linearRegression.YNums).multiply(new BigDecimal("1.1")).setScale(0, RoundingMode.CEILING);
-        BigDecimal xDis = xEnd.divide(new BigDecimal(10), 2, RoundingMode.HALF_UP),
-                yDis = yEnd.divide(new BigDecimal(10), 2, RoundingMode.HALF_UP);
+        BigDecimal xEnd = getMax(linearRegression.XNums).multiply(new BigDecimal("1.1")).setScale(0, RoundingMode.CEILING), yEnd = getMax(linearRegression.YNums).multiply(new BigDecimal("1.1")).setScale(0, RoundingMode.CEILING);
+        BigDecimal xDis = xEnd.divide(new BigDecimal(10), 2, RoundingMode.HALF_UP), yDis = yEnd.divide(new BigDecimal(10), 2, RoundingMode.HALF_UP);
         BigDecimal temp;
         // 绘制坐标轴的刻度和标签
         for (int i = 0; i < 11; i++) {
@@ -147,8 +145,7 @@ public class LinearRegressionDemo extends JFrame {
 
 
         int n = linearRegression.XNums.size();
-        BigDecimal xPixel = new BigDecimal(700).divide(xEnd, 5, RoundingMode.HALF_UP),
-                yPixel = new BigDecimal(500).divide(yEnd, 5, RoundingMode.HALF_UP);
+        BigDecimal xPixel = new BigDecimal(700).divide(xEnd, 5, RoundingMode.HALF_UP), yPixel = new BigDecimal(500).divide(yEnd, 5, RoundingMode.HALF_UP);
 
         // 绘制数据点
         g.setColor(Color.RED); // 设置画笔颜色为红色
@@ -157,15 +154,14 @@ public class LinearRegressionDemo extends JFrame {
             int px = 150 + (int) Double.parseDouble(linearRegression.XNums.get(i).multiply(xPixel).toPlainString());
             int py = 600 - (int) Double.parseDouble(linearRegression.YNums.get(i).multiply(yPixel).toPlainString());
             // 绘制一个半径为4的圆点
-            g.fillOval(px - 4, py - 4, 8, 8);
+            g.drawOval(px - 3, py - 3, 6, 6);
         }
         // 绘制回归线
         stokeLine = new BasicStroke(1.5f);
         g2.setStroke(stokeLine);
         g.setColor(Color.BLUE); // 设置画笔颜色为蓝色
         // 计算回归线的起点和终点的像素坐标
-        BigDecimal startY = linearRegression.a,
-                endY = linearRegression.a.add(linearRegression.b.multiply(xEnd));
+        BigDecimal startY = linearRegression.a, endY = linearRegression.a.add(linearRegression.b.multiply(xEnd));
         int x1 = 150;
         int y1 = 600 - (int) Double.parseDouble(startY.multiply(yPixel).toPlainString());
         int x2 = 850;
@@ -181,8 +177,7 @@ public class LinearRegressionDemo extends JFrame {
         g.setFont(new Font("Times New Roman", Font.BOLD, 24));
         if (linearRegression.a.compareTo(BigDecimal.ZERO) >= 0)
             g.drawString("y = " + sb + "x " + "+" + " " + sa, 200, 80);
-        else
-            g.drawString("y = " + sb + "x " + "-" + " " + sa, 200, 80);
+        else g.drawString("y = " + sb + "x " + "-" + " " + sa, 200, 80);
     }
 
     /**

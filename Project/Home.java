@@ -1,9 +1,13 @@
 import java.awt.event.*;
 import javax.swing.border.*;
 
+import Source.Calculator.CalculatorMatrix;
 import Source.Calculator.CalculatorSci;
 import Source.Calculator.CalculatorStd;
+import Source.Game.GuessNumber;
+import Source.Game.TwentyFour;
 import Source.Physics.LinearRegression;
+import Source.Physics.Variance;
 import Source.Transform.Angle;
 import Source.Transform.DecimalConversion;
 
@@ -28,14 +32,19 @@ public class Home extends JFrame {
         home.revalidate();
         home.repaint();
         home.pack();
+        home.setLocationRelativeTo(null);
         home.setVisible(true);
     }
 
     private static CalculatorSci sci;
     private static CalculatorStd std;
+    private static CalculatorMatrix matrix;
     private static Angle angle;
     private static LinearRegression linearRegression;
     private static DecimalConversion decimalConversion;
+    private static TwentyFour twentyFour;
+    private static Variance variance;
+    private static GuessNumber guessNumber;
 
     public Home() {
         try {
@@ -63,6 +72,10 @@ public class Home extends JFrame {
         angle = new Angle();
         decimalConversion = new DecimalConversion();
         linearRegression = new LinearRegression();
+        twentyFour = new TwentyFour();
+        variance = new Variance();
+        guessNumber = new GuessNumber();
+        matrix = new CalculatorMatrix();
         initComponents();
     }
 
@@ -75,6 +88,7 @@ public class Home extends JFrame {
         revalidate();
         repaint();
         pack();
+        setLocationRelativeTo(null);
     }
 
     private void showSci(ActionEvent e) {
@@ -86,9 +100,10 @@ public class Home extends JFrame {
         revalidate();
         repaint();
         pack();
+        setLocationRelativeTo(null);
     }
 
-    private void menuItem3MousePressed(MouseEvent e) {
+    private void showAngleTransformer(MouseEvent e) {
         // TODO add your code here
         this.setTitle("  Angle Transformer");
         getContentPane().removeAll();
@@ -96,9 +111,10 @@ public class Home extends JFrame {
         revalidate();
         repaint();
         pack();
+        setLocationRelativeTo(null);
     }
 
-    private void menuItem4MousePressed(MouseEvent e) {
+    private void showLinearRegression(MouseEvent e) {
         // TODO add your code here
         this.setTitle("  Linear Regression");
         getContentPane().removeAll();
@@ -106,6 +122,7 @@ public class Home extends JFrame {
         revalidate();
         repaint();
         pack();
+        setLocationRelativeTo(null);
     }
 
     private void showDecimalConversion(MouseEvent e) {
@@ -116,6 +133,52 @@ public class Home extends JFrame {
         revalidate();
         repaint();
         pack();
+        setLocationRelativeTo(null);
+    }
+
+    private void showTwentyFour(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  24-Point Game");
+        getContentPane().removeAll();
+        getContentPane().add(twentyFour);
+        revalidate();
+        repaint();
+        pack();
+        setLocationRelativeTo(null);
+    }
+
+    private void showVariance(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  Variance");
+        getContentPane().removeAll();
+        getContentPane().add(variance);
+        revalidate();
+        repaint();
+        pack();
+        setLocationRelativeTo(null);
+    }
+
+    private void showGuessNumber(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  Guess Number");
+        getContentPane().removeAll();
+        getContentPane().add(guessNumber);
+        guessNumber.getTextField1().requestFocus();
+        revalidate();
+        repaint();
+        pack();
+        setLocationRelativeTo(null);
+    }
+
+    private void showMatrix(MouseEvent e) {
+        // TODO add your code here
+        this.setTitle("  Matrix Calculator");
+        getContentPane().removeAll();
+        getContentPane().add(matrix);
+        revalidate();
+        repaint();
+        pack();
+        setLocationRelativeTo(null);
     }
 
     private void initComponents() {
@@ -127,13 +190,16 @@ public class Home extends JFrame {
         label1 = new JLabel();
         radioButtonMenuItem1 = new JRadioButtonMenuItem();
         radioButtonMenuItem2 = new JRadioButtonMenuItem();
+        radioButtonMenuItem9 = new JRadioButtonMenuItem();
         label2 = new JLabel();
         radioButtonMenuItem3 = new JRadioButtonMenuItem();
         radioButtonMenuItem5 = new JRadioButtonMenuItem();
         label3 = new JLabel();
         radioButtonMenuItem4 = new JRadioButtonMenuItem();
+        radioButtonMenuItem7 = new JRadioButtonMenuItem();
         label4 = new JLabel();
         radioButtonMenuItem6 = new JRadioButtonMenuItem();
+        radioButtonMenuItem8 = new JRadioButtonMenuItem();
         menu2 = new JMenu();
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
@@ -180,6 +246,19 @@ public class Home extends JFrame {
                 radioButtonMenuItem2.addActionListener(e -> showSci(e));
                 menu1.add(radioButtonMenuItem2);
 
+                //---- radioButtonMenuItem9 ----
+                radioButtonMenuItem9.setText("\u77e9\u9635");
+                radioButtonMenuItem9.setIcon(new ImageIcon(getClass().getResource("/Resources/img/matrix.png")));
+                radioButtonMenuItem9.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                radioButtonMenuItem9.setIconTextGap(5);
+                radioButtonMenuItem9.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showMatrix(e);
+                    }
+                });
+                menu1.add(radioButtonMenuItem9);
+
                 //---- label2 ----
                 label2.setText(" \u8f6c\u6362\u5668 ");
                 label2.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 14));
@@ -198,7 +277,7 @@ public class Home extends JFrame {
                 radioButtonMenuItem3.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        menuItem3MousePressed(e);
+                        showAngleTransformer(e);
                     }
                 });
                 menu1.add(radioButtonMenuItem3);
@@ -228,16 +307,29 @@ public class Home extends JFrame {
 
                 //---- radioButtonMenuItem4 ----
                 radioButtonMenuItem4.setText("\u4e00\u5143\u7ebf\u6027\u56de\u5f52");
-                radioButtonMenuItem4.setIcon(new ImageIcon(getClass().getResource("/Resources/img/linear.png")));
+                radioButtonMenuItem4.setIcon(new ImageIcon(getClass().getResource("/Resources/img/linear2.png")));
                 radioButtonMenuItem4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
                 radioButtonMenuItem4.setIconTextGap(5);
                 radioButtonMenuItem4.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        menuItem4MousePressed(e);
+                        showLinearRegression(e);
                     }
                 });
                 menu1.add(radioButtonMenuItem4);
+
+                //---- radioButtonMenuItem7 ----
+                radioButtonMenuItem7.setText("\u65b9\u5dee");
+                radioButtonMenuItem7.setIcon(new ImageIcon(getClass().getResource("/Resources/img/variance.png")));
+                radioButtonMenuItem7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                radioButtonMenuItem7.setIconTextGap(5);
+                radioButtonMenuItem7.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showVariance(e);
+                    }
+                });
+                menu1.add(radioButtonMenuItem7);
 
                 //---- label4 ----
                 label4.setText(" \u76ca\u667a ");
@@ -252,13 +344,33 @@ public class Home extends JFrame {
                 radioButtonMenuItem6.setText("24\u70b9");
                 radioButtonMenuItem6.setIcon(new ImageIcon(getClass().getResource("/Resources/img/24.png")));
                 radioButtonMenuItem6.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                radioButtonMenuItem6.setIconTextGap(5);
+                radioButtonMenuItem6.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showTwentyFour(e);
+                    }
+                });
                 menu1.add(radioButtonMenuItem6);
+
+                //---- radioButtonMenuItem8 ----
+                radioButtonMenuItem8.setText("\u731c\u6570\u5b57");
+                radioButtonMenuItem8.setIcon(new ImageIcon(getClass().getResource("/Resources/img/guess2.png")));
+                radioButtonMenuItem8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                radioButtonMenuItem8.setIconTextGap(5);
+                radioButtonMenuItem8.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        showGuessNumber(e);
+                    }
+                });
+                menu1.add(radioButtonMenuItem8);
             }
             menuBar1.add(menu1);
 
             //======== menu2 ========
             {
-                menu2.setText("\u6587\u4ef6");
+                menu2.setText("\u5e2e\u52a9");
                 menu2.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 14));
                 menu2.setMargin(new Insets(5, 5, 5, 5));
 
@@ -279,10 +391,13 @@ public class Home extends JFrame {
         var buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(radioButtonMenuItem1);
         buttonGroup1.add(radioButtonMenuItem2);
+        buttonGroup1.add(radioButtonMenuItem9);
         buttonGroup1.add(radioButtonMenuItem3);
         buttonGroup1.add(radioButtonMenuItem5);
         buttonGroup1.add(radioButtonMenuItem4);
+        buttonGroup1.add(radioButtonMenuItem7);
         buttonGroup1.add(radioButtonMenuItem6);
+        buttonGroup1.add(radioButtonMenuItem8);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -292,18 +407,18 @@ public class Home extends JFrame {
     private JLabel label1;
     private JRadioButtonMenuItem radioButtonMenuItem1;
     private JRadioButtonMenuItem radioButtonMenuItem2;
+    private JRadioButtonMenuItem radioButtonMenuItem9;
     private JLabel label2;
     private JRadioButtonMenuItem radioButtonMenuItem3;
     private JRadioButtonMenuItem radioButtonMenuItem5;
     private JLabel label3;
     private JRadioButtonMenuItem radioButtonMenuItem4;
+    private JRadioButtonMenuItem radioButtonMenuItem7;
     private JLabel label4;
     private JRadioButtonMenuItem radioButtonMenuItem6;
+    private JRadioButtonMenuItem radioButtonMenuItem8;
     private JMenu menu2;
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
-/*
-
- */

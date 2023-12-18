@@ -248,11 +248,13 @@ public class EngineerArithmetic {
             str = str.replaceAll("abs", "a");
             str = str.replaceAll("pi", "p");
             str = str.replaceAll("ln", "l");
+            str = str.replaceAll("\u00F7", "/");
+            str = str.replaceAll("\u00D7", "*");
             list = zhongZhui(str);
-            System.out.println(list);
+            //System.out.println(list);
 
             list = houZhui(list);
-            System.out.println(list);
+            //System.out.println(list);
             return math(list).toPlainString();
         }catch (Exception e)
         {
@@ -266,7 +268,7 @@ public class EngineerArithmetic {
         while(true)
         {
             str = sc.nextLine();
-            System.out.println(engineerCal(str));
+            //System.out.println(engineerCal(str));
         }
     }
 }

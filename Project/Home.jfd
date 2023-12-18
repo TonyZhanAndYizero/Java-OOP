@@ -28,10 +28,10 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "radioButtonMenuItem1"
 						"text": "标准"
-						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"$buttonGroup": &FormReference0 new FormReference( "buttonGroup1" )
 						"selected": true
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/std.png" )
-						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"font": &Font0 new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
 						"iconTextGap": 5
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showStd", true ) )
 					} )
@@ -43,6 +43,15 @@ new FormModel {
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
 						"iconTextGap": 5
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showSci", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem9"
+						"text": "矩阵"
+						"$buttonGroup": #FormReference0
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/matrix.png" )
+						"font": #Font0
+						"iconTextGap": 5
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showMatrix", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
@@ -61,7 +70,7 @@ new FormModel {
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/angle.png" )
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
 						"iconTextGap": 5
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem3MousePressed", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showAngleTransformer", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "radioButtonMenuItem5"
@@ -85,11 +94,20 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "radioButtonMenuItem4"
 						"text": "一元线性回归"
-						"$buttonGroup": new FormReference( "buttonGroup1" )
-						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/linear.png" )
-						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"$buttonGroup": &FormReference1 new FormReference( "buttonGroup1" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/linear2.png" )
+						"font": &Font1 new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
 						"iconTextGap": 5
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem4MousePressed", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showLinearRegression", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem7"
+						"text": "方差"
+						"$buttonGroup": #FormReference1
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/variance.png" )
+						"font": #Font1
+						"iconTextGap": 5
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showVariance", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label4"
@@ -104,13 +122,24 @@ new FormModel {
 						name: "radioButtonMenuItem6"
 						"text": "24点"
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/24.png" )
-						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
-						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"font": &Font2 new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						"$buttonGroup": &FormReference2 new FormReference( "buttonGroup1" )
+						"iconTextGap": 5
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showTwentyFour", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem8"
+						"text": "猜数字"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/guess2.png" )
+						"font": #Font2
+						"$buttonGroup": #FormReference2
+						"iconTextGap": 5
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showGuessNumber", true ) )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu2"
-					"text": "文件"
+					"text": "帮助"
 					"font": new java.awt.Font( "宋体", 1, 14 )
 					"margin": new java.awt.Insets( 5, 5, 5, 5 )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
@@ -124,8 +153,8 @@ new FormModel {
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 75, 10 )
-			"size": new java.awt.Dimension( 590, 375 )
+			"location": new java.awt.Point( 45, 20 )
+			"size": new java.awt.Dimension( 590, 430 )
 		} )
 		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
 			name: "buttonGroup1"

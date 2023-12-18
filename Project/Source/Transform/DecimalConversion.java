@@ -2,7 +2,6 @@ package Source.Transform;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -32,8 +31,6 @@ public class DecimalConversion extends JPanel {
 
     private void solve(JTextField textField1, JTextField textField2, JComboBox<String> comboBox1, JComboBox<String> comboBox2) {
         String inputString = textField1.getText();
-        BigDecimal a = new BigDecimal(inputString);
-        inputString = a.toString();
         int p1 = comboBox1.getSelectedIndex();
         int p2 = comboBox2.getSelectedIndex();
 
@@ -106,6 +103,7 @@ public class DecimalConversion extends JPanel {
         }
         textField2.setText(res);
     }
+
     static class RestrictedDocumentFilter extends DocumentFilter {
         int op;
 
@@ -127,21 +125,20 @@ public class DecimalConversion extends JPanel {
             // 此处可以根据需要定义文本框的输入限制
             // 这个例子中只允许输入数字
             input.replaceAll("\\.\\.", ".");
-            if(input.charAt(0) == '.')
+            if (!input.isEmpty() && input.charAt(0) == '.')
                 input.replaceFirst("\\.", "");
-            switch (op)
-            {
+            switch (op) {
                 case 0 -> {
-                    return input.replaceAll("[^0-1.]", "");
+                    return input.replaceAll("[^\\-0-1.]", "");
                 }
                 case 1 -> {
-                    return input.replaceAll("[^0-7.]", "");
+                    return input.replaceAll("[^\\-0-7.]", "");
                 }
                 case 2 -> {
-                    return input.replaceAll("[^0-9.]", "");
+                    return input.replaceAll("[^\\-0-9.]", "");
                 }
                 case 3 -> {
-                    return input.replaceAll("[^0-9a-fA-F.]", "");
+                    return input.replaceAll("[^\\-0-9a-fA-F.]", "");
                 }
                 default -> {
                     return input;
@@ -149,6 +146,7 @@ public class DecimalConversion extends JPanel {
             }
         }
     }
+
     private void textField1CaretUpdate(CaretEvent e) {
         // TODO add your code here
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox1.getSelectedIndex()));
@@ -182,8 +180,10 @@ public class DecimalConversion extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField1.getText();
-                        str1 = str1.replaceAll(str, "");
-                        textField1.setText(str1);
+                        try {
+                            textField1.setText(str1.substring(str.length()));
+                        } catch (Exception ignored) {
+                        }
                         // 清空原始文本
                     });
                     firstInput = false;
@@ -208,6 +208,7 @@ public class DecimalConversion extends JPanel {
         // TODO add your code here
         ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox2.getSelectedIndex()));
     }
+
     private void textField2FocusGained(FocusEvent e) {
         // TODO add your code here
         String str = textField2.getText();
@@ -236,8 +237,10 @@ public class DecimalConversion extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField2.getText();
-                        str1 = str1.replaceAll(str, "");
-                        textField2.setText(str1);
+                        try {
+                            textField2.setText(str1.substring(str.length()));
+                        } catch (Exception ignored) {
+                        }
                         // 清空原始文本
                     });
                     firstInput = false;
@@ -255,18 +258,22 @@ public class DecimalConversion extends JPanel {
 
     private void comboBox1ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if (whichFocus)
-            solve(textField1, textField2, comboBox1, comboBox2);
-        else
-            solve(textField2, textField1, comboBox2, comboBox1);
+        whichFocus = false;
+        textField1.setFont(new Font("Inter", Font.PLAIN, 28));
+        textField2.setFont(new Font("Inter", Font.BOLD, 28));
+        solve(textField2, textField1, comboBox2, comboBox1);
     }
 
     private void comboBox2ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if (whichFocus)
-            solve(textField1, textField2, comboBox1, comboBox2);
-        else
-            solve(textField2, textField1, comboBox2, comboBox1);
+        whichFocus = true;
+        textField1.setFont(new Font("Inter", Font.BOLD, 28));
+        textField2.setFont(new Font("Inter", Font.PLAIN, 28));
+        solve(textField1, textField2, comboBox1, comboBox2);
+    }
+
+    private void textField2KeyPressed(KeyEvent e) {
+        // TODO add your code here
     }
 
     private void initComponents() {
@@ -350,6 +357,10 @@ public class DecimalConversion extends JPanel {
         });
         textField2.addKeyListener(new KeyAdapter() {
             @Override
+            public void keyPressed(KeyEvent e) {
+                textField2KeyPressed(e);
+            }
+            @Override
             public void keyReleased(KeyEvent e) {
                 textField2KeyReleased(e);
             }
@@ -365,6 +376,7 @@ public class DecimalConversion extends JPanel {
 
         //---- button6 ----
         button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 6f));
+        button6.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
         add(button6);
         button6.setBounds(270, 285, 120, 50);
 
@@ -423,7 +435,7 @@ public class DecimalConversion extends JPanel {
         button12.setBounds(270, 450, 120, 50);
 
         //---- button13 ----
-        button13.setText("+/_");
+        button13.setText("+/-");
         button13.setFont(button13.getFont().deriveFont(button13.getFont().getStyle() | Font.BOLD, button13.getFont().getSize() + 6f));
         add(button13);
         button13.setBounds(10, 505, 120, 50);

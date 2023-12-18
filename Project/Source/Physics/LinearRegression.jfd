@@ -59,11 +59,15 @@ new FormModel {
 						add( null )
 					} )
 					"focusable": false
+					"autoscrolls": false
+					"opaque": false
+					"border": new javax.swing.border.MatteBorder( 1, 1, 1, 1, sfield java.awt.Color black )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 175
-				"y": 250
-				"height": 290
+				"x": 145
+				"y": 245
+				"height": 295
+				"width": 500
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
@@ -257,6 +261,7 @@ new FormModel {
 				"text": "导入"
 				"font": #SwingDerivedFont0
 				"focusable": false
+				"toolTipText": "请严格使用 k: 、 x: 和 y: 来区分(均为全英字符并小写)"
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button6MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 75
