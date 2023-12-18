@@ -33,28 +33,24 @@ public class LinearRegression extends JPanel {
     }
 
     private void button2MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             textField1.setText("");
         }
     }
 
     private void button3MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             textField2.setText("");
         }
     }
 
     private void button4MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             textField3.setText("");
         }
     }
 
     private void button5MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             textField1.setText("");
             textField2.setText("");
@@ -63,7 +59,6 @@ public class LinearRegression extends JPanel {
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             compute();
         }

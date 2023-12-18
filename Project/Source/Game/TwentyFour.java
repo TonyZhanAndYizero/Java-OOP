@@ -33,7 +33,7 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonDivMousePressed(MouseEvent e) {
-        // TODO add your code here
+
         if (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("/");
             strToShow.add("\u00F7");
@@ -49,7 +49,7 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonMulMousePressed(MouseEvent e) {
-        // TODO add your code here
+
         if (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("*");
             strToShow.add("\u00D7");
@@ -65,7 +65,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonMinusMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("-");
             strToShow.add("-");
@@ -81,7 +80,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonPlusMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("+");
             strToShow.add("+");
@@ -97,7 +95,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonRightMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (cntLeftBracket > 0 && (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")"))) {
             strToCal.add(")");
             strToShow.add(")");
@@ -113,7 +110,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonLeftMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!checkNum(lastCh) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add("(");
             strToShow.add("(");
@@ -130,7 +126,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonCleanEntryMousePressed(MouseEvent e) {
-        // TODO add your code here
         flagButton1 = false;
         flagButton2 = false;
         flagButton3 = false;
@@ -146,7 +141,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonBackspaceMousePressed(MouseEvent e) {
-        // TODO add your code here
         backSpace();
         SetTextField1();
     }
@@ -158,7 +152,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonEqualMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (flagButton1 && flagButton2 && flagButton3 && flagButton4) {
             getResult();
         } else {
@@ -172,7 +165,6 @@ public class TwentyFour extends JPanel {
     boolean flagButton1, flagButton2, flagButton3, flagButton4;
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!flagButton1) {
             String now = button1.getText();
             if (inputNum(now)) {
@@ -183,7 +175,6 @@ public class TwentyFour extends JPanel {
     }
 
     private void button2MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!flagButton2) {
             String now = button2.getText();
             if (inputNum(now)) {
@@ -195,7 +186,6 @@ public class TwentyFour extends JPanel {
     }
 
     private void button3MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!flagButton3) {
             String now = button3.getText();
             if (inputNum(now)) {
@@ -206,7 +196,6 @@ public class TwentyFour extends JPanel {
     }
 
     private void button4MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!flagButton4) {
             String now = button4.getText();
             if (inputNum(now)) {
@@ -225,8 +214,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonReplayMousePressed(MouseEvent e) {
-        // TODO add your code here
-
         //textField1.setText("");
         clearEntry();
         SetTextField1();
@@ -258,7 +245,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonAnsMousePressed(MouseEvent e) {
-        // TODO add your code here
         StringBuilder ans = new StringBuilder();
         for (String k : utilities24.ansList) {
             ans.append(k).append("\r\n");
@@ -278,7 +264,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void SetTextField1() {
-        // TODO add your code here
         StringBuilder tmp = new StringBuilder();
         if (strToShow.isEmpty()) {
             //tmp.append("0");
@@ -401,7 +386,7 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void closeDialog1(MouseEvent e) {
-        // TODO add your code here
+
         dialog1.setVisible(false);
     }
 

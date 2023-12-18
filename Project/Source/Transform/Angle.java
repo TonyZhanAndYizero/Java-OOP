@@ -35,10 +35,30 @@ public class Angle extends JPanel {
         initComponents();
     }
 
+    private boolean illegal = false;
+
     private void exchange(JTextField textField1, JTextField textField2) {
+        if (illegal) {
+            illegal = false;
+            textField1.setText("0");
+            textField2.setText("0");
+            return;
+        }
         int p1 = comboBox1.getSelectedIndex();
         int p2 = comboBox2.getSelectedIndex();
-        BigDecimal bg1 = new BigDecimal(textField1.getText());
+        if (textField1.getText().isEmpty()) {
+            textField1.setText("0");
+            textField2.setText("0");
+            return;
+        }
+        BigDecimal bg1;
+        try {
+            bg1 = new BigDecimal(textField1.getText());
+        } catch (NumberFormatException nfe) {
+            textField2.setText("illegal!");
+            illegal = true;
+            return;
+        }
         BigDecimal res = null;
         switch (p1) {
             case 0:
@@ -85,12 +105,10 @@ public class Angle extends JPanel {
     }
 
     private void textField1CaretUpdate(CaretEvent e) {
-        // TODO add your code here
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
     }
 
     private void textField2CaretUpdate(CaretEvent e) {
-        // TODO add your code here
         ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
     }
 
@@ -121,18 +139,26 @@ public class Angle extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField1.getText();
-                        textField1.setText(str1.substring(str.length()));
-                        // 清空原始文本
+                        if (str1.length()>1&&str1.charAt(1) == '.') return;
+                        try {
+                            if (textField1.getText().charAt(0) == '0')
+                                textField1.setText(str1.substring(1));
+                        }// 清空原始文本
+                        catch (Exception e) {
+                            textField1.setText("0");
+                        }
                     });
                     firstInput = false;
                 }
                 // 可以在这里处理用户输入后的逻辑
+                if (textField1.getText().length() == 1 && textField1.getText().equals("0")) {
+                    firstInput = true;
+                }
             }
         });
     }
 
     private void textField2FocusGained(FocusEvent e) {
-        // TODO add your code here
         String str = textField2.getText();
         whichFocus = false;
         textField1.setFont(new Font("Inter", Font.PLAIN, 28));
@@ -159,28 +185,30 @@ public class Angle extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField2.getText();
-                        textField2.setText(str1.substring(str.length()));
-                        // 清空原始文本
+                        if (str1.length()>1&&str1.charAt(1) == '.') return;
+                        try {
+                            if (textField2.getText().charAt(0) == '0')
+                                textField2.setText(str1.substring(1));
+                        }// 清空原始文本
+                        catch (Exception e) {
+                            textField2.setText("0");
+                        }
                     });
                     firstInput = false;
+                }
+                if (textField2.getText().length() == 1 && textField2.getText().equals("0")) {
+                    firstInput = true;
                 }
                 // 可以在这里处理用户输入后的逻辑
             }
         });
     }
 
-    private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
-//        exchange(textField1, textField2);
-    }
-
     private void textField1KeyReleased(KeyEvent e) {
-        // TODO add your code here
         exchange(textField1, textField2);
     }
 
     private void comboBox1ItemStateChanged(ItemEvent e) {
-        // TODO add your code here
         if (whichFocus)
             exchange(textField1, textField2);
         else
@@ -188,7 +216,6 @@ public class Angle extends JPanel {
     }
 
     private void comboBox2ItemStateChanged(ItemEvent e) {
-        // TODO add your code here
         if (whichFocus)
             exchange(textField1, textField2);
         else
@@ -196,7 +223,6 @@ public class Angle extends JPanel {
     }
 
     private void textField2KeyReleased(KeyEvent e) {
-        // TODO add your code here
         exchange(textField2, textField1);
     }
 
@@ -204,12 +230,12 @@ public class Angle extends JPanel {
     static class RestrictedDocumentFilter extends DocumentFilter {
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-            super.insertString(fb, offset, filter(string), attr);
+            super.insertString(fb, offset, string, attr);
         }
 
         @Override
         public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-            super.replace(fb, offset, length, filter(text), attrs);
+            super.replace(fb, offset, length, text, attrs);
         }
 
         private String filter(String input) {
@@ -242,7 +268,6 @@ public class Angle extends JPanel {
         button18 = new JButton();
         button19 = new JButton();
         button20 = new JButton();
-        button13 = new JButton();
         button21 = new JButton();
 
         //======== this ========
@@ -274,10 +299,6 @@ public class Angle extends JPanel {
             }
         });
         textField1.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                textField1KeyPressed(e);
-            }
             @Override
             public void keyReleased(KeyEvent e) {
                 textField1KeyReleased(e);
@@ -312,7 +333,7 @@ public class Angle extends JPanel {
         textField2.setBounds(10, 180, 380, 50);
 
         //---- button1 ----
-        button1.setText("CE");
+        button1.setText("C");
         button1.setFont(new Font("Consolas", Font.PLAIN, 18));
         add(button1);
         button1.setBounds(140, 285, 120, 50);
@@ -365,12 +386,12 @@ public class Angle extends JPanel {
             "  \u5f27\u5ea6",
             "\u767e\u5206\u5ea6"
         }));
-        comboBox1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
+        comboBox1.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
         comboBox1.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
         comboBox1.setFocusable(false);
         comboBox1.addItemListener(e -> comboBox1ItemStateChanged(e));
         add(comboBox1);
-        comboBox1.setBounds(15, 130, 105, 40);
+        comboBox1.setBounds(15, 130, 115, 40);
 
         //---- comboBox2 ----
         comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -378,10 +399,10 @@ public class Angle extends JPanel {
             "  \u5f27\u5ea6",
             "\u767e\u5206\u5ea6"
         }));
-        comboBox2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
+        comboBox2.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
         comboBox2.addItemListener(e -> comboBox2ItemStateChanged(e));
         add(comboBox2);
-        comboBox2.setBounds(15, 240, 105, 40);
+        comboBox2.setBounds(15, 240, 115, 40);
         add(scrollPane1);
         scrollPane1.setBounds(new Rectangle(new Point(260, 180), scrollPane1.getPreferredSize()));
 
@@ -408,12 +429,6 @@ public class Angle extends JPanel {
         button20.setFont(new Font("Consolas", Font.PLAIN, 18));
         add(button20);
         button20.setBounds(270, 505, 120, 50);
-
-        //---- button13 ----
-        button13.setText("+/-");
-        button13.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button13);
-        button13.setBounds(10, 505, 120, 50);
 
         //---- button21 ----
         button21.setText("0");
@@ -444,7 +459,6 @@ public class Angle extends JPanel {
     private JButton button18;
     private JButton button19;
     private JButton button20;
-    private JButton button13;
     private JButton button21;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -5,10 +5,12 @@
 package Source.Game;
 
 import Source.Calculator.UtilitiesSci;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.Timer;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -37,70 +39,60 @@ public class GuessNumber extends JPanel {
     }
 
     private void button0MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_0);
         }
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_1);
         }
     }
 
     private void button2MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_2);
         }
     }
 
     private void button3MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_3);
         }
     }
 
     private void button4MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_4);
         }
     }
 
     private void button5MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_5);
         }
     }
 
     private void button6MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_6);
         }
     }
 
     private void button7MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_7);
         }
     }
 
     private void button8MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_8);
         }
     }
 
     private void button9MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_9);
         }
@@ -113,69 +105,39 @@ public class GuessNumber extends JPanel {
      * Description: To reset the game.
      *
      * @param e MouseEvent
-     * @author Yury
+     * @author Yury and Tony
      */
+
+    private final ArrayList<JLabel> labels = new ArrayList<>();
+
     private void buttonReplayMousePressed(MouseEvent e) {
         // TODO add your code here
         clearEntry();
 
         line = 0;
 
-        label1.setText("");
-        label2.setText("");
-        label3.setText("");
-        label4.setText("");
-        label5.setText("");
-        label6.setText("");
-        label7.setText("");
-        label8.setText("");
-        label9.setText("");
-        label10.setText("");
-        label11.setText("");
-        label12.setText("");
-        label13.setText("");
-        label14.setText("");
-        label15.setText("");
-        label16.setText("");
-        label17.setText("");
-        label18.setText("");
-        label19.setText("");
-        label20.setText("");
-        label21.setText("");
-        label22.setText("");
-        label23.setText("");
-        label24.setText("");
 
-        label25.setText("?");
-        label26.setText("?");
-        label27.setText("?");
-        label28.setText("?");
+        Timer timer = new Timer();
+        for (int i = 1; i <= 24; i++) {
+            int finalI = i;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    labels.get(finalI - 1).setText("");
+                    labels.get(finalI - 1).setBackground(new Color(0xf0f0f0));
+                }
+            }, 50L * i);
+        }
 
-        label1.setBackground(new Color(0xf0f0f0));
-        label2.setBackground(new Color(0xf0f0f0));
-        label3.setBackground(new Color(0xf0f0f0));
-        label4.setBackground(new Color(0xf0f0f0));
-        label5.setBackground(new Color(0xf0f0f0));
-        label6.setBackground(new Color(0xf0f0f0));
-        label7.setBackground(new Color(0xf0f0f0));
-        label8.setBackground(new Color(0xf0f0f0));
-        label9.setBackground(new Color(0xf0f0f0));
-        label10.setBackground(new Color(0xf0f0f0));
-        label11.setBackground(new Color(0xf0f0f0));
-        label12.setBackground(new Color(0xf0f0f0));
-        label13.setBackground(new Color(0xf0f0f0));
-        label14.setBackground(new Color(0xf0f0f0));
-        label15.setBackground(new Color(0xf0f0f0));
-        label16.setBackground(new Color(0xf0f0f0));
-        label17.setBackground(new Color(0xf0f0f0));
-        label18.setBackground(new Color(0xf0f0f0));
-        label19.setBackground(new Color(0xf0f0f0));
-        label20.setBackground(new Color(0xf0f0f0));
-        label21.setBackground(new Color(0xf0f0f0));
-        label22.setBackground(new Color(0xf0f0f0));
-        label23.setBackground(new Color(0xf0f0f0));
-        label24.setBackground(new Color(0xf0f0f0));
-
+        for (int i = 25; i <= 28; i++) {
+            int finalI = i;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    labels.get(finalI - 1).setText("?");
+                }
+            }, 50L * i);
+        }
         status.setText("Playing");
         status.setForeground(Color.darkGray);
 
@@ -205,14 +167,12 @@ public class GuessNumber extends JPanel {
     }
 
     private void buttonConfirmMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ENTER);
         }
     }
 
     private void buttonBackspaceMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
         }
@@ -369,107 +329,228 @@ public class GuessNumber extends JPanel {
                 dialog1.setVisible(true);
                 return;
             }
+
             if (line == 0) {
-                label1.setText(input.substring(0, 1));
-                checkAns(label1, 0);
-                label2.setText(input.substring(1, 2));
-                checkAns(label2, 1);
-                label3.setText(input.substring(2, 3));
-                checkAns(label3, 2);
-                label4.setText(input.substring(3));
-                checkAns(label4, 3);
-
-                status1.setText(cntCorrect + "A" + cntHave + "B");
-                if (checkCorrect()) {
-                    return;
-                }
-                line++;
-                cntCorrect = 0;
-                cntHave = 0;
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label1.setText(input.substring(0, 1));
+                        checkAns(label1, 0);
+                    }
+                }, 100L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label2.setText(input.substring(1, 2));
+                        checkAns(label2, 1);
+                    }
+                }, 200L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label3.setText(input.substring(2, 3));
+                        checkAns(label3, 2);
+                    }
+                }, 300L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label4.setText(input.substring(3));
+                        checkAns(label4, 3);
+                        status1.setText(cntCorrect + "A" + cntHave + "B");
+                        if (checkCorrect()) {
+                            return;
+                        }
+                        line++;
+                        cntCorrect = 0;
+                        cntHave = 0;
+                    }
+                }, 400L);
             } else if (line == 1) {
-                label5.setText(input.substring(0, 1));
-                checkAns(label5, 0);
-                label6.setText(input.substring(1, 2));
-                checkAns(label6, 1);
-                label7.setText(input.substring(2, 3));
-                checkAns(label7, 2);
-                label8.setText(input.substring(3));
-                checkAns(label8, 3);
-
-                status2.setText(cntCorrect + "A" + cntHave + "B");
-                if (checkCorrect()) {
-                    return;
-                }
-                line++;
-                cntCorrect = 0;
-                cntHave = 0;
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label5.setText(input.substring(0, 1));
+                        checkAns(label5, 0);
+                    }
+                }, 100L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label6.setText(input.substring(1, 2));
+                        checkAns(label6, 1);
+                    }
+                }, 200L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label7.setText(input.substring(2, 3));
+                        checkAns(label7, 2);
+                    }
+                }, 300L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label8.setText(input.substring(3));
+                        checkAns(label8, 3);
+                        status2.setText(cntCorrect + "A" + cntHave + "B");
+                        if (checkCorrect()) {
+                            return;
+                        }
+                        line++;
+                        cntCorrect = 0;
+                        cntHave = 0;
+                    }
+                }, 400L);
             } else if (line == 2) {
-                label9.setText(input.substring(0, 1));
-                checkAns(label9, 0);
-                label10.setText(input.substring(1, 2));
-                checkAns(label10, 1);
-                label11.setText(input.substring(2, 3));
-                checkAns(label11, 2);
-                label12.setText(input.substring(3));
-                checkAns(label12, 3);
-
-                status3.setText(cntCorrect + "A" + cntHave + "B");
-                if (checkCorrect()) {
-                    return;
-                }
-                line++;
-                cntCorrect = 0;
-                cntHave = 0;
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label9.setText(input.substring(0, 1));
+                        checkAns(label9, 0);
+                    }
+                }, 100L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label10.setText(input.substring(1, 2));
+                        checkAns(label10, 1);
+                    }
+                }, 200L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label11.setText(input.substring(2, 3));
+                        checkAns(label11, 2);
+                    }
+                }, 300L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label12.setText(input.substring(3));
+                        checkAns(label12, 3);
+                        status3.setText(cntCorrect + "A" + cntHave + "B");
+                        if (checkCorrect()) {
+                            return;
+                        }
+                        line++;
+                        cntCorrect = 0;
+                        cntHave = 0;
+                    }
+                }, 400L);
             } else if (line == 3) {
-                label13.setText(input.substring(0, 1));
-                checkAns(label13, 0);
-                label14.setText(input.substring(1, 2));
-                checkAns(label14, 1);
-                label15.setText(input.substring(2, 3));
-                checkAns(label15, 2);
-                label16.setText(input.substring(3));
-                checkAns(label16, 3);
-
-                status4.setText(cntCorrect + "A" + cntHave + "B");
-                if (checkCorrect()) {
-                    return;
-                }
-                line++;
-                cntCorrect = 0;
-                cntHave = 0;
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label13.setText(input.substring(0, 1));
+                        checkAns(label13, 0);
+                    }
+                }, 100L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label14.setText(input.substring(1, 2));
+                        checkAns(label14, 1);
+                    }
+                }, 200L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label15.setText(input.substring(2, 3));
+                        checkAns(label15, 2);
+                    }
+                }, 300L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label16.setText(input.substring(3));
+                        checkAns(label16, 3);
+                        status4.setText(cntCorrect + "A" + cntHave + "B");
+                        if (checkCorrect()) {
+                            return;
+                        }
+                        line++;
+                        cntCorrect = 0;
+                        cntHave = 0;
+                    }
+                }, 400L);
             } else if (line == 4) {
-                label17.setText(input.substring(0, 1));
-                checkAns(label17, 0);
-                label18.setText(input.substring(1, 2));
-                checkAns(label18, 1);
-                label19.setText(input.substring(2, 3));
-                checkAns(label19, 2);
-                label20.setText(input.substring(3));
-                checkAns(label20, 3);
-
-                status5.setText(cntCorrect + "A" + cntHave + "B");
-                if (checkCorrect()) {
-                    return;
-                }
-                line++;
-                cntCorrect = 0;
-                cntHave = 0;
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label17.setText(input.substring(0, 1));
+                        checkAns(label17, 0);
+                    }
+                }, 100L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label18.setText(input.substring(1, 2));
+                        checkAns(label18, 1);
+                    }
+                }, 200L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label19.setText(input.substring(2, 3));
+                        checkAns(label19, 2);
+                    }
+                }, 300L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label20.setText(input.substring(3));
+                        checkAns(label20, 3);
+                        status5.setText(cntCorrect + "A" + cntHave + "B");
+                        if (checkCorrect()) {
+                            return;
+                        }
+                        line++;
+                        cntCorrect = 0;
+                        cntHave = 0;
+                    }
+                }, 400L);
             } else if (line == 5) {
-                label21.setText(input.substring(0, 1));
-                checkAns(label21, 0);
-                label22.setText(input.substring(1, 2));
-                checkAns(label22, 1);
-                label23.setText(input.substring(2, 3));
-                checkAns(label23, 2);
-                label24.setText(input.substring(3));
-                checkAns(label24, 3);
-
-                status6.setText(cntCorrect + "A" + cntHave + "B");
-                if (checkCorrect()) {
-                    return;
-                } else {
-                    showFail();
-                }
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label21.setText(input.substring(0, 1));
+                        checkAns(label21, 0);
+                    }
+                }, 100L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label22.setText(input.substring(1, 2));
+                        checkAns(label22, 1);
+                    }
+                }, 200L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label23.setText(input.substring(2, 3));
+                        checkAns(label23, 2);
+                    }
+                }, 300L);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        label24.setText(input.substring(3));
+                        checkAns(label24, 3);
+                        status6.setText(cntCorrect + "A" + cntHave + "B");
+                        if (checkCorrect()) {
+                            return;
+                        } else {
+                            showFail();
+                        }
+                    }
+                }, 400L);
             }
             clearEntry();
         } else {
@@ -488,22 +569,18 @@ public class GuessNumber extends JPanel {
     }
 
     private void closeDialog1(MouseEvent e) {
-        // TODO add your code here
         dialog1.setVisible(false);
     }
 
     private void closeDialog2(MouseEvent e) {
-        // TODO add your code here
         dialog2.setVisible(false);
     }
 
     private void buttonRulesMousePressed(MouseEvent e) {
-        // TODO add your code here
         dialog3.setVisible(true);
     }
 
     private void closeRules(MouseEvent e) {
-        // TODO add your code here
         dialog3.setVisible(false);
     }
 
@@ -889,7 +966,7 @@ public class GuessNumber extends JPanel {
             }
         });
         add(button8);
-        button8.setBounds(300, 430, 80, 40);
+        button8.setBounds(305, 425, 80, 40);
 
         //---- button9 ----
         button9.setText("9");
@@ -1067,6 +1144,7 @@ public class GuessNumber extends JPanel {
 
         //======== dialog1 ========
         {
+            dialog1.setTitle("\u63d0\u793a");
             var dialog1ContentPane = dialog1.getContentPane();
             dialog1ContentPane.setLayout(null);
 
@@ -1087,7 +1165,7 @@ public class GuessNumber extends JPanel {
                 }
             });
             dialog1ContentPane.add(button10);
-            button10.setBounds(65, 120, button10.getPreferredSize().width, 40);
+            button10.setBounds(65, 115, button10.getPreferredSize().width, 40);
 
             dialog1ContentPane.setPreferredSize(new Dimension(200, 190));
             dialog1.pack();
@@ -1096,6 +1174,7 @@ public class GuessNumber extends JPanel {
 
         //======== dialog2 ========
         {
+            dialog2.setTitle("\u63d0\u793a");
             var dialog2ContentPane = dialog2.getContentPane();
             dialog2ContentPane.setLayout(null);
 
@@ -1116,7 +1195,7 @@ public class GuessNumber extends JPanel {
                 }
             });
             dialog2ContentPane.add(button11);
-            button11.setBounds(65, 120, button11.getPreferredSize().width, 40);
+            button11.setBounds(65, 115, button11.getPreferredSize().width, 40);
 
             dialog2ContentPane.setPreferredSize(new Dimension(200, 190));
             dialog2.pack();
@@ -1126,6 +1205,7 @@ public class GuessNumber extends JPanel {
         //======== dialog3 ========
         {
             dialog3.setPreferredSize(new Dimension(365, 300));
+            dialog3.setTitle("\u7b80\u4ecb\u4e0e\u89c4\u5219");
             var dialog3ContentPane = dialog3.getContentPane();
             dialog3ContentPane.setLayout(null);
 
@@ -1139,7 +1219,7 @@ public class GuessNumber extends JPanel {
                 }
             });
             dialog3ContentPane.add(button12);
-            button12.setBounds(150, 230, button12.getPreferredSize().width, 40);
+            button12.setBounds(150, 225, button12.getPreferredSize().width, 40);
 
             //======== scrollPane1 ========
             {
@@ -1153,13 +1233,41 @@ public class GuessNumber extends JPanel {
                 scrollPane1.setViewportView(textArea1);
             }
             dialog3ContentPane.add(scrollPane1);
-            scrollPane1.setBounds(0, 0, 360, 215);
+            scrollPane1.setBounds(0, 0, 335, 215);
 
-            dialog3ContentPane.setPreferredSize(new Dimension(365, 300));
+            dialog3ContentPane.setPreferredSize(new Dimension(335, 300));
             dialog3.pack();
             dialog3.setLocationRelativeTo(dialog3.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
+        labels.add(label1);
+        labels.add(label2);
+        labels.add(label3);
+        labels.add(label4);
+        labels.add(label5);
+        labels.add(label6);
+        labels.add(label7);
+        labels.add(label8);
+        labels.add(label9);
+        labels.add(label10);
+        labels.add(label11);
+        labels.add(label12);
+        labels.add(label13);
+        labels.add(label14);
+        labels.add(label15);
+        labels.add(label16);
+        labels.add(label17);
+        labels.add(label18);
+        labels.add(label19);
+        labels.add(label20);
+        labels.add(label21);
+        labels.add(label22);
+        labels.add(label23);
+        labels.add(label24);
+        labels.add(label25);
+        labels.add(label26);
+        labels.add(label27);
+        labels.add(label28);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off

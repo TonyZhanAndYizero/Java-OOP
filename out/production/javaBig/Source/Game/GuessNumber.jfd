@@ -411,8 +411,8 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 80
 				"height": 40
-				"x": 300
-				"y": 430
+				"x": 305
+				"y": 425
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button9"
@@ -444,7 +444,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonReplay"
-				"font": new java.awt.Font( "宋体", 1, 16 )
+				"font": &Font2 new java.awt.Font( "宋体", 1, 16 )
 				"text": "开始/重置"
 				"focusable": false
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonReplayMousePressed", true ) )
@@ -470,7 +470,7 @@ new FormModel {
 				name: "status1"
 				"border": &BevelBorder1 new javax.swing.border.BevelBorder( 1, null, null, null, null )
 				"horizontalAlignment": 0
-				"font": &Font2 new java.awt.Font( "Consolas", 3, 20 )
+				"font": &Font3 new java.awt.Font( "Consolas", 3, 20 )
 				"alignmentY": 0.0f
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 120
@@ -482,7 +482,7 @@ new FormModel {
 				name: "status2"
 				"border": #BevelBorder1
 				"horizontalAlignment": 0
-				"font": #Font2
+				"font": #Font3
 				"alignmentY": 0.0f
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 120
@@ -494,7 +494,7 @@ new FormModel {
 				name: "status3"
 				"border": #BevelBorder1
 				"horizontalAlignment": 0
-				"font": #Font2
+				"font": #Font3
 				"alignmentY": 0.0f
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 120
@@ -506,7 +506,7 @@ new FormModel {
 				name: "status4"
 				"border": #BevelBorder1
 				"horizontalAlignment": 0
-				"font": #Font2
+				"font": #Font3
 				"alignmentY": 0.0f
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 120
@@ -518,7 +518,7 @@ new FormModel {
 				name: "status5"
 				"border": #BevelBorder1
 				"horizontalAlignment": 0
-				"font": #Font2
+				"font": #Font3
 				"alignmentY": 0.0f
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 120
@@ -530,7 +530,7 @@ new FormModel {
 				name: "status6"
 				"border": #BevelBorder1
 				"horizontalAlignment": 0
-				"font": #Font2
+				"font": #Font3
 				"alignmentY": 0.0f
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 120
@@ -611,6 +611,18 @@ new FormModel {
 				"x": 325
 				"y": 25
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonRules"
+				"font": #Font2
+				"text": "游戏规则"
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonRulesMousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 110
+				"height": 40
+				"x": 495
+				"y": 190
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 20, 0 )
 			"size": new java.awt.Dimension( 630, 505 )
@@ -619,10 +631,11 @@ new FormModel {
 			"autoSize": false
 		} ) {
 			name: "dialog1"
+			"title": "提示"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label29"
 				"text": "请输入4个数字！"
-				"font": &Font3 new java.awt.Font( "幼圆", 1, 16 )
+				"font": &Font4 new java.awt.Font( "幼圆", 1, 16 )
 				"horizontalAlignment": 0
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 20
@@ -633,25 +646,26 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button10"
 				"text": "关闭"
-				"font": &Font4 new java.awt.Font( "宋体", 1, 16 )
+				"font": &Font5 new java.awt.Font( "宋体", 1, 16 )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "closeDialog1", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 65
-				"y": 105
+				"y": 115
 				"height": 40
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 90, 510 )
-			"size": &Dimension0 new java.awt.Dimension( 200, 200 )
+			"size": new java.awt.Dimension( 200, 190 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
 			"autoSize": false
 		} ) {
 			name: "dialog2"
+			"title": "提示"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label30"
 				"text": "请点击“开始/重置”！"
-				"font": #Font3
+				"font": #Font4
 				"horizontalAlignment": 0
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 5
@@ -662,16 +676,52 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button11"
 				"text": "关闭"
-				"font": #Font4
+				"font": #Font5
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "closeDialog2", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 65
-				"y": 105
+				"y": 115
 				"height": 40
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"size": #Dimension0
+			"size": new java.awt.Dimension( 200, 190 )
 			"location": new java.awt.Point( 300, 510 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+			"autoSize": false
+		} ) {
+			name: "dialog3"
+			"preferredSize": new java.awt.Dimension( 365, 300 )
+			"title": "简介与规则"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button12"
+				"text": "关闭"
+				"font": #Font5
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "closeRules", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 150
+				"y": 225
+				"height": 40
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				"horizontalScrollBarPolicy": 31
+				"focusable": false
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+					"text": "猜数字（又称 Bulls and Cows ）\n是一种古老的的密码破译类、益智类小游戏，\n起源于20世纪中期。给定四个数字（0-9），\n你需要在6次内猜出这四个数字是什么，以及\n它们的位置。每猜一次，在对应方格会显示\n颜色，绿色代表数字及其位置都正确，黄色\n代表这4个数字中有你猜测的这个数、但位置\n不正确，红色代表数字和位置都错误。\n且每次猜测后会给出几A几B，其中A前面的\n数字表示位置正确的数的个数，而B前的数\n字表示数字正确而位置不对的数的个数。"
+					"editable": false
+					"font": new java.awt.Font( "幼圆", 1, 16 )
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 0
+				"y": 0
+				"width": 335
+				"height": 215
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 335, 300 )
+			"location": new java.awt.Point( 125, 715 )
 		} )
 	}
 }

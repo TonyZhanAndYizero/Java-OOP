@@ -79,7 +79,6 @@ public class Variance extends JPanel {
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             compute();
         }

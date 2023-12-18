@@ -30,7 +30,7 @@ new FormModel {
 						"text": "标准"
 						"$buttonGroup": &FormReference0 new FormReference( "buttonGroup1" )
 						"selected": true
-						"icon": &SwingIcon0 new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/std.png" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/std.png" )
 						"font": &Font0 new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
 						"iconTextGap": 5
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showStd", true ) )
@@ -49,7 +49,7 @@ new FormModel {
 						"text": "矩阵"
 						"$buttonGroup": #FormReference0
 						"selected": true
-						"icon": #SwingIcon0
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/matrix.png" )
 						"font": #Font0
 						"iconTextGap": 5
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showMatrix", true ) )
@@ -71,7 +71,7 @@ new FormModel {
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/angle.png" )
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
 						"iconTextGap": 5
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem3MousePressed", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showAngleTransformer", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "radioButtonMenuItem5"
@@ -99,7 +99,7 @@ new FormModel {
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/linear2.png" )
 						"font": &Font1 new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
 						"iconTextGap": 5
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem4MousePressed", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "showLinearRegression", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
 						name: "radioButtonMenuItem7"
@@ -140,22 +140,84 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu2"
-					"text": "文件"
+					"text": "帮助"
 					"font": new java.awt.Font( "宋体", 1, 14 )
 					"margin": new java.awt.Insets( 5, 5, 5, 5 )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem1"
-						"text": "打开文件"
+						"text": "一元线性回归"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem1MousePressed", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem2"
-						"text": "保存文件"
+						"text": "方差说明"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "menuItem2MousePressed", true ) )
 					} )
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 45, 20 )
-			"size": new java.awt.Dimension( 590, 395 )
+			"size": new java.awt.Dimension( 590, 405 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "dialog1"
+			"title": "一元线性回归说明"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+					"text": "当您想使用.txt文件导入一元线性回归数据点的时候，请\n严格按照如下格式排布：(下面是一个k=3的例子)\nk:3\nx:2 3 4\ny:3 4 5\n其中，\"k:\",\"x:\"和\"y:\"必须严格一致，其后数据点可用\n任何空白符分割，均不影响，但该3个标识符不可有差别！\n极端例子为：\nk:   4\nx:\n3 4\n5 \n5 y: 2 3 5\n7"
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 0
+				"y": 0
+				"width": 349
+				"height": 150
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "关闭"
+				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button1MousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 145
+				"y": 160
+				"width": 60
+				"height": 30
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 150, 430 )
+			"size": new java.awt.Dimension( 350, 240 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "dialog2"
+			"title": "方差说明"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea3"
+					"text": "为迎合《概率统计》及《基础物理实验》需求，本软\n件采用分母为\"样本数-1\"的计算规则。"
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 349
+				"height": 150
+				"x": 0
+				"y": 0
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "关闭"
+				"font": #SwingDerivedFont0
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button2MousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 60
+				"height": 30
+				"x": 145
+				"y": 160
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 510, 430 )
+			"size": new java.awt.Dimension( 350, 240 )
 		} )
 		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
 			name: "buttonGroup1"

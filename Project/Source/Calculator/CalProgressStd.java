@@ -26,7 +26,7 @@ public class CalProgressStd {
                 std.textField1.setText(ans.toPlainString());
 
                 std.newNum = false;
-                std.pending_cal_toClear = true;
+                std.pendingCalToClear = true;
                 std.OnceEqual = true;
             } else {
                 std.textField1.setText(ans.toPlainString());
@@ -45,7 +45,6 @@ public class CalProgressStd {
         String str_now = UtilitiesStd.PureNumberWithoutArithmetics(std.textField1.getText());
         String str_equal = UtilitiesStd.PureEqual(std.label1.getText());
         System.out.println(str_equal);
-        // TODO add your code here
         if (e.getButton() == 1) {
             BigDecimal ans = FourArithmetic.calculatePlain(str_now, "*", "0.01");
             if (!str_equal.isEmpty() || std.label1.getText().isEmpty()) {
@@ -54,7 +53,7 @@ public class CalProgressStd {
                     std.textField1.setText(ans.toPlainString());
                 }
                 std.newNum = false;
-                std.pending_cal_toClear = true;
+                std.pendingCalToClear = true;
                 std.OnceEqual = true;
             } else {
                 if (ans != null) {
@@ -83,40 +82,37 @@ public class CalProgressStd {
                     std.textField1.setText("0");
                     InputNumber(std, e);
                     std.OnceEqual = false;
-                    std.pending_cal_toClear = false;
-                } else if (!std.pending_cal_toClear)
+                    std.pendingCalToClear = false;
+                } else if (!std.pendingCalToClear)
                     InputNumber(std, e);
                 else {
                     std.textField1.setText("");
                     InputNumber(std, e);
-                    std.pending_cal_toClear = false;
+                    std.pendingCalToClear = false;
                 }
                 std.newNum = true;
             } else if ((UtilitiesStd.keycodeCalCheckStd(e.getKeyChar()) && (!std.newNum || str_last.isEmpty()))) {
                 std.label1.setText(str_now + " " + e.getKeyChar() + " ");
-                std.pending_cal_toClear = true;
+                std.pendingCalToClear = true;
                 std.newNum = false;
                 std.OnceEqual = false;
             } else if (UtilitiesStd.keycodeCalCheckStd(e.getKeyChar()) && std.newNum) {
-                //TODO yunsuan
                 BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
                 if (ans != null) {
                     std.label1.setText(ans.toPlainString() + " " + e.getKeyChar() + " ");
                     std.textField1.setText(ans.toPlainString());
-
-
                 } else {
                     std.label1.setText("");
                     std.textField1.setText("ERROR! Press any key to reset.");
                     std.error = true;
                 }
                 std.newNum = false;
-                std.pending_cal_toClear = true;
+                std.pendingCalToClear = true;
                 std.OnceEqual = false;
             } else if (UtilitiesStd.KeycodeEqual_check(e.getKeyCode()) && str_arithmetic.isEmpty()) {
                 std.label1.setText(str_now + " = " + str_now);
                 std.newNum = false;
-                std.pending_cal_toClear = true;
+                std.pendingCalToClear = true;
                 std.OnceEqual = true;
             } else if (UtilitiesStd.KeycodeEqual_check(e.getKeyCode()) && !std.OnceEqual) {
                 BigDecimalCal(std, str_last, str_arithmetic, str_now);
@@ -158,7 +154,7 @@ public class CalProgressStd {
             std.error = true;
         }
         std.newNum = false;
-        std.pending_cal_toClear = true;
+        std.pendingCalToClear = true;
         std.OnceEqual = true;
     }
 
@@ -200,7 +196,7 @@ public class CalProgressStd {
      * @param std Calculator
      * @author TonyZhan
      */
-    public static void upsidedown(MouseEvent e, CalculatorStd std) {
+    public static void upsideDown(MouseEvent e, CalculatorStd std) {
         String str_now = UtilitiesStd.PureNumberWithoutArithmetics(std.textField1.getText());
         String str_equal = UtilitiesStd.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
@@ -217,7 +213,7 @@ public class CalProgressStd {
                         return;
                     }
                     std.newNum = false;
-                    std.pending_cal_toClear = true;
+                    std.pendingCalToClear = true;
                     std.OnceEqual = true;
                 } else {
                     if (ans != null) {
@@ -256,7 +252,7 @@ public class CalProgressStd {
                     std.label1.setText("sqrt(" + str_now + ")" + " = " + ans.toPlainString());
                     std.textField1.setText(ans.toPlainString());
                     std.newNum = false;
-                    std.pending_cal_toClear = true;
+                    std.pendingCalToClear = true;
                     std.OnceEqual = true;
                 } else {
                     std.textField1.setText(ans.toPlainString());
@@ -296,7 +292,7 @@ public class CalProgressStd {
                     std.label1.setText("(" + str_now + ")" + "^2" + " = " + ans.toPlainString());
                     std.textField1.setText(ans.toPlainString());
                     std.newNum = false;
-                    std.pending_cal_toClear = true;
+                    std.pendingCalToClear = true;
                     std.OnceEqual = true;
                 } else {
                     std.textField1.setText(ans.toPlainString());
@@ -316,7 +312,7 @@ public class CalProgressStd {
      * @param op  floor or ceiling
      * @author TonyZhan
      */
-    public static void floor_ceil(MouseEvent e, CalculatorStd std, int op) {
+    public static void floorCeil(MouseEvent e, CalculatorStd std, int op) {
         String str_now = UtilitiesStd.PureNumberWithoutArithmetics(std.textField1.getText());
         String str_equal = UtilitiesStd.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
@@ -340,7 +336,7 @@ public class CalProgressStd {
                         std.label1.setText("ceiling(" + str_now + ")" + " = " + ans.toPlainString());
                     std.textField1.setText(ans.toPlainString());
                     std.newNum = false;
-                    std.pending_cal_toClear = true;
+                    std.pendingCalToClear = true;
                     std.OnceEqual = true;
                 } else {
                     std.textField1.setText(ans.toPlainString());
@@ -379,7 +375,7 @@ public class CalProgressStd {
                     std.label1.setText("scientify(" + str_now + ")" + " = " + ans.stripTrailingZeros().toString());
                     std.textField1.setText(ans.stripTrailingZeros().toString());
                     std.newNum = false;
-                    std.pending_cal_toClear = true;
+                    std.pendingCalToClear = true;
                     std.OnceEqual = true;
                 } else {
                     std.textField1.setText(ans.stripTrailingZeros().toString());
@@ -416,7 +412,7 @@ public class CalProgressStd {
                     std.label1.setText("plain(" + str_now + ")" + " = " + ans.toPlainString());
                     std.textField1.setText(ans.toPlainString());
                     std.newNum = false;
-                    std.pending_cal_toClear = true;
+                    std.pendingCalToClear = true;
                     std.OnceEqual = true;
                 } else {
                     std.textField1.setText(ans.toPlainString());

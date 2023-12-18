@@ -53,7 +53,6 @@ public class LinearRegressionDemo extends JFrame {
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             String userDir = System.getProperty("user.home");
             JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop");
@@ -121,7 +120,7 @@ public class LinearRegressionDemo extends JFrame {
         g.drawLine(900, 600, 890, 605);
 
 
-        BigDecimal xEnd = getMax(linearRegression.XNums).multiply(new BigDecimal("1.1")).setScale(0, RoundingMode.CEILING), yEnd = getMax(linearRegression.YNums).multiply(new BigDecimal("1.1")).setScale(0, RoundingMode.CEILING);
+        BigDecimal xEnd = getMax(linearRegression.XNums).multiply(new BigDecimal("1.2")).setScale(0, RoundingMode.CEILING), yEnd = getMax(linearRegression.YNums).multiply(new BigDecimal("1.2")).setScale(0, RoundingMode.CEILING);
         BigDecimal xDis = xEnd.divide(new BigDecimal(10), 2, RoundingMode.HALF_UP), yDis = yEnd.divide(new BigDecimal(10), 2, RoundingMode.HALF_UP);
         BigDecimal temp;
         // 绘制坐标轴的刻度和标签

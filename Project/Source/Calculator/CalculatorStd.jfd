@@ -174,7 +174,7 @@ new FormModel {
 				"y": 520
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_dot"
+				name: "buttonDot"
 				"text": "."
 				"font": #Font0
 				"focusable": false
@@ -182,7 +182,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_dotMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonDotMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -190,7 +190,7 @@ new FormModel {
 				"y": 520
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_polar"
+				name: "buttonPolar"
 				"text": "+/-"
 				"font": #Font0
 				"focusable": false
@@ -198,7 +198,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_polarMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonPolarMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -206,7 +206,7 @@ new FormModel {
 				"y": 520
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_upsidedown"
+				name: "buttonUpsidedDown"
 				"text": "1/x"
 				"font": #Font0
 				"focusable": false
@@ -214,7 +214,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_upsidedownMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonUpsidedownMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -222,7 +222,7 @@ new FormModel {
 				"y": 280
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_pow2"
+				name: "buttonPow2"
 				"text": "x^2"
 				"font": #Font0
 				"focusable": false
@@ -230,7 +230,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_pow2MousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonPow2MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -238,7 +238,7 @@ new FormModel {
 				"y": 280
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_sqrt"
+				name: "buttonSqrt"
 				"text": "√x"
 				"font": #Font0
 				"focusable": false
@@ -246,7 +246,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_sqrtMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonSqrtMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -254,7 +254,7 @@ new FormModel {
 				"y": 280
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_equal"
+				name: "buttonEqual"
 				"text": "="
 				"font": #Font0
 				"focusable": false
@@ -262,7 +262,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_equalMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonEqualMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -270,7 +270,7 @@ new FormModel {
 				"y": 520
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_plus"
+				name: "buttonPlus"
 				"text": "+"
 				"font": #Font1
 				"focusable": false
@@ -278,7 +278,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_plusMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonPlusMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -286,7 +286,7 @@ new FormModel {
 				"y": 460
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_minus"
+				name: "buttonMinus"
 				"text": "-"
 				"font": #Font1
 				"focusable": false
@@ -294,7 +294,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_minusMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonMinusMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -302,7 +302,7 @@ new FormModel {
 				"y": 400
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_mul"
+				name: "buttonMul"
 				"text": "×"
 				"font": #Font1
 				"focusable": false
@@ -310,7 +310,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_mulMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonMulMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -318,7 +318,7 @@ new FormModel {
 				"y": 340
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_div"
+				name: "buttonDiv"
 				"text": "÷"
 				"font": #Font1
 				"focusable": false
@@ -326,7 +326,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_divMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonDivMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -334,7 +334,7 @@ new FormModel {
 				"y": 280
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_percent"
+				name: "buttonPercent"
 				"text": "%"
 				"font": #Font0
 				"focusable": false
@@ -342,7 +342,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_percentMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonPercentMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -350,7 +350,7 @@ new FormModel {
 				"y": 220
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_cleanEntry"
+				name: "buttonCleanEntry"
 				"text": "CE"
 				"font": #Font0
 				"focusable": false
@@ -359,7 +359,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_cleanEntryMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonCleanEntryMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -367,7 +367,7 @@ new FormModel {
 				"y": 220
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_clear"
+				name: "buttonClear"
 				"text": "C"
 				"font": #Font0
 				"focusable": false
@@ -377,7 +377,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_clearMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonClearMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -385,33 +385,16 @@ new FormModel {
 				"y": 220
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_smoke"
-				"font": new java.awt.Font( "宋体", 1, 16 )
-				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/smoke.png" )
-				"focusable": false
-				"text": "      重置"
-				auxiliary() {
-					"JavaCodeGenerator.variableName": "button_smoke"
-					"JavaCodeGenerator.variableModifiers": 4
-				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_smokeMousePressed", true ) )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 170
-				"height": 145
-				"x": 490
-				"y": 580
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_David"
-				"font": new java.awt.Font( "宋体", 1, 16 )
+				name: "buttonDavid"
+				"font": &Font2 new java.awt.Font( "宋体", 1, 16 )
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/David.png" )
 				"focusable": false
 				"text": "播放"
-				"background": new com.jformdesigner.model.SwingColor( "Button.background" )
+				"background": &SwingColor0 new com.jformdesigner.model.SwingColor( "Button.background" )
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_DavidMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonDavidMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 170
 				"height": 145
@@ -419,7 +402,7 @@ new FormModel {
 				"y": 580
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button_backspace"
+				name: "buttonBackspace"
 				"font": #Font1
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/delete(1).png" )
 				"focusable": false
@@ -427,7 +410,7 @@ new FormModel {
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 4
 				}
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_backspaceMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonBackspaceMousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 50
@@ -508,7 +491,7 @@ new FormModel {
 					"font": new java.awt.Font( "微软雅黑", 1, 18 )
 					"margin": new java.awt.Insets( 4, 2, 4, 2 )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "button_Plain"
+						name: "buttonPlain"
 						"text": "  十进制计数法"
 						"font": new java.awt.Font( "微软雅黑", 0, 14 )
 						"focusable": false
@@ -518,10 +501,10 @@ new FormModel {
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 4
 						}
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_PlainMousePressed", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonPlainMousePressed", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "button_aEb"
+						name: "buttonAEb"
 						"text": "  科学计数法"
 						"font": new java.awt.Font( "微软雅黑", 0, 14 )
 						"focusable": false
@@ -531,7 +514,7 @@ new FormModel {
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 4
 						}
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_aEbMousePressed", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonAEbMousePressed", true ) )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -540,7 +523,7 @@ new FormModel {
 					"font": new java.awt.Font( "微软雅黑", 1, 18 )
 					"margin": new java.awt.Insets( 4, 2, 4, 2 )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "button_floor"
+						name: "buttonFloor"
 						"text": "  向下取整"
 						"font": new java.awt.Font( "微软雅黑", 0, 14 )
 						"focusable": false
@@ -549,10 +532,10 @@ new FormModel {
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 4
 						}
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_floorMousePressed", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonFloorMousePressed", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "button_ceil"
+						name: "buttonCeil"
 						"text": "  向上取整"
 						"font": new java.awt.Font( "微软雅黑", 0, 14 )
 						"focusable": false
@@ -561,13 +544,30 @@ new FormModel {
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 4
 						}
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button_ceilMousePressed", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonCeilMousePressed", true ) )
 					} )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 60
 				"y": 180
 				"width": 630
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonSmoke"
+				"font": #Font2
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Resources/img/smoke.png" )
+				"focusable": false
+				"text": "    重置"
+				"background": #SwingColor0
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 4
+				}
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "buttonSmokeMousePressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 170
+				"height": 145
+				"x": 490
+				"y": 580
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
