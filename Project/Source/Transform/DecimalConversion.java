@@ -20,7 +20,7 @@ import javax.swing.text.DocumentFilter;
  */
 public class DecimalConversion extends JPanel {
     Boolean whichFocus = true;
-
+    Boolean firstInput = true;
     public DecimalConversion() {
         initComponents();
     }
@@ -176,10 +176,10 @@ public class DecimalConversion extends JPanel {
         // TODO add your code here
         String str = textField1.getText();
         whichFocus = true;
+        firstInput = true;
         textField1.setFont(new Font("Inter", Font.BOLD, 28));
         textField2.setFont(new Font("Inter", Font.PLAIN, 28));
         textField1.getDocument().addDocumentListener(new DocumentListener() {
-            private boolean firstInput = true;
 
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -233,10 +233,10 @@ public class DecimalConversion extends JPanel {
         // TODO add your code here
         String str = textField2.getText();
         whichFocus = false;
+        firstInput = true;
         textField1.setFont(new Font("Inter", Font.PLAIN, 28));
         textField2.setFont(new Font("Inter", Font.BOLD, 28));
         textField2.getDocument().addDocumentListener(new DocumentListener() {
-            private boolean firstInput = true;
 
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -297,6 +297,164 @@ public class DecimalConversion extends JPanel {
         // TODO add your code here
     }
 
+    private void buttonCE(ActionEvent e) {
+        // TODO add your code here
+        textField1.setText("");
+        textField2.setText("");
+    }
+
+    private void buttonBack(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            String text = textField1.getText();
+            if(!text.isEmpty())
+            {
+                textField1.setText(text.substring(0, text.length() - 1));
+                solve(textField1, textField2, comboBox1, comboBox2);
+            }
+        }
+        else
+        {
+            String text = textField2.getText();
+            if(!text.isEmpty())
+            {
+                textField2.setText(text.substring(0, text.length() - 1));
+                solve(textField2, textField1, comboBox2, comboBox1);
+            }
+        }
+    }
+
+    private void button0(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "0");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "0");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button1(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "1");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "1");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button2(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "2");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "2");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button3(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "3");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "3");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button4(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "4");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "4");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button5(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "5");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "5");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button6(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "6");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "6");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button7(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "7");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "7");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button8(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "8");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "8");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
+    private void button9(ActionEvent e) {
+        // TODO add your code here
+        if(whichFocus)
+        {
+            textField1.setText(textField1.getText() + "9");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        }
+        else {
+            textField2.setText(textField2.getText() + "9");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         decimalConversion = new JLabel();
@@ -315,12 +473,12 @@ public class DecimalConversion extends JPanel {
         button12 = new JButton();
         button13 = new JButton();
         button14 = new JButton();
-        button15 = new JButton();
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
+        button15 = new JButton();
 
         //======== this ========
-        setFont(new Font("Inter", Font.BOLD, 16));
+        setFont(new Font("Consolas", Font.PLAIN, 18));
         setMinimumSize(new Dimension(450, 564));
         setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
         setLayout(null);
@@ -391,86 +549,107 @@ public class DecimalConversion extends JPanel {
 
         //---- button1 ----
         button1.setText("CE");
-        button1.setFont(button1.getFont().deriveFont(button1.getFont().getStyle() | Font.BOLD, button1.getFont().getSize() + 6f));
+        button1.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button1.setFocusable(false);
+        button1.addActionListener(e -> buttonCE(e));
         add(button1);
         button1.setBounds(140, 285, 120, 50);
 
         //---- button6 ----
         button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 6f));
+        button6.setSelectedIcon(new ImageIcon(getClass().getResource("/Resources/img/Backspace(1)(1).png")));
+        button6.setIcon(new ImageIcon(getClass().getResource("/Resources/img/Backspace(1)(1).png")));
+        button6.setFocusable(false);
+        button6.addActionListener(e -> buttonBack(e));
         add(button6);
         button6.setBounds(270, 285, 120, 50);
 
         //---- button3 ----
         button3.setText("7");
-        button3.setFont(button3.getFont().deriveFont(button3.getFont().getStyle() | Font.BOLD, button3.getFont().getSize() + 6f));
+        button3.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button3.setFocusable(false);
+        button3.addActionListener(e -> button7(e));
         add(button3);
         button3.setBounds(10, 340, 120, 50);
 
         //---- button4 ----
         button4.setText("8");
-        button4.setFont(button4.getFont().deriveFont(button4.getFont().getStyle() | Font.BOLD, button4.getFont().getSize() + 6f));
+        button4.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button4.setFocusable(false);
+        button4.addActionListener(e -> button8(e));
         add(button4);
         button4.setBounds(140, 340, 120, 50);
 
         //---- button7 ----
         button7.setText("9");
-        button7.setFont(button7.getFont().deriveFont(button7.getFont().getStyle() | Font.BOLD, button7.getFont().getSize() + 6f));
+        button7.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button7.setFocusable(false);
+        button7.addActionListener(e -> button9(e));
         add(button7);
         button7.setBounds(270, 340, 120, 50);
 
         //---- button5 ----
         button5.setText("4");
-        button5.setFont(button5.getFont().deriveFont(button5.getFont().getStyle() | Font.BOLD, button5.getFont().getSize() + 6f));
+        button5.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button5.setFocusable(false);
+        button5.addActionListener(e -> button4(e));
         add(button5);
         button5.setBounds(10, 395, 120, 50);
 
         //---- button8 ----
         button8.setText("5");
-        button8.setFont(button8.getFont().deriveFont(button8.getFont().getStyle() | Font.BOLD, button8.getFont().getSize() + 6f));
+        button8.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button8.setFocusable(false);
+        button8.addActionListener(e -> button5(e));
         add(button8);
         button8.setBounds(140, 395, 120, 50);
 
         //---- button9 ----
         button9.setText("6");
-        button9.setFont(button9.getFont().deriveFont(button9.getFont().getStyle() | Font.BOLD, button9.getFont().getSize() + 6f));
+        button9.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button9.setFocusable(false);
+        button9.addActionListener(e -> button6(e));
         add(button9);
         button9.setBounds(270, 395, 120, 50);
 
         //---- button10 ----
         button10.setText("1");
-        button10.setFont(button10.getFont().deriveFont(button10.getFont().getStyle() | Font.BOLD, button10.getFont().getSize() + 6f));
+        button10.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button10.setFocusable(false);
+        button10.addActionListener(e -> button1(e));
         add(button10);
         button10.setBounds(10, 450, 120, 50);
 
         //---- button11 ----
         button11.setText("2");
-        button11.setFont(button11.getFont().deriveFont(button11.getFont().getStyle() | Font.BOLD, button11.getFont().getSize() + 6f));
+        button11.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button11.setFocusable(false);
+        button11.addActionListener(e -> button2(e));
         add(button11);
         button11.setBounds(140, 450, 120, 50);
 
         //---- button12 ----
         button12.setText("3");
-        button12.setFont(button12.getFont().deriveFont(button12.getFont().getStyle() | Font.BOLD, button12.getFont().getSize() + 6f));
+        button12.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button12.setFocusable(false);
+        button12.addActionListener(e -> button3(e));
         add(button12);
         button12.setBounds(270, 450, 120, 50);
 
         //---- button13 ----
-        button13.setText("+/_");
-        button13.setFont(button13.getFont().deriveFont(button13.getFont().getStyle() | Font.BOLD, button13.getFont().getSize() + 6f));
+        button13.setText("+/-");
+        button13.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button13.setFocusable(false);
         add(button13);
         button13.setBounds(10, 505, 120, 50);
 
         //---- button14 ----
         button14.setText("0");
-        button14.setFont(button14.getFont().deriveFont(button14.getFont().getStyle() | Font.BOLD, button14.getFont().getSize() + 6f));
+        button14.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button14.setFocusable(false);
+        button14.addActionListener(e -> button0(e));
         add(button14);
         button14.setBounds(140, 505, 120, 50);
-
-        //---- button15 ----
-        button15.setText(".");
-        button15.setFont(button15.getFont().deriveFont(button15.getFont().getStyle() | Font.BOLD, button15.getFont().getSize() + 6f));
-        add(button15);
-        button15.setBounds(270, 505, 120, 50);
 
         //---- comboBox1 ----
         comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -496,6 +675,14 @@ public class DecimalConversion extends JPanel {
         add(comboBox2);
         comboBox2.setBounds(15, 240, 105, 40);
 
+        //---- button15 ----
+        button15.setText(".");
+        button15.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button15.setBackground(new Color(0x999999));
+        button15.setFocusable(false);
+        add(button15);
+        button15.setBounds(270, 505, 120, 50);
+
         setPreferredSize(new Dimension(400, 570));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -517,8 +704,8 @@ public class DecimalConversion extends JPanel {
     private JButton button12;
     private JButton button13;
     private JButton button14;
-    private JButton button15;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
+    private JButton button15;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
