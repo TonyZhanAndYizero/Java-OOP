@@ -225,93 +225,59 @@ public class Angle extends JPanel {
     private void textField2KeyReleased(KeyEvent e) {
         exchange(textField2, textField1);
     }
-    public static Robot robot;
 
-    static {
-        try {
-            robot = new Robot();
-        } catch (AWTException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void button1MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_1);
-        }
-    }
-
-    private void button2MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_2);
-        }
-    }
-
-    private void button3MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_3);
-        }
-    }
-
-    private void button4MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_4);
-        }
-    }
-
-    private void button5MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_5);
-        }
-    }
-
-    private void button6MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_6);
-        }
-    }
-
-    private void button7MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_7);
-        }
-    }
-
-    private void button8MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_8);
-        }
-    }
-
-    private void button9MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_9);
-        }
-    }
-
-    private void button0MousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_0);
-        }
-    }
-
-    private void buttonDotMousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_PERIOD);
-        }
+    private void buttonClearMousePressed(MouseEvent e) {
+        // TODO add your code here
     }
 
     private void buttonBackspaceMousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_BACK_SPACE);
-        }
+        // TODO add your code here
     }
 
-    private void buttonClearMousePressed(MouseEvent e) {
-        if (e.getButton() == 1) {
-            robot.keyPress(KeyEvent.VK_ESCAPE);
-        }
+    private void button0MousePressed(MouseEvent e) {
+        // TODO add your code here
     }
+
+    private void button1MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button2MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button3MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button4MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button5MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button6MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button7MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button8MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void button9MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonDotMousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
 
     static class RestrictedDocumentFilter extends DocumentFilter {
         @Override

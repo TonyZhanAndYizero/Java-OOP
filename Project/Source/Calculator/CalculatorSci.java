@@ -196,7 +196,7 @@ public class CalculatorSci extends JPanel implements Calculator {
             CalculatorStd.play = false;
         }
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(CalculatorStd.DAVID);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(CalculatorStd.class.getResource("/Resources/music/oh_David.wav"));
             CalculatorStd.clip = AudioSystem.getClip();
             CalculatorStd.clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException k) {

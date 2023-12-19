@@ -44,7 +44,6 @@ public class CalProgressStd {
     public static void percent(MouseEvent e, CalculatorStd std) {
         String str_now = UtilitiesStd.PureNumberWithoutArithmetics(std.textField1.getText());
         String str_equal = UtilitiesStd.PureEqual(std.label1.getText());
-        System.out.println(str_equal);
         if (e.getButton() == 1) {
             BigDecimal ans = FourArithmetic.calculatePlain(str_now, "*", "0.01");
             if (!str_equal.isEmpty() || std.label1.getText().isEmpty()) {
@@ -277,9 +276,7 @@ public class CalProgressStd {
         if (e.getButton() == 1) {
             if (!std.error) {
                 BigDecimal ans = new BigDecimal(str_now).pow(2, MathContext.DECIMAL128);
-                System.out.println(ans);
                 if (ans.toPlainString().length() > 10000) {
-                    System.out.println("ok");
                     ans = null;
                 }
                 if (ans == null) {

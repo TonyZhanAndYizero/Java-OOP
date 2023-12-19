@@ -193,7 +193,7 @@ public class Home extends JFrame {
     }
 
     private void initComponents() {
-        ImageIcon icon = new ImageIcon("Project/Resources/img/icon.png"); //图片和项目同一路径，故不用图片的路径
+        ImageIcon icon = new ImageIcon(getClass().getResource("Resources/img/icon.png")); //图片和项目同一路径，故不用图片的路径
         this.setIconImage(icon.getImage());
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();

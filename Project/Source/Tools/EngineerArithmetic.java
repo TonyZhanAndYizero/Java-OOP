@@ -7,7 +7,6 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Stack;
 
 public class EngineerArithmetic {
@@ -260,15 +259,6 @@ public class EngineerArithmetic {
         {
             e.printStackTrace();
             return null;
-        }
-    }
-    public static void main(String[] args) {
-        String str;
-        Scanner sc = new Scanner(System.in);
-        while(true)
-        {
-            str = sc.nextLine();
-            //System.out.println(engineerCal(str));
         }
     }
 }

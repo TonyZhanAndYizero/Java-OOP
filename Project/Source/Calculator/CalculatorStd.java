@@ -5,6 +5,11 @@ import java.awt.event.*;
 import java.io.File;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.text.spi.BreakIteratorProvider;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -26,7 +31,7 @@ public class CalculatorStd extends JPanel {
         try {
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
             UIManager.setLookAndFeel(lookAndFeel);
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
         }
         initComponents();
     }
@@ -199,7 +204,6 @@ public class CalculatorStd extends JPanel {
     }
 
     private void buttonUpsideDownMousePressed(MouseEvent e) {
-
         CalProgressStd.upsideDown(e, this);
     }
 
@@ -228,12 +232,11 @@ public class CalculatorStd extends JPanel {
     }
 
     protected static boolean play = false;
-    protected static final File DAVID = new File("Project/Resources/music/oh_David.wav");
-    protected static Clip clip = null;
+    protected static Clip clip;
 
-    {
+    static {
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(DAVID);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(CalculatorStd.class.getResource("/Resources/music/oh_David.wav"));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -247,7 +250,6 @@ public class CalculatorStd extends JPanel {
      * @author TonyZhan
      */
     private void buttonDavidMousePressed(MouseEvent e) {
-        
         try {
             if (!play) {
                 clip.start();
@@ -267,7 +269,7 @@ public class CalculatorStd extends JPanel {
             play = false;
         }
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(DAVID);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(CalculatorStd.class.getResource("/Resources/music/oh_David.wav"));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -282,10 +284,6 @@ public class CalculatorStd extends JPanel {
         progressBar1.setValue(progress);
         long time = (long) ((double) mouseX / progressBarWidth * clip.getMicrosecondLength());
         clip.setMicrosecondPosition(time);
-    }
-
-    private void buttonUpsidedownMousePressed(MouseEvent e) {
-        
     }
 
 
@@ -512,7 +510,7 @@ public class CalculatorStd extends JPanel {
         buttonUpsidedDown.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                buttonUpsidedownMousePressed(e);
+                buttonUpsideDownMousePressed(e);
             }
         });
         add(buttonUpsidedDown);

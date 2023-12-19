@@ -13,8 +13,6 @@ import java.util.Timer;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import static Source.Calculator.UtilitiesSci.checkNum;
-
 /**
  * @author Yury
  */
