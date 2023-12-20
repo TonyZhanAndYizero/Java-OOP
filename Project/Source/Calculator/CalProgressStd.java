@@ -240,7 +240,7 @@ public class CalProgressStd {
             BigDecimal ans;
             if (!std.error) {
                 try {
-                    ans = new BigDecimal(str_now).sqrt(new MathContext(16));
+                    ans = new BigDecimal(str_now).sqrt(new MathContext(1000));
                 } catch (ArithmeticException ae) {
                     std.label1.setText("");
                     std.textField1.setText("ERROR! Press any key to reset.");
@@ -275,7 +275,7 @@ public class CalProgressStd {
         String str_equal = UtilitiesStd.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             if (!std.error) {
-                BigDecimal ans = new BigDecimal(str_now).pow(2, MathContext.DECIMAL128);
+                BigDecimal ans = new BigDecimal(str_now).pow(2);
                 if (ans.toPlainString().length() > 10000) {
                     ans = null;
                 }

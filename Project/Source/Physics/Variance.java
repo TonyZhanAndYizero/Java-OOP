@@ -56,19 +56,19 @@ public class Variance extends JPanel {
             var = var.divide(n.subtract(BigDecimal.ONE), 4, RoundingMode.HALF_UP);
             label6.setText(var.toPlainString());
 
-            BigDecimal sqrtVar = var.sqrt(MathContext.DECIMAL64);
+            BigDecimal sqrtVar = var.sqrt(new MathContext(514));
             label7.setText(sqrtVar.toPlainString());
 
-            BigDecimal ua = var.divide(n, 8, RoundingMode.HALF_UP).sqrt(MathContext.DECIMAL128);
+            BigDecimal ua = var.divide(n, 8, RoundingMode.HALF_UP).sqrt(new MathContext(514));
             label9.setText(ua.toPlainString());
 
             BigDecimal deltaB;
             try {
                 deltaB = new BigDecimal(textField2.getText());
-                BigDecimal ub = deltaB.divide(new BigDecimal(3).sqrt(MathContext.DECIMAL64), 4, RoundingMode.HALF_UP);
+                BigDecimal ub = deltaB.divide(new BigDecimal(3).sqrt(new MathContext(514)), 4, RoundingMode.HALF_UP);
                 label12.setText(ub.toPlainString());
 
-                BigDecimal u = (ua.pow(2).add(ub.pow(2))).sqrt(MathContext.DECIMAL64);
+                BigDecimal u = (ua.pow(2).add(ub.pow(2))).sqrt(new MathContext(514));
                 label14.setText(u.toPlainString());
             } catch (NumberFormatException efe) {
                 label12.setText("null");

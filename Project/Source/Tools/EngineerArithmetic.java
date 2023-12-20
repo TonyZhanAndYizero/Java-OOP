@@ -13,65 +13,64 @@ public class EngineerArithmetic {
     public static List<String> zhongZhui(String str) {//把输入的字符串转换成中缀表达式。存入list中
         int index = 0;
         List<String> list = new ArrayList<>();
-        do{
+        do {
             char ch = str.charAt(index);
-            if("+-*/^!mlogscta()".indexOf(str.charAt(index)) >= 0){
-                if(str.charAt(index) == '-' && (list.isEmpty() || !isNumber(list.get(list.size() - 1)) && !list.get(list.size() - 1).equals(")")))
-                {
+            if ("+-*/^!mlogscta()".indexOf(str.charAt(index)) >= 0) {
+                if (str.charAt(index) == '-' && (list.isEmpty() || !isNumber(list.get(list.size() - 1)) && !list.get(list.size() - 1).equals(")"))) {
                     list.add("0");
                 }
                 //是操作符，直接添加至list中
-                index ++;
-                list.add(ch+"");
-            }else if (str.charAt(index) == 'e' || str.charAt(index) == 'p'){
-                index ++;
-                list.add(ch+"");
-            } else if("0123456789".indexOf(str.charAt(index)) >= 0){
+                index++;
+                list.add(ch + "");
+            } else if (str.charAt(index) == 'e' || str.charAt(index) == 'p') {
+                index++;
+                list.add(ch + "");
+            } else if ("0123456789".indexOf(str.charAt(index)) >= 0) {
                 //是数字,判断多位数的情况
                 String str1 = "";
-                while (index < str.length() && "0123456789.".indexOf(str.charAt(index)) >= 0){
+                while (index < str.length() && "0123456789.".indexOf(str.charAt(index)) >= 0) {
                     str1 += str.charAt(index);
-                    index ++;
+                    index++;
                 }
                 list.add(str1);
 
             }
-        }while (index < str.length());
+        } while (index < str.length());
         return list;
     }
 
-    public static List<String> houZhui(List<String> list){//中缀表达式转换称后缀表达式
+    public static List<String> houZhui(List<String> list) {//中缀表达式转换称后缀表达式
         Stack<String> fuZhan = new Stack<>();
         List<String> list2 = new ArrayList<>();
         if (!list.isEmpty()) {
             for (int i = 0; i < list.size(); i++) {
-                if (isNumber(list.get(i))){
+                if (isNumber(list.get(i))) {
                     list2.add(list.get(i));
-                } else if (list.get(i).charAt(0) == '('){
+                } else if (list.get(i).charAt(0) == '(') {
                     fuZhan.push(list.get(i));
-                } else if (isOperator(list.get(i)) && list.get(i).charAt(0) != '('){
-                    if (fuZhan.isEmpty()){
+                } else if (isOperator(list.get(i)) && list.get(i).charAt(0) != '(') {
+                    if (fuZhan.isEmpty()) {
                         fuZhan.push(list.get(i));
                     } else {//符栈不为空
-                        if (list.get(i).charAt(0) != ')'){
-                            if (adv(fuZhan.peek()) < adv(list.get(i))){
+                        if (list.get(i).charAt(0) != ')') {
+                            if (adv(fuZhan.peek()) < adv(list.get(i))) {
                                 //入栈
                                 fuZhan.push(list.get(i));
                             } else {//出栈
-                                while (!fuZhan.isEmpty() && !"(".equals(fuZhan.peek())){
-                                    if(adv(list.get(i)) <= adv(fuZhan.peek())){
+                                while (!fuZhan.isEmpty() && !"(".equals(fuZhan.peek())) {
+                                    if (adv(list.get(i)) <= adv(fuZhan.peek())) {
                                         list2.add(fuZhan.pop());
                                     } else {
                                         fuZhan.push(list.get(i));
                                         break;
                                     }
                                 }
-                                if (fuZhan.isEmpty() || fuZhan.peek().charAt(0) == '('){
+                                if (fuZhan.isEmpty() || fuZhan.peek().charAt(0) == '(') {
                                     fuZhan.push(list.get(i));
                                 }
                             }
-                        } else if (list.get(i).charAt(0) == ')'){
-                            while (fuZhan.peek().charAt(0) != '('){
+                        } else if (list.get(i).charAt(0) == ')') {
+                            while (fuZhan.peek().charAt(0) != '(') {
                                 list2.add(fuZhan.pop());
                             }
                             fuZhan.pop();
@@ -79,29 +78,32 @@ public class EngineerArithmetic {
                     }
                 }
             }
-            while (!fuZhan.isEmpty()){
+            while (!fuZhan.isEmpty()) {
                 list2.add(fuZhan.pop());
             }
         }
         return list2;
     }
-    public static boolean isOperator(String op){//判断是否为操作符
+
+    public static boolean isOperator(String op) {//判断是否为操作符
         if ("0123456789.ep".indexOf(op.charAt(0)) == -1) {
             return true;
         } else {
             return false;
         }
     }
-    public static boolean isNumber(String num){//判断是否为操作数
+
+    public static boolean isNumber(String num) {//判断是否为操作数
         if ("0123456789ep".indexOf(num.charAt(0)) >= 0) {
             return true;
         } else {
             return false;
         }
     }
-    public static int adv(String f){//判断操作符的优先级
+
+    public static int adv(String f) {//判断操作符的优先级
         int result = 0;
-        switch(f) {
+        switch (f) {
             case "+":
                 result = 1;
                 break;
@@ -147,54 +149,51 @@ public class EngineerArithmetic {
         }
         return result;
     }
+
     public static BigDecimal math(List<String> list2) {//通过后缀表达式进行计算
         Stack<String> stack = new Stack<String>();
         BigDecimal res = null;
-        MathContext m1 = new MathContext(10, RoundingMode.HALF_UP);
-        MathContext m2 = new MathContext(20, RoundingMode.HALF_UP);
+        MathContext m1 = new MathContext(514, RoundingMode.HALF_UP);
+        MathContext m2 = new MathContext(514, RoundingMode.HALF_UP);
         try {
             for (int i = 0; i < list2.size(); i++) {
                 if (isNumber(list2.get(i))) {
-                    if (list2.get(i).charAt(0) == 'e'){
+                    if (list2.get(i).charAt(0) == 'e') {
                         stack.push(String.valueOf(BigDecimalMath.e(m2)));
-                    } else if (list2.get(i).charAt(0) == 'p'){
+                    } else if (list2.get(i).charAt(0) == 'p') {
                         stack.push(String.valueOf(BigDecimalMath.pi(m2)));
                     } else {
                         stack.push(list2.get(i));
                     }
-                } else if (isOperator(list2.get(i))){
+                } else if (isOperator(list2.get(i))) {
                     if (list2.get(i).equals("+")) {
-                        BigDecimal num2= new BigDecimal(stack.pop());
+                        BigDecimal num2 = new BigDecimal(stack.pop());
                         BigDecimal num1 = new BigDecimal(stack.pop());
                         res = num1.add(num2);
                     } else if (list2.get(i).equals("-")) {
-                        BigDecimal num2= new BigDecimal(stack.pop());
+                        BigDecimal num2 = new BigDecimal(stack.pop());
                         BigDecimal num1 = new BigDecimal(stack.pop());
                         res = num1.subtract(num2);
                     } else if (list2.get(i).equals("*")) {
-                        BigDecimal num2= new BigDecimal(stack.pop());
+                        BigDecimal num2 = new BigDecimal(stack.pop());
                         BigDecimal num1 = new BigDecimal(stack.pop());
                         res = num1.multiply(num2);
                     } else if (list2.get(i).equals("/")) {
-                        BigDecimal num2= new BigDecimal(stack.pop());
+                        BigDecimal num2 = new BigDecimal(stack.pop());
                         BigDecimal num1 = new BigDecimal(stack.pop());
-                        try
-                        {
+                        try {
                             res = num1.divide(num2);
-                        }catch (ArithmeticException a)
-                        {
+                        } catch (ArithmeticException a) {
                             res = num1.divide(num2, 10, RoundingMode.HALF_UP);
                         }
-                    }else if(list2.get(i).equals("m"))
-                    {
-                        BigDecimal num2= new BigDecimal(stack.pop());
+                    } else if (list2.get(i).equals("m")) {
+                        BigDecimal num2 = new BigDecimal(stack.pop());
                         BigDecimal num1 = new BigDecimal(stack.pop());
                         res = num1.remainder(num2, m1);
-                    }
-                    else if (list2.get(i).equals("^")) {
-                        BigDecimal num2= new BigDecimal(stack.pop());
+                    } else if (list2.get(i).equals("^")) {
+                        BigDecimal num2 = new BigDecimal(stack.pop());
                         BigDecimal num1 = new BigDecimal(stack.pop());
-                        res = BigDecimalMath.pow(num1, num2,m1);
+                        res = BigDecimalMath.pow(num1, num2, m1);
                     } else if (list2.get(i).equals("!")) {
                         BigDecimal num1 = new BigDecimal(stack.pop());
                         res = BigDecimalMath.factorial(num1, MathContext.UNLIMITED);
@@ -223,18 +222,17 @@ public class EngineerArithmetic {
                     stack.push("" + res.setScale(10, RoundingMode.HALF_UP));
                 }
             }
-        }catch (ArithmeticException a)
-        {
+        } catch (ArithmeticException a) {
             System.out.println("运算错误！");
             return null;
         }
-        if(!stack.isEmpty())
+        if (!stack.isEmpty())
             return new BigDecimal(stack.pop()).stripTrailingZeros();
         else
             return null;
     }
-    public static String engineerCal(String str)
-    {
+
+    public static String engineerCal(String str) {
         str = str.replaceAll(" ", "");
         List<String> list;
         try {
@@ -255,8 +253,7 @@ public class EngineerArithmetic {
             list = houZhui(list);
             //System.out.println(list);
             return math(list).toPlainString();
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
