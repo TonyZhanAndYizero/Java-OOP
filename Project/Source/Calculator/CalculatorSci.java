@@ -111,7 +111,7 @@ public class CalculatorSci extends JPanel implements Calculator {
 
 
     private void buttonDotMousePressed(MouseEvent e) {
-        
+
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_PERIOD);
         }
@@ -141,7 +141,7 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
-    private void buttonEqualMousePressed(MouseEvent e) {
+    public void buttonEqualMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ENTER);
         }

@@ -47,8 +47,8 @@ public class Utilities24 {
      * @param model String, the equation
      * @author Yury
      */
-    protected void checkAns(String ans, String model) {
-        if (ans != null && ans.equals("24")) {
+    protected void checkAns(String ans, String model, String target) {
+        if (ans != null && ans.equals(target)) {
             ansList.add(model);
         }
     }
@@ -63,7 +63,7 @@ public class Utilities24 {
      * @return boolean
      * @author Yury
      */
-    protected boolean checkExistingAnswer(int a, int b, int c, int d) {
+    protected boolean checkExistingAnswer(int a, int b, int c, int d, String target) {
         ansList.clear();
         int op1, op2, op3;
         for (op1 = 1; op1 <= 4; op1++) {
@@ -84,11 +84,11 @@ public class Utilities24 {
                     String ans3 = EngineerArithmetic.engineerCal(model3);
                     String ans4 = EngineerArithmetic.engineerCal(model4);
                     String ans5 = EngineerArithmetic.engineerCal(model5);
-                    checkAns(ans1, model1);
-                    checkAns(ans2, model2);
-                    checkAns(ans3, model3);
-                    checkAns(ans4, model4);
-                    checkAns(ans5, model5);
+                    checkAns(ans1, model1, target);
+                    checkAns(ans2, model2, target);
+                    checkAns(ans3, model3, target);
+                    checkAns(ans4, model4, target);
+                    checkAns(ans5, model5, target);
                 }
         }
         return !ansList.isEmpty();

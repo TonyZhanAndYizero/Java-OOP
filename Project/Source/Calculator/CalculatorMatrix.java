@@ -12,7 +12,7 @@ import javax.swing.border.*;
 /**
  * @author tonyzhan0514
  */
-public class CalculatorMatrix extends JPanel {
+public class CalculatorMatrix extends JPanel implements Calculator{
     public CalculatorMatrix() {
         initComponents();
     }
@@ -178,7 +178,7 @@ public class CalculatorMatrix extends JPanel {
         }
     }
 
-    private void button2MousePressed(MouseEvent e) {
+    public void buttonEqualMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             calculate();
         }
@@ -195,7 +195,7 @@ public class CalculatorMatrix extends JPanel {
         label2 = new JLabel();
         label4 = new JLabel();
         button1 = new JButton();
-        button2 = new JButton();
+        buttonEqual = new JButton();
         scrollPane3 = new JScrollPane();
         label5 = new JLabel();
         label3 = new JLabel();
@@ -262,17 +262,17 @@ public class CalculatorMatrix extends JPanel {
         add(button1);
         button1.setBounds(295, 70, 65, 35);
 
-        //---- button2 ----
-        button2.setText("\u8ba1\u7b97");
-        button2.setFont(button2.getFont().deriveFont(button2.getFont().getSize() + 2f));
-        button2.addMouseListener(new MouseAdapter() {
+        //---- buttonEqual ----
+        buttonEqual.setText("\u8ba1\u7b97");
+        buttonEqual.setFont(buttonEqual.getFont().deriveFont(buttonEqual.getFont().getSize() + 2f));
+        buttonEqual.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button2MousePressed(e);
+                buttonEqualMousePressed(e);
             }
         });
-        add(button2);
-        button2.setBounds(490, 240, 65, 35);
+        add(buttonEqual);
+        buttonEqual.setBounds(490, 240, 65, 35);
 
         //======== scrollPane3 ========
         {
@@ -312,7 +312,7 @@ public class CalculatorMatrix extends JPanel {
     private JLabel label2;
     private JLabel label4;
     private JButton button1;
-    private JButton button2;
+    private JButton buttonEqual;
     private JScrollPane scrollPane3;
     private JLabel label5;
     private JLabel label3;

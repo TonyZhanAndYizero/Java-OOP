@@ -430,6 +430,7 @@ public class Home extends JFrame {
 
                 //---- textArea1 ----
                 textArea1.setText("\u5f53\u60a8\u60f3\u4f7f\u7528.txt\u6587\u4ef6\u5bfc\u5165\u4e00\u5143\u7ebf\u6027\u56de\u5f52\u6570\u636e\u70b9\u7684\u65f6\u5019\uff0c\u8bf7\n\u4e25\u683c\u6309\u7167\u5982\u4e0b\u683c\u5f0f\u6392\u5e03\uff1a(\u4e0b\u9762\u662f\u4e00\u4e2ak=3\u7684\u4f8b\u5b50)\nk:3\nx:2 3 4\ny:3 4 5\n\u5176\u4e2d\uff0c\"k:\",\"x:\"\u548c\"y:\"\u5fc5\u987b\u4e25\u683c\u4e00\u81f4\uff0c\u5176\u540e\u6570\u636e\u70b9\u53ef\u7528\n\u4efb\u4f55\u7a7a\u767d\u7b26\u5206\u5272\uff0c\u5747\u4e0d\u5f71\u54cd\uff0c\u4f46\u8be53\u4e2a\u6807\u8bc6\u7b26\u4e0d\u53ef\u6709\u5dee\u522b\uff01\n\u6781\u7aef\u4f8b\u5b50\u4e3a\uff1a\nk:   4\nx:\n3 4\n5 \n5 y: 2 3 5\n7");
+                textArea1.setEditable(false);
                 scrollPane1.setViewportView(textArea1);
             }
             dialog1ContentPane.add(scrollPane1);
@@ -445,7 +446,7 @@ public class Home extends JFrame {
                 }
             });
             dialog1ContentPane.add(button1);
-            button1.setBounds(145, 160, 60, 30);
+            button1.setBounds(145, 155, 60, 30);
 
             {
                 // compute preferred size
@@ -476,6 +477,7 @@ public class Home extends JFrame {
 
                 //---- textArea3 ----
                 textArea3.setText("\u4e3a\u8fce\u5408\u300a\u6982\u7387\u7edf\u8ba1\u300b\u53ca\u300a\u57fa\u7840\u7269\u7406\u5b9e\u9a8c\u300b\u9700\u6c42\uff0c\u672c\u8f6f\n\u4ef6\u91c7\u7528\u5206\u6bcd\u4e3a\"\u6837\u672c\u6570-1\"\u7684\u8ba1\u7b97\u89c4\u5219\u3002");
+                textArea3.setEditable(false);
                 scrollPane2.setViewportView(textArea3);
             }
             dialog2ContentPane.add(scrollPane2);
@@ -491,7 +493,7 @@ public class Home extends JFrame {
                 }
             });
             dialog2ContentPane.add(button2);
-            button2.setBounds(145, 160, 60, 30);
+            button2.setBounds(145, 155, 60, 30);
 
             {
                 // compute preferred size

@@ -167,6 +167,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextArea" ) {
 					name: "textArea1"
 					"text": "当您想使用.txt文件导入一元线性回归数据点的时候，请\n严格按照如下格式排布：(下面是一个k=3的例子)\nk:3\nx:2 3 4\ny:3 4 5\n其中，\"k:\",\"x:\"和\"y:\"必须严格一致，其后数据点可用\n任何空白符分割，均不影响，但该3个标识符不可有差别！\n极端例子为：\nk:   4\nx:\n3 4\n5 \n5 y: 2 3 5\n7"
+					"editable": false
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 0
@@ -181,7 +182,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button1MousePressed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 145
-				"y": 160
+				"y": 155
 				"width": 60
 				"height": 30
 			} )
@@ -197,6 +198,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextArea" ) {
 					name: "textArea3"
 					"text": "为迎合《概率统计》及《基础物理实验》需求，本软\n件采用分母为\"样本数-1\"的计算规则。"
+					"editable": false
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 349
@@ -213,7 +215,7 @@ new FormModel {
 				"width": 60
 				"height": 30
 				"x": 145
-				"y": 160
+				"y": 155
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 510, 430 )

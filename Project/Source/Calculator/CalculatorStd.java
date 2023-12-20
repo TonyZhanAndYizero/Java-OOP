@@ -26,7 +26,7 @@ import javax.swing.border.*;
  *
  * @author TonyZhan and Yury.
  */
-public class CalculatorStd extends JPanel {
+public class CalculatorStd extends JPanel implements Calculator {
     public CalculatorStd() {
         try {
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
@@ -154,7 +154,7 @@ public class CalculatorStd extends JPanel {
         }
     }
 
-    private void buttonEqualMousePressed(MouseEvent e) {
+    public void buttonEqualMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ENTER);
         }
