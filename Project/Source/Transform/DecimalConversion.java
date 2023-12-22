@@ -26,7 +26,15 @@ public class DecimalConversion extends JPanel {
         initComponents();
     }
 
-    private String JinzhiSwitch(String nums, int op1, int op2) {
+    /**
+     * Description: Converts between binary, octal, decimal, and hexadecimal.
+     * @param nums The number that needs to be converted.
+     * @param op1 The decimal of the number.
+     * @param op2 The decimal to be converted to.
+     * @return The number that has been converted.
+     * @author HeMercy
+     */
+    private String decimalConversion(String nums, int op1, int op2) {
         try {
             if (!nums.isEmpty()) {
                 if (nums.charAt(0) == '-' && op2 != 10) {
@@ -48,6 +56,14 @@ public class DecimalConversion extends JPanel {
         }
     }
 
+    /**
+     * Description: Execute the method decimalConversion.
+     * @param textField1 The currently focused text-field.
+     * @param textField2 The other text-field.
+     * @param comboBox1 The combo box of the currently focused text-field.
+     * @param comboBox2 The combo box of the other text-field.
+     * @author HeMercy
+     */
     private void solve(JTextField textField1, JTextField textField2, JComboBox<String> comboBox1, JComboBox<String> comboBox2) {
         String inputString = textField1.getText();
         int p1 = comboBox1.getSelectedIndex();
@@ -58,64 +74,64 @@ public class DecimalConversion extends JPanel {
             case 0:
                 switch (p2) {
                     case 0 -> {
-                        res = JinzhiSwitch(inputString, 2, 2);
+                        res = decimalConversion(inputString, 2, 2);
                     }
                     case 1 -> {
-                        res = JinzhiSwitch(inputString, 2, 8);
+                        res = decimalConversion(inputString, 2, 8);
                     }
                     case 2 -> {
-                        res = JinzhiSwitch(inputString, 2, 10);
+                        res = decimalConversion(inputString, 2, 10);
                     }
                     case 3 -> {
-                        res = JinzhiSwitch(inputString, 2, 16);
+                        res = decimalConversion(inputString, 2, 16);
                     }
                 }
                 break;
             case 1:
                 switch (p2) {
                     case 0 -> {
-                        res = JinzhiSwitch(inputString, 8, 2);
+                        res = decimalConversion(inputString, 8, 2);
                     }
                     case 1 -> {
-                        res = JinzhiSwitch(inputString, 8, 8);
+                        res = decimalConversion(inputString, 8, 8);
                     }
                     case 2 -> {
-                        res = JinzhiSwitch(inputString, 8, 10);
+                        res = decimalConversion(inputString, 8, 10);
                     }
                     case 3 -> {
-                        res = JinzhiSwitch(inputString, 8, 16);
+                        res = decimalConversion(inputString, 8, 16);
                     }
                 }
                 break;
             case 2:
                 switch (p2) {
                     case 0 -> {
-                        res = JinzhiSwitch(inputString, 10, 2);
+                        res = decimalConversion(inputString, 10, 2);
                     }
                     case 1 -> {
-                        res = JinzhiSwitch(inputString, 10, 8);
+                        res = decimalConversion(inputString, 10, 8);
                     }
                     case 2 -> {
-                        res = JinzhiSwitch(inputString, 10, 10);
+                        res = decimalConversion(inputString, 10, 10);
                     }
                     case 3 -> {
-                        res = JinzhiSwitch(inputString, 10, 16);
+                        res = decimalConversion(inputString, 10, 16);
                     }
                 }
                 break;
             case 3:
                 switch (p2) {
                     case 0 -> {
-                        res = JinzhiSwitch(inputString, 16, 2);
+                        res = decimalConversion(inputString, 16, 2);
                     }
                     case 1 -> {
-                        res = JinzhiSwitch(inputString, 16, 8);
+                        res = decimalConversion(inputString, 16, 8);
                     }
                     case 2 -> {
-                        res = JinzhiSwitch(inputString, 16, 10);
+                        res = decimalConversion(inputString, 16, 10);
                     }
                     case 3 -> {
-                        res = JinzhiSwitch(inputString, 16, 16);
+                        res = decimalConversion(inputString, 16, 16);
                     }
                 }
                 break;
@@ -123,6 +139,11 @@ public class DecimalConversion extends JPanel {
         textField2.setText(res);
     }
 
+    /**
+     * Description: Limit the content entered the text-field.
+     * It can only be number or letter or minus sign.
+     * @author HeMercy
+     */
     static class RestrictedDocumentFilter extends DocumentFilter {
         int op;
 
@@ -141,8 +162,6 @@ public class DecimalConversion extends JPanel {
         }
 
         private String filter(String input) {
-            // 此处可以根据需要定义文本框的输入限制
-            // 这个例子中只允许输入数字
             if (input == null || input.isEmpty())
                 return null;
             switch (op) {
@@ -164,11 +183,20 @@ public class DecimalConversion extends JPanel {
             }
         }
     }
-
+    /**
+     * Description: Monitor the input of the first text-field
+     * @param e CaretEvent
+     * @author HeMercy
+     */
     private void textField1CaretUpdate(CaretEvent e) {
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox1.getSelectedIndex()));
     }
-
+    /**
+     * Description: Monitor the focus of the first text-field.
+     * If it's the first input, replace the original contents with new input.
+     * @param e FocusEvent
+     * @author HeMercy
+     */
     private void textField1FocusGained(FocusEvent e) {
         String str = textField1.getText();
         whichFocus = true;
@@ -208,16 +236,30 @@ public class DecimalConversion extends JPanel {
             }
         });
     }
-
+    /**
+     * Description: Monitor the keyboard input of the first text-field.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e KeyEvent
+     * @author HeMercy
+     */
     private void textField1KeyReleased(KeyEvent e) {
         solve(textField1, textField2, comboBox1, comboBox2);
     }
-
+    /**
+     * Description: Monitor the input of the second text-field
+     * @param e CaretEvent
+     * @author HeMercy
+     */
     private void textField2CaretUpdate(CaretEvent e) {
 
         ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox2.getSelectedIndex()));
     }
-
+    /**
+     * Description: Monitor the focus of the second text-field.
+     * If it's the first input, replace the original contents with new input.
+     * @param e FocusEvent
+     * @author HeMercy
+     */
     private void textField2FocusGained(FocusEvent e) {
 
         String str = textField2.getText();
@@ -259,18 +301,35 @@ public class DecimalConversion extends JPanel {
             }
         });
     }
-
+    /**
+     * Description: Monitor the keyboard input of the second text-field.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e KeyEvent
+     * @author HeMercy
+     */
     private void textField2KeyReleased(KeyEvent e) {
         solve(textField2, textField1, comboBox2, comboBox1);
     }
-
+    /**
+     * Description: Monitor the changes of the item state of the first combo Box.
+     * If it happens, update the contents of the first text-field
+     * depending on the contents of the second text-field in real time.
+     * @param e ItemEvent
+     * @author HeMercy
+     */
     private void comboBox1ItemStateChanged(ItemEvent e) {
         whichFocus = false;
         textField1.setFont(new Font("Inter", Font.PLAIN, 28));
         textField2.setFont(new Font("Inter", Font.BOLD, 28));
         solve(textField2, textField1, comboBox2, comboBox1);
     }
-
+    /**
+     * Description: Monitor the changes of the item state of the second combo Box.
+     * If it happens, update the contents of the second text-field
+     * depending on the contents of the first text-field in real time.
+     * @param e ItemEvent
+     * @author HeMercy
+     */
     private void comboBox2ItemStateChanged(ItemEvent e) {
         whichFocus = true;
         textField1.setFont(new Font("Inter", Font.BOLD, 28));
@@ -278,12 +337,22 @@ public class DecimalConversion extends JPanel {
         solve(textField1, textField2, comboBox1, comboBox2);
     }
 
-
+    /**
+     * Description: Monitor the button "CE".
+     * If it is pressed, delete all the characters in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void buttonClear(ActionEvent e) {
         textField1.setText("");
         textField2.setText("");
     }
-
+    /**
+     * Description: Monitor the button "backspace".
+     * If it is pressed, delete the last character in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void buttonBack(ActionEvent e) {
         if (whichFocus) {
             String text = textField1.getText();
@@ -299,7 +368,12 @@ public class DecimalConversion extends JPanel {
             }
         }
     }
-
+    /**
+     * Description: Monitor the button "0".
+     * If it is pressed, enter "0" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button0(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "0");
@@ -309,7 +383,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "1".
+     * If it is pressed, enter "1" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button1(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "1");
@@ -319,7 +398,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "2".
+     * If it is pressed, enter "2" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button2(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "2");
@@ -329,7 +413,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "3".
+     * If it is pressed, enter "3" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button3(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "3");
@@ -339,7 +428,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "4".
+     * If it is pressed, enter "4" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button4(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "4");
@@ -349,7 +443,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "5".
+     * If it is pressed, enter "5" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button5(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "5");
@@ -359,7 +458,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "6".
+     * If it is pressed, enter "6" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button6(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "6");
@@ -369,7 +473,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "7".
+     * If it is pressed, enter "7" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button7(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "7");
@@ -379,7 +488,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "8".
+     * If it is pressed, enter "8" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button8(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "8");
@@ -389,7 +503,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "9".
+     * If it is pressed, enter "9" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void button9(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "9");
@@ -399,7 +518,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "a".
+     * If it is pressed, enter "a" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void buttonA(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "a");
@@ -409,7 +533,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "b".
+     * If it is pressed, enter "b" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void buttonB(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "b");
@@ -419,7 +548,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "c".
+     * If it is pressed, enter "c" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void buttonC(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "c");
@@ -429,7 +563,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "d".
+     * If it is pressed, enter "d" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void buttonD(ActionEvent e) {
         if (whichFocus) {
             textField1.setText(textField1.getText() + "d");
@@ -439,8 +578,29 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "e".
+     * If it is pressed, enter "e" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void buttonE(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "e");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "e");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "f".
+     * If it is pressed, enter "f" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonF(ActionEvent e) {
+        // TODO add your code here
         if (whichFocus) {
             textField1.setText(textField1.getText() + "f");
             solve(textField1, textField2, comboBox1, comboBox2);
@@ -449,7 +609,12 @@ public class DecimalConversion extends JPanel {
             solve(textField2, textField1, comboBox2, comboBox1);
         }
     }
-
+    /**
+     * Description: Monitor the button "+/-".
+     * If it is pressed, add or remove a minus sign at the top of the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
     private void buttonAnti(ActionEvent e) {
         firstInput = false;
         if (whichFocus) {
@@ -472,6 +637,8 @@ public class DecimalConversion extends JPanel {
             }
         }
     }
+
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -735,7 +902,7 @@ public class DecimalConversion extends JPanel {
         button20.setText("f");
         button20.setFont(new Font("Consolas", Font.PLAIN, 18));
         button20.setFocusable(false);
-        button20.addActionListener(e -> buttonE(e));
+        button20.addActionListener(e -> buttonF(e));
         add(button20);
         button20.setBounds(105, 505, 90, 50);
 

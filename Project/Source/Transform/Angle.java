@@ -37,6 +37,12 @@ public class Angle extends JPanel {
 
     private boolean illegal = false;
 
+    /**
+     * Description: To realize the conversion of Angle, radian and percentile
+     * @param textField1 The first text-field
+     * @param textField2 The second text-field
+     * @author HeMercy
+     */
     private void exchange(JTextField textField1, JTextField textField2) {
         if (illegal) {
             illegal = false;
@@ -104,14 +110,29 @@ public class Angle extends JPanel {
         textField2.setText(res.stripTrailingZeros().toPlainString());
     }
 
+    /**
+     * Description: Monitor the input of the first text-field
+     * @param e CaretEvent
+     * @author HeMercy
+     */
     private void textField1CaretUpdate(CaretEvent e) {
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
     }
-
+    /**
+     * Description: Monitor the input of the second text-field
+     * @param e CaretEvent
+     * @author HeMercy
+     */
     private void textField2CaretUpdate(CaretEvent e) {
         ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
     }
 
+    /**
+     * Description: Monitor the focus of the first text-field.
+     * If it's the first input, replace the original contents with new input.
+     * @param e FocusEvent
+     * @author HeMercy
+     */
     private void textField1FocusGained(FocusEvent e) {
         String str = textField1.getText();
         whichFocus = true;
@@ -157,7 +178,12 @@ public class Angle extends JPanel {
             }
         });
     }
-
+    /**
+     * Description: Monitor the focus of the second text-field.
+     * If it's the first input, replace the original contents with new input.
+     * @param e FocusEvent
+     * @author HeMercy
+     */
     private void textField2FocusGained(FocusEvent e) {
         String str = textField2.getText();
         whichFocus = false;
@@ -204,24 +230,45 @@ public class Angle extends JPanel {
         });
     }
 
+    /**
+     * Description: Monitor the keyboard input of the first text-field.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e KeyEvent
+     * @author HeMercy
+     */
     private void textField1KeyReleased(KeyEvent e) {
         exchange(textField1, textField2);
     }
-
+    /**
+     * Description: Monitor the changes of the item state of the first combo Box.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e ItemEvent
+     * @author HeMercy
+     */
     private void comboBox1ItemStateChanged(ItemEvent e) {
         if (whichFocus)
             exchange(textField1, textField2);
         else
             exchange(textField2, textField1);
     }
-
+    /**
+     * Description: Monitor the changes of the item state of the second combo Box.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e ItemEvent
+     * @author HeMercy
+     */
     private void comboBox2ItemStateChanged(ItemEvent e) {
         if (whichFocus)
             exchange(textField1, textField2);
         else
             exchange(textField2, textField1);
     }
-
+    /**
+     * Description: Monitor the keyboard input of the second text-field.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e KeyEvent
+     * @author HeMercy
+     */
     private void textField2KeyReleased(KeyEvent e) {
         exchange(textField2, textField1);
     }
@@ -235,90 +282,156 @@ public class Angle extends JPanel {
         }
     }
 
+    /**
+     * Description: Monitor the button "1".
+     * If it is pressed, enter "1" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button1MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_1);
             robot.keyRelease(KeyEvent.VK_1);
         }
     }
-
+    /**
+     * Description: Monitor the button "2".
+     * If it is pressed, enter "2" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button2MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_2);
             robot.keyRelease(KeyEvent.VK_2);
         }
     }
-
+    /**
+     * Description: Monitor the button "3".
+     * If it is pressed, enter "3" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button3MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_3);
             robot.keyRelease(KeyEvent.VK_3);
         }
     }
-
+    /**
+     * Description: Monitor the button "4".
+     * If it is pressed, enter "4" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button4MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_4);
             robot.keyRelease(KeyEvent.VK_4);
         }
     }
-
+    /**
+     * Description: Monitor the button "5".
+     * If it is pressed, enter "5" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button5MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_5);
             robot.keyRelease(KeyEvent.VK_5);
         }
     }
-
+    /**
+     * Description: Monitor the button "6".
+     * If it is pressed, enter "6" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button6MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_6);
             robot.keyRelease(KeyEvent.VK_6);
         }
     }
-
+    /**
+     * Description: Monitor the button "7".
+     * If it is pressed, enter "7" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button7MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_7);
             robot.keyRelease(KeyEvent.VK_7);
         }
     }
-
+    /**
+     * Description: Monitor the button "8".
+     * If it is pressed, enter "8" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button8MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_8);
             robot.keyRelease(KeyEvent.VK_8);
         }
     }
-
+    /**
+     * Description: Monitor the button "9".
+     * If it is pressed, enter "9" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button9MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_9);
             robot.keyRelease(KeyEvent.VK_9);
         }
     }
-
+    /**
+     * Description: Monitor the button "0".
+     * If it is pressed, enter "0" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void button0MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_0);
             robot.keyRelease(KeyEvent.VK_0);
         }
     }
-
+    /**
+     * Description: Monitor the button ".".
+     * If it is pressed, enter "." in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void buttonDotMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_PERIOD);
             robot.keyRelease(KeyEvent.VK_PERIOD);
         }
     }
-
+    /**
+     * Description: Monitor the button "backspace".
+     * If it is pressed, delete the last character in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void buttonBackspaceMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
             robot.keyRelease(KeyEvent.VK_BACK_SPACE);
         }
     }
-
+    /**
+     * Description: Monitor the button "CE".
+     * If it is pressed, delete all the characters in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
     private void buttonClearMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ESCAPE);
@@ -326,6 +439,12 @@ public class Angle extends JPanel {
         }
     }
 
+    /**
+     * Description: Limit the content entered the text-field.
+     * It can only be number or point.
+     * And it can only have one point in the middle of the contents.
+     * @author HeMercy
+     */
     static class RestrictedDocumentFilter extends DocumentFilter {
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
@@ -347,6 +466,10 @@ public class Angle extends JPanel {
         }
     }
 
+    /**
+     * Description: Initialize the Angle-class.
+     * @author HeMercy
+     */
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         Angle = new JLabel();

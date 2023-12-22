@@ -16,7 +16,7 @@ import javax.swing.border.*;
 /**
  * @author Yury
  */
-public class GuessNumber extends JPanel {
+public class  GuessNumber extends JPanel {
     public GuessNumber() {
         initComponents();
     }
