@@ -32,6 +32,11 @@ public class LinearRegression extends JPanel {
         initComponents();
     }
 
+    /**
+     * Description: a series of button movement
+     *
+     * @author TonyZhan
+     **/
     private void button2MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             textField1.setText("");
@@ -61,6 +66,59 @@ public class LinearRegression extends JPanel {
     private void button1MousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             compute();
+        }
+    }
+
+    private void button6MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            String userDir = System.getProperty("user.home");
+            JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fileChooser.setFileFilter(new FileNameExtensionFilter("文本文档(*.txt)", "txt"));//文件过滤器
+            int state = fileChooser.showOpenDialog(null);//显示文件选择框
+            if (state == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+
+                StringBuilder input = new StringBuilder(readTxt(file));
+                int kStart = input.indexOf("k:");
+                int xStart = input.indexOf("x:");
+                int yStart = input.indexOf("y:");
+                if (kStart == -1 || xStart == -1 && yStart == -1) {
+                    JOptionPane.showMessageDialog(null, "Input Wrong");
+                } else {
+                    String k = input.substring(kStart + 2, xStart).replaceAll("\n", " ");
+                    String x = input.substring(xStart + 2, yStart).replaceAll("\n", " ");
+                    String y = input.substring(yStart + 2).replaceAll("\n", " ");
+                    textField1.setText(k);
+                    textField2.setText(x);
+                    textField3.setText(y);
+                }
+            }
+        }
+    }
+
+    private void button7MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            String userDir = System.getProperty("user.home");
+            JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fileChooser.setFileFilter(new FileNameExtensionFilter("文本文档(*.txt)", "txt"));//文件过滤器
+            int state = fileChooser.showSaveDialog(null);
+            if (state == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                String filepath = file.getPath();
+                if (!filepath.endsWith(".txt")) {
+                    filepath = filepath + ".txt";
+                    file = new File(filepath);
+                }
+                WriteTxt(file);
+            }
+        }
+    }
+
+    private void button8MousePressed(MouseEvent e) {
+        if (e.getButton() == 1 && data != null) {
+            new LinearRegressionDemo(this);
         }
     }
 
@@ -248,6 +306,13 @@ public class LinearRegression extends JPanel {
         }
     }
 
+    /**
+     * Description: To read the txt content
+     *
+     * @param file input file
+     * @return java.lang.String
+     * @author TonyZhan
+     **/
     private String readTxt(File file) {
         StringBuilder ans = new StringBuilder(new StringBuilder());
         try {
@@ -266,35 +331,13 @@ public class LinearRegression extends JPanel {
         return ans.toString().strip();
     }
 
-    private void button6MousePressed(MouseEvent e) {
-        // TODO add your code here
-        if (e.getButton() == 1) {
-            String userDir = System.getProperty("user.home");
-            JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop");
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            fileChooser.setFileFilter(new FileNameExtensionFilter("文本文档(*.txt)", "txt"));//文件过滤器
-            int state = fileChooser.showOpenDialog(null);//显示文件选择框
-            if (state == JFileChooser.APPROVE_OPTION) {
-                File file = fileChooser.getSelectedFile();
 
-                StringBuilder input = new StringBuilder(readTxt(file));
-                int kStart = input.indexOf("k:");
-                int xStart = input.indexOf("x:");
-                int yStart = input.indexOf("y:");
-                if (kStart == -1 || xStart == -1 && yStart == -1) {
-                    JOptionPane.showMessageDialog(null, "Input Wrong");
-                } else {
-                    String k = input.substring(kStart + 2, xStart).replaceAll("\n", " ");
-                    String x = input.substring(xStart + 2, yStart).replaceAll("\n", " ");
-                    String y = input.substring(yStart + 2).replaceAll("\n", " ");
-                    textField1.setText(k);
-                    textField2.setText(x);
-                    textField3.setText(y);
-                }
-            }
-        }
-    }
-
+    /**
+     * Description: to write answer into output txt
+     *
+     * @param file the destination
+     * @author TonyZhan
+     **/
     private void WriteTxt(File file) {
         try {
             if (data == null) {
@@ -323,32 +366,6 @@ public class LinearRegression extends JPanel {
         }
     }
 
-    private void button7MousePressed(MouseEvent e) {
-        // TODO add your code here
-        if (e.getButton() == 1) {
-            String userDir = System.getProperty("user.home");
-            JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop");
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            fileChooser.setFileFilter(new FileNameExtensionFilter("文本文档(*.txt)", "txt"));//文件过滤器
-            int state = fileChooser.showSaveDialog(null);
-            if (state == JFileChooser.APPROVE_OPTION) {
-                File file = fileChooser.getSelectedFile();
-                String filepath = file.getPath();
-                if (!filepath.endsWith(".txt")) {
-                    filepath = filepath + ".txt";
-                    file = new File(filepath);
-                }
-                WriteTxt(file);
-            }
-        }
-    }
-
-    private void button8MousePressed(MouseEvent e) {
-        // TODO add your code here
-        if (e.getButton() == 1 && data != null) {
-            new LinearRegressionDemo(this);
-        }
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
