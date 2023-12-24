@@ -44,8 +44,6 @@ public class CalProgressStd {
     public static void percent(MouseEvent e, CalculatorStd std) {
         String str_now = UtilitiesStd.PureNumberWithoutArithmetics(std.textField1.getText());
         String str_equal = UtilitiesStd.PureEqual(std.label1.getText());
-        System.out.println(str_equal);
-        // TODO add your code here
         if (e.getButton() == 1) {
             BigDecimal ans = FourArithmetic.calculatePlain(str_now, "*", "0.01");
             if (!str_equal.isEmpty() || std.label1.getText().isEmpty()) {
@@ -98,13 +96,10 @@ public class CalProgressStd {
                 std.newNum = false;
                 std.OnceEqual = false;
             } else if (UtilitiesStd.keycodeCalCheckStd(e.getKeyChar()) && std.newNum) {
-                //TODO yunsuan
                 BigDecimal ans = FourArithmetic.calculatePlain(str_last, str_arithmetic, str_now);
                 if (ans != null) {
                     std.label1.setText(ans.toPlainString() + " " + e.getKeyChar() + " ");
                     std.textField1.setText(ans.toPlainString());
-
-
                 } else {
                     std.label1.setText("");
                     std.textField1.setText("ERROR! Press any key to reset.");
@@ -245,7 +240,7 @@ public class CalProgressStd {
             BigDecimal ans;
             if (!std.error) {
                 try {
-                    ans = new BigDecimal(str_now).sqrt(new MathContext(16));
+                    ans = new BigDecimal(str_now).sqrt(new MathContext(1000));
                 } catch (ArithmeticException ae) {
                     std.label1.setText("");
                     std.textField1.setText("ERROR! Press any key to reset.");
@@ -280,10 +275,8 @@ public class CalProgressStd {
         String str_equal = UtilitiesStd.PureEqual(std.label1.getText());
         if (e.getButton() == 1) {
             if (!std.error) {
-                BigDecimal ans = new BigDecimal(str_now).pow(2, MathContext.DECIMAL128);
-                System.out.println(ans);
+                BigDecimal ans = new BigDecimal(str_now).pow(2);
                 if (ans.toPlainString().length() > 10000) {
-                    System.out.println("ok");
                     ans = null;
                 }
                 if (ans == null) {

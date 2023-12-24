@@ -33,7 +33,7 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonDivMousePressed(MouseEvent e) {
-        // TODO add your code here
+
         if (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("/");
             strToShow.add("\u00F7");
@@ -49,7 +49,7 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonMulMousePressed(MouseEvent e) {
-        // TODO add your code here
+
         if (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("*");
             strToShow.add("\u00D7");
@@ -65,7 +65,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonMinusMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("-");
             strToShow.add("-");
@@ -81,7 +80,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonPlusMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("+");
             strToShow.add("+");
@@ -97,7 +95,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonRightMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (cntLeftBracket > 0 && (checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")"))) {
             strToCal.add(")");
             strToShow.add(")");
@@ -113,7 +110,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonLeftMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!checkNum(lastCh) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add("(");
             strToShow.add("(");
@@ -130,7 +126,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonCleanEntryMousePressed(MouseEvent e) {
-        // TODO add your code here
         flagButton1 = false;
         flagButton2 = false;
         flagButton3 = false;
@@ -146,7 +141,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonBackspaceMousePressed(MouseEvent e) {
-        // TODO add your code here
         backSpace();
         SetTextField1();
     }
@@ -158,7 +152,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonEqualMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (flagButton1 && flagButton2 && flagButton3 && flagButton4) {
             getResult();
         } else {
@@ -172,7 +165,6 @@ public class TwentyFour extends JPanel {
     boolean flagButton1, flagButton2, flagButton3, flagButton4;
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!flagButton1) {
             String now = button1.getText();
             if (inputNum(now)) {
@@ -183,7 +175,6 @@ public class TwentyFour extends JPanel {
     }
 
     private void button2MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!flagButton2) {
             String now = button2.getText();
             if (inputNum(now)) {
@@ -195,7 +186,6 @@ public class TwentyFour extends JPanel {
     }
 
     private void button3MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!flagButton3) {
             String now = button3.getText();
             if (inputNum(now)) {
@@ -206,7 +196,6 @@ public class TwentyFour extends JPanel {
     }
 
     private void button4MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (!flagButton4) {
             String now = button4.getText();
             if (inputNum(now)) {
@@ -225,19 +214,31 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonReplayMousePressed(MouseEvent e) {
-        // TODO add your code here
-
+        Replay();
+    }
+    void Replay () {
         //textField1.setText("");
         clearEntry();
         SetTextField1();
+        textField2.setText(targetNum);
+
         boolean flag = false;
         int num1 = 6, num2 = 6, num3 = 6, num4 = 6;
+        int cntT = 0;
         while (!flag) {
-            num1 = utilities24.getRandomNum(14);
-            num2 = utilities24.getRandomNum(14);
-            num3 = utilities24.getRandomNum(14);
-            num4 = utilities24.getRandomNum(14);
-            flag = utilities24.checkExistingAnswer(num1, num2, num3, num4);
+            if (targetNum.equals("0") || cntT > 200) {
+                dialog2.setVisible(true);
+                targetNum = "24";
+                textField2.setText(targetNum);
+                return;
+            }
+            num1 = utilities24.getRandomNum(Math.abs(Integer.parseInt(targetNum)));
+            num2 = utilities24.getRandomNum(Math.abs(Integer.parseInt(targetNum)));
+            num3 = utilities24.getRandomNum(Math.abs(Integer.parseInt(targetNum)));
+            num4 = utilities24.getRandomNum(Math.abs(Integer.parseInt(targetNum)));
+            flag = utilities24.checkExistingAnswer(num1, num2, num3, num4, targetNum);
+            cntT++;
+
         }
         button1.setText(String.valueOf(num1));
         button2.setText(String.valueOf(num2));
@@ -250,7 +251,6 @@ public class TwentyFour extends JPanel {
         flagButton3 = false;
         flagButton4 = false;
     }
-
     /**
      * Description: To show the answer in a popped window.
      *
@@ -258,7 +258,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void buttonAnsMousePressed(MouseEvent e) {
-        // TODO add your code here
         StringBuilder ans = new StringBuilder();
         for (String k : utilities24.ansList) {
             ans.append(k).append("\r\n");
@@ -271,6 +270,7 @@ public class TwentyFour extends JPanel {
     private ArrayList<String> strToShow = new ArrayList<>();
     private String lastCh = "";
     protected int cntLeftBracket = 0;
+    private String targetNum = "24";
 
     /**
      * Description: Set the textField1.
@@ -278,7 +278,6 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void SetTextField1() {
-        // TODO add your code here
         StringBuilder tmp = new StringBuilder();
         if (strToShow.isEmpty()) {
             //tmp.append("0");
@@ -362,7 +361,7 @@ public class TwentyFour extends JPanel {
             tmp2.append(" = ");
             if (ans != null) {
                 tmp2.append(ans);
-                if (ans.equals("24")) {
+                if (ans.equals(targetNum)) {
                     status.setText("Right");
                     status.setForeground(new Color(0, 128, 0));
                 } else {
@@ -401,8 +400,27 @@ public class TwentyFour extends JPanel {
      * @author Yury
      */
     private void closeDialog1(MouseEvent e) {
-        // TODO add your code here
+
         dialog1.setVisible(false);
+    }
+
+    private void buttonConfirmTargetMousePressed(MouseEvent e) {
+        // TODO add your code here
+        String tmp = textField2.getText();
+        try {
+            Integer.parseInt(tmp);
+        } catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(null, "输入不合法！");
+            textField2.setText(targetNum);
+            return;
+        }
+        targetNum = textField2.getText();
+        Replay();
+    }
+
+    private void closeDialog2(MouseEvent e) {
+        // TODO add your code here
+        dialog2.setVisible(false);
     }
 
 
@@ -431,10 +449,16 @@ public class TwentyFour extends JPanel {
         label2 = new JLabel();
         label3 = new JLabel();
         label4 = new JLabel();
+        textField2 = new JTextField();
+        buttonConfirmTarget = new JButton();
         dialog1 = new JDialog();
         scrollPane2 = new JScrollPane();
         textArea1 = new JTextArea();
         button11 = new JButton();
+        dialog2 = new JDialog();
+        scrollPane4 = new JScrollPane();
+        label5 = new JLabel();
+        button12 = new JButton();
 
         //======== this ========
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -447,7 +471,7 @@ public class TwentyFour extends JPanel {
         status.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
         status.setAlignmentY(0.0F);
         add(status);
-        status.setBounds(420, 75, 120, 50);
+        status.setBounds(420, 100, 120, 50);
 
         //---- button1 ----
         button1.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -460,7 +484,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(button1);
-        button1.setBounds(45, 170, 80, 40);
+        button1.setBounds(45, 205, 80, 40);
 
         //---- button2 ----
         button2.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -473,7 +497,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(button2);
-        button2.setBounds(140, 170, 80, 40);
+        button2.setBounds(140, 205, 80, 40);
 
         //---- button3 ----
         button3.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -486,7 +510,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(button3);
-        button3.setBounds(235, 170, 80, 40);
+        button3.setBounds(235, 205, 80, 40);
 
         //---- button4 ----
         button4.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -499,7 +523,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(button4);
-        button4.setBounds(330, 170, 80, 40);
+        button4.setBounds(330, 205, 80, 40);
 
         //======== scrollPane3 ========
         {
@@ -516,7 +540,7 @@ public class TwentyFour extends JPanel {
             scrollPane3.setViewportView(textField1);
         }
         add(scrollPane3);
-        scrollPane3.setBounds(25, 60, 385, 70);
+        scrollPane3.setBounds(25, 85, 385, 70);
 
         //---- buttonDiv ----
         buttonDiv.setText("\u00f7");
@@ -529,7 +553,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonDiv);
-        buttonDiv.setBounds(45, 225, 80, 40);
+        buttonDiv.setBounds(45, 260, 80, 40);
 
         //---- buttonMul ----
         buttonMul.setText("\u00d7");
@@ -542,7 +566,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonMul);
-        buttonMul.setBounds(140, 225, 80, 40);
+        buttonMul.setBounds(140, 260, 80, 40);
 
         //---- buttonMinus ----
         buttonMinus.setText("-");
@@ -555,7 +579,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonMinus);
-        buttonMinus.setBounds(235, 225, 80, 40);
+        buttonMinus.setBounds(235, 260, 80, 40);
 
         //---- buttonPlus ----
         buttonPlus.setText("+");
@@ -568,7 +592,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonPlus);
-        buttonPlus.setBounds(330, 225, 80, 40);
+        buttonPlus.setBounds(330, 260, 80, 40);
 
         //---- buttonRight ----
         buttonRight.setText(")");
@@ -582,7 +606,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonRight);
-        buttonRight.setBounds(140, 275, 80, 40);
+        buttonRight.setBounds(140, 310, 80, 40);
 
         //---- buttonLeft ----
         buttonLeft.setText("(");
@@ -596,7 +620,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonLeft);
-        buttonLeft.setBounds(45, 275, 80, 40);
+        buttonLeft.setBounds(45, 310, 80, 40);
 
         //---- buttonCleanEntry ----
         buttonCleanEntry.setText("CE");
@@ -609,7 +633,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonCleanEntry);
-        buttonCleanEntry.setBounds(235, 275, 80, 40);
+        buttonCleanEntry.setBounds(235, 310, 80, 40);
 
         //---- buttonBackspace ----
         buttonBackspace.setFont(new Font("Consolas", Font.PLAIN, 16));
@@ -622,7 +646,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonBackspace);
-        buttonBackspace.setBounds(330, 275, 80, 40);
+        buttonBackspace.setBounds(330, 310, 80, 40);
 
         //---- title ----
         title.setText("\u4e8c\u5341\u56db\u70b9");
@@ -641,7 +665,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonReplay);
-        buttonReplay.setBounds(425, 170, 110, 40);
+        buttonReplay.setBounds(425, 205, 110, 40);
 
         //---- buttonEqual ----
         buttonEqual.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
@@ -654,7 +678,7 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonEqual);
-        buttonEqual.setBounds(425, 275, 110, 40);
+        buttonEqual.setBounds(425, 310, 110, 40);
 
         //---- buttonAns ----
         buttonAns.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
@@ -667,35 +691,60 @@ public class TwentyFour extends JPanel {
             }
         });
         add(buttonAns);
-        buttonAns.setBounds(425, 225, 110, 40);
+        buttonAns.setBounds(425, 260, 110, 40);
 
         //---- label1 ----
         label1.setText("Num1");
         label1.setHorizontalAlignment(SwingConstants.CENTER);
         label1.setFont(new Font("Consolas", Font.ITALIC, 14));
         add(label1);
-        label1.setBounds(45, 145, 80, 25);
+        label1.setBounds(45, 180, 80, 25);
 
         //---- label2 ----
         label2.setText("Num2");
         label2.setHorizontalAlignment(SwingConstants.CENTER);
         label2.setFont(new Font("Consolas", Font.ITALIC, 14));
         add(label2);
-        label2.setBounds(140, 145, 80, 25);
+        label2.setBounds(140, 180, 80, 25);
 
         //---- label3 ----
         label3.setText("Num3");
         label3.setHorizontalAlignment(SwingConstants.CENTER);
         label3.setFont(new Font("Consolas", Font.ITALIC, 14));
         add(label3);
-        label3.setBounds(235, 145, 80, 25);
+        label3.setBounds(235, 180, 80, 25);
 
         //---- label4 ----
         label4.setText("Num4");
         label4.setHorizontalAlignment(SwingConstants.CENTER);
         label4.setFont(new Font("Consolas", Font.ITALIC, 14));
         add(label4);
-        label4.setBounds(330, 145, 80, 25);
+        label4.setBounds(330, 180, 80, 25);
+
+        //---- textField2 ----
+        textField2.setBorder(new TitledBorder(new SoftBevelBorder(SoftBevelBorder.RAISED), "Target Num", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION,
+            new Font("Consolas", Font.BOLD | Font.ITALIC, 14)));
+        textField2.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 20));
+        textField2.setBackground(new Color(0xf0f0f0));
+        textField2.setAutoscrolls(false);
+        textField2.setHorizontalAlignment(SwingConstants.CENTER);
+        textField2.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        textField2.setText("24");
+        add(textField2);
+        textField2.setBounds(295, 25, 120, 50);
+
+        //---- buttonConfirmTarget ----
+        buttonConfirmTarget.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+        buttonConfirmTarget.setFocusable(false);
+        buttonConfirmTarget.setText("\u786e\u8ba4\u76ee\u6807\u6570");
+        buttonConfirmTarget.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonConfirmTargetMousePressed(e);
+            }
+        });
+        add(buttonConfirmTarget);
+        buttonConfirmTarget.setBounds(420, 30, 115, 40);
 
         setPreferredSize(new Dimension(575, 395));
 
@@ -732,6 +781,41 @@ public class TwentyFour extends JPanel {
             dialog1.pack();
             dialog1.setLocationRelativeTo(dialog1.getOwner());
         }
+
+        //======== dialog2 ========
+        {
+            var dialog2ContentPane = dialog2.getContentPane();
+            dialog2ContentPane.setLayout(null);
+
+            //======== scrollPane4 ========
+            {
+
+                //---- label5 ----
+                label5.setText("\u6ca1\u6709\u53ef\u884c\u89e3\u6216\u6570\u5b57\u592a\u5927\uff0c\u8bf7\u9009\u62e9\u76ee\u6807\u6570\u3002");
+                label5.setHorizontalAlignment(SwingConstants.CENTER);
+                label5.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 11));
+                scrollPane4.setViewportView(label5);
+            }
+            dialog2ContentPane.add(scrollPane4);
+            scrollPane4.setBounds(0, 0, 215, 170);
+
+            //---- button12 ----
+            button12.setText("\u5173\u95ed");
+            button12.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+            button12.setFocusable(false);
+            button12.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    closeDialog2(e);
+                }
+            });
+            dialog2ContentPane.add(button12);
+            button12.setBounds(75, 175, 65, 40);
+
+            dialog2ContentPane.setPreferredSize(new Dimension(215, 245));
+            dialog2.pack();
+            dialog2.setLocationRelativeTo(dialog2.getOwner());
+        }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -759,9 +843,15 @@ public class TwentyFour extends JPanel {
     private JLabel label2;
     private JLabel label3;
     private JLabel label4;
+    private JTextField textField2;
+    private JButton buttonConfirmTarget;
     private JDialog dialog1;
     private JScrollPane scrollPane2;
     private JTextArea textArea1;
     private JButton button11;
+    private JDialog dialog2;
+    private JScrollPane scrollPane4;
+    private JLabel label5;
+    private JButton button12;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -6,12 +6,16 @@ package Source.Calculator;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.border.*;
 
 import Source.Tools.*;
-import Source.Calculator.UtilitiesSci;
 
 /**
  * @author Yury
@@ -36,70 +40,60 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_1);
         }
     }
 
     private void button2MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_2);
         }
     }
 
     private void button3MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_3);
         }
     }
 
     private void button4MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_4);
         }
     }
 
     private void button5MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_5);
         }
     }
 
     private void button6MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_6);
         }
     }
 
     private void button7MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_7);
         }
     }
 
     private void button8MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_8);
         }
     }
 
     private void button9MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_9);
         }
     }
 
     private void button0MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_0);
         }
@@ -107,27 +101,29 @@ public class CalculatorSci extends JPanel implements Calculator {
 
 
     private void progressBar1MouseReleased(MouseEvent e) {
-        // TODO add your code here
-
+        int mouseX = e.getX();
+        int progressBarWidth = progressBar1.getWidth();
+        int progress = (int) ((double) mouseX / progressBarWidth * progressBar1.getMaximum());
+        progressBar1.setValue(progress);
+        long time = (long) ((double) mouseX / progressBarWidth * CalculatorStd.clip.getMicrosecondLength());
+        CalculatorStd.clip.setMicrosecondPosition(time);
     }
 
 
     private void buttonDotMousePressed(MouseEvent e) {
-        // TODO add your code here
+
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_PERIOD);
         }
     }
 
     private void buttonAbsMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_A);
         }
     }
 
     private void buttonPow2MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
                 robot.keyPress(KeyEvent.VK_SHIFT);
@@ -139,50 +135,43 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonSqrtMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_G);
             robot.keyRelease(KeyEvent.VK_G);
         }
     }
 
-    private void buttonEqualMousePressed(MouseEvent e) {
-        // TODO add your code here
+    public void buttonEqualMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ENTER);
         }
     }
 
     private void buttonPlusMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ADD);
         }
     }
 
     private void buttonMinusMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_MINUS);
         }
     }
 
     private void buttonMulMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_MULTIPLY);
         }
     }
 
     private void buttonDivMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_DIVIDE);
         }
     }
 
     private void buttonPercentMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
                 robot.keyPress(KeyEvent.VK_MULTIPLY);
@@ -195,7 +184,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonCleanEntryMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ESCAPE);
             robot.keyRelease(KeyEvent.VK_ESCAPE);
@@ -203,15 +191,34 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonSmokeMousePressed(MouseEvent e) {
-        // TODO add your code here
+        if (CalculatorStd.clip != null) {
+            CalculatorStd.clip.stop();
+            CalculatorStd.play = false;
+        }
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(CalculatorStd.class.getResource("/Resources/music/oh_David.wav"));
+            CalculatorStd.clip = AudioSystem.getClip();
+            CalculatorStd.clip.open(audioInputStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException k) {
+            throw new RuntimeException(k);
+        }
     }
 
     private void buttonDavidMousePressed(MouseEvent e) {
-        // TODO add your code here
+        try {
+            if (!CalculatorStd.play) {
+                CalculatorStd.clip.start();
+                CalculatorStd.play = true;
+            } else {
+                CalculatorStd.clip.stop();
+                CalculatorStd.play = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void buttonBackspaceMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
             robot.keyRelease(KeyEvent.VK_BACK_SPACE);
@@ -219,7 +226,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonLeftMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_9);
@@ -229,7 +235,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonRightMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_0);
@@ -239,7 +244,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonFacMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_1);
@@ -248,28 +252,24 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonModMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_M);
         }
     }
 
     private void buttonEMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_E);
         }
     }
 
     private void buttonPaiMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_P);
         }
     }
 
     private void buttonXpowyMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_6);
@@ -278,7 +278,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonTenpowMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_1);
             robot.keyPress(KeyEvent.VK_0);
@@ -289,7 +288,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonLogMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_O);
             robot.keyRelease(KeyEvent.VK_O);
@@ -297,7 +295,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonLnMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_L);
             robot.keyRelease(KeyEvent.VK_L);
@@ -305,7 +302,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonSinMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_S);
             robot.keyRelease(KeyEvent.VK_S);
@@ -313,7 +309,6 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonCosMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_C);
@@ -321,20 +316,25 @@ public class CalculatorSci extends JPanel implements Calculator {
     }
 
     private void buttonTanMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_T);
             robot.keyRelease(KeyEvent.VK_T);
         }
     }
 
+
     private ArrayList<String> strToCal = new ArrayList<>();
     private ArrayList<String> strToShow = new ArrayList<>();
     private String lastCh = "";
     protected int cntLeftBracket = 0;
 
+    /**
+     * Description: According to the char input, choose a function to input a char into the textField.
+     *
+     * @param e KeyEvent
+     * @author Yury
+     */
     private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
         String ch = String.valueOf(e.getKeyChar());
         if (UtilitiesSci.checkNum(ch)) {
             inputNum(ch);
@@ -372,6 +372,11 @@ public class CalculatorSci extends JPanel implements Calculator {
         textField1.setText(String.valueOf(tmp));
     }
 
+    /**
+     * Description: Input a dot.
+     *
+     * @author Yury
+     */
     protected void inputDot() {
         if (!UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")") && !lastCh.equals(".")) {
             if (!UtilitiesSci.checkNum(lastCh)) {
@@ -384,6 +389,12 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Input a number.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputNum(String ch) {
         if (!UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add(ch);
@@ -392,6 +403,12 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Input ¦Ð or e.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputPIorE(String ch) {
         if (!UtilitiesSci.checkNum((lastCh)) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             if (ch.equals("p")) {
@@ -406,6 +423,12 @@ public class CalculatorSci extends JPanel implements Calculator {
 
     }
 
+    /**
+     * Description: Input mod.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputMod(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("m");
@@ -414,6 +437,12 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Input the mark of power.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputPow(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add("^");
@@ -422,6 +451,12 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Input function with left bracket.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputLeftBracketFunction(String ch) {
         if (!UtilitiesSci.checkNum((lastCh)) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             if (ch.equals("s")) {
@@ -454,6 +489,12 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Input sign of operation.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputOperation(String ch) {
         if (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")")) {
             strToCal.add(ch);
@@ -474,6 +515,12 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Input a left bracket.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputLeftBracket(String ch) {
         if (!UtilitiesSci.checkNum(lastCh) && !UtilitiesSci.checkPIorE(lastCh) && !lastCh.equals(")")) {
             strToCal.add("(");
@@ -483,6 +530,12 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Input a right bracket.
+     *
+     * @param ch String
+     * @author Yury
+     */
     protected void inputRightBracket(String ch) {
         if (cntLeftBracket > 0 && (UtilitiesSci.checkNum(lastCh) || UtilitiesSci.checkPIorE(lastCh) || lastCh.equals(")"))) {
             strToCal.add(")");
@@ -491,6 +544,11 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: backspace
+     *
+     * @author Yury
+     */
     protected void backSpace() {
         if (!strToShow.isEmpty()) {
             strToCal.remove(strToCal.size() - 1);
@@ -504,6 +562,11 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Calculate the equation and give the answer.
+     *
+     * @author Yury
+     */
     protected void getResult() {
         StringBuilder tmp = new StringBuilder();
         StringBuilder tmp2 = new StringBuilder();
@@ -530,6 +593,11 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
+    /**
+     * Description: Clear the textField.
+     *
+     * @author Yury
+     */
     protected void clearEntry() {
         strToShow.clear();
         strToCal.clear();
@@ -871,7 +939,7 @@ public class CalculatorSci extends JPanel implements Calculator {
             }
         });
         add(button_smoke);
-        button_smoke.setBounds(510, 405, 170, 145);
+        button_smoke.setBounds(510, 420, 170, 130);
 
         //---- buttonDavid ----
         buttonDavid.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
@@ -885,7 +953,7 @@ public class CalculatorSci extends JPanel implements Calculator {
             }
         });
         add(buttonDavid);
-        buttonDavid.setBounds(510, 240, 170, 145);
+        buttonDavid.setBounds(510, 240, 170, 130);
 
         //---- buttonBackspace ----
         buttonBackspace.setFont(new Font("Consolas", Font.PLAIN, 16));
@@ -932,7 +1000,7 @@ public class CalculatorSci extends JPanel implements Calculator {
             }
         });
         add(progressBar1);
-        progressBar1.setBounds(85, 590, 210, 40);
+        progressBar1.setBounds(510, 375, 170, 40);
 
         //======== scrollPane1 ========
         {

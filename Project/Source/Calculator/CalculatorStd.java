@@ -5,6 +5,11 @@ import java.awt.event.*;
 import java.io.File;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.text.spi.BreakIteratorProvider;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -17,23 +22,25 @@ import javax.swing.border.*;
 
 
 /**
- * use JFormDesigner to build the frame.
+ * Description: A standard calculator
  *
- * @author TonyZhan and Yury.
- */
-public class CalculatorStd extends JPanel {
+ * @author TonyZhan
+ **/
+public class CalculatorStd extends JPanel implements Calculator {
     public CalculatorStd() {
         try {
             String lookAndFeel = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
             UIManager.setLookAndFeel(lookAndFeel);
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
         }
         initComponents();
     }
 
     /**
-     * a robot to take charge of button.
-     */
+     * Description: A robot to deal with click
+     *
+     * @author TonyZhan
+     **/
     public static Robot robot;
 
     static {
@@ -49,139 +56,119 @@ public class CalculatorStd extends JPanel {
     }
 
     /**
-     * all the UI design and robot issues
+     * Description: all the UI design and robot issues
      *
      * @author TonyZhan
      */
     private void button1MousePressed(MouseEvent e) {
-        //System.out.println(e.getButton());
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_1);
         }
     }
 
     private void button2MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_2);
         }
     }
 
     private void button3MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_3);
         }
     }
 
     private void button4MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_4);
         }
     }
 
     private void button5MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_5);
         }
     }
 
     private void button6MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_6);
         }
     }
 
     private void button7MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_7);
         }
     }
 
     private void button8MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_8);
         }
     }
 
     private void button9MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_9);
         }
     }
 
     private void button0MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_0);
         }
     }
 
     private void buttonDotMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_PERIOD);
         }
     }
 
     private void buttonBackspaceMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
         }
     }
 
     private void buttonDivMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_DIVIDE);
         }
     }
 
     private void buttonMulMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_MULTIPLY);
         }
     }
 
     private void buttonMinusMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_MINUS);
         }
     }
 
     private void buttonPlusMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ADD);
         }
     }
 
-    private void buttonEqualMousePressed(MouseEvent e) {
-        // TODO add your code here
+    public void buttonEqualMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ENTER);
         }
     }
 
     private void buttonClearMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ESCAPE);
         }
     }
 
     private void buttonCleanEntryMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_DELETE);
         }
@@ -196,71 +183,85 @@ public class CalculatorStd extends JPanel {
     }
 
     /**
-     * judge whether the textField1 should be cleared.
+     * Description: judge whether the textField1 should be cleared.
+     *
+     * @author: TonyZhan
      */
     protected boolean pendingCalToClear = false;
     /**
-     * judge the multiple consecutive calculate.
+     * Description: judge the multiple consecutive calculate.
+     *
+     * @author: TonyZhan
      */
     protected boolean newNum = false;
     /**
-     * judge whether consecutive equal
+     * Description: judge whether consecutive equal
+     *
+     * @author: TonyZhan
      */
     protected boolean OnceEqual = false;
     /**
-     * save the consecutive equal number
+     * Description: save the consecutive equal number
+     *
+     * @author: TonyZhan
      */
     protected String OnceEqualConst;
+    /**
+     * Description: to check the error situation
+     *
+     * @author TonyZhan
+     **/
     protected boolean error = false;
 
-
+    /**
+     * Description: a series of button movement, the crucial code is in CalProgressStd.
+     *
+     * @param e KeyEvent
+     * @author TonyZhan
+     **/
     private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
         CalProgressStd.textFieldAndLabel(e, this);
     }
 
-    private void buttonUpsidedownMousePressed(MouseEvent e) {
-        // TODO add your code here
+    private void buttonUpsideDownMousePressed(MouseEvent e) {
         CalProgressStd.upsideDown(e, this);
     }
 
     private void buttonSqrtMousePressed(MouseEvent e) {
-        // TODO add your code here
         CalProgressStd.sqrt(e, this);
     }
 
     private void buttonPow2MousePressed(MouseEvent e) {
-        // TODO add your code here
         CalProgressStd.pow2(e, this);
     }
 
     private void buttonFloorMousePressed(MouseEvent e) {
-        // TODO add your code here
         CalProgressStd.floorCeil(e, this, 0);
     }
 
     private void buttonCeilMousePressed(MouseEvent e) {
-        // TODO add your code here
         CalProgressStd.floorCeil(e, this, 1);
     }
 
     private void buttonAEbMousePressed(MouseEvent e) {
-        // TODO add your code here
         CalProgressStd.science(e, this);
     }
 
     private void buttonPlainMousePressed(MouseEvent e) {
-        // TODO add your code here
         CalProgressStd.plain(e, this);
     }
 
-    private boolean play = false;
-    private static final File DAVID = new File("Project/Resources/music/oh_David.wav");
-    private Clip clip = null;
+    /**
+     * Description: A music displayer
+     *
+     * @author TonyZhan
+     **/
+    protected static boolean play = false;
+    protected static Clip clip;
 
-    {
+    static {
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(DAVID);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(CalculatorStd.class.getResource("/Resources/music/oh_David.wav"));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -269,12 +270,12 @@ public class CalculatorStd extends JPanel {
     }
 
     /**
-     * entertainment = =
+     * Description: entertainment = =
      *
+     * @param e MouseEvent
      * @author TonyZhan
      */
     private void buttonDavidMousePressed(MouseEvent e) {
-        // TODO add your code here
         try {
             if (!play) {
                 clip.start();
@@ -293,9 +294,8 @@ public class CalculatorStd extends JPanel {
             clip.stop();
             play = false;
         }
-        // TODO add your code here
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(DAVID);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(CalculatorStd.class.getResource("/Resources/music/oh_David.wav"));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -304,7 +304,6 @@ public class CalculatorStd extends JPanel {
     }
 
     private void progressBar1MouseReleased(MouseEvent e) {
-        // TODO add your code here
         int mouseX = e.getX();
         int progressBarWidth = progressBar1.getWidth();
         int progress = (int) ((double) mouseX / progressBarWidth * progressBar1.getMaximum());
@@ -328,7 +327,7 @@ public class CalculatorStd extends JPanel {
         button0 = new JButton();
         buttonDot = new JButton();
         buttonPolar = new JButton();
-        buttonUpsidedown = new JButton();
+        buttonUpsidedDown = new JButton();
         buttonPow2 = new JButton();
         buttonSqrt = new JButton();
         buttonEqual = new JButton();
@@ -529,19 +528,19 @@ public class CalculatorStd extends JPanel {
         add(buttonPolar);
         buttonPolar.setBounds(160, 520, 100, 50);
 
-        //---- buttonUpsidedown ----
-        buttonUpsidedown.setText("1/x");
-        buttonUpsidedown.setFont(new Font("Consolas", Font.PLAIN, 16));
-        buttonUpsidedown.setFocusable(false);
-        buttonUpsidedown.setBorder(new BevelBorder(BevelBorder.RAISED));
-        buttonUpsidedown.addMouseListener(new MouseAdapter() {
+        //---- buttonUpsidedDown ----
+        buttonUpsidedDown.setText("1/x");
+        buttonUpsidedDown.setFont(new Font("Consolas", Font.PLAIN, 16));
+        buttonUpsidedDown.setFocusable(false);
+        buttonUpsidedDown.setBorder(new BevelBorder(BevelBorder.RAISED));
+        buttonUpsidedDown.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                buttonUpsidedownMousePressed(e);
+                buttonUpsideDownMousePressed(e);
             }
         });
-        add(buttonUpsidedown);
-        buttonUpsidedown.setBounds(160, 280, 100, 50);
+        add(buttonUpsidedDown);
+        buttonUpsidedDown.setBounds(160, 280, 100, 50);
 
         //---- buttonPow2 ----
         buttonPow2.setText("x^2");
@@ -882,7 +881,7 @@ public class CalculatorStd extends JPanel {
     protected JButton button0;
     protected JButton buttonDot;
     protected JButton buttonPolar;
-    protected JButton buttonUpsidedown;
+    protected JButton buttonUpsidedDown;
     protected JButton buttonPow2;
     protected JButton buttonSqrt;
     protected JButton buttonEqual;

@@ -35,13 +35,36 @@ public class Angle extends JPanel {
         initComponents();
     }
 
+    private boolean illegal = false;
+
+    /**
+     * Description: To realize the conversion of Angle, radian and percentile
+     * @param textField1 The first text-field
+     * @param textField2 The second text-field
+     * @author HeMercy
+     */
     private void exchange(JTextField textField1, JTextField textField2) {
+        if (illegal) {
+            illegal = false;
+            textField1.setText("0");
+            textField2.setText("0");
+            return;
+        }
         int p1 = comboBox1.getSelectedIndex();
         int p2 = comboBox2.getSelectedIndex();
         if (textField1.getText().isEmpty()) {
             textField1.setText("0");
+            textField2.setText("0");
+            return;
         }
-        BigDecimal bg1 = new BigDecimal(textField1.getText());
+        BigDecimal bg1;
+        try {
+            bg1 = new BigDecimal(textField1.getText());
+        } catch (NumberFormatException nfe) {
+            textField2.setText("illegal!");
+            illegal = true;
+            return;
+        }
         BigDecimal res = null;
         switch (p1) {
             case 0:
@@ -87,16 +110,29 @@ public class Angle extends JPanel {
         textField2.setText(res.stripTrailingZeros().toPlainString());
     }
 
+    /**
+     * Description: Monitor the input of the first text-field
+     * @param e CaretEvent
+     * @author HeMercy
+     */
     private void textField1CaretUpdate(CaretEvent e) {
-        // TODO add your code here
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
     }
-
+    /**
+     * Description: Monitor the input of the second text-field
+     * @param e CaretEvent
+     * @author HeMercy
+     */
     private void textField2CaretUpdate(CaretEvent e) {
-        // TODO add your code here
         ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter());
     }
 
+    /**
+     * Description: Monitor the focus of the first text-field.
+     * If it's the first input, replace the original contents with new input.
+     * @param e FocusEvent
+     * @author HeMercy
+     */
     private void textField1FocusGained(FocusEvent e) {
         String str = textField1.getText();
         whichFocus = true;
@@ -124,18 +160,31 @@ public class Angle extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField1.getText();
-                        textField1.setText(str1.substring(str.length()));
-                        // 清空原始文本
+                        if (str1.length()>1&&str1.charAt(1) == '.') return;
+                        try {
+                            if (textField1.getText().charAt(0) == '0')
+                                textField1.setText(str1.substring(1));
+                        }// 清空原始文本
+                        catch (Exception e) {
+                            textField1.setText("0");
+                        }
                     });
                     firstInput = false;
                 }
                 // 可以在这里处理用户输入后的逻辑
+                if (textField1.getText().length() == 1 && textField1.getText().equals("0")) {
+                    firstInput = true;
+                }
             }
         });
     }
-
+    /**
+     * Description: Monitor the focus of the second text-field.
+     * If it's the first input, replace the original contents with new input.
+     * @param e FocusEvent
+     * @author HeMercy
+     */
     private void textField2FocusGained(FocusEvent e) {
-        // TODO add your code here
         String str = textField2.getText();
         whichFocus = false;
         textField1.setFont(new Font("Inter", Font.PLAIN, 28));
@@ -162,57 +211,249 @@ public class Angle extends JPanel {
                 if (firstInput) {
                     SwingUtilities.invokeLater(() -> {
                         String str1 = textField2.getText();
-                        textField2.setText(str1.substring(str.length()));
-                        // 清空原始文本
+                        if (str1.length()>1&&str1.charAt(1) == '.') return;
+                        try {
+                            if (textField2.getText().charAt(0) == '0')
+                                textField2.setText(str1.substring(1));
+                        }// 清空原始文本
+                        catch (Exception e) {
+                            textField2.setText("0");
+                        }
                     });
                     firstInput = false;
+                }
+                if (textField2.getText().length() == 1 && textField2.getText().equals("0")) {
+                    firstInput = true;
                 }
                 // 可以在这里处理用户输入后的逻辑
             }
         });
     }
 
-    private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
-//        exchange(textField1, textField2);
-    }
-
+    /**
+     * Description: Monitor the keyboard input of the first text-field.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e KeyEvent
+     * @author HeMercy
+     */
     private void textField1KeyReleased(KeyEvent e) {
-        // TODO add your code here
         exchange(textField1, textField2);
     }
-
+    /**
+     * Description: Monitor the changes of the item state of the first combo Box.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e ItemEvent
+     * @author HeMercy
+     */
     private void comboBox1ItemStateChanged(ItemEvent e) {
-        // TODO add your code here
         if (whichFocus)
             exchange(textField1, textField2);
         else
             exchange(textField2, textField1);
     }
-
+    /**
+     * Description: Monitor the changes of the item state of the second combo Box.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e ItemEvent
+     * @author HeMercy
+     */
     private void comboBox2ItemStateChanged(ItemEvent e) {
-        // TODO add your code here
         if (whichFocus)
             exchange(textField1, textField2);
         else
             exchange(textField2, textField1);
     }
-
+    /**
+     * Description: Monitor the keyboard input of the second text-field.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e KeyEvent
+     * @author HeMercy
+     */
     private void textField2KeyReleased(KeyEvent e) {
-        // TODO add your code here
         exchange(textField2, textField1);
     }
+    public static Robot robot;
 
+    static {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    /**
+     * Description: Monitor the button "1".
+     * If it is pressed, enter "1" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button1MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyRelease(KeyEvent.VK_1);
+        }
+    }
+    /**
+     * Description: Monitor the button "2".
+     * If it is pressed, enter "2" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button2MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_2);
+            robot.keyRelease(KeyEvent.VK_2);
+        }
+    }
+    /**
+     * Description: Monitor the button "3".
+     * If it is pressed, enter "3" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button3MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_3);
+            robot.keyRelease(KeyEvent.VK_3);
+        }
+    }
+    /**
+     * Description: Monitor the button "4".
+     * If it is pressed, enter "4" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button4MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_4);
+            robot.keyRelease(KeyEvent.VK_4);
+        }
+    }
+    /**
+     * Description: Monitor the button "5".
+     * If it is pressed, enter "5" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button5MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_5);
+            robot.keyRelease(KeyEvent.VK_5);
+        }
+    }
+    /**
+     * Description: Monitor the button "6".
+     * If it is pressed, enter "6" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button6MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_6);
+            robot.keyRelease(KeyEvent.VK_6);
+        }
+    }
+    /**
+     * Description: Monitor the button "7".
+     * If it is pressed, enter "7" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button7MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_7);
+            robot.keyRelease(KeyEvent.VK_7);
+        }
+    }
+    /**
+     * Description: Monitor the button "8".
+     * If it is pressed, enter "8" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button8MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_8);
+            robot.keyRelease(KeyEvent.VK_8);
+        }
+    }
+    /**
+     * Description: Monitor the button "9".
+     * If it is pressed, enter "9" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button9MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_9);
+            robot.keyRelease(KeyEvent.VK_9);
+        }
+    }
+    /**
+     * Description: Monitor the button "0".
+     * If it is pressed, enter "0" in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void button0MousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_0);
+            robot.keyRelease(KeyEvent.VK_0);
+        }
+    }
+    /**
+     * Description: Monitor the button ".".
+     * If it is pressed, enter "." in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void buttonDotMousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_PERIOD);
+            robot.keyRelease(KeyEvent.VK_PERIOD);
+        }
+    }
+    /**
+     * Description: Monitor the button "backspace".
+     * If it is pressed, delete the last character in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void buttonBackspaceMousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+            robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+        }
+    }
+    /**
+     * Description: Monitor the button "CE".
+     * If it is pressed, delete all the characters in the current text-field.
+     * @param e MouseEvent
+     * @author TonyZhanAndYizero
+     */
+    private void buttonClearMousePressed(MouseEvent e) {
+        if (e.getButton() == 1) {
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+            robot.keyRelease(KeyEvent.VK_ESCAPE);
+        }
+    }
+
+    /**
+     * Description: Limit the content entered the text-field.
+     * It can only be number or point.
+     * And it can only have one point in the middle of the contents.
+     * @author HeMercy
+     */
     static class RestrictedDocumentFilter extends DocumentFilter {
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-            super.insertString(fb, offset, filter(string), attr);
+            super.insertString(fb, offset, string, attr);
         }
 
         @Override
         public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-            super.replace(fb, offset, length, filter(text), attrs);
+            super.replace(fb, offset, length, text, attrs);
         }
 
         private String filter(String input) {
@@ -225,28 +466,31 @@ public class Angle extends JPanel {
         }
     }
 
+    /**
+     * Description: Initialize the Angle-class.
+     * @author HeMercy
+     */
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        角度 = new JLabel();
+        Angle = new JLabel();
         textField1 = new JTextField();
         textField2 = new JTextField();
+        buttonClear = new JButton();
+        buttonBackspace = new JButton();
+        button0 = new JButton();
         button1 = new JButton();
-        button6 = new JButton();
+        button2 = new JButton();
         button3 = new JButton();
         button4 = new JButton();
-        button7 = new JButton();
         button5 = new JButton();
+        button6 = new JButton();
+        button7 = new JButton();
         button8 = new JButton();
         button9 = new JButton();
+        buttonDot = new JButton();
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
         scrollPane1 = new JScrollPane();
-        button17 = new JButton();
-        button18 = new JButton();
-        button19 = new JButton();
-        button20 = new JButton();
-        button13 = new JButton();
-        button21 = new JButton();
 
         //======== this ========
         setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
@@ -254,11 +498,11 @@ public class Angle extends JPanel {
         setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
         setLayout(null);
 
-        //---- 角度 ----
-        角度.setText("\u89d2\u5ea6");
-        角度.setFont(角度.getFont().deriveFont(角度.getFont().getStyle() | Font.BOLD, 角度.getFont().getSize() + 10f));
-        add(角度);
-        角度.setBounds(new Rectangle(new Point(15, 25), 角度.getPreferredSize()));
+        //---- Angle ----
+        Angle.setText("\u89d2\u5ea6");
+        Angle.setFont(Angle.getFont().deriveFont(Angle.getFont().getStyle() | Font.BOLD, Angle.getFont().getSize() + 10f));
+        add(Angle);
+        Angle.setBounds(new Rectangle(new Point(15, 25), Angle.getPreferredSize()));
 
         //---- textField1 ----
         textField1.setColumns(10);
@@ -277,10 +521,6 @@ public class Angle extends JPanel {
             }
         });
         textField1.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                textField1KeyPressed(e);
-            }
             @Override
             public void keyReleased(KeyEvent e) {
                 textField1KeyReleased(e);
@@ -314,53 +554,174 @@ public class Angle extends JPanel {
         add(textField2);
         textField2.setBounds(10, 180, 380, 50);
 
-        //---- button1 ----
-        button1.setText("CE");
-        button1.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button1);
-        button1.setBounds(140, 285, 120, 50);
+        //---- buttonClear ----
+        buttonClear.setText("C");
+        buttonClear.setFont(new Font("Consolas", Font.PLAIN, 18));
+        buttonClear.setFocusable(false);
+        buttonClear.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonClearMousePressed(e);
+            }
+        });
+        add(buttonClear);
+        buttonClear.setBounds(140, 285, 120, 50);
 
-        //---- button6 ----
-        button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 6f));
-        button6.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
-        add(button6);
-        button6.setBounds(270, 285, 120, 50);
+        //---- buttonBackspace ----
+        buttonBackspace.setFont(buttonBackspace.getFont().deriveFont(buttonBackspace.getFont().getStyle() | Font.BOLD, buttonBackspace.getFont().getSize() + 6f));
+        buttonBackspace.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
+        buttonBackspace.setFocusable(false);
+        buttonBackspace.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonBackspaceMousePressed(e);
+            }
+        });
+        add(buttonBackspace);
+        buttonBackspace.setBounds(270, 285, 120, 50);
+
+        //---- button0 ----
+        button0.setText("0");
+        button0.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button0.setFocusable(false);
+        button0.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button0MousePressed(e);
+            }
+        });
+        add(button0);
+        button0.setBounds(140, 505, 120, 50);
+
+        //---- button1 ----
+        button1.setText("1");
+        button1.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button1.setFocusable(false);
+        button1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button1MousePressed(e);
+            }
+        });
+        add(button1);
+        button1.setBounds(10, 450, 120, 50);
+
+        //---- button2 ----
+        button2.setText("2");
+        button2.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button2.setFocusable(false);
+        button2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button2MousePressed(e);
+            }
+        });
+        add(button2);
+        button2.setBounds(140, 450, 120, 50);
 
         //---- button3 ----
-        button3.setText("7");
+        button3.setText("3");
         button3.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button3.setFocusable(false);
+        button3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button3MousePressed(e);
+            }
+        });
         add(button3);
-        button3.setBounds(10, 340, 120, 50);
+        button3.setBounds(270, 450, 120, 50);
 
         //---- button4 ----
-        button4.setText("8");
+        button4.setText("4");
         button4.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button4.setFocusable(false);
+        button4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button4MousePressed(e);
+            }
+        });
         add(button4);
-        button4.setBounds(140, 340, 120, 50);
-
-        //---- button7 ----
-        button7.setText("9");
-        button7.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button7);
-        button7.setBounds(270, 340, 120, 50);
+        button4.setBounds(10, 395, 120, 50);
 
         //---- button5 ----
-        button5.setText("4");
+        button5.setText("5");
         button5.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button5.setFocusable(false);
+        button5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button5MousePressed(e);
+            }
+        });
         add(button5);
-        button5.setBounds(10, 395, 120, 50);
+        button5.setBounds(140, 395, 120, 50);
+
+        //---- button6 ----
+        button6.setText("6");
+        button6.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button6.setFocusable(false);
+        button6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button6MousePressed(e);
+            }
+        });
+        add(button6);
+        button6.setBounds(270, 395, 120, 50);
+
+        //---- button7 ----
+        button7.setText("7");
+        button7.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button7.setFocusable(false);
+        button7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button7MousePressed(e);
+            }
+        });
+        add(button7);
+        button7.setBounds(10, 340, 120, 50);
 
         //---- button8 ----
-        button8.setText("5");
+        button8.setText("8");
         button8.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button8.setFocusable(false);
+        button8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button8MousePressed(e);
+            }
+        });
         add(button8);
-        button8.setBounds(140, 395, 120, 50);
+        button8.setBounds(140, 340, 120, 50);
 
         //---- button9 ----
-        button9.setText("6");
+        button9.setText("9");
         button9.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button9.setFocusable(false);
+        button9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button9MousePressed(e);
+            }
+        });
         add(button9);
-        button9.setBounds(270, 395, 120, 50);
+        button9.setBounds(270, 340, 120, 50);
+
+        //---- buttonDot ----
+        buttonDot.setText(".");
+        buttonDot.setFont(new Font("Consolas", Font.PLAIN, 18));
+        buttonDot.setFocusable(false);
+        buttonDot.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                buttonDotMousePressed(e);
+            }
+        });
+        add(buttonDot);
+        buttonDot.setBounds(270, 505, 120, 50);
 
         //---- comboBox1 ----
         comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -368,12 +729,12 @@ public class Angle extends JPanel {
             "  \u5f27\u5ea6",
             "\u767e\u5206\u5ea6"
         }));
-        comboBox1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
-        comboBox1.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
+        comboBox1.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+        comboBox1.setBorder(null);
         comboBox1.setFocusable(false);
         comboBox1.addItemListener(e -> comboBox1ItemStateChanged(e));
         add(comboBox1);
-        comboBox1.setBounds(15, 130, 105, 40);
+        comboBox1.setBounds(15, 130, 115, 40);
 
         //---- comboBox2 ----
         comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -381,73 +742,36 @@ public class Angle extends JPanel {
             "  \u5f27\u5ea6",
             "\u767e\u5206\u5ea6"
         }));
-        comboBox2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 16));
+        comboBox2.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
         comboBox2.addItemListener(e -> comboBox2ItemStateChanged(e));
         add(comboBox2);
-        comboBox2.setBounds(15, 240, 105, 40);
+        comboBox2.setBounds(15, 240, 115, 40);
         add(scrollPane1);
         scrollPane1.setBounds(new Rectangle(new Point(260, 180), scrollPane1.getPreferredSize()));
-
-        //---- button17 ----
-        button17.setText("1");
-        button17.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button17);
-        button17.setBounds(10, 450, 120, 50);
-
-        //---- button18 ----
-        button18.setText("2");
-        button18.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button18);
-        button18.setBounds(140, 450, 120, 50);
-
-        //---- button19 ----
-        button19.setText("3");
-        button19.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button19);
-        button19.setBounds(270, 450, 120, 50);
-
-        //---- button20 ----
-        button20.setText(".");
-        button20.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button20);
-        button20.setBounds(270, 505, 120, 50);
-
-        //---- button13 ----
-        button13.setText("+/-");
-        button13.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button13);
-        button13.setBounds(10, 505, 120, 50);
-
-        //---- button21 ----
-        button21.setText("0");
-        button21.setFont(new Font("Consolas", Font.PLAIN, 18));
-        add(button21);
-        button21.setBounds(140, 505, 120, 50);
 
         setPreferredSize(new Dimension(400, 570));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JLabel 角度;
+    private JLabel Angle;
     private JTextField textField1;
     private JTextField textField2;
+    private JButton buttonClear;
+    private JButton buttonBackspace;
+    private JButton button0;
     private JButton button1;
-    private JButton button6;
+    private JButton button2;
     private JButton button3;
     private JButton button4;
-    private JButton button7;
     private JButton button5;
+    private JButton button6;
+    private JButton button7;
     private JButton button8;
     private JButton button9;
+    private JButton buttonDot;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
     private JScrollPane scrollPane1;
-    private JButton button17;
-    private JButton button18;
-    private JButton button19;
-    private JButton button20;
-    private JButton button13;
-    private JButton button21;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

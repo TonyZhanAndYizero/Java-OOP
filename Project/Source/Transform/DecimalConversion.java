@@ -20,15 +20,50 @@ import javax.swing.text.DocumentFilter;
  */
 public class DecimalConversion extends JPanel {
     Boolean whichFocus = true;
+    Boolean firstInput = true;
 
     public DecimalConversion() {
         initComponents();
     }
 
-    private String JinzhiSwitch(String nums, int op1, int op2) {
-        return new BigInteger(nums, op1).toString(op2);
+    /**
+     * Description: Converts between binary, octal, decimal, and hexadecimal.
+     * @param nums The number that needs to be converted.
+     * @param op1 The decimal of the number.
+     * @param op2 The decimal to be converted to.
+     * @return The number that has been converted.
+     * @author HeMercy
+     */
+    private String decimalConversion(String nums, int op1, int op2) {
+        try {
+            if (!nums.isEmpty()) {
+                if (nums.charAt(0) == '-' && op2 != 10) {
+                    String newNums = new BigInteger(nums.substring(1), op1).toString(2);
+                    StringBuilder res = new StringBuilder("1");
+                    for (char i : newNums.toCharArray()) {
+                        if (i == '1')
+                            res.append('0');
+                        else
+                            res.append('1');
+                    }
+                    return new BigInteger(res.toString(), 2).add(BigInteger.ONE).toString(op2);
+                } else
+                    return new BigInteger(nums, op1).toString(op2);
+            }
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
+    /**
+     * Description: Execute the method decimalConversion.
+     * @param textField1 The currently focused text-field.
+     * @param textField2 The other text-field.
+     * @param comboBox1 The combo box of the currently focused text-field.
+     * @param comboBox2 The combo box of the other text-field.
+     * @author HeMercy
+     */
     private void solve(JTextField textField1, JTextField textField2, JComboBox<String> comboBox1, JComboBox<String> comboBox2) {
         String inputString = textField1.getText();
         int p1 = comboBox1.getSelectedIndex();
@@ -39,64 +74,64 @@ public class DecimalConversion extends JPanel {
             case 0:
                 switch (p2) {
                     case 0 -> {
-                        res = inputString;
+                        res = decimalConversion(inputString, 2, 2);
                     }
                     case 1 -> {
-                        res = JinzhiSwitch(inputString, 2, 8);
+                        res = decimalConversion(inputString, 2, 8);
                     }
                     case 2 -> {
-                        res = JinzhiSwitch(inputString, 2, 10);
+                        res = decimalConversion(inputString, 2, 10);
                     }
                     case 3 -> {
-                        res = JinzhiSwitch(inputString, 2, 16);
+                        res = decimalConversion(inputString, 2, 16);
                     }
                 }
                 break;
             case 1:
                 switch (p2) {
                     case 0 -> {
-                        res = JinzhiSwitch(inputString, 8, 2);
+                        res = decimalConversion(inputString, 8, 2);
                     }
                     case 1 -> {
-                        res = inputString;
+                        res = decimalConversion(inputString, 8, 8);
                     }
                     case 2 -> {
-                        res = JinzhiSwitch(inputString, 8, 10);
+                        res = decimalConversion(inputString, 8, 10);
                     }
                     case 3 -> {
-                        res = JinzhiSwitch(inputString, 8, 16);
+                        res = decimalConversion(inputString, 8, 16);
                     }
                 }
                 break;
             case 2:
                 switch (p2) {
                     case 0 -> {
-                        res = JinzhiSwitch(inputString, 10, 2);
+                        res = decimalConversion(inputString, 10, 2);
                     }
                     case 1 -> {
-                        res = JinzhiSwitch(inputString, 10, 8);
+                        res = decimalConversion(inputString, 10, 8);
                     }
                     case 2 -> {
-                        res = inputString;
+                        res = decimalConversion(inputString, 10, 10);
                     }
                     case 3 -> {
-                        res = JinzhiSwitch(inputString, 10, 16);
+                        res = decimalConversion(inputString, 10, 16);
                     }
                 }
                 break;
             case 3:
                 switch (p2) {
                     case 0 -> {
-                        res = JinzhiSwitch(inputString, 16, 2);
+                        res = decimalConversion(inputString, 16, 2);
                     }
                     case 1 -> {
-                        res = JinzhiSwitch(inputString, 16, 8);
+                        res = decimalConversion(inputString, 16, 8);
                     }
                     case 2 -> {
-                        res = JinzhiSwitch(inputString, 16, 10);
+                        res = decimalConversion(inputString, 16, 10);
                     }
                     case 3 -> {
-                        res = inputString;
+                        res = decimalConversion(inputString, 16, 16);
                     }
                 }
                 break;
@@ -104,6 +139,11 @@ public class DecimalConversion extends JPanel {
         textField2.setText(res);
     }
 
+    /**
+     * Description: Limit the content entered the text-field.
+     * It can only be number or letter or minus sign.
+     * @author HeMercy
+     */
     static class RestrictedDocumentFilter extends DocumentFilter {
         int op;
 
@@ -122,45 +162,48 @@ public class DecimalConversion extends JPanel {
         }
 
         private String filter(String input) {
-            // 此处可以根据需要定义文本框的输入限制
-            // 这个例子中只允许输入数字
-            input.replaceAll("\\.\\.", ".");
-            if (!input.isEmpty() && input.charAt(0) == '.')
-                input.replaceFirst("\\.", "");
+            if (input == null || input.isEmpty())
+                return null;
             switch (op) {
                 case 0 -> {
-                    return input.replaceAll("[^\\-0-1.]", "");
+                    return input.replaceAll("[^-0-1]", "");
                 }
                 case 1 -> {
-                    return input.replaceAll("[^\\-0-7.]", "");
+                    return input.replaceAll("[^-0-7]", "");
                 }
                 case 2 -> {
-                    return input.replaceAll("[^\\-0-9.]", "");
+                    return input.replaceAll("[^-0-9]", "");
                 }
                 case 3 -> {
-                    return input.replaceAll("[^\\-0-9a-fA-F.]", "");
+                    return input.replaceAll("[^-0-9a-fA-F]", "");
                 }
                 default -> {
-                    return input;
+                    return null;
                 }
             }
         }
     }
-
+    /**
+     * Description: Monitor the input of the first text-field
+     * @param e CaretEvent
+     * @author HeMercy
+     */
     private void textField1CaretUpdate(CaretEvent e) {
-        // TODO add your code here
         ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox1.getSelectedIndex()));
     }
-
+    /**
+     * Description: Monitor the focus of the first text-field.
+     * If it's the first input, replace the original contents with new input.
+     * @param e FocusEvent
+     * @author HeMercy
+     */
     private void textField1FocusGained(FocusEvent e) {
-        // TODO add your code here
         String str = textField1.getText();
         whichFocus = true;
+        firstInput = true;
         textField1.setFont(new Font("Inter", Font.BOLD, 28));
         textField2.setFont(new Font("Inter", Font.PLAIN, 28));
         textField1.getDocument().addDocumentListener(new DocumentListener() {
-            private boolean firstInput = true;
-
             @Override
             public void insertUpdate(DocumentEvent e) {
                 handleInput();
@@ -182,6 +225,7 @@ public class DecimalConversion extends JPanel {
                         String str1 = textField1.getText();
                         try {
                             textField1.setText(str1.substring(str.length()));
+                            solve(textField1, textField2, comboBox1, comboBox2);
                         } catch (Exception ignored) {
                         }
                         // 清空原始文本
@@ -192,31 +236,38 @@ public class DecimalConversion extends JPanel {
             }
         });
     }
-
+    /**
+     * Description: Monitor the keyboard input of the first text-field.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e KeyEvent
+     * @author HeMercy
+     */
     private void textField1KeyReleased(KeyEvent e) {
-        // TODO add your code here
-//        ((AbstractDocument) textField1.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox1.getSelectedIndex()));
         solve(textField1, textField2, comboBox1, comboBox2);
     }
-
-    private void textField1KeyPressed(KeyEvent e) {
-        // TODO add your code here
-    }
-
+    /**
+     * Description: Monitor the input of the second text-field
+     * @param e CaretEvent
+     * @author HeMercy
+     */
     private void textField2CaretUpdate(CaretEvent e) {
 
-        // TODO add your code here
         ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox2.getSelectedIndex()));
     }
-
+    /**
+     * Description: Monitor the focus of the second text-field.
+     * If it's the first input, replace the original contents with new input.
+     * @param e FocusEvent
+     * @author HeMercy
+     */
     private void textField2FocusGained(FocusEvent e) {
-        // TODO add your code here
+
         String str = textField2.getText();
         whichFocus = false;
+        firstInput = true;
         textField1.setFont(new Font("Inter", Font.PLAIN, 28));
         textField2.setFont(new Font("Inter", Font.BOLD, 28));
         textField2.getDocument().addDocumentListener(new DocumentListener() {
-            private boolean firstInput = true;
 
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -239,6 +290,7 @@ public class DecimalConversion extends JPanel {
                         String str1 = textField2.getText();
                         try {
                             textField2.setText(str1.substring(str.length()));
+                            solve(textField2, textField1, comboBox2, comboBox1);
                         } catch (Exception ignored) {
                         }
                         // 清空原始文本
@@ -249,32 +301,344 @@ public class DecimalConversion extends JPanel {
             }
         });
     }
-
+    /**
+     * Description: Monitor the keyboard input of the second text-field.
+     * If it happens, update the contents of the other text-field in real time.
+     * @param e KeyEvent
+     * @author HeMercy
+     */
     private void textField2KeyReleased(KeyEvent e) {
-        // TODO add your code here
-//        ((AbstractDocument) textField2.getDocument()).setDocumentFilter(new RestrictedDocumentFilter(comboBox2.getSelectedIndex()));
         solve(textField2, textField1, comboBox2, comboBox1);
     }
-
+    /**
+     * Description: Monitor the changes of the item state of the first combo Box.
+     * If it happens, update the contents of the first text-field
+     * depending on the contents of the second text-field in real time.
+     * @param e ItemEvent
+     * @author HeMercy
+     */
     private void comboBox1ItemStateChanged(ItemEvent e) {
-        // TODO add your code here
         whichFocus = false;
         textField1.setFont(new Font("Inter", Font.PLAIN, 28));
         textField2.setFont(new Font("Inter", Font.BOLD, 28));
         solve(textField2, textField1, comboBox2, comboBox1);
     }
-
+    /**
+     * Description: Monitor the changes of the item state of the second combo Box.
+     * If it happens, update the contents of the second text-field
+     * depending on the contents of the first text-field in real time.
+     * @param e ItemEvent
+     * @author HeMercy
+     */
     private void comboBox2ItemStateChanged(ItemEvent e) {
-        // TODO add your code here
         whichFocus = true;
         textField1.setFont(new Font("Inter", Font.BOLD, 28));
         textField2.setFont(new Font("Inter", Font.PLAIN, 28));
         solve(textField1, textField2, comboBox1, comboBox2);
     }
 
-    private void textField2KeyPressed(KeyEvent e) {
-        // TODO add your code here
+    /**
+     * Description: Monitor the button "CE".
+     * If it is pressed, delete all the characters in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonClear(ActionEvent e) {
+        textField1.setText("");
+        textField2.setText("");
     }
+    /**
+     * Description: Monitor the button "backspace".
+     * If it is pressed, delete the last character in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonBack(ActionEvent e) {
+        if (whichFocus) {
+            String text = textField1.getText();
+            if (!text.isEmpty()) {
+                textField1.setText(text.substring(0, text.length() - 1));
+                solve(textField1, textField2, comboBox1, comboBox2);
+            }
+        } else {
+            String text = textField2.getText();
+            if (!text.isEmpty()) {
+                textField2.setText(text.substring(0, text.length() - 1));
+                solve(textField2, textField1, comboBox2, comboBox1);
+            }
+        }
+    }
+    /**
+     * Description: Monitor the button "0".
+     * If it is pressed, enter "0" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button0(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "0");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "0");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "1".
+     * If it is pressed, enter "1" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button1(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "1");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "1");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "2".
+     * If it is pressed, enter "2" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button2(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "2");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "2");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "3".
+     * If it is pressed, enter "3" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button3(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "3");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "3");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "4".
+     * If it is pressed, enter "4" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button4(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "4");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "4");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "5".
+     * If it is pressed, enter "5" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button5(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "5");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "5");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "6".
+     * If it is pressed, enter "6" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button6(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "6");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "6");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "7".
+     * If it is pressed, enter "7" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button7(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "7");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "7");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "8".
+     * If it is pressed, enter "8" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button8(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "8");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "8");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "9".
+     * If it is pressed, enter "9" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void button9(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "9");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "9");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "a".
+     * If it is pressed, enter "a" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonA(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "a");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "a");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "b".
+     * If it is pressed, enter "b" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonB(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "b");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "b");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "c".
+     * If it is pressed, enter "c" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonC(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "c");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "c");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "d".
+     * If it is pressed, enter "d" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonD(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "d");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "d");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "e".
+     * If it is pressed, enter "e" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonE(ActionEvent e) {
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "e");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "e");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "f".
+     * If it is pressed, enter "f" in the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonF(ActionEvent e) {
+        // TODO add your code here
+        if (whichFocus) {
+            textField1.setText(textField1.getText() + "f");
+            solve(textField1, textField2, comboBox1, comboBox2);
+        } else {
+            textField2.setText(textField2.getText() + "f");
+            solve(textField2, textField1, comboBox2, comboBox1);
+        }
+    }
+    /**
+     * Description: Monitor the button "+/-".
+     * If it is pressed, add or remove a minus sign at the top of the current text-field.
+     * @param e ActionEvent
+     * @author HeMercy
+     */
+    private void buttonAnti(ActionEvent e) {
+        firstInput = false;
+        if (whichFocus) {
+            if (!textField1.getText().isEmpty() && textField1.getText().charAt(0) != '-') {
+                String now = textField1.getText();
+                System.out.println(now);
+                textField1.setText("-" + now);
+                solve(textField1, textField2, comboBox1, comboBox2);
+            } else if (!textField1.getText().isEmpty()) {
+                textField1.setText(textField1.getText().substring(1));
+                solve(textField1, textField2, comboBox1, comboBox2);
+            }
+        } else {
+            if (!textField2.getText().isEmpty() && textField2.getText().charAt(0) != '-') {
+                textField2.setText("-" + textField2.getText());
+                solve(textField2, textField1, comboBox2, comboBox1);
+            } else if (!textField2.getText().isEmpty()) {
+                textField2.setText(textField2.getText().substring(1));
+                solve(textField2, textField1, comboBox2, comboBox1);
+            }
+        }
+    }
+
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -294,12 +658,17 @@ public class DecimalConversion extends JPanel {
         button12 = new JButton();
         button13 = new JButton();
         button14 = new JButton();
-        button15 = new JButton();
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
+        button2 = new JButton();
+        button16 = new JButton();
+        button17 = new JButton();
+        button18 = new JButton();
+        button19 = new JButton();
+        button20 = new JButton();
 
         //======== this ========
-        setFont(new Font("Inter", Font.BOLD, 16));
+        setFont(new Font("Consolas", Font.PLAIN, 18));
         setMinimumSize(new Dimension(450, 564));
         setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
         setLayout(null);
@@ -313,8 +682,8 @@ public class DecimalConversion extends JPanel {
         //---- textField1 ----
         textField1.setColumns(10);
         textField1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-        textField1.setBorder(null);
-        textField1.setFont(textField1.getFont().deriveFont(textField1.getFont().getStyle() | Font.BOLD, textField1.getFont().getSize() + 15f));
+        textField1.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
+        textField1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 26));
         textField1.setText("0");
         textField1.setMargin(new Insets(4, 8, 4, 8));
         textField1.setCaretPosition(1);
@@ -328,10 +697,6 @@ public class DecimalConversion extends JPanel {
         });
         textField1.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                textField1KeyPressed(e);
-            }
-            @Override
             public void keyReleased(KeyEvent e) {
                 textField1KeyReleased(e);
             }
@@ -342,8 +707,8 @@ public class DecimalConversion extends JPanel {
         //---- textField2 ----
         textField2.setColumns(10);
         textField2.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-        textField2.setBorder(null);
-        textField2.setFont(textField2.getFont().deriveFont(textField2.getFont().getStyle() & ~Font.BOLD, textField2.getFont().getSize() + 15f));
+        textField2.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
+        textField2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 26));
         textField2.setText("0");
         textField2.setMargin(new Insets(4, 8, 4, 8));
         textField2.setCaretPosition(1);
@@ -357,10 +722,6 @@ public class DecimalConversion extends JPanel {
         });
         textField2.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                textField2KeyPressed(e);
-            }
-            @Override
             public void keyReleased(KeyEvent e) {
                 textField2KeyReleased(e);
             }
@@ -369,88 +730,109 @@ public class DecimalConversion extends JPanel {
         textField2.setBounds(10, 180, 380, 50);
 
         //---- button1 ----
-        button1.setText("CE");
-        button1.setFont(button1.getFont().deriveFont(button1.getFont().getStyle() | Font.BOLD, button1.getFont().getSize() + 6f));
+        button1.setText("C");
+        button1.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button1.setFocusable(false);
+        button1.addActionListener(e -> buttonClear(e));
         add(button1);
-        button1.setBounds(140, 285, 120, 50);
+        button1.setBounds(200, 285, 90, 50);
 
         //---- button6 ----
         button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD, button6.getFont().getSize() + 6f));
+        button6.setSelectedIcon(new ImageIcon(getClass().getResource("/Resources/img/Backspace(1)(1).png")));
         button6.setIcon(new ImageIcon(getClass().getResource("/Resources/img/delete(1).png")));
+        button6.setFocusable(false);
+        button6.addActionListener(e -> buttonBack(e));
         add(button6);
-        button6.setBounds(270, 285, 120, 50);
+        button6.setBounds(295, 285, 90, 50);
 
         //---- button3 ----
         button3.setText("7");
-        button3.setFont(button3.getFont().deriveFont(button3.getFont().getStyle() | Font.BOLD, button3.getFont().getSize() + 6f));
+        button3.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button3.setFocusable(false);
+        button3.addActionListener(e -> button7(e));
         add(button3);
-        button3.setBounds(10, 340, 120, 50);
+        button3.setBounds(105, 340, 90, 50);
 
         //---- button4 ----
         button4.setText("8");
-        button4.setFont(button4.getFont().deriveFont(button4.getFont().getStyle() | Font.BOLD, button4.getFont().getSize() + 6f));
+        button4.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button4.setFocusable(false);
+        button4.addActionListener(e -> button8(e));
         add(button4);
-        button4.setBounds(140, 340, 120, 50);
+        button4.setBounds(200, 340, 90, 50);
 
         //---- button7 ----
         button7.setText("9");
-        button7.setFont(button7.getFont().deriveFont(button7.getFont().getStyle() | Font.BOLD, button7.getFont().getSize() + 6f));
+        button7.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button7.setFocusable(false);
+        button7.addActionListener(e -> button9(e));
         add(button7);
-        button7.setBounds(270, 340, 120, 50);
+        button7.setBounds(295, 340, 90, 50);
 
         //---- button5 ----
         button5.setText("4");
-        button5.setFont(button5.getFont().deriveFont(button5.getFont().getStyle() | Font.BOLD, button5.getFont().getSize() + 6f));
+        button5.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button5.setFocusable(false);
+        button5.addActionListener(e -> button4(e));
         add(button5);
-        button5.setBounds(10, 395, 120, 50);
+        button5.setBounds(105, 395, 90, 50);
 
         //---- button8 ----
         button8.setText("5");
-        button8.setFont(button8.getFont().deriveFont(button8.getFont().getStyle() | Font.BOLD, button8.getFont().getSize() + 6f));
+        button8.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button8.setFocusable(false);
+        button8.addActionListener(e -> button5(e));
         add(button8);
-        button8.setBounds(140, 395, 120, 50);
+        button8.setBounds(200, 395, 90, 50);
 
         //---- button9 ----
         button9.setText("6");
-        button9.setFont(button9.getFont().deriveFont(button9.getFont().getStyle() | Font.BOLD, button9.getFont().getSize() + 6f));
+        button9.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button9.setFocusable(false);
+        button9.addActionListener(e -> button6(e));
         add(button9);
-        button9.setBounds(270, 395, 120, 50);
+        button9.setBounds(295, 395, 90, 50);
 
         //---- button10 ----
         button10.setText("1");
-        button10.setFont(button10.getFont().deriveFont(button10.getFont().getStyle() | Font.BOLD, button10.getFont().getSize() + 6f));
+        button10.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button10.setFocusable(false);
+        button10.addActionListener(e -> button1(e));
         add(button10);
-        button10.setBounds(10, 450, 120, 50);
+        button10.setBounds(105, 450, 90, 50);
 
         //---- button11 ----
         button11.setText("2");
-        button11.setFont(button11.getFont().deriveFont(button11.getFont().getStyle() | Font.BOLD, button11.getFont().getSize() + 6f));
+        button11.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button11.setFocusable(false);
+        button11.addActionListener(e -> button2(e));
         add(button11);
-        button11.setBounds(140, 450, 120, 50);
+        button11.setBounds(200, 450, 90, 50);
 
         //---- button12 ----
         button12.setText("3");
-        button12.setFont(button12.getFont().deriveFont(button12.getFont().getStyle() | Font.BOLD, button12.getFont().getSize() + 6f));
+        button12.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button12.setFocusable(false);
+        button12.addActionListener(e -> button3(e));
         add(button12);
-        button12.setBounds(270, 450, 120, 50);
+        button12.setBounds(295, 450, 90, 50);
 
         //---- button13 ----
         button13.setText("+/-");
-        button13.setFont(button13.getFont().deriveFont(button13.getFont().getStyle() | Font.BOLD, button13.getFont().getSize() + 6f));
+        button13.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button13.setFocusable(false);
+        button13.addActionListener(e -> buttonAnti(e));
         add(button13);
-        button13.setBounds(10, 505, 120, 50);
+        button13.setBounds(295, 505, 90, 50);
 
         //---- button14 ----
         button14.setText("0");
-        button14.setFont(button14.getFont().deriveFont(button14.getFont().getStyle() | Font.BOLD, button14.getFont().getSize() + 6f));
+        button14.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button14.setFocusable(false);
+        button14.addActionListener(e -> button0(e));
         add(button14);
-        button14.setBounds(140, 505, 120, 50);
-
-        //---- button15 ----
-        button15.setText(".");
-        button15.setFont(button15.getFont().deriveFont(button15.getFont().getStyle() | Font.BOLD, button15.getFont().getSize() + 6f));
-        add(button15);
-        button15.setBounds(270, 505, 120, 50);
+        button14.setBounds(200, 505, 90, 50);
 
         //---- comboBox1 ----
         comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -462,7 +844,7 @@ public class DecimalConversion extends JPanel {
         comboBox1.setFont(comboBox1.getFont().deriveFont(comboBox1.getFont().getStyle() | Font.BOLD, comboBox1.getFont().getSize() + 4f));
         comboBox1.addItemListener(e -> comboBox1ItemStateChanged(e));
         add(comboBox1);
-        comboBox1.setBounds(15, 130, 105, 40);
+        comboBox1.setBounds(15, 130, 120, 40);
 
         //---- comboBox2 ----
         comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -474,7 +856,55 @@ public class DecimalConversion extends JPanel {
         comboBox2.setFont(comboBox2.getFont().deriveFont(comboBox2.getFont().getStyle() | Font.BOLD, comboBox2.getFont().getSize() + 4f));
         comboBox2.addItemListener(e -> comboBox2ItemStateChanged(e));
         add(comboBox2);
-        comboBox2.setBounds(15, 240, 105, 40);
+        comboBox2.setBounds(15, 240, 120, 40);
+
+        //---- button2 ----
+        button2.setText("a");
+        button2.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button2.setFocusable(false);
+        button2.addActionListener(e -> buttonA(e));
+        add(button2);
+        button2.setBounds(10, 285, 90, 50);
+
+        //---- button16 ----
+        button16.setText("b");
+        button16.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button16.setFocusable(false);
+        button16.addActionListener(e -> buttonB(e));
+        add(button16);
+        button16.setBounds(10, 340, 90, 50);
+
+        //---- button17 ----
+        button17.setText("c");
+        button17.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button17.setFocusable(false);
+        button17.addActionListener(e -> buttonC(e));
+        add(button17);
+        button17.setBounds(10, 395, 90, 50);
+
+        //---- button18 ----
+        button18.setText("d");
+        button18.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button18.setFocusable(false);
+        button18.addActionListener(e -> buttonD(e));
+        add(button18);
+        button18.setBounds(10, 450, 90, 50);
+
+        //---- button19 ----
+        button19.setText("e");
+        button19.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button19.setFocusable(false);
+        button19.addActionListener(e -> buttonE(e));
+        add(button19);
+        button19.setBounds(10, 505, 90, 50);
+
+        //---- button20 ----
+        button20.setText("f");
+        button20.setFont(new Font("Consolas", Font.PLAIN, 18));
+        button20.setFocusable(false);
+        button20.addActionListener(e -> buttonF(e));
+        add(button20);
+        button20.setBounds(105, 505, 90, 50);
 
         setPreferredSize(new Dimension(400, 570));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -497,8 +927,13 @@ public class DecimalConversion extends JPanel {
     private JButton button12;
     private JButton button13;
     private JButton button14;
-    private JButton button15;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
+    private JButton button2;
+    private JButton button16;
+    private JButton button17;
+    private JButton button18;
+    private JButton button19;
+    private JButton button20;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

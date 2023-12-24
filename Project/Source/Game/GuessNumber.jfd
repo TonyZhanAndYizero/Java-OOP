@@ -631,6 +631,7 @@ new FormModel {
 			"autoSize": false
 		} ) {
 			name: "dialog1"
+			"title": "提示"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label29"
 				"text": "请输入4个数字！"
@@ -660,6 +661,7 @@ new FormModel {
 			"autoSize": false
 		} ) {
 			name: "dialog2"
+			"title": "提示"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label30"
 				"text": "请点击“开始/重置”！"
@@ -690,6 +692,7 @@ new FormModel {
 		} ) {
 			name: "dialog3"
 			"preferredSize": new java.awt.Dimension( 365, 300 )
+			"title": "简介与规则"
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button12"
 				"text": "关闭"
@@ -713,11 +716,11 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 0
 				"y": 0
-				"width": 364
+				"width": 335
 				"height": 215
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"size": new java.awt.Dimension( 365, 300 )
+			"size": new java.awt.Dimension( 335, 300 )
 			"location": new java.awt.Point( 125, 715 )
 		} )
 	}

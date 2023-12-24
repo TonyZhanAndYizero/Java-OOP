@@ -13,12 +13,10 @@ import java.util.Timer;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import static Source.Calculator.UtilitiesSci.checkNum;
-
 /**
  * @author Yury
  */
-public class GuessNumber extends JPanel {
+public class  GuessNumber extends JPanel {
     public GuessNumber() {
         initComponents();
     }
@@ -38,70 +36,60 @@ public class GuessNumber extends JPanel {
     }
 
     private void button0MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_0);
         }
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_1);
         }
     }
 
     private void button2MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_2);
         }
     }
 
     private void button3MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_3);
         }
     }
 
     private void button4MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_4);
         }
     }
 
     private void button5MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_5);
         }
     }
 
     private void button6MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_6);
         }
     }
 
     private void button7MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_7);
         }
     }
 
     private void button8MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_8);
         }
     }
 
     private void button9MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_9);
         }
@@ -176,14 +164,12 @@ public class GuessNumber extends JPanel {
     }
 
     private void buttonConfirmMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_ENTER);
         }
     }
 
     private void buttonBackspaceMousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
         }
@@ -214,7 +200,7 @@ public class GuessNumber extends JPanel {
     }
 
     /**
-     * Description: To set text of textField1
+     * Description: To set text od textField1
      *
      * @author Yury
      */
@@ -580,28 +566,23 @@ public class GuessNumber extends JPanel {
     }
 
     private void closeDialog1(MouseEvent e) {
-        // TODO add your code here
         dialog1.setVisible(false);
     }
 
     private void closeDialog2(MouseEvent e) {
-        // TODO add your code here
         dialog2.setVisible(false);
     }
 
     private void buttonRulesMousePressed(MouseEvent e) {
-        // TODO add your code here
         dialog3.setVisible(true);
     }
 
     private void closeRules(MouseEvent e) {
-        // TODO add your code here
         dialog3.setVisible(false);
     }
 
 
     private void initComponents() {
-
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         label1 = new JLabel();
         label2 = new JLabel();
@@ -1160,6 +1141,7 @@ public class GuessNumber extends JPanel {
 
         //======== dialog1 ========
         {
+            dialog1.setTitle("\u63d0\u793a");
             var dialog1ContentPane = dialog1.getContentPane();
             dialog1ContentPane.setLayout(null);
 
@@ -1189,6 +1171,7 @@ public class GuessNumber extends JPanel {
 
         //======== dialog2 ========
         {
+            dialog2.setTitle("\u63d0\u793a");
             var dialog2ContentPane = dialog2.getContentPane();
             dialog2ContentPane.setLayout(null);
 
@@ -1219,6 +1202,7 @@ public class GuessNumber extends JPanel {
         //======== dialog3 ========
         {
             dialog3.setPreferredSize(new Dimension(365, 300));
+            dialog3.setTitle("\u7b80\u4ecb\u4e0e\u89c4\u5219");
             var dialog3ContentPane = dialog3.getContentPane();
             dialog3ContentPane.setLayout(null);
 
@@ -1246,9 +1230,9 @@ public class GuessNumber extends JPanel {
                 scrollPane1.setViewportView(textArea1);
             }
             dialog3ContentPane.add(scrollPane1);
-            scrollPane1.setBounds(0, 0, 364, 215);
+            scrollPane1.setBounds(0, 0, 335, 215);
 
-            dialog3ContentPane.setPreferredSize(new Dimension(365, 300));
+            dialog3ContentPane.setPreferredSize(new Dimension(335, 300));
             dialog3.pack();
             dialog3.setLocationRelativeTo(dialog3.getOwner());
         }

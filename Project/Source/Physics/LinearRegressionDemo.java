@@ -24,7 +24,6 @@ public class LinearRegressionDemo extends JFrame {
     private JButton button;
     private DrawPanel drawPanel;
 
-    // 构造方法，初始化窗口
     public LinearRegressionDemo(LinearRegression linearRegression) {
         super("  LinearRegression Demonstration"); // 设置窗口的标题
         this.linearRegression = linearRegression;
@@ -37,6 +36,11 @@ public class LinearRegressionDemo extends JFrame {
         setVisible(true); // 设置窗口的可见性为真
     }
 
+    /**
+     * Description: create a button and its facility
+     *
+     * @author TonyZhan
+     **/
     private void initButton() {
         button = new JButton();
         button.setText("保存图片");
@@ -53,7 +57,6 @@ public class LinearRegressionDemo extends JFrame {
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             String userDir = System.getProperty("user.home");
             JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop");
@@ -72,6 +75,12 @@ public class LinearRegressionDemo extends JFrame {
         }
     }
 
+    /**
+     * Description: save the linear photo
+     *
+     * @param file the destination
+     * @author TonyZhan
+     **/
     private void saveImage(File file) {
         BufferedImage image = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         // 从BufferedImage对象中获取一个Graphics2D对象
@@ -90,6 +99,13 @@ public class LinearRegressionDemo extends JFrame {
         }
     }
 
+    /**
+     * Description: draw the linear photo
+     *
+     * @param g      the pen
+     * @param jPanel the canvas
+     * @author TonyZhan
+     **/
     private void draw(Graphics g, JPanel jPanel) {
         // 设置背景颜色为白色
         jPanel.setBackground(Color.WHITE);
@@ -121,7 +137,7 @@ public class LinearRegressionDemo extends JFrame {
         g.drawLine(900, 600, 890, 605);
 
 
-        BigDecimal xEnd = getMax(linearRegression.XNums).multiply(new BigDecimal("1.1")).setScale(0, RoundingMode.CEILING), yEnd = getMax(linearRegression.YNums).multiply(new BigDecimal("1.1")).setScale(0, RoundingMode.CEILING);
+        BigDecimal xEnd = getMax(linearRegression.XNums).multiply(new BigDecimal("1.2")).setScale(0, RoundingMode.CEILING), yEnd = getMax(linearRegression.YNums).multiply(new BigDecimal("1.2")).setScale(0, RoundingMode.CEILING);
         BigDecimal xDis = xEnd.divide(new BigDecimal(10), 2, RoundingMode.HALF_UP), yDis = yEnd.divide(new BigDecimal(10), 2, RoundingMode.HALF_UP);
         BigDecimal temp;
         // 绘制坐标轴的刻度和标签

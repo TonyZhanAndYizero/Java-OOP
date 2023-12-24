@@ -14,7 +14,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 /**
- * @author tonyzhan0514
+ * @author TonyZhan
  */
 public class Variance extends JPanel {
     public Variance() {
@@ -23,6 +23,11 @@ public class Variance extends JPanel {
 
     protected ArrayList<BigDecimal> Nums = new ArrayList<>();
 
+    /**
+     * Description: the compute progress of variance
+     *
+     * @author TonyZhan
+     **/
     private void compute() {
         Nums.clear();
         String[] in = textField1.getText().strip().split("\\s+");
@@ -56,19 +61,19 @@ public class Variance extends JPanel {
             var = var.divide(n.subtract(BigDecimal.ONE), 4, RoundingMode.HALF_UP);
             label6.setText(var.toPlainString());
 
-            BigDecimal sqrtVar = var.sqrt(MathContext.DECIMAL64);
+            BigDecimal sqrtVar = var.sqrt(new MathContext(514));
             label7.setText(sqrtVar.toPlainString());
 
-            BigDecimal ua = var.divide(n, 8, RoundingMode.HALF_UP).sqrt(MathContext.DECIMAL128);
+            BigDecimal ua = var.divide(n, 8, RoundingMode.HALF_UP).sqrt(new MathContext(514));
             label9.setText(ua.toPlainString());
 
             BigDecimal deltaB;
             try {
                 deltaB = new BigDecimal(textField2.getText());
-                BigDecimal ub = deltaB.divide(new BigDecimal(3).sqrt(MathContext.DECIMAL64), 4, RoundingMode.HALF_UP);
+                BigDecimal ub = deltaB.divide(new BigDecimal(3).sqrt(new MathContext(514)), 4, RoundingMode.HALF_UP);
                 label12.setText(ub.toPlainString());
 
-                BigDecimal u = (ua.pow(2).add(ub.pow(2))).sqrt(MathContext.DECIMAL64);
+                BigDecimal u = (ua.pow(2).add(ub.pow(2))).sqrt(new MathContext(514));
                 label14.setText(u.toPlainString());
             } catch (NumberFormatException efe) {
                 label12.setText("null");
@@ -79,7 +84,6 @@ public class Variance extends JPanel {
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             compute();
         }

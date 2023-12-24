@@ -6,21 +6,26 @@ package Source.Calculator;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.table.DefaultTableModel;
 
 /**
- * @author tonyzhan0514
+ * Description: Matrix Calculator
+ *
+ * @author TonyZhan
  */
-public class CalculatorMatrix extends JPanel {
+public class CalculatorMatrix extends JPanel implements Calculator {
     public CalculatorMatrix() {
         initComponents();
     }
 
     boolean canCal = false;
     int n;
+    /**
+     * Description: Left Matrix(coefficients) and answer Matrix(constants).
+     *
+     * @author TonyZhan
+     **/
     double[][] coefficients;
     double[] constants;
     double[] answer;
@@ -32,7 +37,7 @@ public class CalculatorMatrix extends JPanel {
     }
 
     /**
-     * to calculate the matrix via Cramer's Rule
+     * Description:to calculate the matrix via Cramer's Rule
      *
      * @author TonyZhan
      */
@@ -63,7 +68,7 @@ public class CalculatorMatrix extends JPanel {
             }
 
             double det = determinant(coefficients, n);
-            label6.setText(String.format("%.3f",det));
+            label6.setText(String.format("%.3f", det));
             if (det != 0) {
                 StringBuilder ans = new StringBuilder();
                 for (int i = 0; i < n; i++) {
@@ -80,11 +85,13 @@ public class CalculatorMatrix extends JPanel {
 
 
     /**
-     * to calculate the determinant of a matrix
+     * Description: to calculate the determinant of a matrix
      *
-     * @return a double matrix
+     * @param matrix input matrix
+     * @param n      the size
+     * @return double
      * @author TonyZhan
-     */
+     **/
     public static double determinant(double[][] matrix, int n) {
         if (n == 1) {
             return matrix[0][0];
@@ -103,11 +110,14 @@ public class CalculatorMatrix extends JPanel {
     }
 
     /**
-     * to calculate the smaller matrix
+     * Description:  to calculate the smaller matrix
      *
-     * @return a double matrix
+     * @param matrix input matrix
+     * @param n      the size of matrix(n*n)
+     * @param j      which line to discard
+     * @return double[][]
      * @author TonyZhan
-     */
+     **/
     public static double[][] subMatrix(double[][] matrix, int n, int j) {
         double[][] sub = new double[n - 1][n - 1];
         //遍历原矩阵，跳过第一行和第j列，将元素复制到子矩阵中
@@ -125,11 +135,14 @@ public class CalculatorMatrix extends JPanel {
     }
 
     /**
-     * to calculate the line-changed matrix
+     * Description: to calculate the line-changed matrix
      *
-     * @return a double matrix
+     * @param matrix    input matrix
+     * @param constants the replaced line
+     * @param j         which line to replace
+     * @return double[][]
      * @author TonyZhan
-     */
+     **/
     public static double[][] replaceColumn(double[][] matrix, double[] constants, int j) {
         double[][] newMatrix = new double[matrix.length][matrix[0].length];
         for (int i = 0; i < matrix.length; i++) {
@@ -142,7 +155,7 @@ public class CalculatorMatrix extends JPanel {
     }
 
     /**
-     * set state wrong
+     * Description:set state wrong
      *
      * @author TonyZhan
      */
@@ -155,7 +168,7 @@ public class CalculatorMatrix extends JPanel {
     }
 
     /**
-     * set state correct
+     * Description:set state correct
      *
      * @author TonyZhan
      */
@@ -168,7 +181,6 @@ public class CalculatorMatrix extends JPanel {
     }
 
     private void button1MousePressed(MouseEvent e) {
-        // TODO add your code here
         if (e.getButton() == 1) {
             try {
                 n = Integer.parseInt(textField1.getText().strip());
@@ -181,8 +193,7 @@ public class CalculatorMatrix extends JPanel {
         }
     }
 
-    private void button2MousePressed(MouseEvent e) {
-        // TODO add your code here
+    public void buttonEqualMousePressed(MouseEvent e) {
         if (e.getButton() == 1) {
             calculate();
         }
@@ -199,7 +210,7 @@ public class CalculatorMatrix extends JPanel {
         label2 = new JLabel();
         label4 = new JLabel();
         button1 = new JButton();
-        button2 = new JButton();
+        buttonEqual = new JButton();
         scrollPane3 = new JScrollPane();
         label5 = new JLabel();
         label3 = new JLabel();
@@ -266,17 +277,17 @@ public class CalculatorMatrix extends JPanel {
         add(button1);
         button1.setBounds(295, 70, 65, 35);
 
-        //---- button2 ----
-        button2.setText("\u8ba1\u7b97");
-        button2.setFont(button2.getFont().deriveFont(button2.getFont().getSize() + 2f));
-        button2.addMouseListener(new MouseAdapter() {
+        //---- buttonEqual ----
+        buttonEqual.setText("\u8ba1\u7b97");
+        buttonEqual.setFont(buttonEqual.getFont().deriveFont(buttonEqual.getFont().getSize() + 2f));
+        buttonEqual.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                button2MousePressed(e);
+                buttonEqualMousePressed(e);
             }
         });
-        add(button2);
-        button2.setBounds(490, 240, 65, 35);
+        add(buttonEqual);
+        buttonEqual.setBounds(490, 240, 65, 35);
 
         //======== scrollPane3 ========
         {
@@ -316,7 +327,7 @@ public class CalculatorMatrix extends JPanel {
     private JLabel label2;
     private JLabel label4;
     private JButton button1;
-    private JButton button2;
+    private JButton buttonEqual;
     private JScrollPane scrollPane3;
     private JLabel label5;
     private JLabel label3;
