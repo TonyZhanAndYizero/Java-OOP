@@ -10,13 +10,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class EngineerArithmetic {
-    /**
-     * Description: Converts the input expression to an infix form and stores it in a list.
-     * @param str The string of input expression.
-     * @return An infix expression.
-     * @author HeMercy
-     */
-    public static List<String> infix(String str) {
+    public static List<String> zhongZhui(String str) {//把输入的字符串转换成中缀表达式。存入list中
         int index = 0;
         List<String> list = new ArrayList<>();
         do {
@@ -44,13 +38,8 @@ public class EngineerArithmetic {
         } while (index < str.length());
         return list;
     }
-    /**
-     * Description: Converts the infix list to a suffix list.
-     * @param list The list of the infix of input expression.
-     * @return A suffix list.
-     * @author HeMercy
-     */
-    public static List<String> suffix(List<String> list) {//中缀表达式转换称后缀表达式
+
+    public static List<String> houZhui(List<String> list) {//中缀表达式转换称后缀表达式
         Stack<String> fuZhan = new Stack<>();
         List<String> list2 = new ArrayList<>();
         if (!list.isEmpty()) {
@@ -96,25 +85,14 @@ public class EngineerArithmetic {
         return list2;
     }
 
-    /**
-     * Description: Determine whether the string is an operator.
-     * @param op The string form of a character in the input expression.
-     * @return True if the string is an operator or false if not.
-     * @author HeMercy
-     */
-    public static boolean isOperator(String op) {
+    public static boolean isOperator(String op) {//判断是否为操作符
         if ("0123456789.ep".indexOf(op.charAt(0)) == -1) {
             return true;
         } else {
             return false;
         }
     }
-    /**
-     * Description: Determine whether the string is a number.
-     * @param num The string form of a character in the input expression.
-     * @return True if the string is a number or false if not.
-     * @author HeMercy
-     */
+
     public static boolean isNumber(String num) {//判断是否为操作数
         if ("0123456789ep".indexOf(num.charAt(0)) >= 0) {
             return true;
@@ -122,13 +100,8 @@ public class EngineerArithmetic {
             return false;
         }
     }
-    /**
-     * Description: Determine the priority of the operator.
-     * @param f The string form of an operator in the input expression.
-     * @return The priority of the operator.
-     * @author HeMercy
-     */
-    public static int adv(String f) {
+
+    public static int adv(String f) {//判断操作符的优先级
         int result = 0;
         switch (f) {
             case "+":
@@ -177,12 +150,6 @@ public class EngineerArithmetic {
         return result;
     }
 
-    /**
-     * Description: Do the calculation by the suffix list of input expression.
-     * @param list2 The suffix list of the input expression.
-     * @return A big decimal of the calculation result.
-     * @author HeMercy
-     */
     public static BigDecimal math(List<String> list2) {//通过后缀表达式进行计算
         Stack<String> stack = new Stack<String>();
         BigDecimal res = null;
@@ -264,12 +231,7 @@ public class EngineerArithmetic {
         else
             return null;
     }
-    /**
-     * Description: Convert the input operator to a single character and call math function.
-     * @param str The input expression.
-     * @return A String of the calculation result.
-     * @author HeMercy
-     */
+
     public static String engineerCal(String str) {
         str = str.replaceAll(" ", "");
         List<String> list;
@@ -285,10 +247,10 @@ public class EngineerArithmetic {
             str = str.replaceAll("ln", "l");
             str = str.replaceAll("\u00F7", "/");
             str = str.replaceAll("\u00D7", "*");
-            list = infix(str);
+            list = zhongZhui(str);
             //System.out.println(list);
 
-            list = suffix(list);
+            list = houZhui(list);
             //System.out.println(list);
             return math(list).toPlainString();
         } catch (Exception e) {
