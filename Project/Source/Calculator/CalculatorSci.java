@@ -322,7 +322,6 @@ public class CalculatorSci extends JPanel implements Calculator {
         }
     }
 
-
     private ArrayList<String> strToCal = new ArrayList<>();
     private ArrayList<String> strToShow = new ArrayList<>();
     private String lastCh = "";

@@ -10,22 +10,15 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 /**
- * Description: Matrix Calculator
- *
- * @author TonyZhan
+ * @author tonyzhan0514
  */
-public class CalculatorMatrix extends JPanel implements Calculator {
+public class CalculatorMatrix extends JPanel implements Calculator{
     public CalculatorMatrix() {
         initComponents();
     }
 
     boolean canCal = false;
     int n;
-    /**
-     * Description: Left Matrix(coefficients) and answer Matrix(constants).
-     *
-     * @author TonyZhan
-     **/
     double[][] coefficients;
     double[] constants;
     double[] answer;
@@ -37,7 +30,7 @@ public class CalculatorMatrix extends JPanel implements Calculator {
     }
 
     /**
-     * Description:to calculate the matrix via Cramer's Rule
+     * to calculate the matrix via Cramer's Rule
      *
      * @author TonyZhan
      */
@@ -68,7 +61,7 @@ public class CalculatorMatrix extends JPanel implements Calculator {
             }
 
             double det = determinant(coefficients, n);
-            label6.setText(String.format("%.3f", det));
+            label6.setText(String.format("%.3f",det));
             if (det != 0) {
                 StringBuilder ans = new StringBuilder();
                 for (int i = 0; i < n; i++) {
@@ -85,13 +78,11 @@ public class CalculatorMatrix extends JPanel implements Calculator {
 
 
     /**
-     * Description: to calculate the determinant of a matrix
+     * to calculate the determinant of a matrix
      *
-     * @param matrix input matrix
-     * @param n      the size
-     * @return double
+     * @return a double matrix
      * @author TonyZhan
-     **/
+     */
     public static double determinant(double[][] matrix, int n) {
         if (n == 1) {
             return matrix[0][0];
@@ -110,14 +101,11 @@ public class CalculatorMatrix extends JPanel implements Calculator {
     }
 
     /**
-     * Description:  to calculate the smaller matrix
+     * to calculate the smaller matrix
      *
-     * @param matrix input matrix
-     * @param n      the size of matrix(n*n)
-     * @param j      which line to discard
-     * @return double[][]
+     * @return a double matrix
      * @author TonyZhan
-     **/
+     */
     public static double[][] subMatrix(double[][] matrix, int n, int j) {
         double[][] sub = new double[n - 1][n - 1];
         //遍历原矩阵，跳过第一行和第j列，将元素复制到子矩阵中
@@ -135,14 +123,11 @@ public class CalculatorMatrix extends JPanel implements Calculator {
     }
 
     /**
-     * Description: to calculate the line-changed matrix
+     * to calculate the line-changed matrix
      *
-     * @param matrix    input matrix
-     * @param constants the replaced line
-     * @param j         which line to replace
-     * @return double[][]
+     * @return a double matrix
      * @author TonyZhan
-     **/
+     */
     public static double[][] replaceColumn(double[][] matrix, double[] constants, int j) {
         double[][] newMatrix = new double[matrix.length][matrix[0].length];
         for (int i = 0; i < matrix.length; i++) {
@@ -155,7 +140,7 @@ public class CalculatorMatrix extends JPanel implements Calculator {
     }
 
     /**
-     * Description:set state wrong
+     * set state wrong
      *
      * @author TonyZhan
      */
@@ -168,7 +153,7 @@ public class CalculatorMatrix extends JPanel implements Calculator {
     }
 
     /**
-     * Description:set state correct
+     * set state correct
      *
      * @author TonyZhan
      */

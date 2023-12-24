@@ -24,6 +24,7 @@ public class LinearRegressionDemo extends JFrame {
     private JButton button;
     private DrawPanel drawPanel;
 
+    // 构造方法，初始化窗口
     public LinearRegressionDemo(LinearRegression linearRegression) {
         super("  LinearRegression Demonstration"); // 设置窗口的标题
         this.linearRegression = linearRegression;
@@ -36,11 +37,6 @@ public class LinearRegressionDemo extends JFrame {
         setVisible(true); // 设置窗口的可见性为真
     }
 
-    /**
-     * Description: create a button and its facility
-     *
-     * @author TonyZhan
-     **/
     private void initButton() {
         button = new JButton();
         button.setText("保存图片");
@@ -75,12 +71,6 @@ public class LinearRegressionDemo extends JFrame {
         }
     }
 
-    /**
-     * Description: save the linear photo
-     *
-     * @param file the destination
-     * @author TonyZhan
-     **/
     private void saveImage(File file) {
         BufferedImage image = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         // 从BufferedImage对象中获取一个Graphics2D对象
@@ -99,13 +89,6 @@ public class LinearRegressionDemo extends JFrame {
         }
     }
 
-    /**
-     * Description: draw the linear photo
-     *
-     * @param g      the pen
-     * @param jPanel the canvas
-     * @author TonyZhan
-     **/
     private void draw(Graphics g, JPanel jPanel) {
         // 设置背景颜色为白色
         jPanel.setBackground(Color.WHITE);

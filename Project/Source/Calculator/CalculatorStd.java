@@ -22,10 +22,10 @@ import javax.swing.border.*;
 
 
 /**
- * Description: A standard calculator
+ * use JFormDesigner to build the frame.
  *
- * @author TonyZhan
- **/
+ * @author TonyZhan and Yury.
+ */
 public class CalculatorStd extends JPanel implements Calculator {
     public CalculatorStd() {
         try {
@@ -37,10 +37,8 @@ public class CalculatorStd extends JPanel implements Calculator {
     }
 
     /**
-     * Description: A robot to deal with click
-     *
-     * @author TonyZhan
-     **/
+     * a robot to take charge of button.
+     */
     public static Robot robot;
 
     static {
@@ -56,7 +54,7 @@ public class CalculatorStd extends JPanel implements Calculator {
     }
 
     /**
-     * Description: all the UI design and robot issues
+     * all the UI design and robot issues
      *
      * @author TonyZhan
      */
@@ -183,42 +181,24 @@ public class CalculatorStd extends JPanel implements Calculator {
     }
 
     /**
-     * Description: judge whether the textField1 should be cleared.
-     *
-     * @author: TonyZhan
+     * judge whether the textField1 should be cleared.
      */
     protected boolean pendingCalToClear = false;
     /**
-     * Description: judge the multiple consecutive calculate.
-     *
-     * @author: TonyZhan
+     * judge the multiple consecutive calculate.
      */
     protected boolean newNum = false;
     /**
-     * Description: judge whether consecutive equal
-     *
-     * @author: TonyZhan
+     * judge whether consecutive equal
      */
     protected boolean OnceEqual = false;
     /**
-     * Description: save the consecutive equal number
-     *
-     * @author: TonyZhan
+     * save the consecutive equal number
      */
     protected String OnceEqualConst;
-    /**
-     * Description: to check the error situation
-     *
-     * @author TonyZhan
-     **/
     protected boolean error = false;
 
-    /**
-     * Description: a series of button movement, the crucial code is in CalProgressStd.
-     *
-     * @param e KeyEvent
-     * @author TonyZhan
-     **/
+
     private void textField1KeyPressed(KeyEvent e) {
         CalProgressStd.textFieldAndLabel(e, this);
     }
@@ -251,11 +231,6 @@ public class CalculatorStd extends JPanel implements Calculator {
         CalProgressStd.plain(e, this);
     }
 
-    /**
-     * Description: A music displayer
-     *
-     * @author TonyZhan
-     **/
     protected static boolean play = false;
     protected static Clip clip;
 
@@ -270,9 +245,8 @@ public class CalculatorStd extends JPanel implements Calculator {
     }
 
     /**
-     * Description: entertainment = =
+     * entertainment = =
      *
-     * @param e MouseEvent
      * @author TonyZhan
      */
     private void buttonDavidMousePressed(MouseEvent e) {
