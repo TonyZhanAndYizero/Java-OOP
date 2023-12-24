@@ -14,7 +14,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 /**
- * @author tonyzhan0514
+ * @author TonyZhan
  */
 public class Variance extends JPanel {
     public Variance() {
@@ -23,6 +23,11 @@ public class Variance extends JPanel {
 
     protected ArrayList<BigDecimal> Nums = new ArrayList<>();
 
+    /**
+     * Description: the compute progress of variance
+     *
+     * @author TonyZhan
+     **/
     private void compute() {
         Nums.clear();
         String[] in = textField1.getText().strip().split("\\s+");
